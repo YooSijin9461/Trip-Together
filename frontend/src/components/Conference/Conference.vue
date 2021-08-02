@@ -12,7 +12,9 @@
       </div>
     </div>
     <hr>
-    <div id="participants"></div>
+    <div class="container">
+      <div id="participants"></div>
+    </div>
   </div>
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header">
@@ -287,11 +289,11 @@ export default {
 }
 .participant {
 	margin: 10px;
-	width: 150;
+	width: 30%;
 	text-align: center;
 	overflow: hide;
 	float: left;
-	padding: 2%;
+	padding: 10px;
 	border-radius: 10px;
   background-color: lightgoldenrodyellow;
 	-webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px
@@ -318,6 +320,7 @@ export default {
   margin-bottom: 2%;
 }
 .participant span {
+    font-size: small;
     font-weight: bold;
     color: black;
 }
