@@ -1,0 +1,87 @@
+package com.ssafy.api.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+
+import com.ssafy.api.request.UserModifyPostReq;
+import com.ssafy.api.request.UserRegisterPostReq;
+import com.ssafy.db.entity.User;
+import com.ssafy.db.repository.UserRepository;
+import com.ssafy.db.repository.UserRepositorySupport;
+
+/**
+ * 유저 관련 비즈니스 로직 처리를 위한 서비스 구현 정의.
+ */
+@Service("userService")
+public class UserServiceImpl implements UserService {
+	@Autowired
+	UserRepository userRepository;
+
+	@Autowired
+	UserRepositorySupport userRepositorySupport;
+
+	@Autowired
+	PasswordEncoder passwordEncoder;
+
+	@Override
+	public User createUser(UserRegisterPostReq userRegisterInfo) {
+		User user = new User();
+		user.setUserId(userRegisterInfo.getUserId());
+		// 보안을 위해서 유저 패스워드 암호화 하여 디비에 저장.
+		user.setPassword(passwordEncoder.encode(userRegisterInfo.getPassword()));
+		user.setUserName(userRegisterInfo.getUserName());
+		user.setGender(userRegisterInfo.getGender());
+		user.setPhoneNum(userRegisterInfo.getPhoneNum());
+		user.setEmail(userRegisterInfo.getEmail());
+		user.setAge(userRegisterInfo.getAge());
+		user.setMbti(userRegisterInfo.getMbti());
+		user.setAvgScore(userRegisterInfo.getAvgScore());
+		user.setGuide(userRegisterInfo.isGuide());
+		user.setImg(userRegisterInfo.getImg());
+		return userRepository.save(user);
+	}
+	
+	@Override
+	public List<User> selectUser() {
+		return userRepository.findAll();
+	}
+
+	@Override
+	public User getUserByUserId(String userId) {
+		// 디비에 유저 정보 조회 (userId 를 통한 조회).
+		User user = userRepositorySupport.findUserByUserId(userId).get();
+		return user;
+	}
+
+	@Override
+	public User modifyUser(UserModifyPostReq u, String userId) {
+		// 아이디, 이름, 평점 못 바꾸게
+		// 참여하고 있는 방은 일단 나중에!
+		User user = userRepositorySupport.findUserByUserId(userId).get();
+		user.setPassword(passwordEncoder.encode(u.getPassword()));
+		user.setGender(u.getGender());
+		user.setPhoneNum(u.getPhoneNum());
+		user.setEmail(u.getEmail());
+		user.setAge(u.getAge());
+		user.setMbti(u.getMbti());
+		user.setGuide(u.isGuide());
+		user.setImg(u.getImg());
+		return userRepository.save(user);
+	}
+	
+	@Override
+	public void deleteUser(String userId) {
+		User user = userRepositorySupport.findUserByUserId(userId).get();
+		userRepository.delete(user);
+	}
+
+	@Override
+	public List<User> getUsersByConferenceNo(int conferenceNo) {
+		List<User> users = userRepositorySupport.findByConferenceRoomNo(conferenceNo).get();
+		return users;
+	}
+}
