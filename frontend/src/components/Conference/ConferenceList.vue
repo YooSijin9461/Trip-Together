@@ -69,7 +69,8 @@ export default ({
       store.dispatch('conferenceDetail', conferenceNo)
         .then(() => {
           // register(state.username, conferenceNo)
-          router.push({ name: 'Conference', params: { conferenceId: conferenceNo}})
+          // router.push({ name: 'Conference', params: { conferenceId: conferenceNo}})
+          emit('openConferenceDialog')
         })
     }
 

@@ -230,6 +230,18 @@ export default createStore({
     getConferencetitle (state) {
       return state.conferenceTitle
     },
+    getConferencedescription (state) {
+      return state.conferenceDescription
+    },
+    getConferencepassword (state) {
+      return state.conferencePassword
+    },
+    getConferencelimit (state) {
+      return state.conferenceLimit
+    },
+    getConferencecategory (state) {
+      return state.conferenceCategory
+    },
 
 
     // 게시글
