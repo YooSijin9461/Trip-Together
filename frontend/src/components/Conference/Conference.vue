@@ -5,15 +5,14 @@
       <hr>
       <div id="participants"></div>
     </div>
-    <el-button type="danger" id="leave" @click="leaveRoom()">나가기</el-button>
-	</div>
+  </div>
+  <el-button type="danger" id="leave" @click="leaveRoom()">나가기</el-button>
 </template>
 
 <script>
 import { reactive, onMounted, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import '@/assets/js/participant.js'
 
 export default {
   setup() {
@@ -56,9 +55,6 @@ export default {
           console.error('Unrecognized message', parsedMessage)
       }
     }
-    function isOpen(ws) { return ws.readyState === ws.OPEN }
-    if (!isOpen(socket)) return;
-    socket.send(JSON.stringify(data));
 
     const store = useStore()
     const router = useRouter()
@@ -94,7 +90,7 @@ export default {
         console.info('Call not accepted by peer. Closing call')
         stop()
       } else {
-        webRtcPeer.processAnswer(message.sdpAnswer, function (error) {
+        this.webRtcPeer.processAnswer(message.sdpAnswer, function (error) {
           if (error) return console.error (error);
         })
       }
@@ -287,16 +283,6 @@ export default {
 	-o-transition: all 0.3s linear;
 	transition: all 0.3s linear;
 }
-.participant:before {
-	content: '';
-	position: absolute;
-	top: -8px;
-	right: -8px;
-	bottom: -8px;
-	left: -8px;
-	z-index: -1;
-	border-radius: 4px;
-}
 .participant:hover {
 	opacity: 1;
   cursor: pointer;
@@ -382,7 +368,6 @@ a.hovertext:after {
 	text-decoration: none !important;
 	color: #fff;
 	opacity: 0;
-  transition: 0.5s;
 	-webkit-transition: 0.5s;
 	-moz-transition: 0.5s;
 	-o-transition: 0.5s;
