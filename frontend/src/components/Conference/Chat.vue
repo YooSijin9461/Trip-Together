@@ -1,10 +1,29 @@
 <template>
-  <div>
+  <div class="chatBody">
     <div id="conversation">
+      <div v-for="(chat, index) in state.chatList" :key="index">
+        <div v-if="chat.name === state.name">
+          <div class="myChatBox">
+            <div class="myChatMessage">{{ chat.message }}</div>
+            <p class="chatDate mb-0">{{ chat.date }}</p>
+          </div>
+        </div>
+        <div v-else>
+          <div class="chatting">
+            <div v-show="!index || state.chatList[index - 1].name !== chat.name">
+              <p class="mb-0">{{ chat.name }}</p>
+            </div>
+            <div class="chatBox">
+              <div class="chatMessage">{{ chat.message }}</div>
+              <p class="chatDate mb-0">{{ chat.date }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-      <textarea class="chatInput" v-model="state.message" type="text" placeholder="채팅을 입력하세요" @keyup.enter="sendChat"/>
-    </div>
+  </div>
+  <div>
+    <textarea class="chatInput" v-model="state.message" type="text" placeholder="채팅을 입력하세요" @keyup.enter="sendChat"/>
   </div>
 </template>
 
@@ -22,6 +41,7 @@ export default {
       stompClient: null,
       name: computed(() => store.getters['getUsername']),
       message: '',
+      chatList: [],
     })
 
     const connect = () => {
@@ -48,11 +68,14 @@ export default {
     }
 
     function showChat(chat) {
-      $("#conversation").append(
-        "<div class='chatting'><span>" + chat.name + "</span>" + 
-        "<div class='chat-message-time'><div class='chatMessage'>" + chat.message + "</div>" + 
-        "<span>" + chat.date + "</span></div></div>"
-      );
+      state.chatList.push(chat)
+
+      // state.chatList.push(chat)
+      // $("#conversation").append(
+      //   "<div class='chatting'><span>" + chat.name + "</span>" + 
+      //   "<div class='chat-message-time'><div class='chatMessage'>" + chat.message + "</div>" + 
+      //   "<span>" + chat.date + "</span></div></div>"
+      // );
     }
 
     onMounted (() => {
@@ -70,20 +93,52 @@ export default {
 </script>
 
 <style>
+.chatBody {
+  position: absolute;
+  width: 100%;
+  top: 4rem;
+  bottom: 7rem;
+  overflow: auto;
+}
 .chatting {
   display: block;
 }
-.chat-message-time {
+.myChatting {
+  display: block;
+  text-align: end;
+  float: inline-end;
+}
+.chatBox {
   display: flex;
-  width: 100%;
   align-items: flex-end;
+  width: 100%;
+  margin-bottom: 6px;
+}
+.myChatBox {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+  width: 100%;
+  margin-bottom: 6px;
 }
 .chatMessage {
   word-break: break-all;
-  max-width: 70%;
+  max-width: 80%;
+  background-color: lightblue;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 0 2px;
+}
+.myChatMessage {
+  word-break: break-all;
+  max-width: 80%;
   background-color: blanchedalmond;
   border-radius: 5px;
   padding: 5px;
+  margin: 0 2px;
+}
+.chatDate {
+  font-size: 6px;
 }
 .chatInput {
   position: absolute;

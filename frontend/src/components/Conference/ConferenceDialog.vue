@@ -61,7 +61,7 @@ export default {
       align: 'left',
       rules: {
         password: [
-          { required: false, message: 'Please input Password', trigger: 'blur' }
+          { required: true, message: 'Please input Password', trigger: 'blur' }
         ],
       },
       dialogVisible: computed(() => props.open),

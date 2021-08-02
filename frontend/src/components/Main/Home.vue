@@ -87,7 +87,6 @@
         </GMapMap>
       </div>
     </div>
-  <Chat/>
   </div>
 </template>
 
@@ -95,14 +94,10 @@
 import { reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import Chat from '@/components/Conference/Chat.vue'
 
 
 export default {
   name: 'Home',
-  components: {
-    Chat,
-  },
   setup() {
     const router = useRouter()
     const store = useStore()

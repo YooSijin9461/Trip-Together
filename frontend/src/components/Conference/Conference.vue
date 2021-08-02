@@ -16,7 +16,7 @@
   </div>
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">채팅</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
@@ -404,6 +404,6 @@ a.hovertext:hover:after, a.hovertext:focus:after {
 }
 
 .offcanvas-body {
-  padding-left: 0;
+  padding: 1rem 0;
 }
 </style>
