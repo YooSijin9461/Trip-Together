@@ -1,6 +1,7 @@
 <template>
   <div>
     <Main/>
+    <!-- <Sidebar/> -->
   </div>
   <div class="ms-5 ps-5">
     <hr class="mt-2">
@@ -28,6 +29,7 @@ import Main from '@/views/Main.vue'
 import Aside from '@/components/Main/Aside.vue'
 import Search from '@/components/Main/Search.vue'
 import ConferenceCreate from '@/components/Conference/ConferenceCreate.vue'
+// import Sidebar from '@/components/Main/Sidebar.vue'
 import { reactive } from 'vue'
 
 export default {
@@ -37,6 +39,7 @@ export default {
     Aside,
     Search,
     ConferenceCreate,
+    // Sidebar,
     // SideMenu
   },
   setup() {

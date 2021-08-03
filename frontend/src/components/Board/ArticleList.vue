@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <h1 class="mt-5 mb-4">게시글</h1>
+    
     <span v-for="(article) in state.articleList.slice().reverse()" :key="article">
       <!-- <span v-if="index"> -->
         <hr class="article-line my-0">

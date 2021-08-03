@@ -11,7 +11,7 @@
       </div>      
     </div>
     <hr class="mt-2">
-    <div class="box d-flex align-items-center my-2" @click="clickHome">
+    <!-- <div class="box d-flex align-items-center my-2" @click="clickHome">
       <i class="fas fa-home aside-icon my-2"></i>
       <span class="flex-fill align-center">홈</span>
     </div>
@@ -26,7 +26,52 @@
     <div class="box d-flex align-items-center my-2" @click="clickSearch">
       <i class="fas fa-search aside-icon my-2"></i>
       <span class="flex-fill align-center">검색</span>
-    </div>
+    </div> -->
+    <el-aside class="w-100" style="background-color: rgb(238, 241, 246)">
+    <el-menu>
+      <el-menu-item index="1">
+        <template #title>
+          <i class="fas fa-home aside-icon my-2"></i>
+          <span class="flex-fill align-center">홈</span>
+        </template>
+      </el-menu-item>
+      <el-submenu index="2">
+        <template #title>
+          <i class="fas fa-video aside-icon my-2"></i>
+          <span class="flex-fill align-center">방</span>
+        </template>
+        <el-menu-item-group>
+          <template #title>목록</template>
+          <el-menu-item index="2-1">전체보기</el-menu-item>
+          <el-menu-item index="2-2">일반</el-menu-item>
+          <el-menu-item index="2-3">가이드</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+      <el-submenu index="3">
+        <template #title>
+          <i class="far fa-clipboard aside-icon2 my-2"></i>
+          <span class="flex-fill align-center">게시판</span>
+        </template>
+        <el-menu-item-group>
+          <template #title>목록</template>
+          <el-menu-item index="3-1">공지사항</el-menu-item>
+          <el-menu-item index="3-2">게시글</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+      <el-submenu index="4">
+        <template #title>
+          <i class="fas fa-search aside-icon my-2"></i>
+          <span class="flex-fill align-center">검색</span>
+        </template>
+        <el-menu-item-group>
+          <template #title>목록</template>
+          <el-menu-item index="4-1">사용자 검색</el-menu-item>
+          <el-menu-item index="4-2">방 검색</el-menu-item>
+          <el-menu-item index="4-3">게시판 검색</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+    </el-menu>
+  </el-aside>
     <!-- <Side/> -->
   </el-drawer>
 </template>
