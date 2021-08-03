@@ -74,4 +74,10 @@ public class RoomServiceImpl implements RoomService{
 		return roomRepository.save(room);
 	}
 
+	@Override
+	public void deleteRoom(int conferenceNo) {
+		ConferenceRoom room = roomRepositorySupport.findByConferenceNo(conferenceNo).get();
+		roomRepository.delete(room);
+	}
+
 }

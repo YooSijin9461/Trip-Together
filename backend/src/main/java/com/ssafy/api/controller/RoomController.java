@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -64,7 +65,7 @@ public class RoomController {
 		@ApiResponse(code = 200, message = "성공"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<Page<ConferenceRoom>> selectRoom(@PageableDefault(size = 9, sort = "conferenceNo", direction = Sort.Direction.DESC) Pageable pageable){
+	public ResponseEntity<Page<ConferenceRoom>> selectRoom(@PageableDefault(sort = "conferenceNo", direction = Sort.Direction.DESC) Pageable pageable){
 		return new ResponseEntity<>(roomService.selectRoom(pageable), HttpStatus.OK);
 	}
 	
@@ -76,7 +77,7 @@ public class RoomController {
 	})
 	public ResponseEntity<List<ConferenceRoom>> selectRoom(@RequestParam(required = false) String title,
 			   											   @RequestParam(required = false) String owner,
-			   											@PageableDefault(size = 9, sort = "conferenceNo", direction = Sort.Direction.DESC) Pageable pageable){
+			   											@PageableDefault(sort = "conferenceNo", direction = Sort.Direction.DESC) Pageable pageable){
 		if(title != null)
 			return new ResponseEntity<>(roomService.searchTitle(title, pageable), HttpStatus.OK);
 		return new ResponseEntity<>(roomService.searchOwner(owner, pageable), HttpStatus.OK);
@@ -104,5 +105,20 @@ public class RoomController {
 		room = roomService.modifyRoom(update, conferenceNo);
 		
 		return new ResponseEntity<String>("success", HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{conferenceNo}")
+	@ApiOperation(value = "방 삭제")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "성공"),
+		@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<String> deleteRoom(@PathVariable int conferenceNo) {
+		ConferenceRoom room = roomService.getInfo(conferenceNo);
+		if(room != null) {
+			roomService.deleteRoom(conferenceNo);
+			return new ResponseEntity<>("success", HttpStatus.OK);
+		}
+		return new ResponseEntity<>("fail", HttpStatus.OK);
 	}
 }
