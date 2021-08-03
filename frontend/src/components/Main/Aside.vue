@@ -36,7 +36,6 @@ export default {
       board: false,
     })
     const clickHome = () => {
-
       router.push({ name: 'Home' })
     }
     const clickConference = () => {

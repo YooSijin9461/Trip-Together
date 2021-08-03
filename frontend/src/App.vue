@@ -1,21 +1,16 @@
 <template>
   <div>
     <Main/>
-    <!-- <Sidebar/> -->
+    <Sidebar
+      @openSearchDialog="onOpenSearchDialog"/>
   </div>
   <div class="ms-5 ps-5">
     <hr class="mt-2">
   </div>
-  <div class="d-flex">
-    <div class="aside">
-      <Aside
-        @openSearchDialog="onOpenSearchDialog"/>
-    </div>
-    <div class="flex-fill mx-5">
-      <router-view
-        @openConferenceDialog="onOpenConferenceDialog"
-        @openConferenceCreateDialog="onOpenConferenceCreateDialog"/>
-    </div>
+  <div class="ms-5 mt-3">
+    <router-view
+      @openConferenceDialog="onOpenConferenceDialog"
+      @openConferenceCreateDialog="onOpenConferenceCreateDialog"/>
   </div>
   <Search
     :open="state.searchDialogOpen"
@@ -34,7 +29,7 @@ import Aside from '@/components/Main/Aside.vue'
 import Search from '@/components/Main/Search.vue'
 import ConferenceDialog from '@/components/Conference/ConferenceDialog.vue'
 import ConferenceCreate from '@/components/Conference/ConferenceCreate.vue'
-// import Sidebar from '@/components/Main/Sidebar.vue'
+import Sidebar from '@/components/Main/Sidebar.vue'
 import { reactive } from 'vue'
 
 export default {
@@ -45,7 +40,7 @@ export default {
     Search,
     ConferenceDialog,
     ConferenceCreate,
-    // Sidebar,
+    Sidebar,
   },
   setup() {
     const state = reactive ({
@@ -79,7 +74,4 @@ export default {
 </script>
 
 <style>
-.aside {
-  margin-left: 17px;
-}
 </style>
