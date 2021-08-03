@@ -7784,3 +7784,701 @@ Caused by: java.io.IOException: 현재 연결은 사용자의 호스트 시스�
 2021-08-03 13:01:52.822 DEBUG 18680 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[com.ssafy.db.entity.ConferenceRoom@7809c4c9, com.ssafy.db.entity.ConferenceRoom@5aa81611, com.ssafy (truncated)...]
 2021-08-03 13:01:52.823 DEBUG 18680 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2021-08-03 13:01:52.823 DEBUG 18680 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/conferences, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", origin:"https://localhost:8083", sec-fetch-site:"same-site", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8083/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:47:01.132  INFO 17820 --- [restartedMain] com.ssafy.GroupCallApplication           : Starting GroupCallApplication using Java 1.8.0_192 on DESKTOP-KVCQHCD with PID 17820 (C:\Users\multicampus\Documents\S05P13D201\backend\bin\main started by multicampus in C:\Users\multicampus\Documents\S05P13D201\backend)
+2021-08-03 14:47:01.135  INFO 17820 --- [restartedMain] com.ssafy.GroupCallApplication           : No active profile set, falling back to default profiles: default
+2021-08-03 14:47:01.181  INFO 17820 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-08-03 14:47:01.181  INFO 17820 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-08-03 14:47:03.116  INFO 17820 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-08-03 14:47:03.252  INFO 17820 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 124 ms. Found 5 JPA repository interfaces.
+2021-08-03 14:47:03.857  INFO 17820 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@5c509754' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-08-03 14:47:03.865  INFO 17820 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-08-03 14:47:04.313  INFO 17820 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8443 (https)
+2021-08-03 14:47:04.330  INFO 17820 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-08-03 14:47:04.331  INFO 17820 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-08-03 14:47:04.511  INFO 17820 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-08-03 14:47:04.512  INFO 17820 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3330 ms
+2021-08-03 14:47:04.839 DEBUG 17820 --- [restartedMain] o.s.w.s.r.ResourceUrlEncodingFilter      : Filter 'resourceUrlEncodingFilter' configured for use
+2021-08-03 14:47:04.839 DEBUG 17820 --- [restartedMain] o.s.web.filter.CharacterEncodingFilter   : Filter 'characterEncodingFilter' configured for use
+2021-08-03 14:47:04.840 DEBUG 17820 --- [restartedMain] o.s.w.f.CommonsRequestLoggingFilter      : Filter 'commonsRequestLoggingFilter' configured for use
+2021-08-03 14:47:05.077  INFO 17820 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-08-03 14:47:05.166  INFO 17820 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.30.Final
+2021-08-03 14:47:05.336  INFO 17820 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-08-03 14:47:05.455  INFO 17820 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-08-03 14:47:05.819  INFO 17820 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-08-03 14:47:05.836  INFO 17820 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2021-08-03 14:47:06.585  INFO 17820 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-08-03 14:47:06.599  INFO 17820 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-08-03 14:47:06.642  INFO 17820 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-08-03 14:47:07.333  WARN 17820 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-08-03 14:47:07.774 DEBUG 17820 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 35 mappings in 'requestMappingHandlerMapping'
+2021-08-03 14:47:07.945  INFO 17820 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-08-03 14:47:08.172  INFO 17820 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7ce357f9, org.springframework.security.web.context.SecurityContextPersistenceFilter@16443df9, org.springframework.security.web.header.HeaderWriterFilter@594a698c, org.springframework.web.filter.CorsFilter@7f60f02, org.springframework.security.web.authentication.logout.LogoutFilter@463c5cb5, com.ssafy.common.auth.JwtAuthenticationFilter@7f1e2191, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@17c0664c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3130221f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@43f004e, org.springframework.security.web.session.SessionManagementFilter@7894a542, org.springframework.security.web.access.ExceptionTranslationFilter@7e17cf90, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@59c689c0]
+2021-08-03 14:47:08.203  INFO 17820 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2021-08-03 14:47:08.211  INFO 17820 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2021-08-03 14:47:08.219  INFO 17820 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2021-08-03 14:47:08.258 DEBUG 17820 --- [restartedMain] o.s.w.s.s.s.WebSocketHandlerMapping      : Patterns [/websocket/**] in 'stompWebSocketHandlerMapping'
+2021-08-03 14:47:08.267  INFO 17820 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2021-08-03 14:47:08.343 DEBUG 17820 --- [restartedMain] .WebSocketAnnotationMethodMessageHandler : 
+	c.s.a.c.AuthController:
+	
+2021-08-03 14:47:08.344 DEBUG 17820 --- [restartedMain] .WebSocketAnnotationMethodMessageHandler : 
+	c.s.a.c.BoardController:
+	
+2021-08-03 14:47:08.344 DEBUG 17820 --- [restartedMain] .WebSocketAnnotationMethodMessageHandler : 
+	c.s.a.c.CommentController:
+	
+2021-08-03 14:47:08.350 DEBUG 17820 --- [restartedMain] .WebSocketAnnotationMethodMessageHandler : 
+	c.s.a.c.GreetingController:
+	{[MESSAGE],[/chat]}: chat(Chat)
+2021-08-03 14:47:08.351 DEBUG 17820 --- [restartedMain] .WebSocketAnnotationMethodMessageHandler : 
+	c.s.a.c.NoticeController:
+	
+2021-08-03 14:47:08.352 DEBUG 17820 --- [restartedMain] .WebSocketAnnotationMethodMessageHandler : 
+	c.s.a.c.RoomController:
+	
+2021-08-03 14:47:08.352 DEBUG 17820 --- [restartedMain] .WebSocketAnnotationMethodMessageHandler : 
+	c.s.a.c.UserController:
+	
+2021-08-03 14:47:08.352 DEBUG 17820 --- [restartedMain] .WebSocketAnnotationMethodMessageHandler : 
+	s.d.s.w.Swagger2ControllerWebMvc:
+	
+2021-08-03 14:47:08.353 DEBUG 17820 --- [restartedMain] .WebSocketAnnotationMethodMessageHandler : 
+	s.d.s.w.ApiResourceController:
+	
+2021-08-03 14:47:08.353 DEBUG 17820 --- [restartedMain] .WebSocketAnnotationMethodMessageHandler : 
+	s.d.o.w.OpenApiControllerWebMvc:
+	
+2021-08-03 14:47:08.354 DEBUG 17820 --- [restartedMain] .WebSocketAnnotationMethodMessageHandler : 
+	o.s.b.a.w.s.e.BasicErrorController:
+	
+2021-08-03 14:47:08.445  INFO 17820 --- [JsonRpcClient-hearbeatExec-e1-t0] o.k.j.c.JsonRpcClientNettyWebSocket      : [KurentoClient]  Connecting native client
+2021-08-03 14:47:08.446  INFO 17820 --- [JsonRpcClient-hearbeatExec-e1-t0] o.k.j.c.JsonRpcClientNettyWebSocket      : [KurentoClient]  Creating new NioEventLoopGroup
+2021-08-03 14:47:10.028  INFO 17820 --- [nioEventLoopGroup-2-1] o.k.j.c.JsonRpcClientNettyWebSocket      : [KurentoClient]  Initiating new Netty channel. Will create new handler too!
+2021-08-03 14:47:10.276 DEBUG 17820 --- [restartedMain] o.s.w.s.s.s.WebSocketHandlerMapping      : Patterns [/groupcall] in 'webSocketHandlerMapping'
+2021-08-03 14:47:10.404 DEBUG 17820 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-08-03 14:47:10.471  INFO 17820 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [dist/index.html]
+2021-08-03 14:47:10.496 DEBUG 17820 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/swagger-ui/] in 'viewControllerHandlerMapping'
+2021-08-03 14:47:10.520 DEBUG 17820 --- [restartedMain] o.s.w.s.c.annotation.WebMvcConfigurer    : Default resource handling disabled
+2021-08-03 14:47:10.815 DEBUG 17820 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/resources/**, /swagger-ui.html, /webjars/**, /css/**, /fonts/**, /icons/**, /img/**, /js/**, /swagger-ui/**] in 'resourceHandlerMapping'
+2021-08-03 14:47:10.829 DEBUG 17820 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-08-03 14:47:11.987  INFO 17820 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8443 (https) with context path ''
+2021-08-03 14:47:12.642 DEBUG 17820 --- [restartedMain] org.springframework.web.SimpLogging      : clientOutboundChannel added SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2021-08-03 14:47:12.643 DEBUG 17820 --- [restartedMain] org.springframework.web.SimpLogging      : clientInboundChannel added WebSocketAnnotationMethodMessageHandler[prefixes=[/app/]]
+2021-08-03 14:47:12.643  INFO 17820 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2021-08-03 14:47:12.643 DEBUG 17820 --- [restartedMain] org.springframework.web.SimpLogging      : clientInboundChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@74d2f27d]
+2021-08-03 14:47:12.643 DEBUG 17820 --- [restartedMain] org.springframework.web.SimpLogging      : brokerChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@74d2f27d]
+2021-08-03 14:47:12.643  INFO 17820 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@74d2f27d]]
+2021-08-03 14:47:12.644  INFO 17820 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2021-08-03 14:47:12.644 DEBUG 17820 --- [restartedMain] org.springframework.web.SimpLogging      : clientInboundChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2021-08-03 14:47:12.644 DEBUG 17820 --- [restartedMain] org.springframework.web.SimpLogging      : brokerChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2021-08-03 14:47:12.663  INFO 17820 --- [restartedMain] com.ssafy.GroupCallApplication           : Started GroupCallApplication in 11.936 seconds (JVM running for 13.133)
+2021-08-03 14:47:58.526  INFO 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-03 14:47:58.526  INFO 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-08-03 14:47:58.526 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2021-08-03 14:47:58.526 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2021-08-03 14:47:58.526 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2021-08-03 14:47:58.528 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@47aa7785
+2021-08-03 14:47:58.528 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@1bb900e5
+2021-08-03 14:47:58.528 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2021-08-03 14:47:58.528  INFO 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2021-08-03 14:47:58.556 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2021-08-03 14:47:58.572 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
+2021-08-03 14:47:58.572 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.servlet.view.InternalResourceView  : View name 'forward:', model {}
+2021-08-03 14:47:58.574 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.servlet.view.InternalResourceView  : Forwarding to [index.html]
+2021-08-03 14:47:58.576 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : "FORWARD" dispatch for GET "/index.html", parameters={}
+2021-08-03 14:47:58.577  WARN 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.PageNotFound             : No mapping for GET /index.html
+2021-08-03 14:47:58.584 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.ssafy.common.exception.handler.NotFoundHandler#renderDefaultPage(NoHandlerFoundException)
+2021-08-03 14:47:58.599 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Found 'Content-Type:text/html' in response
+2021-08-03 14:47:58.600 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing ["<<<<<<< HEAD
+<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compa (truncated)...]
+2021-08-03 14:47:58.608  WARN 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /index.html]
+2021-08-03 14:47:58.608 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Exiting from "FORWARD" dispatch, status 200
+2021-08-03 14:47:58.609 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:58.665 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/css/app.defd6cfb.css", parameters={}
+2021-08-03 14:47:58.668 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:47:58.675 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:58.677 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-vendors.1a4fccdd.css", parameters={}
+2021-08-03 14:47:58.677 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:47:58.701 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:58.703 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/css/app.4bfe48b9.css", parameters={}
+2021-08-03 14:47:58.704 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:47:58.708 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:58.709 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/js/app.2be755c0.js", parameters={}
+2021-08-03 14:47:58.710 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:47:58.713 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:58.715 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-vendors.121db6f5.js", parameters={}
+2021-08-03 14:47:58.715 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:47:59.474 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.476 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/js/app.1550e8c4.js", parameters={}
+2021-08-03 14:47:59.477 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:47:59.505 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.507 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-vendors.0da53e32.js", parameters={}
+2021-08-03 14:47:59.507 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:47:59.620 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/webjars/sockjs-client/1.1.2/sockjs.min.js", parameters={}
+2021-08-03 14:47:59.620 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.3.1/dist/jquery.min.js", parameters={}
+2021-08-03 14:47:59.621 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/webjars/]]
+2021-08-03 14:47:59.621 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/webjars/]]
+2021-08-03 14:47:59.628 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.630 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.631 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/webjars/stomp-websocket/2.3.3-1/stomp.min.js", parameters={}
+2021-08-03 14:47:59.632 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/webjars/]]
+2021-08-03 14:47:59.633 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/webjars/webrtc-adapter/7.4.0/release/adapter.js", parameters={}
+2021-08-03 14:47:59.634 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/webjars/]]
+2021-08-03 14:47:59.636 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.638 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/js/kurento/lib/kurento-utils.js", parameters={}
+2021-08-03 14:47:59.639 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:47:59.646 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.734 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.768 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-3f0e0390.43faab5d.css", parameters={}
+2021-08-03 14:47:59.769 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-4c468b5d.01d73f90.css", parameters={}
+2021-08-03 14:47:59.769 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:47:59.769 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:47:59.771 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.772 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-5a67ab32.8c12f4cd.css", parameters={}
+2021-08-03 14:47:59.772 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.773 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:47:59.775 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-71021bee.b03b8fb9.css", parameters={}
+2021-08-03 14:47:59.776 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-770833ce.2b9c36e2.css", parameters={}
+2021-08-03 14:47:59.776 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:47:59.777 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:47:59.777 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.779 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-81f06ba8.9c9b4483.css", parameters={}
+2021-08-03 14:47:59.779 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.780 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:47:59.780 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-8b9680c8.13f4c8ef.css", parameters={}
+2021-08-03 14:47:59.781 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.781 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:47:59.782 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.783 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-a1970194.2ae03fa5.css", parameters={}
+2021-08-03 14:47:59.784 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:47:59.785 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.785 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-ee012ec8.dbb492b7.css", parameters={}
+2021-08-03 14:47:59.786 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:47:59.787 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-2d2164b0.71d59975.js", parameters={}
+2021-08-03 14:47:59.787 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:47:59.788 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.789 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.790 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-3f0e0390.5ccfea0a.js", parameters={}
+2021-08-03 14:47:59.791 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:47:59.792 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-4c468b5d.549b63e1.js", parameters={}
+2021-08-03 14:47:59.793 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:47:59.794 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.795 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.795 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.797 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-5a67ab32.36aa9f0e.js", parameters={}
+2021-08-03 14:47:59.798 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:47:59.798 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-71021bee.febab822.js", parameters={}
+2021-08-03 14:47:59.798 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-770833ce.882334eb.js", parameters={}
+2021-08-03 14:47:59.798 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:47:59.798 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:47:59.803 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.804 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-81f06ba8.653d00b6.js", parameters={}
+2021-08-03 14:47:59.805 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:47:59.807 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.809 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-8b9680c8.789727d0.js", parameters={}
+2021-08-03 14:47:59.810 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:47:59.811 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.814 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-a1970194.bbbec69b.js", parameters={}
+2021-08-03 14:47:59.814 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.815 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:47:59.816 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-ee012ec8.a7d38fe9.js", parameters={}
+2021-08-03 14:47:59.817 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:47:59.819 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.823 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.827 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.911 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/img/logo.82b9c7a5.png", parameters={}
+2021-08-03 14:47:59.912 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/img/]]
+2021-08-03 14:47:59.916 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.951 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-770833ce.2b9c36e2.css", parameters={}
+2021-08-03 14:47:59.952 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:47:59.953 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-770833ce.882334eb.js", parameters={}
+2021-08-03 14:47:59.954 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/webjars/webrtc-adapter/7.4.0/release/adapter.js", parameters={}
+2021-08-03 14:47:59.954 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.954 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:47:59.954 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/webjars/]]
+2021-08-03 14:47:59.956 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.969 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.983 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/img/selfie1.9e350b59.jpg", parameters={}
+2021-08-03 14:47:59.983 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/img/]]
+2021-08-03 14:47:59.991 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:47:59.994 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.f.CommonsRequestLoggingFilter      : Before request [GET /api/v1/conferences, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:47:59.994 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.f.CommonsRequestLoggingFilter      : Before request [GET /api/v1/boards, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:47:59.994 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.f.CommonsRequestLoggingFilter      : Before request [GET /api/v1/notices, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:47:59.994 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/conferences", parameters={}
+2021-08-03 14:47:59.994 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/boards", parameters={}
+2021-08-03 14:47:59.994 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/notices", parameters={}
+2021-08-03 14:47:59.995 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.ssafy.api.controller.BoardController#selectBoard(Pageable)
+2021-08-03 14:47:59.995 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.ssafy.api.controller.NoticeController#selectNotice(Pageable)
+2021-08-03 14:47:59.995 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.ssafy.api.controller.RoomController#selectRoom(Pageable)
+2021-08-03 14:48:00.000 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/js/kurento/lib/kurento-utils.js", parameters={}
+2021-08-03 14:48:00.001 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:00.015 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.039 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.3.1/dist/jquery.min.js", parameters={}
+2021-08-03 14:48:00.040 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/webjars/]]
+2021-08-03 14:48:00.049 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.066 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/webjars/sockjs-client/1.1.2/sockjs.min.js", parameters={}
+2021-08-03 14:48:00.067 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/webjars/]]
+2021-08-03 14:48:00.073 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.082 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/webjars/stomp-websocket/2.3.3-1/stomp.min.js", parameters={}
+2021-08-03 14:48:00.083 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/webjars/]]
+2021-08-03 14:48:00.087 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.102 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-vendors.1a4fccdd.css", parameters={}
+2021-08-03 14:48:00.102 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-077c86ce.43faab5d.css", parameters={}
+2021-08-03 14:48:00.103 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:00.103 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:00.107 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.110 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-13c059da.13f4c8ef.css", parameters={}
+2021-08-03 14:48:00.111 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:00.114 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.116 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-1f0d91a8.2ae03fa5.css", parameters={}
+2021-08-03 14:48:00.116 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:00.120 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.122 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-210d5c19.7eee3f25.css", parameters={}
+2021-08-03 14:48:00.123 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.123 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:00.126 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-3d3671f7.8c12f4cd.css", parameters={}
+2021-08-03 14:48:00.126 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:00.128 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.130 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.131 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-44c4d3cc.b03b8fb9.css", parameters={}
+2021-08-03 14:48:00.131 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:00.132 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-44dfe93c.dbb492b7.css", parameters={}
+2021-08-03 14:48:00.133 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:00.135 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.136 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.137 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-508b324a.01d73f90.css", parameters={}
+2021-08-03 14:48:00.137 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:00.137 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-c8458590.2b9c36e2.css", parameters={}
+2021-08-03 14:48:00.138 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:00.141 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.143 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.143 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-077c86ce.bfcf54d4.js", parameters={}
+2021-08-03 14:48:00.144 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:00.145 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-13c059da.a7e42b85.js", parameters={}
+2021-08-03 14:48:00.145 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:00.149 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.152 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-1f0d91a8.c26d835e.js", parameters={}
+2021-08-03 14:48:00.152 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:00.157 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.160 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-210d5c19.4ba74d98.js", parameters={}
+2021-08-03 14:48:00.160 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:00.161 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.163 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-2d2164b0.fb65f76f.js", parameters={}
+2021-08-03 14:48:00.164 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:00.172 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.175 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-3d3671f7.1b4bac66.js", parameters={}
+2021-08-03 14:48:00.175 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:00.182 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.184 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-44c4d3cc.690e4245.js", parameters={}
+2021-08-03 14:48:00.185 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:00.189 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.191 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-44dfe93c.06e56458.js", parameters={}
+2021-08-03 14:48:00.192 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:00.199 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.201 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-508b324a.37d1e561.js", parameters={}
+2021-08-03 14:48:00.201 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:00.209 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.212 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-c8458590.61cfbcf2.js", parameters={}
+2021-08-03 14:48:00.212 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:00.227 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.239 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.382 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-08-03 14:48:00.382 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-08-03 14:48:00.382 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-08-03 14:48:00.383 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Page 1 of 2 containing com.ssafy.db.entity.Notice instances]
+2021-08-03 14:48:00.383 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Page 1 of 1 containing com.ssafy.db.entity.ConferenceRoom instances]
+2021-08-03 14:48:00.383 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Page 1 of 2 containing com.ssafy.db.entity.Board instances]
+2021-08-03 14:48:00.415 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.415 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.415 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.416 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/boards, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:00.416 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/notices, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:00.416 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/conferences, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:00.456 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.527 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/img/logo.82b9c7a5.png", parameters={}
+2021-08-03 14:48:00.528 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/img/]]
+2021-08-03 14:48:00.529 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.559 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-c8458590.61cfbcf2.js", parameters={}
+2021-08-03 14:48:00.559 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-c8458590.2b9c36e2.css", parameters={}
+2021-08-03 14:48:00.560 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:00.560 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:00.561 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.561 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.592 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/img/selfie1.9e350b59.jpg", parameters={}
+2021-08-03 14:48:00.592 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/img/]]
+2021-08-03 14:48:00.597 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.608 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.f.CommonsRequestLoggingFilter      : Before request [GET /api/v1/notices, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:00.608 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/notices", parameters={}
+2021-08-03 14:48:00.609 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.ssafy.api.controller.NoticeController#selectNotice(Pageable)
+2021-08-03 14:48:00.609 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.f.CommonsRequestLoggingFilter      : Before request [GET /api/v1/conferences, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:00.609 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.f.CommonsRequestLoggingFilter      : Before request [GET /api/v1/boards, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:00.609 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/conferences", parameters={}
+2021-08-03 14:48:00.609 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/boards", parameters={}
+2021-08-03 14:48:00.609 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.ssafy.api.controller.RoomController#selectRoom(Pageable)
+2021-08-03 14:48:00.609 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.ssafy.api.controller.BoardController#selectBoard(Pageable)
+2021-08-03 14:48:00.646 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/fonts/element-icons.d9491be2.woff", parameters={}
+2021-08-03 14:48:00.646 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/fonts/]]
+2021-08-03 14:48:00.652 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.681 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-08-03 14:48:00.682 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Page 1 of 1 containing com.ssafy.db.entity.ConferenceRoom instances]
+2021-08-03 14:48:00.684 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-08-03 14:48:00.684 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Page 1 of 2 containing com.ssafy.db.entity.Board instances]
+2021-08-03 14:48:00.686 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.687 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/conferences, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:00.688 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.688 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/boards, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:00.689 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-08-03 14:48:00.690 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Page 1 of 2 containing com.ssafy.db.entity.Notice instances]
+2021-08-03 14:48:00.693 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:00.693 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/notices, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:00.857 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/favicon.ico", parameters={}
+2021-08-03 14:48:00.858  WARN 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.PageNotFound             : No mapping for GET /favicon.ico
+2021-08-03 14:48:00.859 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.ssafy.common.exception.handler.NotFoundHandler#renderDefaultPage(NoHandlerFoundException)
+2021-08-03 14:48:00.860 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Found 'Content-Type:text/html' in response
+2021-08-03 14:48:00.860 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing ["<<<<<<< HEAD
+<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compa (truncated)...]
+2021-08-03 14:48:00.874  WARN 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+2021-08-03 14:48:00.874 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:02.208 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-077c86ce.bfcf54d4.js", parameters={}
+2021-08-03 14:48:02.208 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-077c86ce.43faab5d.css", parameters={}
+2021-08-03 14:48:02.209 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:02.209 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:02.211 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:02.211 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:02.477 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.f.CommonsRequestLoggingFilter      : Before request [GET /api/v1/notices, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/board", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:02.478 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/notices", parameters={}
+2021-08-03 14:48:02.478 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.ssafy.api.controller.NoticeController#selectNotice(Pageable)
+2021-08-03 14:48:02.478 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/favicon.ico", parameters={}
+2021-08-03 14:48:02.478 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.f.CommonsRequestLoggingFilter      : Before request [GET /api/v1/boards, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/board", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:02.479 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/boards", parameters={}
+2021-08-03 14:48:02.479  WARN 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.PageNotFound             : No mapping for GET /favicon.ico
+2021-08-03 14:48:02.479 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.ssafy.api.controller.BoardController#selectBoard(Pageable)
+2021-08-03 14:48:02.479 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.ssafy.common.exception.handler.NotFoundHandler#renderDefaultPage(NoHandlerFoundException)
+2021-08-03 14:48:02.480 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Found 'Content-Type:text/html' in response
+2021-08-03 14:48:02.480 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing ["<<<<<<< HEAD
+<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compa (truncated)...]
+2021-08-03 14:48:02.481  WARN 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+2021-08-03 14:48:02.482 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:02.575 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-08-03 14:48:02.576 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Page 1 of 2 containing com.ssafy.db.entity.Board instances]
+2021-08-03 14:48:02.576 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-08-03 14:48:02.576 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Page 1 of 2 containing com.ssafy.db.entity.Notice instances]
+2021-08-03 14:48:02.580 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:02.580 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/boards, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/board", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:02.581 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:02.582 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/notices, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/board", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:07.094 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/board", parameters={}
+2021-08-03 14:48:07.095  WARN 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.PageNotFound             : No mapping for GET /board
+2021-08-03 14:48:07.095 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.ssafy.common.exception.handler.NotFoundHandler#renderDefaultPage(NoHandlerFoundException)
+2021-08-03 14:48:07.096 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Found 'Content-Type:text/html' in response
+2021-08-03 14:48:07.096 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing ["<<<<<<< HEAD
+<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compa (truncated)...]
+2021-08-03 14:48:07.097  WARN 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /board]
+2021-08-03 14:48:07.097 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.124 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/css/app.defd6cfb.css", parameters={}
+2021-08-03 14:48:07.124 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-vendors.121db6f5.js", parameters={}
+2021-08-03 14:48:07.124 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.124 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/js/app.2be755c0.js", parameters={}
+2021-08-03 14:48:07.124 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-vendors.1a4fccdd.css", parameters={}
+2021-08-03 14:48:07.124 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.125 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.126 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.125 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.127 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/css/app.4bfe48b9.css", parameters={}
+2021-08-03 14:48:07.128 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/js/app.1550e8c4.js", parameters={}
+2021-08-03 14:48:07.128 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.128 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.129 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-vendors.0da53e32.js", parameters={}
+2021-08-03 14:48:07.130 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.130 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.131 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.132 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/webjars/webrtc-adapter/7.4.0/release/adapter.js", parameters={}
+2021-08-03 14:48:07.133 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/webjars/]]
+2021-08-03 14:48:07.133 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.134 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/js/kurento/lib/kurento-utils.js", parameters={}
+2021-08-03 14:48:07.135 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.135 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.3.1/dist/jquery.min.js", parameters={}
+2021-08-03 14:48:07.136 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/webjars/]]
+2021-08-03 14:48:07.147 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.148 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.151 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/webjars/sockjs-client/1.1.2/sockjs.min.js", parameters={}
+2021-08-03 14:48:07.153 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/webjars/]]
+2021-08-03 14:48:07.153 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.155 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/webjars/stomp-websocket/2.3.3-1/stomp.min.js", parameters={}
+2021-08-03 14:48:07.155 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.156 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/webjars/]]
+2021-08-03 14:48:07.160 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.161 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.207 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.210 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.218 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-3f0e0390.43faab5d.css", parameters={}
+2021-08-03 14:48:07.218 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.219 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-4c468b5d.01d73f90.css", parameters={}
+2021-08-03 14:48:07.220 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.220 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-5a67ab32.8c12f4cd.css", parameters={}
+2021-08-03 14:48:07.220 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.221 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.221 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-71021bee.b03b8fb9.css", parameters={}
+2021-08-03 14:48:07.221 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-770833ce.2b9c36e2.css", parameters={}
+2021-08-03 14:48:07.221 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-81f06ba8.9c9b4483.css", parameters={}
+2021-08-03 14:48:07.222 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.222 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.222 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.222 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.222 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.224 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.224 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.224 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.226 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-8b9680c8.13f4c8ef.css", parameters={}
+2021-08-03 14:48:07.226 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-a1970194.2ae03fa5.css", parameters={}
+2021-08-03 14:48:07.226 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-ee012ec8.dbb492b7.css", parameters={}
+2021-08-03 14:48:07.227 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.227 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.227 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.227 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-2d2164b0.71d59975.js", parameters={}
+2021-08-03 14:48:07.227 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-3f0e0390.5ccfea0a.js", parameters={}
+2021-08-03 14:48:07.228 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-4c468b5d.549b63e1.js", parameters={}
+2021-08-03 14:48:07.228 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.228 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.228 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.229 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.229 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.229 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.230 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.230 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.230 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.233 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-71021bee.febab822.js", parameters={}
+2021-08-03 14:48:07.233 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-5a67ab32.36aa9f0e.js", parameters={}
+2021-08-03 14:48:07.233 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-770833ce.882334eb.js", parameters={}
+2021-08-03 14:48:07.233 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-81f06ba8.653d00b6.js", parameters={}
+2021-08-03 14:48:07.233 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-8b9680c8.789727d0.js", parameters={}
+2021-08-03 14:48:07.233 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-a1970194.bbbec69b.js", parameters={}
+2021-08-03 14:48:07.233 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.234 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.234 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.234 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.234 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.234 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.235 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.235 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.235 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.235 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.235 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.238 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-ee012ec8.a7d38fe9.js", parameters={}
+2021-08-03 14:48:07.239 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.240 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.244 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.281 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/img/logo.82b9c7a5.png", parameters={}
+2021-08-03 14:48:07.282 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/img/]]
+2021-08-03 14:48:07.285 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.323 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-3f0e0390.43faab5d.css", parameters={}
+2021-08-03 14:48:07.324 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.325 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-3f0e0390.5ccfea0a.js", parameters={}
+2021-08-03 14:48:07.326 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/webjars/webrtc-adapter/7.4.0/release/adapter.js", parameters={}
+2021-08-03 14:48:07.326 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/webjars/]]
+2021-08-03 14:48:07.326 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.327 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.329 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.343 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.346 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.f.CommonsRequestLoggingFilter      : Before request [GET /api/v1/boards, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/board", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:07.346 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.f.CommonsRequestLoggingFilter      : Before request [GET /api/v1/notices, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/board", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:07.346 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/notices", parameters={}
+2021-08-03 14:48:07.346 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/boards", parameters={}
+2021-08-03 14:48:07.347 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.ssafy.api.controller.BoardController#selectBoard(Pageable)
+2021-08-03 14:48:07.347 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.ssafy.api.controller.NoticeController#selectNotice(Pageable)
+2021-08-03 14:48:07.373 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/js/kurento/lib/kurento-utils.js", parameters={}
+2021-08-03 14:48:07.374 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.383 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.417 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-08-03 14:48:07.418 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Page 1 of 2 containing com.ssafy.db.entity.Notice instances]
+2021-08-03 14:48:07.420 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.421 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/notices, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/board", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:07.433 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-08-03 14:48:07.433 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Page 1 of 2 containing com.ssafy.db.entity.Board instances]
+2021-08-03 14:48:07.433 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.3.1/dist/jquery.min.js", parameters={}
+2021-08-03 14:48:07.434 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/webjars/]]
+2021-08-03 14:48:07.435 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.435 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/boards, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/board", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:07.445 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.495 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/webjars/sockjs-client/1.1.2/sockjs.min.js", parameters={}
+2021-08-03 14:48:07.496 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/webjars/]]
+2021-08-03 14:48:07.509 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.556 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/webjars/stomp-websocket/2.3.3-1/stomp.min.js", parameters={}
+2021-08-03 14:48:07.557 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/webjars/]]
+2021-08-03 14:48:07.563 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.569 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-077c86ce.43faab5d.css", parameters={}
+2021-08-03 14:48:07.569 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-13c059da.13f4c8ef.css", parameters={}
+2021-08-03 14:48:07.570 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.570 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.571 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-1f0d91a8.2ae03fa5.css", parameters={}
+2021-08-03 14:48:07.572 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-210d5c19.7eee3f25.css", parameters={}
+2021-08-03 14:48:07.572 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.573 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.573 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-3d3671f7.8c12f4cd.css", parameters={}
+2021-08-03 14:48:07.573 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-44c4d3cc.b03b8fb9.css", parameters={}
+2021-08-03 14:48:07.573 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.574 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.574 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.575 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.575 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.575 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.576 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.577 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.580 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-44dfe93c.dbb492b7.css", parameters={}
+2021-08-03 14:48:07.580 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-508b324a.01d73f90.css", parameters={}
+2021-08-03 14:48:07.581 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.581 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.581 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-vendors.1a4fccdd.css", parameters={}
+2021-08-03 14:48:07.581 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-077c86ce.bfcf54d4.js", parameters={}
+2021-08-03 14:48:07.581 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-13c059da.a7e42b85.js", parameters={}
+2021-08-03 14:48:07.582 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-c8458590.2b9c36e2.css", parameters={}
+2021-08-03 14:48:07.582 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.582 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.582 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.582 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.583 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.583 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.584 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.584 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.584 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.588 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-1f0d91a8.c26d835e.js", parameters={}
+2021-08-03 14:48:07.588 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-210d5c19.4ba74d98.js", parameters={}
+2021-08-03 14:48:07.588 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-3d3671f7.1b4bac66.js", parameters={}
+2021-08-03 14:48:07.588 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-2d2164b0.fb65f76f.js", parameters={}
+2021-08-03 14:48:07.588 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-44c4d3cc.690e4245.js", parameters={}
+2021-08-03 14:48:07.588 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.588 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.589 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.589 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.589 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.591 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.591 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.591 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.591 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.594 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-c8458590.61cfbcf2.js", parameters={}
+2021-08-03 14:48:07.594 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-44dfe93c.06e56458.js", parameters={}
+2021-08-03 14:48:07.594 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-508b324a.37d1e561.js", parameters={}
+2021-08-03 14:48:07.594 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.594 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.594 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.594 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.596 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.596 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.596 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.605 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.639 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/img/logo.82b9c7a5.png", parameters={}
+2021-08-03 14:48:07.640 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/img/]]
+2021-08-03 14:48:07.642 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.659 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-077c86ce.43faab5d.css", parameters={}
+2021-08-03 14:48:07.659 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-077c86ce.bfcf54d4.js", parameters={}
+2021-08-03 14:48:07.659 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:07.659 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:07.661 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.661 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.673 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.f.CommonsRequestLoggingFilter      : Before request [GET /api/v1/notices, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/board", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:07.673 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/notices", parameters={}
+2021-08-03 14:48:07.673 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.ssafy.api.controller.NoticeController#selectNotice(Pageable)
+2021-08-03 14:48:07.674 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.f.CommonsRequestLoggingFilter      : Before request [GET /api/v1/boards, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/board", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:07.675 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/boards", parameters={}
+2021-08-03 14:48:07.675 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.ssafy.api.controller.BoardController#selectBoard(Pageable)
+2021-08-03 14:48:07.676 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/favicon.ico", parameters={}
+2021-08-03 14:48:07.676  WARN 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.PageNotFound             : No mapping for GET /favicon.ico
+2021-08-03 14:48:07.676 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.ssafy.common.exception.handler.NotFoundHandler#renderDefaultPage(NoHandlerFoundException)
+2021-08-03 14:48:07.677 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Found 'Content-Type:text/html' in response
+2021-08-03 14:48:07.677 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing ["<<<<<<< HEAD
+<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compa (truncated)...]
+2021-08-03 14:48:07.677  WARN 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+2021-08-03 14:48:07.677 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.738 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-08-03 14:48:07.738 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Page 1 of 2 containing com.ssafy.db.entity.Board instances]
+2021-08-03 14:48:07.747 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.748 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/boards, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/board", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:07.749 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-08-03 14:48:07.750 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Page 1 of 2 containing com.ssafy.db.entity.Notice instances]
+2021-08-03 14:48:07.753 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:07.754 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/notices, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/board", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:08.305  INFO 17820 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2021-08-03 14:48:08.457 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-44dfe93c.06e56458.js", parameters={}
+2021-08-03 14:48:08.457 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-44dfe93c.dbb492b7.css", parameters={}
+2021-08-03 14:48:08.458 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:08.458 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:08.459 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:08.459 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:08.602 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/favicon.ico", parameters={}
+2021-08-03 14:48:08.602 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.f.CommonsRequestLoggingFilter      : Before request [GET /api/v1/conferences, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/conferences", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:08.602 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/fonts/element-icons.d9491be2.woff", parameters={}
+2021-08-03 14:48:08.602 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/conferences", parameters={}
+2021-08-03 14:48:08.603 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.ssafy.api.controller.RoomController#selectRoom(Pageable)
+2021-08-03 14:48:08.603  WARN 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.PageNotFound             : No mapping for GET /favicon.ico
+2021-08-03 14:48:08.603 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/fonts/]]
+2021-08-03 14:48:08.604 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.ssafy.common.exception.handler.NotFoundHandler#renderDefaultPage(NoHandlerFoundException)
+2021-08-03 14:48:08.605 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Found 'Content-Type:text/html' in response
+2021-08-03 14:48:08.605 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing ["<<<<<<< HEAD
+<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compa (truncated)...]
+2021-08-03 14:48:08.606  WARN 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+2021-08-03 14:48:08.606 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:08.609 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:08.675 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-08-03 14:48:08.675 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Page 1 of 1 containing com.ssafy.db.entity.ConferenceRoom instances]
+2021-08-03 14:48:08.676 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:08.676 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-6] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/conferences, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/conferences", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:10.641 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/css/chunk-c8458590.2b9c36e2.css", parameters={}
+2021-08-03 14:48:10.641 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/js/chunk-c8458590.61cfbcf2.js", parameters={}
+2021-08-03 14:48:10.642 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/css/]]
+2021-08-03 14:48:10.642 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/js/]]
+2021-08-03 14:48:10.643 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:10.643 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:11.012 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/img/selfie1.9e350b59.jpg", parameters={}
+2021-08-03 14:48:11.013 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [dist/img/]]
+2021-08-03 14:48:11.013 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.f.CommonsRequestLoggingFilter      : Before request [GET /api/v1/notices, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:11.013 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/notices", parameters={}
+2021-08-03 14:48:11.013 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.f.CommonsRequestLoggingFilter      : Before request [GET /api/v1/conferences, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:11.014 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/conferences", parameters={}
+2021-08-03 14:48:11.014 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.ssafy.api.controller.NoticeController#selectNotice(Pageable)
+2021-08-03 14:48:11.014 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.ssafy.api.controller.RoomController#selectRoom(Pageable)
+2021-08-03 14:48:11.014 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.f.CommonsRequestLoggingFilter      : Before request [GET /api/v1/boards, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:11.014 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/boards", parameters={}
+2021-08-03 14:48:11.014 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.ssafy.api.controller.BoardController#selectBoard(Pageable)
+2021-08-03 14:48:11.016 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/favicon.ico", parameters={}
+2021-08-03 14:48:11.016  WARN 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.PageNotFound             : No mapping for GET /favicon.ico
+2021-08-03 14:48:11.017 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.ssafy.common.exception.handler.NotFoundHandler#renderDefaultPage(NoHandlerFoundException)
+2021-08-03 14:48:11.017 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Found 'Content-Type:text/html' in response
+2021-08-03 14:48:11.017 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing ["<<<<<<< HEAD
+<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compa (truncated)...]
+2021-08-03 14:48:11.018  WARN 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+2021-08-03 14:48:11.018 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:11.018 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:11.083 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-08-03 14:48:11.084 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Page 1 of 2 containing com.ssafy.db.entity.Notice instances]
+2021-08-03 14:48:11.084 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:11.085 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/notices, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:11.086 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-08-03 14:48:11.087 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Page 1 of 1 containing com.ssafy.db.entity.ConferenceRoom instances]
+2021-08-03 14:48:11.087 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:11.088 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-3] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/conferences, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:11.097 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-08-03 14:48:11.097 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Page 1 of 2 containing com.ssafy.db.entity.Board instances]
+2021-08-03 14:48:11.098 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-08-03 14:48:11.099 DEBUG 17820 --- [https-jsse-nio-127.0.0.1-8443-exec-10] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/boards, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"application/json, text/plain, */*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"]]
+2021-08-03 14:48:20.569  INFO 17820 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-08-03 14:48:20.570 DEBUG 17820 --- [RMI TCP Connection(2)-127.0.0.1] org.springframework.web.SimpLogging      : clientOutboundChannel removed SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2021-08-03 14:48:20.571 DEBUG 17820 --- [RMI TCP Connection(2)-127.0.0.1] org.springframework.web.SimpLogging      : clientInboundChannel removed WebSocketAnnotationMethodMessageHandler[prefixes=[/app/]]
+2021-08-03 14:48:20.571  INFO 17820 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2021-08-03 14:48:20.571  INFO 17820 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@74d2f27d]]
+2021-08-03 14:48:20.571 DEBUG 17820 --- [RMI TCP Connection(2)-127.0.0.1] org.springframework.web.SimpLogging      : clientInboundChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@74d2f27d]
+2021-08-03 14:48:20.571 DEBUG 17820 --- [RMI TCP Connection(2)-127.0.0.1] org.springframework.web.SimpLogging      : brokerChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@74d2f27d]
+2021-08-03 14:48:20.571  INFO 17820 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2021-08-03 14:48:20.571 DEBUG 17820 --- [RMI TCP Connection(2)-127.0.0.1] org.springframework.web.SimpLogging      : clientInboundChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2021-08-03 14:48:20.571 DEBUG 17820 --- [RMI TCP Connection(2)-127.0.0.1] org.springframework.web.SimpLogging      : brokerChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2021-08-03 14:48:20.599  WARN 17820 --- [RMI TCP Connection(2)-127.0.0.1] o.k.j.c.AbstractJsonRpcClientWebSocket   : [KurentoClient]  Exception sending close message. org.kurento.jsonrpc.JsonRpcErrorException:'params' is requiered. Code: -32602. Data: {"type":"INVALID_PARAMS"}
+2021-08-03 14:48:20.602  INFO 17820 --- [nioEventLoopGroup-2-1] o.k.j.c.JsonRpcClientNettyWebSocket      : [KurentoClient]  channel closed
+2021-08-03 14:48:20.626  WARN 17820 --- [RMI TCP Connection(2)-127.0.0.1] o.k.j.c.AbstractJsonRpcClientWebSocket   : [KurentoClient]  Exception sending close message. org.kurento.jsonrpc.JsonRpcClientClosedException:Trying to send a message in a client closed explicitly. When a client is closed, it can't be reused. It is necessary to create another one
+2021-08-03 14:48:20.627  WARN 17820 --- [RMI TCP Connection(2)-127.0.0.1] o.k.j.c.JsonRpcClientNettyWebSocket      : [KurentoClient]  Trying to close a JsonRpcClientNettyWebSocket with channel == null
+2021-08-03 14:48:20.627  WARN 17820 --- [RMI TCP Connection(2)-127.0.0.1] o.k.j.c.JsonRpcClientNettyWebSocket      : [KurentoClient]  Trying to close a JsonRpcClientNettyWebSocket with group == null
+2021-08-03 14:48:20.630  INFO 17820 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2021-08-03 14:48:20.630  INFO 17820 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2021-08-03 14:48:20.631  INFO 17820 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2021-08-03 14:48:20.631  INFO 17820 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2021-08-03 14:48:20.635  INFO 17820 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-08-03 14:48:20.639  INFO 17820 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-08-03 14:48:20.647  INFO 17820 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
