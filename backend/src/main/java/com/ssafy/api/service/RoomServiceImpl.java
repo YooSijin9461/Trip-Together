@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.api.request.RoomModifyPostReq;
@@ -38,10 +40,20 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 	@Override
-	public List<ConferenceRoom> selectRoom() {
-		return roomRepository.findAll();
+	public Page<ConferenceRoom> selectRoom(Pageable pageable) {
+		return roomRepository.findAll(pageable);
+	}
+	
+	@Override
+	public List<ConferenceRoom> searchTitle(String title, Pageable pageable) {
+		return roomRepository.findByTitleContaining(title, pageable);
 	}
 
+	@Override
+	public List<ConferenceRoom> searchOwner(String owner, Pageable pageable) {
+		return roomRepository.findByOwnerContaining(owner, pageable);
+	}
+	
 	@Override
 	public ConferenceRoom getInfo(int confernceNo) {
 		// 방 id를 통한 조회가 필요함

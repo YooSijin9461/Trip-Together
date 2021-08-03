@@ -1,8 +1,9 @@
 package com.ssafy.db.repository;
 
 import com.ssafy.db.entity.Board;
-import com.ssafy.db.entity.Notice;
-import com.ssafy.db.entity.User;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
@@ -19,4 +20,8 @@ public interface BoardRepository extends JpaRepository<Board, Integer>, JpaSpeci
 //    Optional<User> findByUserId(String userId);
 //    Optional<List<User>> findByConferenceRoomNo(int conferenceNo);
 	Optional<Board> findByBoardNo(int boardNo);
+	Page<Board> findAll(Pageable pageable);
+	List<Board> findByBoardTitleContaining(String title, Pageable pageable);
+	List<Board> findByBoardContentContaining(String content, Pageable pageable);
+	List<Board> findByUserIdContaining(String userId, Pageable pageable);
 }

@@ -3,6 +3,10 @@ package com.ssafy.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -59,27 +63,34 @@ public class BoardController {
 		@ApiResponse(code = 200, message = "성공"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<List<Board>> selectBoard(@RequestParam(required = false) String boardTitle,
-												   @RequestParam(required = false) String boardContent,
-												   @RequestParam(required = false) String userId){
-		if(boardTitle != null)
-			return new ResponseEntity<>(boardRepository.findAll(BoardSpec.boardTitleLike(boardTitle)), HttpStatus.OK);
-		else if(boardContent != null)
-			return new ResponseEntity<>(boardRepository.findAll(BoardSpec.boardContentLike(boardContent)), HttpStatus.OK);
-		else if(userId != null)
-			return new ResponseEntity<>(boardRepository.findAll(BoardSpec.userIdLike(userId)), HttpStatus.OK);
-		return new ResponseEntity<>(boardService.selectBoard(), HttpStatus.OK);
+	public ResponseEntity<Page<Board>> selectBoard(@PageableDefault(size = 15, sort = "boardNo", direction = Sort.Direction.DESC) Pageable pageable){
+		return new ResponseEntity<>(boardService.selectBoard(pageable), HttpStatus.OK);
 	}
 	
-//	@GetMapping()
-//	@ApiOperation(value = "게시글 목록", notes = "게시글 목록을 List로 반환")
-//	@ApiResponses({
-//		@ApiResponse(code = 200, message = "성공"),
-//		@ApiResponse(code = 500, message = "서버 오류")
-//	})
-//	public ResponseEntity<List<Board>> selectBoard(){
+	@GetMapping("/search")
+	@ApiOperation(value = "게시글 검색", notes = "키워드로 검색한 게시글 목록을 List로 반환")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "성공"),
+		@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<List<Board>> selectBoard(@RequestParam(required = false) String boardTitle,
+												   @RequestParam(required = false) String boardContent,
+												   @RequestParam(required = false) String userId,
+												   @PageableDefault(size = 6, sort = "boardNo", direction = Sort.Direction.DESC) Pageable pageable){
+		if(boardTitle != null)
+			return new ResponseEntity<>(boardService.searchTitle(boardTitle, pageable), HttpStatus.OK);
+		else if(boardContent != null)
+			return new ResponseEntity<>(boardService.searchContent(boardContent, pageable), HttpStatus.OK);
+		return new ResponseEntity<>(boardService.searchId(userId, pageable), HttpStatus.OK);
+// 		return new ResponseEntity<>(boardService.selectBoard(pageable), HttpStatus.OK);
+//		if(boardTitle != null)
+//			return new ResponseEntity<>(boardRepository.findAll(BoardSpec.boardTitleLike(boardTitle)), HttpStatus.OK);
+//		else if(boardContent != null)
+//			return new ResponseEntity<>(boardRepository.findAll(BoardSpec.boardContentLike(boardContent)), HttpStatus.OK);
+//		else if(userId != null)
+//			return new ResponseEntity<>(boardRepository.findAll(BoardSpec.userIdLike(userId)), HttpStatus.OK);
 //		return new ResponseEntity<>(boardService.selectBoard(), HttpStatus.OK);
-//	}
+	}
 	
 	@GetMapping("/{boardNo}")
 	@ApiOperation(value = "게시글 상세 조회", notes = "<strong>게시글 번호</strong>를 통해 게시글 상세정보 조회")

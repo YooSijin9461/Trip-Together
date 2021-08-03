@@ -2,9 +2,11 @@ package com.ssafy.api.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.ssafy.api.request.BoardModifyPostReq;
 import com.ssafy.api.request.BoardRegisterPostReq;
-import com.ssafy.api.request.NoticeRegisterPostReq;
 import com.ssafy.db.entity.Board;
 
 /**
@@ -13,7 +15,10 @@ import com.ssafy.db.entity.Board;
 public interface BoardService {
 	// CRUD
 	Board createBoard(BoardRegisterPostReq boardRegisterInfo);
-	List<Board> selectBoard();
+	Page<Board> selectBoard(Pageable pageable);
+	List<Board> searchTitle(String title, Pageable pageable);
+	List<Board> searchContent(String content, Pageable pageable);
+	List<Board> searchId(String userId, Pageable pageable);
 	Board getInfoByBoardNo(int boardNo);
 	Board modifyBoard(BoardModifyPostReq boardModifyInfo, int noticeNo);
 	void deleteBoard(int boardNo);

@@ -3,6 +3,8 @@ package com.ssafy.api.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.api.request.NoticeRegisterPostReq;
@@ -30,8 +32,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<Notice> selectNotice() {
-		return noticeRepository.findAll();
+	public Page<Notice> selectNotice(Pageable pageable) {
+		return noticeRepository.findAll(pageable);
 	}
 
 	@Override

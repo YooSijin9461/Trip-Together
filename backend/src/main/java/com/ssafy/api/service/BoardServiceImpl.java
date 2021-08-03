@@ -3,12 +3,13 @@ package com.ssafy.api.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.api.request.BoardModifyPostReq;
 import com.ssafy.api.request.BoardRegisterPostReq;
 import com.ssafy.db.entity.Board;
-import com.ssafy.db.entity.Notice;
 import com.ssafy.db.repository.BoardRepository;
 import com.ssafy.db.repository.BoardRepositorySupport;
 
@@ -34,8 +35,23 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<Board> selectBoard() {
-		return boardRepository.findAll();
+	public Page<Board> selectBoard(Pageable pageable) {
+		return boardRepository.findAll(pageable);
+	}
+	
+	@Override
+	public List<Board> searchTitle(String title, Pageable pageable) {
+		return boardRepository.findByBoardTitleContaining(title, pageable);
+	}
+
+	@Override
+	public List<Board> searchContent(String content, Pageable pageable) {
+		return boardRepository.findByBoardContentContaining(content, pageable);
+	}
+
+	@Override
+	public List<Board> searchId(String userId, Pageable pageable) {
+		return boardRepository.findByUserIdContaining(userId, pageable);
 	}
 
 	@Override
