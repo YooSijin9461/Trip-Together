@@ -13713,3 +13713,47 @@ java.lang.NumberFormatException: For input string: ""
 2021-08-03 11:45:06.760 DEBUG 7612 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[com.ssafy.db.entity.ConferenceRoom@7648f407, com.ssafy.db.entity.ConferenceRoom@91e6a38, com.ssafy. (truncated)...]
 2021-08-03 11:45:06.762 DEBUG 7612 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2021-08-03 11:45:06.762 DEBUG 7612 --- [https-jsse-nio-127.0.0.1-8443-exec-8] o.s.w.f.CommonsRequestLoggingFilter      : After request [GET /api/v1/conferences/search?owner=%ED%85%8C%EC%8A%A4%ED%8A%B8&page=1&size=5, client=127.0.0.1, headers=[host:"localhost:8443", connection:"keep-alive", sec-ch-ua:""Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"", accept:"*/*", sec-ch-ua-mobile:"?0", user-agent:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36", sec-fetch-site:"same-origin", sec-fetch-mode:"cors", sec-fetch-dest:"empty", referer:"https://localhost:8443/swagger-ui/", accept-encoding:"gzip, deflate, br", accept-language:"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7", cookie:"jenkins-timestamper-offset=-32400000"]]
+2021-08-03 11:45:51.494  INFO 7612 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2021-08-03 12:15:51.494  INFO 7612 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 2, active threads = 1, queued tasks = 0, completed tasks = 1]
+2021-08-03 12:45:51.495  INFO 7612 --- [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 3, active threads = 1, queued tasks = 0, completed tasks = 2]
+2021-08-03 12:59:30.600  WARN 7612 --- [nioEventLoopGroup-28-1] o.k.j.c.JsonRpcClientNettyWebSocket      : [KurentoClient]  Exception caught in Netty websocket handler
+
+java.io.IOException: 현재 연결은 원격 호스트에 의해 강제로 끊겼습니다
+	at sun.nio.ch.SocketDispatcher.read0(Native Method) ~[na:1.8.0_192]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:43) ~[na:1.8.0_192]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.8.0_192]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.8.0_192]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380) ~[na:1.8.0_192]
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:253) ~[netty-buffer-4.1.63.Final.jar:4.1.63.Final]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132) ~[netty-buffer-4.1.63.Final.jar:4.1.63.Final]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:350) ~[netty-transport-4.1.63.Final.jar:4.1.63.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151) ~[netty-transport-4.1.63.Final.jar:4.1.63.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:719) [netty-transport-4.1.63.Final.jar:4.1.63.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:655) [netty-transport-4.1.63.Final.jar:4.1.63.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:581) [netty-transport-4.1.63.Final.jar:4.1.63.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493) [netty-transport-4.1.63.Final.jar:4.1.63.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989) [netty-common-4.1.63.Final.jar:4.1.63.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) [netty-common-4.1.63.Final.jar:4.1.63.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) [netty-common-4.1.63.Final.jar:4.1.63.Final]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_192]
+
+2021-08-03 12:59:30.602  INFO 7612 --- [nioEventLoopGroup-28-1] o.k.j.c.JsonRpcClientNettyWebSocket      : [KurentoClient]  channel closed
+2021-08-03 12:59:30.603  WARN 7612 --- [nioEventLoopGroup-28-1] o.k.j.c.AbstractJsonRpcClientWebSocket   : [KurentoClient]  Exception sending close message. org.kurento.jsonrpc.JsonRpcErrorException:Connection with server have been closed
+2021-08-03 12:59:31.932  WARN 7612 --- [HikariPool-32 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-32 - Thread starvation or clock leap detected (housekeeper delta=5m10s968ms412µs200ns).
+2021-08-03 13:02:22.168  INFO 7612 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-08-03 13:02:22.169 DEBUG 7612 --- [RMI TCP Connection(2)-127.0.0.1] org.springframework.web.SimpLogging      : clientOutboundChannel removed SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2021-08-03 13:02:22.170 DEBUG 7612 --- [RMI TCP Connection(2)-127.0.0.1] org.springframework.web.SimpLogging      : clientInboundChannel removed WebSocketAnnotationMethodMessageHandler[prefixes=[/app/]]
+2021-08-03 13:02:22.170  INFO 7612 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2021-08-03 13:02:22.170  INFO 7612 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@ede4a59]]
+2021-08-03 13:02:22.170 DEBUG 7612 --- [RMI TCP Connection(2)-127.0.0.1] org.springframework.web.SimpLogging      : clientInboundChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@ede4a59]
+2021-08-03 13:02:22.170 DEBUG 7612 --- [RMI TCP Connection(2)-127.0.0.1] org.springframework.web.SimpLogging      : brokerChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@ede4a59]
+2021-08-03 13:02:22.170  INFO 7612 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2021-08-03 13:02:22.170 DEBUG 7612 --- [RMI TCP Connection(2)-127.0.0.1] org.springframework.web.SimpLogging      : clientInboundChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2021-08-03 13:02:22.170 DEBUG 7612 --- [RMI TCP Connection(2)-127.0.0.1] org.springframework.web.SimpLogging      : brokerChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2021-08-03 13:02:22.182  INFO 7612 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2021-08-03 13:02:22.182  INFO 7612 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2021-08-03 13:02:22.182  INFO 7612 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2021-08-03 13:02:22.182  INFO 7612 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2021-08-03 13:02:22.184  INFO 7612 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-08-03 13:02:22.185  INFO 7612 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-32 - Shutdown initiated...
+2021-08-03 13:02:22.192  INFO 7612 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-32 - Shutdown completed.
