@@ -2,16 +2,20 @@
   <div>
     <Main/>
     <Sidebar
-      @openSearchDialog="onOpenSearchDialog"/>
+      @openSearchDialog="onOpenSearchDialog"
+      @openLogoutDialog="onOpenLogoutDialog"/>
   </div>
   <div class="ms-5 ps-5">
     <hr class="mt-2">
   </div>
-  <div class="ms-5 mt-3">
+  <div class="router mt-4">
     <router-view
       @openConferenceDialog="onOpenConferenceDialog"
       @openConferenceCreateDialog="onOpenConferenceCreateDialog"/>
   </div>
+  <Logout
+    :open="state.logoutDialogOpen"
+    @closeLogoutDialog="onCloseLogoutDialog"/>
   <Search
     :open="state.searchDialogOpen"
     @closeSearchDialog="onCloseSearchDialog"/>
@@ -25,7 +29,7 @@
 
 <script>
 import Main from '@/views/Main.vue'
-import Aside from '@/components/Main/Aside.vue'
+import Logout from '@/components/User/Logout.vue'
 import Search from '@/components/Main/Search.vue'
 import ConferenceDialog from '@/components/Conference/ConferenceDialog.vue'
 import ConferenceCreate from '@/components/Conference/ConferenceCreate.vue'
@@ -36,7 +40,7 @@ export default {
   name: 'App',
   components: {
     Main,
-    Aside,
+    Logout,
     Search,
     ConferenceDialog,
     ConferenceCreate,
@@ -44,11 +48,18 @@ export default {
   },
   setup() {
     const state = reactive ({
+      logoutDialogOpen: false,
       searchDialogOpen: false,
       conferenceCreateDialogOpen: false,
       conferenceDialogOpen: false,
     })
 
+    const onOpenLogoutDialog = () => {
+      state.logoutDialogOpen = true
+    }
+    const onCloseLogoutDialog = () => {
+      state.logoutDialogOpen = false
+    }
     const onOpenSearchDialog = () => {
       state.searchDialogOpen = true
     }
@@ -68,10 +79,13 @@ export default {
       state.conferenceCreateDialogOpen = false
     }
 
-    return { state, onOpenSearchDialog, onCloseSearchDialog, onOpenConferenceDialog, onCloseConferenceDialog, onOpenConferenceCreateDialog, onCloseConferenceCreateDialog }
+    return { state, onOpenLogoutDialog, onCloseLogoutDialog, onOpenSearchDialog, onCloseSearchDialog, onOpenConferenceDialog, onCloseConferenceDialog, onOpenConferenceCreateDialog, onCloseConferenceCreateDialog }
   }
 }
 </script>
 
 <style>
+.router {
+  margin-left: 78px;
+}
 </style>

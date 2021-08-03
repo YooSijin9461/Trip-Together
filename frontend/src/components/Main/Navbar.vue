@@ -1,10 +1,6 @@
 <template>
-  <img class="main-logo ps-1 ms-4 me-auto" src="../../assets/logo.png" @click="clickLogo">
-  <div class="nav-box d-flex align-items-center ps-2 mx-4 my-3">
-    <div class="me-auto">
-      <SideMenu
-        @openSearchDialog="onOpenSearchDialog"/>
-    </div>
+  <img class="main-logo" src="../../assets/logo.png" @click="clickLogo">
+  <div class="nav-box d-flex justify-content-end align-items-center my-3">
     <div class="nav-button">
       <span v-if="state.token">
         <el-dropdown>
@@ -23,24 +19,15 @@
       </span>
     </div>
   </div>
-  <Search
-    :open="state.searchDialogOpen"
-    @closeSearchDialog="onCloseSearchDialog"/>
 </template>
 
 <script>
 import { reactive, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import SideMenu from '@/components/Main/SideMenu.vue'
-import Search from '@/components/Main/Search.vue'
 
 export default {
   name: 'Navbar',
-  components: {
-    SideMenu,
-    Search
-  },
   setup(props, { emit }) {
     const store = useStore()
     const router = useRouter()
@@ -64,14 +51,8 @@ export default {
     const clickProfile = () => {
       router.push({ name: 'Profile' })
     }
-    const onOpenSearchDialog = () => {
-      state.searchDialogOpen = true
-    }
-    const onCloseSearchDialog = () => {
-      state.searchDialogOpen = false
-    }
 
-    return { state, clickLogo, clickLogin, clickSignup, clickLogout, clickProfile, onOpenSearchDialog, onCloseSearchDialog }   
+    return { state, clickLogo, clickLogin, clickSignup, clickLogout, clickProfile }   
   },
 }
 </script>
@@ -79,7 +60,7 @@ export default {
 <style>
 .main-logo {
   position: absolute;
-  left: 47.7%;
+  left: 51%;
   width: 60px;
   height: 50px;
 }
@@ -89,5 +70,7 @@ export default {
 
 .nav-box {
   height: 40px;
+  margin-left: 78px;
+  margin-right: 24px;
 }
 </style>

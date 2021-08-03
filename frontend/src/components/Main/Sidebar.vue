@@ -7,19 +7,19 @@
     </div>
     <ul class="side-list nav-links">
       <li>
-        <a href="#">
+        <a href="#" @click="clickSideHome">
           <i class="fas fa-home" @click="clickSideHome"></i>
           <span class="links_name">홈</span>
         </a>
         <span class="tooltip">홈</span>
       </li>
-      <li :class="{ showMenu: state.roomShow }">
+      <li :class="{ showMenu: state.conferenceShow }">
         <div class="icon-link">
           <a href="#">
             <i class="fas fa-video" @click="clickSideConference"></i>
             <span class="links_name me-auto">방</span>
             <span class="tooltip">방</span>
-            <i class='bx bxs-chevron-down arrow links_name' @click="clickRoomShow"></i>
+            <i class='bx bxs-chevron-down arrow links_name' @click="clickConferenceShow"></i>
           </a>
         </div>
         <ul class="sub-menu">
@@ -40,12 +40,12 @@
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">게시판</a></li>
-          <li><a href="#">공지사항</a></li>
-          <li><a href="#">게시글</a></li>
+          <li><a href="#" @click="clickSideNotice">공지사항</a></li>
+          <li><a href="#" @click="clickSideArticle">게시글</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">
+        <a href="#" @click="clickSideSearch">
           <i class="fas fa-search" @click="clickSideSearch"></i>
           <span class="links_name">검색</span>
         </a>
@@ -77,7 +77,7 @@ export default {
 
     const state = reactive ({
       isOpen: false,
-      roomShow: false,
+      conferenceShow: false,
       articleShow: false,
       token: computed(() => store.getters['getToken']),
       username: computed(() => store.getters['getUsername'])
@@ -85,11 +85,12 @@ export default {
     const closeBtn = () => {
       state.isOpen = !state.isOpen
       if (state.isOpen === false) {
-        state.isShow = false
+        state.conferenceShow = false
+        state.articleShow = false
       }
     }
-    const clickRoomShow = () => {
-      state.roomShow = !state.roomShow
+    const clickConferenceShow = () => {
+      state.conferenceShow = !state.conferenceShow
     }
     const clickArticleShow = () => {
       state.articleShow = !state.articleShow
@@ -103,6 +104,12 @@ export default {
     const clickSideBoard = () => {
       router.push({ name: 'Board' })
     }
+    const clickSideNotice = () => {
+      router.push({ name: 'NoticeList'})
+    }
+    const clickSideArticle = () => {
+      router.push({ name: 'ArticleList'})
+    }
     const clickSideSearch = () => {
       emit('openSearchDialog')
     }
@@ -110,18 +117,16 @@ export default {
       emit('openLogoutDialog')
     }
 
-    return { state, closeBtn, clickRoomShow, clickArticleShow, clickSideHome, clickSideConference, clickSideBoard, clickSideSearch, clickSideLogout }
+    return { state, closeBtn, clickConferenceShow, clickArticleShow, clickSideHome, clickSideConference, clickSideBoard, clickSideSearch, clickSideLogout, clickSideNotice, clickSideArticle }
   },
 }
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins" , sans-serif;
 }
 .sidebar{
   position: fixed;
@@ -295,16 +300,23 @@ export default {
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  background: white;
+  background: orange;
   width: 100%;
   height: 60px;
   line-height: 60px;
   border-radius: 0px;
   transition: all 0.5s ease;
 }
+.sidebar .side-profile #log_out:hover{
+  cursor: pointer;
+}
+
 .sidebar.open .side-profile #log_out{
   width: 50px;
   background: none;
+}
+.sidebar.open .side-profile #log_out:hover{
+  cursor: pointer;
 }
 .sidebar .nav-links li .icon-link {
   display: flex;
