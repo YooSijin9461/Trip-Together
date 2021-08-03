@@ -2,7 +2,7 @@
   <div class="container">
     <h1 class="mt-5 mb-4">게시글</h1>
     
-    <span v-for="(article) in state.articleList.slice().reverse()" :key="article">
+    <span v-for="article in state.articleList" :key="article">
       <!-- <span v-if="index"> -->
         <hr class="article-line my-0">
       <!-- </span> -->
@@ -31,6 +31,14 @@
       <el-button type="primary" @click="articleCreate">글쓰기</el-button>
     </div>
   </div>
+  <div class="pagination">
+    <el-pagination
+      :page-size="15"
+      layout="prev, pager, next"
+      :total="state.articleCount"
+      @current-change="pageChange">
+    </el-pagination>
+  </div>
 </template>
 
 <script>
@@ -46,6 +54,7 @@ export default {
     const state = reactive ({
       articleList: [],
       today: new Date(),
+      articleCount: 0,
     })
     const clickArticle = (boardNo) => {
       store.dispatch('articleDetail', boardNo)
@@ -60,13 +69,21 @@ export default {
       router.push({ name: 'ArticleCreate'})
     }
     onMounted (() => {
-      store.dispatch('articleList')
-        .then((res) => {
-          state.articleList = res.data
+      store.dispatch('articlePageList')
+        .then(({ data }) => {
+          state.articleList = data.content
+          state.articleCount = data.totalElements
         })
     })
 
-    return { state, clickArticle, UTCtoKST, articleCreate }
+    const pageChange = (val) => {
+      store.dispatch('articlePageList', val)
+        .then(({ data }) => {
+          state.articleList = data.content
+          state.articleCount = data.totalElements
+        })
+    } 
+    return { state, clickArticle, UTCtoKST, articleCreate, pageChange }
   },
 }
 </script>
@@ -89,5 +106,11 @@ export default {
 }
 .userId {
   font-size: 12px;
+}
+.pagination {
+  position: fixed;
+  bottom: 5rem;
+  left: 45%;
+  right: 55%;
 }
 </style>

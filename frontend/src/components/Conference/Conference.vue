@@ -1,9 +1,28 @@
 <template>
-  <div class="container">
-    <div id="room">
-      <h2 class="text-center my-4">{{ state.conferenceTitle }}</h2>
-      <hr>
+  <div id="room">
+    <div class="d-flex justify-content-center align-items-center py-2">
+      <h2 class="my-0 mx-auto">{{ state.conferenceTitle }}</h2>
+      <!-- 채팅버튼 -->
+      <div 
+        type="button" 
+        data-bs-toggle="offcanvas" 
+        data-bs-target="#offcanvasScrolling" 
+        aria-controls="offcanvasScrolling">
+        <i class="far fa-comment-dots aside-icon2"></i>
+      </div>
+    </div>
+    <hr>
+    <div class="container">
       <div id="participants"></div>
+    </div>
+  </div>
+  <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">채팅</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <Chat/>
     </div>
   </div>
   <el-button type="danger" id="leave" @click="leaveRoom()">나가기</el-button>
@@ -13,9 +32,24 @@
 import { reactive, onMounted, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-
+import Chat from './Chat.vue'
 export default {
+  name: 'Conference',
+  components: {
+    Chat,
+  },
   setup() {
+    const store = useStore()
+    const router = useRouter()
+
+    const state = reactive ({
+      username: computed(() => store.getters['getUsername']),
+      conferenceNo: computed(() => store.getters['getConferenceno']),
+      conferenceTitle: computed(() => store.getters['getConferencetitle'])
+    })
+
+    // webRTC 기능 
+
     const kurentoUtils = require('kurento-utils')
     const socket = new WebSocket('wss://' + location.host + '/groupcall')
     const PARTICIPANT_MAIN_CLASS = 'participant main';
@@ -55,15 +89,6 @@ export default {
           console.error('Unrecognized message', parsedMessage)
       }
     }
-
-    const store = useStore()
-    const router = useRouter()
-
-    const state = reactive ({
-      username: computed(() => store.getters['getUsername']),
-      conferenceNo: computed(() => store.getters['getConferenceno']),
-      conferenceTitle: computed(() => store.getters['getConferencetitle'])
-    })
 
     const register = (name, room) => {
       const message = {
@@ -242,8 +267,6 @@ export default {
       };
     }
 
-
-
     onMounted(() => {
       socket.onopen = () =>{
         register(state.username, state.conferenceNo)
@@ -266,11 +289,11 @@ export default {
 }
 .participant {
 	margin: 10px;
-	width: 150;
+	width: 30%;
 	text-align: center;
 	overflow: hide;
 	float: left;
-	padding: 2%;
+	padding: 10px;
 	border-radius: 10px;
   background-color: lightgoldenrodyellow;
 	-webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px
@@ -297,6 +320,7 @@ export default {
   margin-bottom: 2%;
 }
 .participant span {
+    font-size: small;
     font-weight: bold;
     color: black;
 }
@@ -376,5 +400,13 @@ a.hovertext:after {
 
 a.hovertext:hover:after, a.hovertext:focus:after {
 	opacity: 1.0;
+}
+
+.offcanvas-end {
+  width: 300px;
+}
+
+.offcanvas-body {
+  padding: 1rem 0;
 }
 </style>

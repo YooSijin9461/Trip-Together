@@ -70,12 +70,6 @@ export default {
     function showChat(chat) {
       state.chatList.push(chat)
 
-      // state.chatList.push(chat)
-      // $("#conversation").append(
-      //   "<div class='chatting'><span>" + chat.name + "</span>" + 
-      //   "<div class='chat-message-time'><div class='chatMessage'>" + chat.message + "</div>" + 
-      //   "<span>" + chat.date + "</span></div></div>"
-      // );
     }
 
     onMounted (() => {
