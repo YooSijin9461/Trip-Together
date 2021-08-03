@@ -13,7 +13,7 @@
         <el-tabs type="border-card">
           <el-tab-pane label="공지사항">
             <div class="container mt-3">
-              <span v-for="(notice, index) in state.noticeList.slice().reverse()" :key="notice">
+              <span v-for="(notice, index) in state.noticeList" :key="notice">
                 <span v-if="index">
                   <hr class="my-0">
                 </span>
@@ -31,7 +31,7 @@
           
           <el-tab-pane class="w-100 h-100" label="방 목록">
             <div class="container mt-3">
-              <span v-for="(conference, index) in state.conferenceList.slice().reverse()" :key="conference">
+              <span v-for="(conference, index) in state.conferenceList" :key="conference">
                 <span v-if="index">
                   <hr class="my-0">
                 </span>
@@ -52,7 +52,7 @@
 
           <el-tab-pane class="w-100 h-100" label="게시글">
             <div class="container mt-3">
-              <span v-for="(article, index) in state.articleList.slice().reverse()" :key="article">
+              <span v-for="(article, index) in state.articleList" :key="article">
                 <span v-if="index">
                   <hr class="my-0">
                 </span>
@@ -97,7 +97,7 @@ import { useStore } from 'vuex'
 
 export default {
   name: 'Home',
-  setup() {
+  setup(props, { emit }) {
     const router = useRouter()
     const store = useStore()
 
@@ -127,6 +127,14 @@ export default {
           router.push({ name: 'Article', params: { articleId: boardNo }})
         })
     }
+    const clickConference = (conferenceNo) => {
+      store.dispatch('conferenceDetail', conferenceNo)
+        .then(() => {
+          // register(state.username, conferenceNo)
+          // router.push({ name: 'Conference', params: { conferenceId: conferenceNo}})
+          emit('openConferenceDialog')
+        })
+    }
     const clickNotice = (noticeNo) => {
       store.dispatch('noticeDetail', noticeNo)
         .then(() => {
@@ -135,21 +143,21 @@ export default {
     }
 
     onMounted (() => {
-      store.dispatch('noticeList')
-        .then((res) => {
-          state.noticeList = res.data.slice(0, 6)
+      store.dispatch('noticePageList')
+        .then(({ data }) => {
+          state.noticeList = data.content.slice(0, 6)
         })
-      store.dispatch('conferenceList')
-        .then((res) => {
-          state.conferenceList = res.data.slice(0, 6)
+      store.dispatch('conferencePageList')
+        .then(({ data }) => {
+          state.conferenceList = data.content.slice(0, 6)
         })
-      store.dispatch('articleList')
-        .then((res) => {
-          state.articleList = res.data.slice(0, 6)
+      store.dispatch('articlePageList')
+        .then(({ data }) => {
+          state.articleList = data.content.slice(0, 6)
         })
     })
 
-    return { state, clickMoreConference, clickMoreArticle, clickMoreNotice, clickArticle, clickNotice }
+    return { state, clickMoreConference, clickMoreArticle, clickMoreNotice, clickArticle, clickConference, clickNotice }
   },
 }
 </script>

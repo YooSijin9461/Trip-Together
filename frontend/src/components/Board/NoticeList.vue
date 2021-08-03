@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="mt-5 mb-4">공지사항</h1>
-    <span v-for="(notice) in state.noticeList.slice().reverse()" :key="notice">
+    <span v-for="notice in state.noticeList" :key="notice">
       <!-- <span v-if="index"> -->
         <hr class="notice-line my-0">
       <!-- </span> -->
@@ -19,6 +19,14 @@
     </span>
     <hr class="notice-line my-0">
   </div>
+  <div class="pagination">
+    <el-pagination
+      :page-size="15"
+      layout="prev, pager, next"
+      :total="state.noticeCount"
+      @current-change="pageChange">
+    </el-pagination>
+  </div>
 </template>
 
 <script>
@@ -34,6 +42,7 @@ export default {
     const state = reactive ({
       noticeList: [],
       today: new Date(),
+      noticeCount: 0,
     })
     const clickNotice = (noticeNo) => {
       store.dispatch('noticeDetail', noticeNo)
@@ -45,13 +54,20 @@ export default {
       return new Date(date).getHours() + ':' + new Date(date).getMinutes()
     }
     onMounted (() => {
-      store.dispatch('noticeList')
-        .then((res) => {
-          state.noticeList = res.data
+      store.dispatch('noticePageList')
+        .then(({ data }) => {
+          state.noticeList = data.content
+          state.noticeCount = data.totalElements
         })
     })
-
-    return { state, clickNotice, UTCtoKST }
+    const pageChange = (val) => {
+      store.dispatch('noticePageList', val)
+        .then(({ data }) => {
+          state.noticeList = data.content
+          state.noticeCount = data.totalElements
+        })
+    } 
+    return { state, clickNotice, UTCtoKST, pageChange }
   },
 }
 </script>

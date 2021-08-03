@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-4 g-4" v-for="conference in state.conferenceCatogories.slice().reverse()" :key="conference">
+      <div class="col-4 g-4" v-for="conference in state.conferenceCatogories" :key="conference">
         <div class="d-flex justify-content-center">
           <div class="block">
             <img class="conference_thumbnail" src="../../assets/selfie1.jpg" @click="clickConference(conference.conferenceNo)">
@@ -69,15 +69,16 @@ export default ({
       store.dispatch('conferenceDetail', conferenceNo)
         .then(() => {
           // register(state.username, conferenceNo)
-          router.push({ name: 'Conference', params: { conferenceId: conferenceNo}})
+          // router.push({ name: 'Conference', params: { conferenceId: conferenceNo}})
+          emit('openConferenceDialog')
         })
     }
 
     onMounted (() => {
-      store.dispatch('conferenceList')
-        .then((res) => {
-          state.conferenceList = res.data
-          state.conferenceCatogories = res.data
+      store.dispatch('conferencePageList')
+        .then(({ data }) => {
+          state.conferenceList = data.content
+          state.conferenceCatogories = data.content
         })
     })
     onUpdated (() => {  
