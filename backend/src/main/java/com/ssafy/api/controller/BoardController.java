@@ -76,7 +76,7 @@ public class BoardController {
 	public ResponseEntity<List<Board>> selectBoard(@RequestParam(required = false) String boardTitle,
 												   @RequestParam(required = false) String boardContent,
 												   @RequestParam(required = false) String userId,
-												   @PageableDefault(size = 15, sort = "boardNo", direction = Sort.Direction.DESC) Pageable pageable){
+												   @PageableDefault(size = 6, sort = "boardNo", direction = Sort.Direction.DESC) Pageable pageable){
 		if(boardTitle != null)
 			return new ResponseEntity<>(boardService.searchTitle(boardTitle, pageable), HttpStatus.OK);
 		else if(boardContent != null)
