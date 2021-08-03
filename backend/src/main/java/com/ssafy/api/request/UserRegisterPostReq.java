@@ -40,5 +40,4 @@ public class UserRegisterPostReq {
 	String orgImg;
 	@ApiModelProperty(name="이미지 파일")
 	MultipartFile file;
-	
 }
