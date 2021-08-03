@@ -24,4 +24,5 @@ public interface RoomService {
 	List<ConferenceRoom> searchOwner(String owner, Pageable pageable);// 방 소유자 이름으로 검색
 	ConferenceRoom getInfo(int conferenceNo);				// 방 상세정보 조회
 	ConferenceRoom modifyRoom(RoomModifyPostReq r, int confernceNo);			// 방 정보 수정
+	void deleteRoom(int conferenceNo);// 방 삭제
 }
