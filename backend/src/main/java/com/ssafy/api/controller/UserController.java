@@ -1,11 +1,15 @@
 package com.ssafy.api.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.api.request.UserLoginPostReq;
 import com.ssafy.api.request.UserModifyPostReq;
@@ -61,6 +66,9 @@ public class UserController {
 	@Autowired
 	UserRepository userRepository;
 	
+	@Autowired
+	ResourceLoader resourceLoader;
+	
 	@PostMapping()
 	@ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
@@ -69,11 +77,18 @@ public class UserController {
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<? extends BaseResponseBody> register(
-			@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo) {
+	public ResponseEntity<User> register(
+			@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo) throws IllegalStateException, IOException {
 		//임의로 리턴된 User 인스턴스. 현재 코드는 회원 가입 성공 여부만 판단하기 때문에 굳이 Insert 된 유저 정보를 응답하지 않음.
+		MultipartFile file = registerInfo.getFile();
+		if(file != null && file.getSize() > 0) {
+			Resource res = resourceLoader.getResource("resources/upload");
+			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
+			registerInfo.setOrgImg(file.getOriginalFilename());
+			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
+		}
 		User user = userService.createUser(registerInfo);
-		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
 	@GetMapping()

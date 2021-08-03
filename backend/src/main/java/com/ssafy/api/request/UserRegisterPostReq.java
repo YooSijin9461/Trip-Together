@@ -1,5 +1,7 @@
 package com.ssafy.api.request;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -34,4 +36,9 @@ public class UserRegisterPostReq {
 	boolean isGuide;
 	@ApiModelProperty(name="유저 프로필", example="a.jpg")
 	String img;
+	@ApiModelProperty(name="선택한 파일명", example="a.jpg")
+	String orgImg;
+	@ApiModelProperty(name="이미지 파일")
+	MultipartFile file;
+	
 }
