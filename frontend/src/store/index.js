@@ -96,6 +96,7 @@ export default createStore({
       state.boardCreate = boardinfo.boardTime
     },
 
+
     // 공지
     NOTICEINFO (state, noticeinfo) {
       state.noticeNo = noticeinfo.noticeNo
@@ -134,9 +135,9 @@ export default createStore({
     },
 
     // 방
-    conferenceList ({ commit }) {
+    conferencePageList ({ commit }, pageNo) {
       return axios
-        .get(`${BASE_URL}/api/v1/conferences`)
+        .get(`${BASE_URL}/api/v1/conferences?page=${pageNo}`)
     },
     conferenceCreate ({ commit }, payload) {
       return axios
@@ -151,9 +152,9 @@ export default createStore({
     },
 
     // 게시글
-    articleList ({ commit }) {
+    articlePageList ({ commit }, pageNo) {
       return axios
-        .get(`${BASE_URL}/api/v1/boards`)
+        .get(`${BASE_URL}/api/v1/boards?page=${pageNo}`)
     },
     articleDetail ({ commit }, boardNo) {
       return axios
@@ -168,9 +169,9 @@ export default createStore({
     },
 
     // 공지
-    noticeList ({ commit }) {
+    noticePageList ({ commit }, pageNo) {
       return axios
-        .get(`${BASE_URL}/api/v1/notices`)
+        .get(`${BASE_URL}/api/v1/notices?page=${pageNo}`)
     },
     noticeDetail ({ commit }, noticeNo) {
       return axios
@@ -220,6 +221,7 @@ export default createStore({
     getUserguide (state) {
       return state.guide
     },
+
     // 방
     getConferenceowner (state) {
       return state.conferenceOwner
@@ -229,6 +231,18 @@ export default createStore({
     },
     getConferencetitle (state) {
       return state.conferenceTitle
+    },
+    getConferencedescription (state) {
+      return state.conferenceDescription
+    },
+    getConferencepassword (state) {
+      return state.conferencePassword
+    },
+    getConferencelimit (state) {
+      return state.conferenceLimit
+    },
+    getConferencecategory (state) {
+      return state.conferenceCategory
     },
 
 
