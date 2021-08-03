@@ -79,7 +79,7 @@ public class RoomController {
 			   											@PageableDefault(size = 9, sort = "conferenceNo", direction = Sort.Direction.DESC) Pageable pageable){
 		if(title != null)
 			return new ResponseEntity<>(roomService.searchTitle(title, pageable), HttpStatus.OK);
-		return new ResponseEntity<>(roomService.searchTitle(owner, pageable), HttpStatus.OK);
+		return new ResponseEntity<>(roomService.searchOwner(owner, pageable), HttpStatus.OK);
 	}
 	
 	@GetMapping("/{conferenceNo}")
