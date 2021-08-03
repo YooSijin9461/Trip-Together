@@ -150,6 +150,11 @@ export default createStore({
           commit("CONFERENCEINFO", data)
         })
     },
+    conferenceSearch ({ commit }, { searchKey, searchValue }) {
+      const params = new URLSearchParams([[searchKey, searchValue]])
+      return axios
+        .get(`${BASE_URL}/api/v1/conferences/search`, { params })
+    },
 
     // 게시글
     articlePageList ({ commit }, pageNo) {
@@ -166,6 +171,11 @@ export default createStore({
     articleCreate ({ commit }, payload) {
       return axios
         .post(`${BASE_URL}/api/v1/boards`, payload)
+    },
+    articleSearch ({ commit }, { searchKey, searchValue }) {
+      const params = new URLSearchParams([[searchKey, searchValue]])
+      return axios
+      .get(`${BASE_URL}/api/v1/boards/search`, { params })
     },
 
     // 공지
