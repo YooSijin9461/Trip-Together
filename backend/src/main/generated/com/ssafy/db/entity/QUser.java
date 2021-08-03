@@ -36,6 +36,10 @@ public class QUser extends EntityPathBase<User> {
     public final BooleanPath isGuide = createBoolean("isGuide");
 
     public final StringPath mbti = createString("mbti");
+    
+    // 이미지 등록 추가
+    public final StringPath orgImg = createString("orgImg");
+    //
 
     public final StringPath password = createString("password");
 
