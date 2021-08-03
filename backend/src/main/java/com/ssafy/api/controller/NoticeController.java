@@ -3,6 +3,10 @@ package com.ssafy.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -59,8 +63,8 @@ public class NoticeController {
 		@ApiResponse(code = 200, message = "성공"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<List<Notice>> selectNotice(){
-		return new ResponseEntity<>(noticeService.selectNotice(), HttpStatus.OK);
+	public ResponseEntity<Page<Notice>> selectNotice(@PageableDefault(size = 15, sort = "noticeNo", direction = Sort.Direction.DESC) Pageable pageable){
+		return new ResponseEntity<>(noticeService.selectNotice(pageable), HttpStatus.OK);
 	}
 	
 	@GetMapping("/{noticeNo}")

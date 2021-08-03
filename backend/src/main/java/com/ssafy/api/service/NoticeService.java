@@ -1,6 +1,7 @@
 package com.ssafy.api.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.ssafy.api.request.NoticeRegisterPostReq;
 import com.ssafy.db.entity.Notice;
@@ -11,7 +12,7 @@ import com.ssafy.db.entity.Notice;
 public interface NoticeService {
 	// CRUD - READ는 전체 공지사항, 공지사항번호에 따른 상세 공지사항 정보
 	Notice createNotice(NoticeRegisterPostReq noticeRegisterInfo);
-	List<Notice> selectNotice();
+	Page<Notice> selectNotice(Pageable pageable);
 	Notice getInfoByNoticeNo(int noticeNo);
 	Notice modifyNotice(NoticeRegisterPostReq noticeModifyInfo, int noticeNo);
 	void deleteNotice(int noticeNo);

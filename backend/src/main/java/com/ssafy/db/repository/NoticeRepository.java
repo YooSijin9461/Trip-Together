@@ -2,6 +2,9 @@ package com.ssafy.db.repository;
 
 import com.ssafy.db.entity.Notice;
 import com.ssafy.db.entity.User;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,4 +20,5 @@ public interface NoticeRepository extends JpaRepository<Notice, Integer> {
 //    Optional<User> findByUserId(String userId);
 //    Optional<List<User>> findByConferenceRoomNo(int conferenceNo);
 	Optional<Notice> findByNoticeNo(int noticeNo);
+	Page<Notice> findAll(Pageable pageable);
 }

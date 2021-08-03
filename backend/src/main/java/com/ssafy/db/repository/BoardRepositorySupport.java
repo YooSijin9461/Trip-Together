@@ -7,9 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.db.entity.Board;
-import com.ssafy.db.entity.Notice;
 import com.ssafy.db.entity.QBoard;
-import com.ssafy.db.entity.QNotice;
+import com.ssafy.db.entity.QUser;
 
 /**
  * 공지사항 모델 관련 디비 쿼리 생성을 위한 구현 정의.
@@ -19,6 +18,7 @@ public class BoardRepositorySupport {
     @Autowired
     private JPAQueryFactory jpaQueryFactory;
     QBoard qBoard = QBoard.board;
+    QUser qUser = QUser.user;
 
     public Optional<Board> findByBoardNo(int boardNo) {
        Board board = jpaQueryFactory.select(qBoard).from(qBoard)
@@ -26,4 +26,5 @@ public class BoardRepositorySupport {
        if(board == null) return Optional.empty();
        return Optional.ofNullable(board);
     }
+    
 }
