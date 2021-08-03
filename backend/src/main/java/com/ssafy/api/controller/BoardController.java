@@ -63,7 +63,7 @@ public class BoardController {
 		@ApiResponse(code = 200, message = "성공"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<Page<Board>> selectBoard(@PageableDefault(size = 15, sort = "boardNo", direction = Sort.Direction.DESC) Pageable pageable){
+	public ResponseEntity<Page<Board>> selectBoard(@PageableDefault(sort = "boardNo", direction = Sort.Direction.DESC) Pageable pageable){
 		return new ResponseEntity<>(boardService.selectBoard(pageable), HttpStatus.OK);
 	}
 	
@@ -76,7 +76,7 @@ public class BoardController {
 	public ResponseEntity<List<Board>> selectBoard(@RequestParam(required = false) String boardTitle,
 												   @RequestParam(required = false) String boardContent,
 												   @RequestParam(required = false) String userId,
-												   @PageableDefault(size = 6, sort = "boardNo", direction = Sort.Direction.DESC) Pageable pageable){
+												   @PageableDefault(sort = "boardNo", direction = Sort.Direction.DESC) Pageable pageable){
 		if(boardTitle != null)
 			return new ResponseEntity<>(boardService.searchTitle(boardTitle, pageable), HttpStatus.OK);
 		else if(boardContent != null)

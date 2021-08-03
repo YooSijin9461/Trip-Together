@@ -63,7 +63,7 @@ public class NoticeController {
 		@ApiResponse(code = 200, message = "성공"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<Page<Notice>> selectNotice(@PageableDefault(size = 15, sort = "noticeNo", direction = Sort.Direction.DESC) Pageable pageable){
+	public ResponseEntity<Page<Notice>> selectNotice(@PageableDefault(sort = "noticeNo", direction = Sort.Direction.DESC) Pageable pageable){
 		return new ResponseEntity<>(noticeService.selectNotice(pageable), HttpStatus.OK);
 	}
 	
