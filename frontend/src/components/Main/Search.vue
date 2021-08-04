@@ -1,5 +1,6 @@
 <template>
 <el-dialog custom-class="Search" title="검색" v-model="state.dialogVisible" @close="handleClose">
+  <template #default>
   <el-form :model="state.form" :rules="state.rules" ref="searchForm" :label-position="state.form.align">
     <div class="d-flex mb-3">
       <el-select type="text" v-model="state.category">
@@ -24,6 +25,64 @@
       <el-input v-model="state.form.search" placeholder="검색어를 입력하세요." autocomplete="off"></el-input>
     </el-form-item>
   </el-form>
+  <el-dialog
+    custom-class="innerDialog"
+    title="검색 결과"
+    v-model="state.innerVisible"
+    append-to-body>
+    <div v-if="state.category === 'article'">
+      <div class="container">
+        <span v-for="result in state.searchPageResult" :key="result">
+        <hr>
+        <div class="d-flex align-items-center" @click="clickArticle(result.boardNo)">
+          <p class="col-8 my-0">{{ result.boardTitle }}</p>
+          <div class="col">
+            <p class="my-0"><i class="fas fa-user"></i>{{ result.userId }}</p>
+          </div>
+          <div class="col">
+            <span v-if="result.boardTime">
+              <span v-if="result.boardTime.slice(0, 10) === state.today.toJSON().slice(0, 10)">
+                <p class="my-0"><i class="far fa-clock"></i>{{ UTCtoKST(result.boardTime) }}</p>
+              </span>
+              <span v-else>
+                <p class="my-0"><i class="far fa-clock"></i>{{ result.boardTime.slice(0, 10) }}</p>
+              </span>
+            </span>
+            <span v-else>
+              <p class="my-0"><i class="far fa-clock"></i>{{ state.today.toJSON().slice(0,10) }}</p>
+            </span>
+          </div>
+        </div>
+        </span>
+        <hr>
+      </div>    
+    </div>
+    <div v-else-if="state.category === 'room'">
+      <div class="container">
+        <span v-for="result in state.searchPageResult" :key="result">
+          <hr>
+          <div class="d-flex align-items-center" @click="clickRoom(result.conferenceNo)">
+            <div class="col-9">
+              <p class="my-0">{{ result.title }}</p>
+            </div>
+            <div class="col">
+              <p class="my-0"><i class="fas fa-user"></i>{{ result.owner }}</p>
+            </div>
+          </div>
+        </span>
+        <hr>
+      </div>
+    </div>
+    <div class="pagination">
+      <el-pagination
+        :page-size="10"
+        layout="prev, pager, next"
+        :total="state.searchResult.length"
+        @current-change="pageChange">
+      </el-pagination>
+    </div>
+  </el-dialog>
+  </template>
   <template #footer>
     <span class="dialog-footer">
       <el-button type="primary" @click="clickSearch">검색</el-button>
@@ -38,6 +97,8 @@ import { useStore } from 'vuex'
 
 export default {
   name: 'Login',
+  components: {
+  },
   props: {
     open: {
       type: Boolean,
@@ -52,6 +113,10 @@ export default {
       category: '',
       roomCategory: '',
       articleCategory: '',
+      today: new Date(),
+      innerVisible: ref(false),
+      searchResult: [],
+      searchPageResult: [],
       form: {
         search: '',
         align: 'left'
@@ -70,40 +135,53 @@ export default {
         if (state.roomCategory === 'roomOwner') {
           store.dispatch('conferenceSearch', { searchKey: 'owner', searchValue: state.form.search })
             .then(({ data }) => {
-              console.log(data)
+              state.searchResult = data
+              state.searchPageResult = data.slice(0, 10)
             })
         } else {
           store.dispatch('conferenceSearch', { searchKey: 'title', searchValue: state.form.search })
             .then(({ data }) => {
-              console.log(data)
+              state.searchResult = data
+              state.searchPageResult = data.slice(0, 10)
             })
         }
-      } else if (state.category === 'board') {
+      } else if (state.category === 'article') {
         if (state.articleCategory === 'articleOwner') {
           store.dispatch('articleSearch', { searchKey: 'userId', searchValue: state.form.search })
             .then(({ data }) => {
-              console.log(data)
+              state.searchResult = data
+              state.searchPageResult = data.slice(0, 10)
             })
         } else if (state.articleCategory === 'articleTitle') {
           store.dispatch('articleSearch', { searchKey: 'boardTitle', searchValue: state.form.search })
             .then(({ data }) => {
-              console.log(data)
+              state.searchResult = data
+              state.searchPageResult = data.slice(0, 10)
             })
         } else {
           store.dispatch('articleSearch', { searchKey: 'boardContent', searchValue: state.form.search })
             .then(({ data }) => {
-              console.log(data)
+              state.searchResult = data
+              state.searchPageResult = data.slice(0, 10)
             })
         }
       }
+      state.innerVisible = true
       emit('closeSearchDialog')
+      emit('openSearchResult')
+    }
+    const pageChange = (val) => {
+      const start = (val - 1) * 10
+      state.searchPageResult = state.searchResult.slice(start, start + 10) 
+    }
+    const UTCtoKST = (date) => {
+      return new Date(date).getHours() + ':' + new Date(date).getMinutes()
     }
     const handleClose = () => {
       state.form.search = ''
       emit('closeSearchDialog')
     }
-
-    return { searchForm, state, clickSearch, handleClose }
+    return { searchForm, state, clickSearch, handleClose, UTCtoKST, pageChange }
   },
 }
 </script>
@@ -115,5 +193,12 @@ export default {
 .el-select {
   width: 100px;
   margin-right: 5px;
+}
+.innerDialog {
+  width: 80% !important;
+}
+.pagination {
+  margin-top: 1rem;
+  justify-content: center;
 }
 </style>

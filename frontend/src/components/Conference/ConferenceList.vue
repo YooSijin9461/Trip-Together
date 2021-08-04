@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="d-flex justify-content-between">
-      <el-select type="text" v-model="state.category">
+      <el-select type="text" v-model="state.category" @change="categoryChange()">
         <el-option label="전체보기" value=""></el-option>
         <el-option label="일반" value="normal"></el-option>
         <el-option label="가이드" value="guide"></el-option>
@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-4 g-4" v-for="conference in state.conferenceCatogories" :key="conference">
+      <div class="col-4 g-4" v-for="conference in state.conferencePageList" :key="conference">
         <div class="d-flex justify-content-center">
           <div class="block">
             <img class="conference_thumbnail" src="../../assets/selfie1.jpg" @click="clickConference(conference.conferenceNo)">
@@ -27,20 +27,26 @@
       </div>
     </div>
   </div>
+  <div class="pagination">
+    <el-pagination
+      :page-size="9"
+      layout="prev, pager, next"
+      :total="state.conferenceCount"
+      @current-change="pageChange">
+    </el-pagination>
+  </div>
 </template>
 
 <script>
-import { onMounted, reactive, computed, onUpdated } from 'vue'
+import { onMounted, reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-// import { register } from '@/assets/js/conferenceroom.js'
 
 export default ({
   name: 'ConferenceList',
   setup(props, { emit }) {
     const router = useRouter()
     const store = useStore()
-    // const socket = new WebSocket('wss://' + location.host + '/groupcall')
 
     const state = reactive ({
       circleUrl: require("@/assets/selfie.jpg"),
@@ -53,9 +59,9 @@ export default ({
       })),
       category: '',
       conferenceList: [],
-      conferenceCatogories: [],
-      // username: computed(() => store.getters['getUsername']),
-      // participants: {},
+      conferencePageList: [],
+      conferenceCount: 0,
+      conferenceCategoryList: [],
     })
 
 
@@ -68,30 +74,47 @@ export default ({
     const clickConference = (conferenceNo) => {
       store.dispatch('conferenceDetail', conferenceNo)
         .then(() => {
-          // register(state.username, conferenceNo)
-          // router.push({ name: 'Conference', params: { conferenceId: conferenceNo}})
           emit('openConferenceDialog')
         })
     }
-
-    onMounted (() => {
-      store.dispatch('conferencePageList')
-        .then(({ data }) => {
-          state.conferenceList = data.content
-          state.conferenceCatogories = data.content
-        })
-    })
-    onUpdated (() => {  
+    const categoryChange = () => {
+      console.log(state.category)
       if (state.category === 'normal') {
-        state.conferenceCatogories = state.normal
+        state.conferencePageList = state.normal.slice(0, 9)
+        state.conferenceCount = state.normal.length
+        console.log(state.category)
       }
       else if (state.category === 'guide') {
-        state.conferenceCatogories = state.guide
+        state.conferencePageList = state.guide.slice(0, 9)
+        state.conferenceCount = state.guide.length
+        console.log(state.category)
       } else {
-        state.conferenceCatogories = state.conferenceList
+        state.conferencePageList = state.conferenceList.slice(0, 9)
+        state.conferenceCount = state.conferenceList.length
+        console.log(state.category)
       }
+    }
+    const pageChange = (val) => {
+      const start = (val - 1) * 9
+        if (state.category === 'normal') {
+          state.conferencePageList = state.normal.slice(start, start + 9)
+        }
+        else if (state.category === 'guide') {
+          state.conferencePageList = state.guide.slice(start, start + 9)
+        } else {
+          state.conferencePageList = state.conferenceList.slice(start, start + 9)
+        }
+    } 
+    onMounted (() => {
+      store.dispatch('conferenceList')
+        .then(({ data }) => {
+          state.conferenceList = data.content
+          state.conferencePageList = data.content.slice(0, 9)
+          state.conferenceCount = data.totalElements
+        })
     })
-    return { state, clickProfile, clickConferenceCreate, clickConference }
+
+    return { state, clickProfile, clickConferenceCreate, clickConference, pageChange, categoryChange }
   },
 })
 </script>
@@ -114,5 +137,11 @@ img:hover {
   cursor: pointer;
   color: black;
   font-weight: bold;
+}
+.pagination {
+  position: fixed;
+  bottom: 5rem;
+  left: 45%;
+  right: 55%;
 }
 </style>

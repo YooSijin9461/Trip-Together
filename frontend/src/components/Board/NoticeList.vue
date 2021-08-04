@@ -21,7 +21,7 @@
   </div>
   <div class="pagination">
     <el-pagination
-      :page-size="15"
+      :page-size="10"
       layout="prev, pager, next"
       :total="state.noticeCount"
       @current-change="pageChange">

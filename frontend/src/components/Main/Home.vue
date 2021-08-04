@@ -147,7 +147,7 @@ export default {
         .then(({ data }) => {
           state.noticeList = data.content.slice(0, 6)
         })
-      store.dispatch('conferencePageList')
+      store.dispatch('conferenceList')
         .then(({ data }) => {
           state.conferenceList = data.content.slice(0, 6)
         })

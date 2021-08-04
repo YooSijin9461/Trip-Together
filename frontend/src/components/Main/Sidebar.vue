@@ -97,6 +97,7 @@ export default {
     }
     const clickSideHome = () => {
       router.push({ name: 'Home' })
+      state.isOpen = false
     }
     const clickSideConference = () => {
       router.push({ name: 'ConferenceList' })
@@ -106,9 +107,13 @@ export default {
     }
     const clickSideNotice = () => {
       router.push({ name: 'NoticeList'})
+      state.isOpen = false
+      state.articleShow = false
     }
     const clickSideArticle = () => {
       router.push({ name: 'ArticleList'})
+      state.isOpen = false
+      state.articleShow = false
     }
     const clickSideSearch = () => {
       emit('openSearchDialog')

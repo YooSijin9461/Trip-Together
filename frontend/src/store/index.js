@@ -135,9 +135,9 @@ export default createStore({
     },
 
     // 방
-    conferencePageList ({ commit }, pageNo) {
+    conferenceList ({ commit }) {
       return axios
-        .get(`${BASE_URL}/api/v1/conferences?page=${pageNo}`)
+        .get(`${BASE_URL}/api/v1/conferences`)
     },
     conferenceCreate ({ commit }, payload) {
       return axios
@@ -159,7 +159,7 @@ export default createStore({
     // 게시글
     articlePageList ({ commit }, pageNo) {
       return axios
-        .get(`${BASE_URL}/api/v1/boards?page=${pageNo}`)
+        .get(`${BASE_URL}/api/v1/boards?page=${pageNo}&size=10`)
     },
     articleDetail ({ commit }, boardNo) {
       return axios
@@ -181,7 +181,7 @@ export default createStore({
     // 공지
     noticePageList ({ commit }, pageNo) {
       return axios
-        .get(`${BASE_URL}/api/v1/notices?page=${pageNo}`)
+        .get(`${BASE_URL}/api/v1/notices?page=${pageNo}&size=10`)
     },
     noticeDetail ({ commit }, noticeNo) {
       return axios
