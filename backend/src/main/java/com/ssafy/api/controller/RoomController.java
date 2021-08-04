@@ -65,7 +65,7 @@ public class RoomController {
 		@ApiResponse(code = 200, message = "성공"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<Page<ConferenceRoom>> selectRoom(@PageableDefault(sort = "conferenceNo", direction = Sort.Direction.DESC) Pageable pageable){
+	public ResponseEntity<Page<ConferenceRoom>> selectRoom(@PageableDefault(size = 999, sort = "conferenceNo", direction = Sort.Direction.DESC) Pageable pageable){
 		return new ResponseEntity<>(roomService.selectRoom(pageable), HttpStatus.OK);
 	}
 	
@@ -77,7 +77,7 @@ public class RoomController {
 	})
 	public ResponseEntity<List<ConferenceRoom>> selectRoom(@RequestParam(required = false) String title,
 			   											   @RequestParam(required = false) String owner,
-			   											@PageableDefault(sort = "conferenceNo", direction = Sort.Direction.DESC) Pageable pageable){
+			   											@PageableDefault(size = 999, sort = "conferenceNo", direction = Sort.Direction.DESC) Pageable pageable){
 		if(title != null)
 			return new ResponseEntity<>(roomService.searchTitle(title, pageable), HttpStatus.OK);
 		return new ResponseEntity<>(roomService.searchOwner(owner, pageable), HttpStatus.OK);
