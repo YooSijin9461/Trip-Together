@@ -78,20 +78,16 @@ export default ({
         })
     }
     const categoryChange = () => {
-      console.log(state.category)
       if (state.category === 'normal') {
         state.conferencePageList = state.normal.slice(0, 9)
         state.conferenceCount = state.normal.length
-        console.log(state.category)
       }
       else if (state.category === 'guide') {
         state.conferencePageList = state.guide.slice(0, 9)
         state.conferenceCount = state.guide.length
-        console.log(state.category)
       } else {
         state.conferencePageList = state.conferenceList.slice(0, 9)
         state.conferenceCount = state.conferenceList.length
-        console.log(state.category)
       }
     }
     const pageChange = (val) => {
