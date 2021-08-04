@@ -21,8 +21,8 @@ public interface RoomService {
 	ConferenceRoom createRoom(RoomRegisterPostReq roomRegisterInfo);			// 방 생성
 	Page<ConferenceRoom> selectRoom(Pageable pageable);		// 방 목록
 	Page<ConferenceRoom> selectRoom(String conferenceCategory, Pageable pageable);		// 카테고리 별 방 목록
-	List<ConferenceRoom> searchTitle(String conferenceCategory, String title, Pageable pageable);// 방 이름으로 검색
-	List<ConferenceRoom> searchOwner(String conferenceCategory, String owner, Pageable pageable);// 방 소유자 이름으로 검색
+	List<ConferenceRoom> searchTitle(String title, Pageable pageable);// 방 이름으로 검색
+	List<ConferenceRoom> searchOwner(String owner, Pageable pageable);// 방 소유자 이름으로 검색
 	ConferenceRoom getInfo(int conferenceNo);				// 방 상세정보 조회
 	ConferenceRoom modifyRoom(RoomModifyPostReq r, int confernceNo);			// 방 정보 수정
 	void deleteRoom(int conferenceNo);// 방 삭제

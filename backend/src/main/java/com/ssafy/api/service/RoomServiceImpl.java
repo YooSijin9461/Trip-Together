@@ -50,13 +50,13 @@ public class RoomServiceImpl implements RoomService{
 	}
 	
 	@Override
-	public List<ConferenceRoom> searchTitle(String conferenceCategory, String title, Pageable pageable) {
-		return roomRepository.findByTitleContaining(conferenceCategory, title, pageable);
+	public List<ConferenceRoom> searchTitle(String title, Pageable pageable) {
+		return roomRepository.findByTitleContaining(title, pageable);
 	}
-
+	
 	@Override
-	public List<ConferenceRoom> searchOwner(String conferenceCategory, String owner, Pageable pageable) {
-		return roomRepository.findByOwnerContaining(conferenceCategory, owner, pageable);
+	public List<ConferenceRoom> searchOwner(String owner, Pageable pageable) {
+		return roomRepository.findByOwnerContaining(owner, pageable);
 	}
 	
 	@Override
