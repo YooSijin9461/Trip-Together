@@ -98,6 +98,9 @@ export default {
     const clickSideHome = () => {
       router.push({ name: 'Home' })
       state.isOpen = false
+      state.conferenceShow = false
+      state.articleShow = false
+
     }
     const clickSideConference = () => {
       router.push({ name: 'ConferenceList' })
