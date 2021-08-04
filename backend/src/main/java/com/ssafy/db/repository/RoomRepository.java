@@ -18,6 +18,7 @@ import com.ssafy.db.entity.ConferenceRoom;
 public interface RoomRepository extends JpaRepository<ConferenceRoom, Integer>, JpaSpecificationExecutor<ConferenceRoom> {
 	Optional<ConferenceRoom> findByConferenceNo(int conferenceNo);
 	Page<ConferenceRoom> findAll(Pageable pageable);
-	List<ConferenceRoom> findByTitleContaining(String title, Pageable pageable);
-	List<ConferenceRoom> findByOwnerContaining(String owner, Pageable pageable);
+	Page<ConferenceRoom> findByConferenceCategory(String conferenceCategory, Pageable pageable);
+	List<ConferenceRoom> findByTitleContaining(String conferenceCategory, String title, Pageable pageable);
+	List<ConferenceRoom> findByOwnerContaining(String conferenceCategory, String owner, Pageable pageable);
 }

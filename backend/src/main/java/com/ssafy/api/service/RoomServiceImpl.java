@@ -38,20 +38,25 @@ public class RoomServiceImpl implements RoomService{
 		room.setLimitUsersNum(roomRegisterInfo.getLimitUsersNum());
 		return roomRepository.save(room);
 	}
-
+	
 	@Override
 	public Page<ConferenceRoom> selectRoom(Pageable pageable) {
 		return roomRepository.findAll(pageable);
 	}
+
+	@Override
+	public Page<ConferenceRoom> selectRoom(String conferenceCategory, Pageable pageable) {
+		return roomRepository.findByConferenceCategory(conferenceCategory, pageable);
+	}
 	
 	@Override
-	public List<ConferenceRoom> searchTitle(String title, Pageable pageable) {
-		return roomRepository.findByTitleContaining(title, pageable);
+	public List<ConferenceRoom> searchTitle(String conferenceCategory, String title, Pageable pageable) {
+		return roomRepository.findByTitleContaining(conferenceCategory, title, pageable);
 	}
 
 	@Override
-	public List<ConferenceRoom> searchOwner(String owner, Pageable pageable) {
-		return roomRepository.findByOwnerContaining(owner, pageable);
+	public List<ConferenceRoom> searchOwner(String conferenceCategory, String owner, Pageable pageable) {
+		return roomRepository.findByOwnerContaining(conferenceCategory, owner, pageable);
 	}
 	
 	@Override
