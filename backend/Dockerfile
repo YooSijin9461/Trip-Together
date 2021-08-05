@@ -11,7 +11,7 @@ COPY gradle gradle
 COPY build.gradle .
 COPY settings.gradle .
 COPY src src
-RUN gradle cleanQuerydslSourcesDir
+#RUN gradle cleanQuerydslSourcesDir
 
 #RUN ./gradlew build --stacktrace
 #RUN ./gradlew bootjar
