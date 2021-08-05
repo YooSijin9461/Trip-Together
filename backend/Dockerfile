@@ -1,7 +1,7 @@
 FROM openjdk:8-jdk-alpine
 #VOLUME /tmp
 
-RUN chmod +x ./gradlew
+RUN chmod +x gradlew
 RUN ./gradlew clean build
 
 # COPY gradlew .
