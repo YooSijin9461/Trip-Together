@@ -1,7 +1,7 @@
 FROM openjdk:8-jdk-alpine
 #VOLUME /tmp
 
-CMD pwd
+RUN echo "$PWD"
 RUN chmod +x gradlew
 RUN ./gradlew clean build
 
