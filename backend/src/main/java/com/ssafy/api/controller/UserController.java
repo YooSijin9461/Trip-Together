@@ -91,6 +91,7 @@ public class UserController {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
+	
 	@GetMapping()
 	@ApiOperation(value = "사용자 목록", notes = "사용자 목록을 List로 반환")
 	@ApiResponses({
