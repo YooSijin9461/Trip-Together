@@ -31,7 +31,7 @@ pipeline {
 			agent any
 			
 			steps {
-				//sh 'docker build -t frontimg:latest ./frontend'
+				sh 'docker build -t frontimg:latest ./frontend'
 				sh 'docker build -t backimg:latest ./backend'
 			}
 		}
