@@ -2,7 +2,7 @@ FROM node:lts-alpine as build-stage
 WORKDIR /homepage
 COPY package*.json ./
 
-RUN npm cache clean --force
+RUN npm install --save npm-git-install
 RUN npm install
 COPY . .
 RUN npm run build
