@@ -15,4 +15,4 @@ COPY src src
 
 ADD ./build/libs/*.jar app.jar
 ENV JAVA_OPTS=""
-ENTRYPOINT ["java", "-jar", "/app.jar", "-Dspring-boot.run.jvmArguments="-Dkms.url=ws://3.34.94.178:8888/kurento""]
+ENTRYPOINT ["java", "-jar", "/app.jar", "-Dspring-boot.run.jvmArguments=-Dkms.url=ws://3.34.94.178:8888/kurento"]
