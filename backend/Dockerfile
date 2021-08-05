@@ -1,7 +1,7 @@
 FROM openjdk:8-jdk-alpine
 #VOLUME /tmp
 
-RUN echo $(ls -1 /tmp/dir)
+RUN echo $ls
 RUN chmod +x gradlew
 RUN ./gradlew clean build
 
