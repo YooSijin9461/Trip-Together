@@ -3,8 +3,8 @@ FROM timbru31/node-alpine-git:14 as build-stage
 WORKDIR /homepage
 COPY package*.json ./
 
-RUN npm install --save npm-git-install
-RUN npm install --save stomp-websocket
+# RUN npm install --save npm-git-install
+# RUN npm install --save stomp-websocket
 RUN npm install
 COPY . .
 RUN npm run build
