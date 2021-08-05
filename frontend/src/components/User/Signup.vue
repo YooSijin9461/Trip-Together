@@ -34,6 +34,10 @@
     <el-form-item prop="email" label="e-mail" :label-width="state.formLabelWidth" >
       <el-input v-model="state.form.email" autocomplete="off"></el-input>
     </el-form-item>
+    <el-form-item prop="profileImg" label="프로필 사진" :label-width="state.formLabelWidth" >
+      <input @change="fileSelect()" id="profileimg" type="file" accept="image/*">
+    </el-form-item>
+
     <div class="row">
       <div class="col-7">
         <el-form-item prop="mbti" label="MBTI" :label-width="state.formLabelWidth" >
@@ -100,6 +104,7 @@ export default {
         gender: '',
         phoneNum: '',
         email: '',
+        profileImg: '',
         mbti: '',
         guide: false,
         align: 'left'
@@ -140,21 +145,41 @@ export default {
       formLabelWidth: '120px'
     })
 
+    const fileSelect = () => {
+      const profileimg = document.getElementById("profileimg")
+      console.log(profileimg)
+      state.form.profileImg = profileimg.files[0]
+    }
     const clickSignup = () => {
       signupForm.value.validate((valid) => {
         if (valid) {
           if (state.form.password === state.form.passwordConfirmation) {
-            store.dispatch('signup',
-              { userId: state.form.userId,
-                userName: state.form.userName,
-                password: state.form.password,
-                age: state.form.age,
-                gender: state.form.gender,
-                phoneNum: state.form.phoneNum,
-                email: state.form.email,
-                mbti: state.form.mbti,
-                guide: state.form.guide })
-            .then(() => {
+            const formData = new FormData()
+            formData.append('userId', state.form.userId)
+            formData.append('userName', state.form.userName)
+            formData.append('password', state.form.password)
+            formData.append('age', state.form.age)
+            formData.append('gender', state.form.gender)
+            formData.append('phoneNum', state.form.phoneNum)
+            formData.append('email', state.form.email)
+            formData.append('img', state.form.profileImg)
+            formData.append('mbti', state.form.mbti)
+            formData.append('guide', state.form.guide)
+            formData.append('profileImg', state.form.profileImg)
+            console.log(formData)
+          //   store.dispatch('signup',
+          //     { userId: state.form.userId,
+          //       userName: state.form.userName,
+          //       password: state.form.password,
+          //       age: state.form.age,
+          //       gender: state.form.gender,
+          //       phoneNum: state.form.phoneNum,
+          //       email: state.form.email,
+          //       mbti: state.form.mbti,
+          //       guide: state.form.guide })
+            store.dispatch('profileImg', formData)
+            .then((res) => {
+              console.log(res)
               ElMessage ({
                 message: 'Signup Success !',
                 type: 'success'
@@ -187,7 +212,7 @@ export default {
       emit('closeSignupDialog')
     }
 
-    return { signupForm, state, clickSignup, handleClose }
+    return { signupForm, state, clickSignup, handleClose, fileSelect }
   },
 }
 </script>

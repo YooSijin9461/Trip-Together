@@ -19,6 +19,24 @@ const routes = [
     component: () => import('@/components/Conference/ConferenceList.vue')
   },
   {
+    path: '/conferences/all',
+    name: 'ConferenceAll',
+    component: () => import('@/components/Conference/ConferenceAll.vue'),
+    props: true
+  },
+  {
+    path: '/conferences/normal',
+    name: 'ConferenceNormal',
+    component: () => import('@/components/Conference/ConferenceNormal.vue'),
+    props: true
+  },
+  {
+    path: '/conferences/guide',
+    name: 'ConferenceGuide',
+    component: () => import('@/components/Conference/ConferenceGuide.vue'),
+    props: true
+  },
+  {
     path: '/conferences/:conferenceId',
     name: 'Conference',
     component: () => import('@/components/Conference/Conference.vue')

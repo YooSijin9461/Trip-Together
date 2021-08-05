@@ -24,9 +24,9 @@
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">방</a></li>
-          <li><a href="#">전체보기</a></li>
-          <li><a href="#">일반</a></li>
-          <li><a href="#">가이드</a></li>
+          <li><a href="#" @click="clickConferenceCategory('')">전체보기</a></li>
+          <li><a href="#" @click="clickConferenceCategory('normal')">일반</a></li>
+          <li><a href="#" @click="clickConferenceCategory('guide')">가이드</a></li>
         </ul>
       </li>
       <li :class="{ showMenu: state.articleShow }">
@@ -105,6 +105,21 @@ export default {
     const clickSideConference = () => {
       router.push({ name: 'ConferenceList' })
     }
+    const clickConferenceCategory = (category) => {
+      state.isOpen = false
+      state.conferenceShow = false
+      state.articleShow = false
+      
+      if (category === 'normal') {
+        router.push({ name: 'ConferenceNormal' })
+      }
+      else if (category === 'guide') {
+        router.push({ name: 'ConferenceGuide' })
+      } 
+      else if (category === '') {
+        router.push({ name: 'ConferenceAll' })
+      }
+    }
     const clickSideBoard = () => {
       router.push({ name: 'Board' })
     }
@@ -112,11 +127,13 @@ export default {
       router.push({ name: 'NoticeList'})
       state.isOpen = false
       state.articleShow = false
+      state.conferenceShow = false
     }
     const clickSideArticle = () => {
       router.push({ name: 'ArticleList'})
       state.isOpen = false
       state.articleShow = false
+      state.conferenceShow = false
     }
     const clickSideSearch = () => {
       emit('openSearchDialog')
@@ -125,7 +142,7 @@ export default {
       emit('openLogoutDialog')
     }
 
-    return { state, closeBtn, clickConferenceShow, clickArticleShow, clickSideHome, clickSideConference, clickSideBoard, clickSideSearch, clickSideLogout, clickSideNotice, clickSideArticle }
+    return { state, closeBtn, clickConferenceShow, clickArticleShow, clickSideHome, clickSideConference, clickConferenceCategory, clickSideBoard, clickSideSearch, clickSideLogout, clickSideNotice, clickSideArticle }
   },
 }
 </script>

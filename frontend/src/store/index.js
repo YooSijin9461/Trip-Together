@@ -17,6 +17,7 @@ const getDefaultState = () => {
     useremail: null,
     usermbti: null,
     isGuide: false,
+    userprofileimg: null,
 
     // 방
     conferenceNo: null,
@@ -130,6 +131,17 @@ export default createStore({
         .get(`${BASE_URL}/api/v1/users/me`,
           { 
             headers: { "Authorization" : "Bearer " + token }
+          }
+        )
+    },
+    profileImg ({ commit }, payload) {
+      return axios
+        .post(`${BASE_URL}/api/v1/users`, payload,
+          { 
+            headers: {
+              "Accept": "application/json", 
+              "Content-Type": "multipart/form-data"
+            }
           }
         )
     },
@@ -254,7 +266,6 @@ export default createStore({
     getConferencecategory (state) {
       return state.conferenceCategory
     },
-
 
     // 게시글
     getBoarduserid (state) {
