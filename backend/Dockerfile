@@ -14,5 +14,6 @@ COPY src src
 #COPY --from=builder build/libs/*.jar app.jar
 
 ADD ./build/libs/*.jar app.jar
-ENV JAVA_OPTS=""
-ENTRYPOINT ["java", "-jar", "/app.jar", "-Dkms.url=ws://0.0.0.0:8888/kurento"]
+ENV JAVA_OPTS="-Dkms.url=ws://3.34.94.178:8888/kurento"
+ENTRYPOINT ["java", "-jar", "/app.jar"]
+
