@@ -6,13 +6,13 @@ COPY build.gradle .
 COPY settings.gradle .
 COPY src src
 
-#RUN gradle cleanQuerydslSourcesDir
+RUN gradle cleanQuerydslSourcesDir
 RUN chmod +x ./gradlew
 #RUN ./gradlew build --stacktrace
 RUN ./gradlew bootjar
 
+FROM openjdk:8-jdk-alpine
 VOLUME /tmp
-
 COPY --from=builder build/libs/*.jar app.jar
 
 #ADD ./build/libs/*.jar app.jar
