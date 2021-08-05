@@ -40,6 +40,7 @@ export default {
     const state = reactive ({
       stompClient: null,
       name: computed(() => store.getters['getUsername']),
+      conferneceNo: computed(() => store.getters['getConferenceno']),
       message: '',
       chatList: [],
     })
@@ -49,7 +50,7 @@ export default {
       state.stompClient = Stomp.over(socket);
       state.stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
-        state.stompClient.subscribe('/topic/chat', function (chat) {
+        state.stompClient.subscribe(`/topic/chat/${state.conferneceNo}`, function (chat) {
           showChat(JSON.parse(chat.body));
         });
       });
@@ -63,7 +64,7 @@ export default {
     const sendChat = () => {
       const date = new Date();
       const dateInfo = date.getHours() + ":" + ("0" + date.getMinutes()).slice(-2)
-      state.stompClient.send("/app/chat", {}, JSON.stringify({'name': state.name, 'message': state.message, 'date': dateInfo}));
+      state.stompClient.send(`/app/chat/${state.conferneceNo}`, {}, JSON.stringify({'name': state.name, 'message': state.message, 'date': dateInfo}));
       state.message = ''
     }
 
