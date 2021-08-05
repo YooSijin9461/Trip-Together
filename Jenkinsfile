@@ -58,7 +58,7 @@ pipeline {
 					| xargs -r docker rmi'
 				// docker container 실행
 				sh 'docker run -d --name frontimg -p 80:80 frontimg:latest'
-				sh 'docker run -d --name backimg -p 8080:8080 -e JAVA_OPTS="-Dkms.url=ws://3.34.94.178:8888/kurento" backimg:latest'
+				sh 'docker run -d --name backimg -p 8080:8080 backimg:latest'
 			}
 		}
 	}
