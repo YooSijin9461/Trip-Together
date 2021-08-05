@@ -255,7 +255,6 @@ export default createStore({
       return state.conferenceCategory
     },
 
-
     // 게시글
     getBoarduserid (state) {
       return state.boardUserId

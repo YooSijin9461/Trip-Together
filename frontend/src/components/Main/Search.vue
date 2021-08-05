@@ -73,7 +73,7 @@
         <hr>
       </div>
     </div>
-    <div class="pagination">
+    <div class="search-pagination">
       <el-pagination
         :page-size="10"
         layout="prev, pager, next"
@@ -197,7 +197,8 @@ export default {
 .innerDialog {
   width: 80% !important;
 }
-.pagination {
+.search-pagination {
+  display: flex;
   margin-top: 1rem;
   justify-content: center;
 }

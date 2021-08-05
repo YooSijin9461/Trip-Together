@@ -34,6 +34,10 @@
     <el-form-item prop="email" label="e-mail" :label-width="state.formLabelWidth" >
       <el-input v-model="state.form.email" autocomplete="off"></el-input>
     </el-form-item>
+    <el-form-item prop="profileImg" label="프로필 사진" :label-width="state.formLabelWidth" >
+      <input :change="fileSelect" type="file" ref="profileImg">
+    </el-form-item>
+
     <div class="row">
       <div class="col-7">
         <el-form-item prop="mbti" label="MBTI" :label-width="state.formLabelWidth" >
@@ -100,6 +104,7 @@ export default {
         gender: '',
         phoneNum: '',
         email: '',
+        profileImg: '',
         mbti: '',
         guide: false,
         align: 'left'
@@ -171,6 +176,22 @@ export default {
           ElMessage.error('Signup Failed !')
         }
       })
+    }
+
+    const selectImg = () => {
+      const elem = document.createElement('input')
+      elem.id = 'image'
+      elem.type = 'file'
+      elem.accept = 'image/*'
+      elem.multiple = false
+      elem.click()
+      elem.onchange = function () {
+        const formData = new FormData()
+        for (var index = 0; index < this.files.length; index++) {
+          formData.append('fileList', this.files[index])
+        }
+        store.dispatch('d')
+      }
     }
 
     const handleClose = () => {

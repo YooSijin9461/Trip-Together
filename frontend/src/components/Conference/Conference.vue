@@ -8,7 +8,7 @@
         data-bs-toggle="offcanvas" 
         data-bs-target="#offcanvasScrolling" 
         aria-controls="offcanvasScrolling">
-        <i class="far fa-comment-dots aside-icon2"></i>
+        <i class="far fa-comment-dots chatting-icon"></i>
       </div>
     </div>
     <hr>
@@ -408,5 +408,13 @@ a.hovertext:hover:after, a.hovertext:focus:after {
 
 .offcanvas-body {
   padding: 1rem 0;
+}
+
+.chatting-icon {
+  font-size: 25px;
+  padding-right: 2rem;
+  position: absolute;
+  top: 6.9rem;
+  right: 1rem;
 }
 </style>
