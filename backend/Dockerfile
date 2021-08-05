@@ -1,5 +1,4 @@
 FROM openjdk:8-jdk-alpine
-VOLUME /tmp
 
 COPY gradlew .
 COPY gradle gradle
@@ -12,6 +11,8 @@ COPY src src
 #RUN ./gradlew bootjar
 
 #COPY --from=builder build/libs/*.jar app.jar
+
+VOLUME /tmp
 
 ADD ./build/libs/*.jar app.jar
 ENV JAVA_OPTS=""
