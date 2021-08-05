@@ -1,4 +1,5 @@
-FROM openjdk:8-jdk-alpine
+#FROM openjdk:8-jdk-alpine
+FROM adopt openjdk:8-jdk-hotspot AS builder
 COPY gradlew .
 COPY gradle gradle
 COPY build.gradle .
