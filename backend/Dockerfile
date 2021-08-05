@@ -1,5 +1,11 @@
 FROM openjdk:8-jdk-alpine
-VOLUME /tmp
-ADD ./build/libs/*.jar app.jar
+COPY gradlew .
+COPY gradle gradle
+COPY build.gradle .
+COPY settings.gradle .
+COPY src src
+RUN chmod +x ./gradlew
+RUN ./gradlew bootJar
+COPY --from=builder build/libs/*.jar app.jar
 ENV JAVA_OPTS=""
 ENTRYPOINT ["java", "-jar", "/app.jar", "-Dkms.url=ws://3.34.94.178:8888/kurento"]

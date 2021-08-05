@@ -17,6 +17,7 @@
     "kurento-client": "^6.16.0",
     "kurento-jsonrpc": "^6.16.0",
     "kurento-utils": "^6.16.0",
+    "stomp-websocket": "^2.3.4-next",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0",
