@@ -52,7 +52,7 @@ pipeline {
 				// <back-image-name>의 이름을 가진 컨테이너를 삭제한다.
 				sh 'docker container ls -a -f name=backend -q \
 					| xargs -r docker container rm'
-				
+				sh 'docker container rm d5ca3e4f4e69'
 				// docker image build 시 기존에 존재하던 이미지는
 				// dangling 상태가 되기 때문에 이미지를 일괄 삭제
 				sh 'docker images -f "dangling=true" -q \
