@@ -1,5 +1,4 @@
 FROM openjdk:8-jdk-alpine
-VOLUME /tmp
 COPY gradlew .
 COPY gradle gradle
 COPY build.gradle .
