@@ -6,8 +6,8 @@ COPY package*.json ./
 # RUN npm install --save npm-git-install
 # RUN npm install --save stomp-websocket
 RUN npm install
-COPY . .
 RUN npm run build
+COPY . .
 
 FROM nginx:stable-alpine as production-stage
 RUN rm /etc/nginx/conf.d/default.conf
