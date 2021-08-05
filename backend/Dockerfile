@@ -7,6 +7,8 @@ COPY src src
 #RUN gradle cleanQuerydslSourcesDir
 RUN chmod +x ./gradlew
 RUN ./gradlew bootjar
+
+FROM adopt openjdk:8-jdk-hotspot
 COPY --from=builder build/libs/*.jar app.jar
 ENV JAVA_OPTS=""
 ENTRYPOINT ["java", "-jar", "/app.jar", "-Dkms.url=ws://3.34.94.178:8888/kurento"]
