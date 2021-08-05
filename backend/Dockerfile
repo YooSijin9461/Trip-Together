@@ -6,7 +6,7 @@ COPY build.gradle .
 COPY settings.gradle .
 COPY src src
 #RUN gradle cleanQuerydslSourcesDir
-RUN chmod +x ./gradlew build
+RUN chmod +x ./gradlew
 #RUN ./gradlew build --stacktrace
 #RUN ./gradlew bootjar
 
