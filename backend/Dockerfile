@@ -7,8 +7,8 @@ COPY settings.gradle .
 COPY src src
 
 #RUN gradle cleanQuerydslSourcesDir
-#RUN chmod +x ./gradlew
-RUN ./gradlew build --stacktrace
+RUN chmod +x ./gradlew
+#RUN ./gradlew build --stacktrace
 RUN ./gradlew bootjar
 
 VOLUME /tmp
