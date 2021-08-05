@@ -1,16 +1,17 @@
 FROM openjdk:8-jdk-alpine
 #VOLUME /tmp
+#COPY gradlew ./
 
-RUN echo $ls
-RUN chmod +x gradlew
-RUN ./gradlew clean build
+#RUN echo $ls
+#RUN chmod +x gradlew
+#RUN ./gradlew clean build
 
-# COPY gradlew .
-# COPY gradle gradle
-# COPY build.gradle .
-# COPY settings.gradle .
-# COPY src src
-#RUN gradle cleanQuerydslSourcesDir
+COPY gradlew .
+COPY gradle gradle
+COPY build.gradle .
+COPY settings.gradle .
+COPY src src
+RUN gradle cleanQuerydslSourcesDir
 
 #RUN ./gradlew build --stacktrace
 #RUN ./gradlew bootjar
