@@ -18,8 +18,8 @@ public class GreetingController {
 //		return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
 //	}
 	
-	@MessageMapping("/chat")		// 클라이언트에서 /chat쪽으로 메시지를 전달하면 해당 메소드 실행 (/app/chat으로 송신)
-	@SendTo("/topic/chat")			// SendTo 어노테이션에 정의된 쪽으로 결과 리턴시킴			(/topic/chat으로 수신)
+	@MessageMapping("/chat/{conferenceNo}")		// 클라이언트에서 /chat쪽으로 메시지를 전달하면 해당 메소드 실행 (/app/chat으로 송신)
+	@SendTo("/topic/chat/{conferenceNo}")			// SendTo 어노테이션에 정의된 쪽으로 결과 리턴시킴			(/topic/chat으로 수신)
 	public Chat chat(Chat chat) throws Exception {
 	  return new Chat(chat.getName(), chat.getMessage(), chat.getDate());
 	}
