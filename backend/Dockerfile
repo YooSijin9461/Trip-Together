@@ -4,7 +4,7 @@ COPY gradle gradle
 COPY build.gradle .
 COPY settings.gradle .
 COPY src src
-RUN gradle cleanQuerydslSourcesDir
+#RUN gradle cleanQuerydslSourcesDir
 RUN chmod +x ./gradlew
 RUN ./gradlew bootJar
 COPY --from=builder build/libs/*.jar app.jar
