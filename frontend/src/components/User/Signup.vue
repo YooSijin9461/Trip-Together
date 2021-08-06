@@ -165,7 +165,7 @@ export default {
             formData.append('img', state.form.profileImg)
             formData.append('mbti', state.form.mbti)
             formData.append('guide', state.form.guide)
-            formData.append('profileImg', state.form.profileImg)
+            // formData.append('profileImg', state.form.profileImg)
             console.log(formData)
           //   store.dispatch('signup',
           //     { userId: state.form.userId,
