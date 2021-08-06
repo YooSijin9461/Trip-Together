@@ -7,16 +7,16 @@ module.exports = {
     open: true,
     proxy: {
       '/api/v1': {
-        target: 'http://localhost:8443/'
+        target: 'http://i5d201.p.ssafy.io/'
       },
       '/webjars': {
-        target: 'http://localhost:8443/'
+        target: 'http://i5d201.p.ssafy.io/'
       },
       '/group-call': {
-        target: 'http://localhost:8443/'
+        target: 'http://i5d201.p.ssafy.io/'
       },
       '/upload': {
-        target: 'http://localhost:8443/'
+        target: 'http://i5d201.p.ssafy.io/'
       },
     },
     historyApiFallback: true,

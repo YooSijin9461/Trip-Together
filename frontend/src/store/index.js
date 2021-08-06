@@ -3,7 +3,7 @@ import axios from 'axios'
 import createPersistedState from 'vuex-persistedstate'
 import jwt_decode from 'jwt-decode'
 
-const BASE_URL = process.env.VUE_APP_SERVER_URL;
+const BASE_URL = 'i5d201.p.sasfy.io';
 const getDefaultState = () => {
   return {
     // 유저
