@@ -39,6 +39,7 @@ public class User extends BaseEntity{
     String img;		// 저장될 파일명
     
     // 이미지 등록 추가
+    @Transient
     String orgImg;	// 선택한 파일명
     @Transient
     MultipartFile file;		// 이미지 등록을 위한 파일
