@@ -7,7 +7,7 @@
     </div>
     <hr class="article-line mb-3">
     <div class="d-flex align-items-center">
-      <img class="dialog-profile me-2" src="../../assets/selfie1.jpg">
+      <img class="dialog-profile me-2" src="../../assets/user.png">
       <span>{{ state.owner }}</span>
     </div>
     <hr class="article-line mt-3 mb-3">
