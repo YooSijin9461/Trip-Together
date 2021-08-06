@@ -87,19 +87,20 @@ public class UserController {
 			@RequestPart("사용자 아이디") @ApiParam(required = true)String userId,
 			@RequestPart("사용자 비밀번호") @ApiParam(required = true)String password,
 			@RequestPart("사용자 이름") @ApiParam(required = true)String userName,
-			@RequestPart("사용자 성별") @ApiParam(required = true)char gender,
+			@RequestParam("사용자 성별") @ApiParam(required = true)char gender,
 			@RequestPart("사용자 핸드폰") @ApiParam(required = true)String phoneNum,
 			@RequestPart("사용자 이메일") @ApiParam(required = true)String email,
-			@RequestPart("사용자 나이") @ApiParam(required = true)int age,
+			@RequestParam @ApiParam(required = true)int age,
 			@RequestPart("사용자 MBTI") @ApiParam(required = false)String mbti,
-			@RequestPart("사용자 평점") @ApiParam(required = false)double avgScore,
-			@RequestPart("가이드 여부") @ApiParam(required = false)boolean isGuide
+			@RequestParam("사용자 평점") @ApiParam(required = false)double avgScore,
+			@RequestParam("가이드 여부") @ApiParam(required = false)boolean isGuide
 			/*@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo*/) throws IllegalStateException, IOException {
 		//file = registerInfo.getFile();
+		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
 		if(file != null && file.getSize() > 0) {
 			String rootPath = FileSystemView.getFileSystemView().getHomeDirectory().toString();
 		    String basePath = rootPath + "/" + "single";
-		    String filePath = basePath + "/" + file.getOriginalFilename();
+		    String filePath = basePath + "/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
 		    File dest = new File(filePath);
 		    file.transferTo(dest); // 파일 업로드 작업 수행
 		    
@@ -108,7 +109,6 @@ public class UserController {
 //			registerInfo.setOrgImg(file.getOriginalFilename());
 //			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
 		}
-		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
 		registerInfo.setUserId(userId);
 		registerInfo.setPassword(password);
 		registerInfo.setUserName(userName);
