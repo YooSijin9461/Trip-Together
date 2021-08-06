@@ -34,7 +34,7 @@
       <div class="container">
         <span v-for="result in state.searchPageResult" :key="result">
         <hr>
-        <div class="d-flex align-items-center" @click="clickArticle(result.boardNo)">
+        <div class="d-flex align-items-center" id="article" @click="clickArticle(result.boardNo)">
           <p class="col-8 my-0">{{ result.boardTitle }}</p>
           <div class="col">
             <p class="my-0"><i class="fas fa-user"></i>{{ result.userId }}</p>
@@ -94,6 +94,7 @@
 <script>
 import { reactive, computed, ref } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'Login',
@@ -107,6 +108,7 @@ export default {
   },
   setup(props, { emit }) {
     const store = useStore()
+    const router = useRouter()
     const searchForm = ref(null)
 
     const state = reactive({
@@ -181,7 +183,14 @@ export default {
       state.form.search = ''
       emit('closeSearchDialog')
     }
-    return { searchForm, state, clickSearch, handleClose, UTCtoKST, pageChange }
+    const clickArticle = (boardNo) => {
+      store.dispatch('articleDetail', boardNo)
+        .then(() => {
+          router.push({ name: 'Article', params: { articleId: boardNo }})
+        })
+    }
+
+    return { searchForm, state, clickSearch, handleClose, UTCtoKST, pageChange, clickArticle }
   },
 }
 </script>
@@ -201,5 +210,9 @@ export default {
   display: flex;
   margin-top: 1rem;
   justify-content: center;
+}
+#article:hover {
+  cursor: pointer;
+  background-color: #EAEAEA;
 }
 </style>
