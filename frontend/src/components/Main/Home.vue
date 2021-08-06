@@ -3,7 +3,7 @@
     <el-carousel :interval="4000" type="card" height="400px">
       <el-carousel-item v-for="item in 6" :key="item">
         <!-- <h3 class="medium text-center">{{ item }}</h3> -->
-        <img class="w-100" src="../../assets/selfie1.jpg" alt="">
+        <img class="w-100" src="../../assets/room1.jpg" alt="">
       </el-carousel-item>
     </el-carousel>
   </div>

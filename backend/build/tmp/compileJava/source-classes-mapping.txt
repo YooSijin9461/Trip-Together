@@ -1,0 +1,160 @@
+com/ssafy/api/controller/NoticeController.java
+ com.ssafy.api.controller.NoticeController
+com/ssafy/db/entity/QBoard.java
+ com.ssafy.db.entity.QBoard
+com/ssafy/api/controller/BoardController.java
+ com.ssafy.api.controller.BoardController
+com/ssafy/config/SecurityConfig.java
+ com.ssafy.config.SecurityConfig
+com/ssafy/api/service/RoomServiceImpl.java
+ com.ssafy.api.service.RoomServiceImpl
+com/ssafy/api/service/BoardServiceImpl.java
+ com.ssafy.api.service.BoardServiceImpl
+com/ssafy/api/controller/AuthController.java
+ com.ssafy.api.controller.AuthController
+com/ssafy/db/entity/BaseEntity.java
+ com.ssafy.db.entity.BaseEntity
+com/ssafy/api/request/RoomRegisterPostReq.java
+ com.ssafy.api.request.RoomRegisterPostReq
+com/ssafy/api/service/CommentService.java
+ com.ssafy.api.service.CommentService
+com/ssafy/db/entity/ConferenceRoom.java
+ com.ssafy.db.entity.ConferenceRoom
+com/ssafy/api/request/UserLoginPostReq.java
+ com.ssafy.api.request.UserLoginPostReq
+com/ssafy/db/entity/Comments.java
+ com.ssafy.db.entity.Comments
+com/ssafy/db/repository/BoardRepositorySupport.java
+ com.ssafy.db.repository.BoardRepositorySupport
+com/ssafy/config/WebSocketConfig.java
+ com.ssafy.config.WebSocketConfig
+com/ssafy/api/request/CommentRegisterPostReq.java
+ com.ssafy.api.request.CommentRegisterPostReq
+com/ssafy/db/entity/User.java
+ com.ssafy.db.entity.User
+com/ssafy/db/repository/CommentRepository.java
+ com.ssafy.db.repository.CommentRepository
+com/ssafy/api/request/BoardRegisterPostReq.java
+ com.ssafy.api.request.BoardRegisterPostReq
+com/ssafy/GroupCallApplication.java
+ com.ssafy.GroupCallApplication
+com/ssafy/common/auth/SsafyUserDetailService.java
+ com.ssafy.common.auth.SsafyUserDetailService
+com/ssafy/common/exception/handler/NotFoundHandler.java
+ com.ssafy.common.exception.handler.NotFoundHandler
+com/ssafy/db/entity/QConferenceRoom.java
+ com.ssafy.db.entity.QConferenceRoom
+com/ssafy/common/util/JwtTokenUtil.java
+ com.ssafy.common.util.JwtTokenUtil
+com/ssafy/db/entity/QBaseEntity.java
+ com.ssafy.db.entity.QBaseEntity
+com/ssafy/api/service/CommentServiceImpl.java
+ com.ssafy.api.service.CommentServiceImpl
+com/ssafy/api/response/UserLoginPostRes.java
+ com.ssafy.api.response.UserLoginPostRes
+com/ssafy/api/response/UserRes.java
+ com.ssafy.api.response.UserRes
+com/ssafy/common/util/ResponseBodyWriteUtil.java
+ com.ssafy.common.util.ResponseBodyWriteUtil
+com/ssafy/db/entity/Board.java
+ com.ssafy.db.entity.Board
+com/ssafy/api/service/BoardService.java
+ com.ssafy.api.service.BoardService
+com/ssafy/api/request/BoardModifyPostReq.java
+ com.ssafy.api.request.BoardModifyPostReq
+com/ssafy/db/repository/NoticeRepositorySupport.java
+ com.ssafy.db.repository.NoticeRepositorySupport
+com/ssafy/db/repository/UserRepositorySupport.java
+ com.ssafy.db.repository.UserRepositorySupport
+com/ssafy/kurento/Room.java
+ com.ssafy.kurento.Room
+ com.ssafy.kurento.Room$1
+com/ssafy/config/JpaConfig.java
+ com.ssafy.config.JpaConfig
+com/ssafy/kurento/UserRegistry.java
+ com.ssafy.kurento.UserRegistry
+com/ssafy/db/entity/QUser.java
+ com.ssafy.db.entity.QUser
+com/ssafy/db/repository/BoardRepository.java
+ com.ssafy.db.repository.BoardRepository
+com/ssafy/db/repository/NoticeRepository.java
+ com.ssafy.db.repository.NoticeRepository
+com/ssafy/config/SwaggerConfig.java
+ com.ssafy.config.SwaggerConfig
+ com.ssafy.config.SwaggerConfig$Page
+com/ssafy/api/request/NoticeRegisterPostReq.java
+ com.ssafy.api.request.NoticeRegisterPostReq
+com/ssafy/db/repository/RoomRepository.java
+ com.ssafy.db.repository.RoomRepository
+com/ssafy/api/service/UserService.java
+ com.ssafy.api.service.UserService
+com/ssafy/api/controller/CommentController.java
+ com.ssafy.api.controller.CommentController
+com/ssafy/api/service/UserServiceImpl.java
+ com.ssafy.api.service.UserServiceImpl
+com/ssafy/common/auth/SsafyUserDetails.java
+ com.ssafy.common.auth.SsafyUserDetails
+com/ssafy/db/entity/QComments.java
+ com.ssafy.db.entity.QComments
+com/ssafy/db/entity/UserSpec.java
+ com.ssafy.db.entity.UserSpec
+ com.ssafy.db.entity.UserSpec$1
+ com.ssafy.db.entity.UserSpec$2
+com/ssafy/api/request/UserRegisterPostReq.java
+ com.ssafy.api.request.UserRegisterPostReq
+com/ssafy/api/service/NoticeServiceImpl.java
+ com.ssafy.api.service.NoticeServiceImpl
+com/ssafy/db/repository/RoomRepositorySupport.java
+ com.ssafy.db.repository.RoomRepositorySupport
+com/ssafy/api/request/UserModifyPostReq.java
+ com.ssafy.api.request.UserModifyPostReq
+com/ssafy/db/repository/UserRepository.java
+ com.ssafy.db.repository.UserRepository
+com/ssafy/api/controller/GreetingController.java
+ com.ssafy.api.controller.GreetingController
+com/ssafy/db/entity/Chat.java
+ com.ssafy.db.entity.Chat
+com/ssafy/kurento/UserSession.java
+ com.ssafy.kurento.UserSession
+ com.ssafy.kurento.UserSession$1
+ com.ssafy.kurento.UserSession$2
+ com.ssafy.kurento.UserSession$3
+ com.ssafy.kurento.UserSession$4
+ com.ssafy.kurento.UserSession$5
+com/ssafy/kurento/CallHandler.java
+ com.ssafy.kurento.CallHandler
+com/ssafy/api/service/RoomService.java
+ com.ssafy.api.service.RoomService
+com/ssafy/api/request/CommentModifyPostReq.java
+ com.ssafy.api.request.CommentModifyPostReq
+com/ssafy/db/entity/BoardSpec.java
+ com.ssafy.db.entity.BoardSpec
+ com.ssafy.db.entity.BoardSpec$1
+ com.ssafy.db.entity.BoardSpec$2
+ com.ssafy.db.entity.BoardSpec$3
+com/ssafy/kurento/RoomManager.java
+ com.ssafy.kurento.RoomManager
+com/ssafy/common/model/response/BaseResponseBody.java
+ com.ssafy.common.model.response.BaseResponseBody
+com/ssafy/db/entity/QNotice.java
+ com.ssafy.db.entity.QNotice
+com/ssafy/api/service/NoticeService.java
+ com.ssafy.api.service.NoticeService
+com/ssafy/api/request/RoomModifyPostReq.java
+ com.ssafy.api.request.RoomModifyPostReq
+com/ssafy/db/entity/RoomSpec.java
+ com.ssafy.db.entity.RoomSpec
+ com.ssafy.db.entity.RoomSpec$1
+ com.ssafy.db.entity.RoomSpec$2
+com/ssafy/common/auth/JwtAuthenticationFilter.java
+ com.ssafy.common.auth.JwtAuthenticationFilter
+com/ssafy/api/controller/RoomController.java
+ com.ssafy.api.controller.RoomController
+com/ssafy/db/repository/CommentRepositorySupport.java
+ com.ssafy.db.repository.CommentRepositorySupport
+com/ssafy/config/WebMvcConfig.java
+ com.ssafy.config.WebMvcConfig
+com/ssafy/api/controller/UserController.java
+ com.ssafy.api.controller.UserController
+com/ssafy/db/entity/Notice.java
+ com.ssafy.db.entity.Notice
