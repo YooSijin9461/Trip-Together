@@ -36,13 +36,13 @@ public class UserRegisterPostReq {
 	double avgScore;
 	@ApiModelProperty(name="유저 가이드여부", example="true")
 	boolean isGuide;
-	@ApiModelProperty(name="유저 프로필", example="a.jpg")
+	@ApiModelProperty(name="저장될 파일명", example="a.jpg")
 	@Nullable
 	String img;
 	@ApiModelProperty(name="선택한 파일명", example="a.jpg")
 	@Nullable
 	String orgImg;
-	@ApiModelProperty(name="이미지 파일")
+	@ApiModelProperty(name="이미지 등록을 위한 파일")
 	@Nullable
 	MultipartFile file;
 }
