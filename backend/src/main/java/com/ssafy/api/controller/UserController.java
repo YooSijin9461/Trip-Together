@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -71,7 +72,7 @@ public class UserController {
 	@Autowired
 	ResourceLoader resourceLoader;
 	
-	@PostMapping()
+	@PostMapping(consumes = "application/json")
 	@ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
@@ -80,8 +81,9 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<User> register(
+			@RequestParam @ApiParam(required = false) MultipartFile file,
 			@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo) throws IllegalStateException, IOException {
-		MultipartFile file = registerInfo.getFile();
+		//file = registerInfo.getFile();
 		if(file != null && file.getSize() > 0) {
 			Resource res = resourceLoader.getResource("resources/upload");
 			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
