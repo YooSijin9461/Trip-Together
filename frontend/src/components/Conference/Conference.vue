@@ -25,7 +25,12 @@
       <Chat/>
     </div>
   </div>
-  <el-button type="danger" id="leave" @click="leaveRoom()">나가기</el-button>
+  <div v-if="state.username === state.owner">
+    <el-button type="danger" id="leave" @click="roomDelete()">나가기</el-button>
+  </div>
+  <div v-else>
+    <el-button type="danger" id="leave" @click="leaveRoom()">나가기</el-button>
+  </div>
 </template>
 
 <script>
@@ -151,6 +156,10 @@ export default {
       });
       msg.data.forEach(receiveVideo);
     }
+    const roomDelete = () => {
+      leaveRoom()
+      store.dispatch('conferenceDelete', state.conferenceNo)
+    }
     const leaveRoom = () => {
       sendMessage({ id: 'leaveRoom' })
       for (const key in participants) {
@@ -178,18 +187,15 @@ export default {
     }
     const onParticipantLeft = (request) => {
       console.log('Participant' + request.name + ' left')
-      // if (request.name === state.owner) {
-      //   leaveRoom()
-      //   store.dispatch('conferenceDelete', state.conferenceNo)
-      //     .then(() => {
-      //       ElMessage.error('회의가 종료되었습니다.')
-      //       router.push({ name: 'ConferenceList'})
-      //     })
-      // }
-      const participant = participants[request.name]
-      console.log(participant)
-      participant.dispose()
-      delete participants[request.name]
+      if (request.name === state.owner) {
+        leaveRoom()
+        ElMessage.error('회의가 종료되었습니다.')
+        router.push({ name: 'ConferenceList'})
+      } else {
+        const participant = participants[request.name]
+        participant.dispose()
+        delete participants[request.name]
+      }
     }
 
     /**
@@ -290,7 +296,7 @@ export default {
     //     participants[key].dispose()
     //   }
     // })
-    return { state, leaveRoom, callResponse }
+    return { state, leaveRoom, callResponse, roomDelete }
   }
 }
 </script>
