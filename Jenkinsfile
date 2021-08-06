@@ -58,7 +58,7 @@ pipeline {
 					| xargs -r docker rmi'
 				// docker container 실행
 				sh 'docker run -d --name frontimg -p 80:80 frontimg:latest'
-				sh 'docker run -d --name backimg -p 8080:8080 backimg:latest'
+				sh 'docker run -d --name backimg -p 8080:8080 -p 8443:8443 backimg:latest'
 			}
 		}
 	}

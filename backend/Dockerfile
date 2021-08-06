@@ -1,5 +1,24 @@
 FROM openjdk:8-jdk-alpine
-VOLUME /tmp
+#VOLUME /tmp
+#COPY gradlew ./
+
+#RUN echo $ls
+#RUN chmod +x gradlew
+#RUN ./gradlew clean build
+
+COPY gradlew .
+COPY gradle gradle
+COPY build.gradle .
+COPY settings.gradle .
+COPY src src
+#RUN gradle cleanQuerydslSourcesDir
+
+#RUN ./gradlew build --stacktrace
+#RUN ./gradlew bootjar
+
+#COPY --from=builder build/libs/*.jar app.jar
+
 ADD ./build/libs/*.jar app.jar
-ENV JAVA_OPTS=""
-ENTRYPOINT ["java", "-jar", "/app.jar", "-Dkms.url=ws://3.34.94.178:8888/kurento"]
+#ENV JAVA_OPTS=""
+ENTRYPOINT ["java", "-Dspring-boot.run.jvmArguments", "-Dkms.url=ws://3.34.94.178:8888/kurento", "-jar", "/app.jar"]
+
