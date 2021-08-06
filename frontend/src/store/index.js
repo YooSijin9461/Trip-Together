@@ -3,7 +3,8 @@ import axios from 'axios'
 import createPersistedState from 'vuex-persistedstate'
 import jwt_decode from 'jwt-decode'
 
-const BASE_URL = 'i5d201.p.sasfy.io';
+// const BASE_URL = 'i5d201.p.sasfy.io';
+const BASE_URL = process.env.VUE_APP_SERVER_URL;
 const getDefaultState = () => {
   return {
     // 유저
@@ -18,6 +19,7 @@ const getDefaultState = () => {
     usermbti: null,
     isGuide: false,
     userprofileimg: null,
+    
 
     // 방
     conferenceNo: null,
@@ -167,6 +169,10 @@ export default createStore({
       return axios
         .get(`${BASE_URL}/api/v1/conferences/search`, { params })
     },
+    conferenceDelete ({ commit }, conferenceNo) {
+      return axios
+        .delete(`${BASE_URL}/api/v1/conferences/${conferenceNo}`)
+    },
 
     // 게시글
     articlePageList ({ commit }, pageNo) {
@@ -265,6 +271,9 @@ export default createStore({
     },
     getConferencecategory (state) {
       return state.conferenceCategory
+    },
+    getConferenceactive (state) {
+      return state.conferenceActive
     },
 
     // 게시글

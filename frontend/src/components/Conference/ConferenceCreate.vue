@@ -108,7 +108,8 @@ export default {
             description: state.form.description,
             conferenceCategory: state.form.category,
             conferencePassword: state.form.password,
-            limitUsersNum: state.form.limit })
+            limitUsersNum: state.form.limit,
+            active: true })
           .then(({ data }) => {
             ElMessage ({
               message: 'Conference create Success !',

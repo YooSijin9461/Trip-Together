@@ -29,9 +29,10 @@
 </template>
 
 <script>
-import { reactive, onMounted, computed } from 'vue'
+import { reactive, onMounted, computed, onUnmounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 import Chat from './Chat.vue'
 export default {
   name: 'Conference',
@@ -45,7 +46,8 @@ export default {
     const state = reactive ({
       username: computed(() => store.getters['getUsername']),
       conferenceNo: computed(() => store.getters['getConferenceno']),
-      conferenceTitle: computed(() => store.getters['getConferencetitle'])
+      conferenceTitle: computed(() => store.getters['getConferencetitle']),
+      owner: computed(() => store.getters['getConferenceowner'])
     })
 
     // webRTC 기능 
@@ -176,7 +178,16 @@ export default {
     }
     const onParticipantLeft = (request) => {
       console.log('Participant' + request.name + ' left')
+      // if (request.name === state.owner) {
+      //   leaveRoom()
+      //   store.dispatch('conferenceDelete', state.conferenceNo)
+      //     .then(() => {
+      //       ElMessage.error('회의가 종료되었습니다.')
+      //       router.push({ name: 'ConferenceList'})
+      //     })
+      // }
       const participant = participants[request.name]
+      console.log(participant)
       participant.dispose()
       delete participants[request.name]
     }
@@ -272,6 +283,13 @@ export default {
         register(state.username, state.conferenceNo)
       }
     })
+    // onUnmounted(() => {
+    //   leaveRoom = () => {
+    //   sendMessage({ id: 'leaveRoom' })
+    //   for (const key in participants) {
+    //     participants[key].dispose()
+    //   }
+    // })
     return { state, leaveRoom, callResponse }
   }
 }

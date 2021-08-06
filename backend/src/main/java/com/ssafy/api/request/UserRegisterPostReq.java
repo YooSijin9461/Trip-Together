@@ -42,7 +42,4 @@ public class UserRegisterPostReq {
 	@ApiModelProperty(name="선택한 파일명", example="a.jpg")
 	@Nullable
 	String orgImg;
-	@ApiModelProperty(name="이미지 등록을 위한 파일")
-	@Nullable
-	MultipartFile file;
 }

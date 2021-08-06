@@ -30,9 +30,10 @@
 </template>
 
 <script>
-import { reactive, onMounted } from 'vue'
+import { reactive, onMounted, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 
 export default {
   setup() {
@@ -43,12 +44,17 @@ export default {
       noticeList: [],
       today: new Date(),
       noticeCount: 0,
+      token: computed(() => store.getters['getToken'])
     })
     const clickNotice = (noticeNo) => {
-      store.dispatch('noticeDetail', noticeNo)
-        .then(() => {
-          router.push({ name: 'Notice', params: { noticeId: noticeNo }})
-        })
+      if (!state.token) {
+        ElMessage.error('로그인이 필요합니다.')
+      } else {
+        store.dispatch('noticeDetail', noticeNo)
+          .then(() => {
+            router.push({ name: 'Notice', params: { noticeId: noticeNo }})
+          })
+      }
     }
     const UTCtoKST = (date) => {
       return new Date(date).getHours() + ':' + new Date(date).getMinutes()

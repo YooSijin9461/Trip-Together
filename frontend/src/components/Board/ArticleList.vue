@@ -27,7 +27,7 @@
       </div>
     </span>
     <hr class="article-line my-0">
-    <div class="mt-4 d-flex justify-content-end">
+    <div class="mt-4 d-flex justify-content-end" v-if="state.token">
       <el-button type="primary" @click="articleCreate">글쓰기</el-button>
     </div>
   </div>
@@ -42,9 +42,10 @@
 </template>
 
 <script>
-import { reactive, onMounted } from 'vue'
+import { reactive, onMounted, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 
 export default {
   setup() {
@@ -55,18 +56,23 @@ export default {
       articleList: [],
       today: new Date(),
       articleCount: 0,
+      token: computed(() => store.getters['getToken'])
     })
     const clickArticle = (boardNo) => {
-      store.dispatch('articleDetail', boardNo)
-        .then(() => {
-          router.push({ name: 'Article', params: { articleId: boardNo }})
-        })
+      if (!state.token) {
+        ElMessage.error('로그인이 필요합니다.')
+      } else {
+        store.dispatch('articleDetail', boardNo)
+          .then(() => {
+            router.push({ name: 'Article', params: { articleId: boardNo }})
+          })
+      }
     }
     const UTCtoKST = (date) => {
       return new Date(date).getHours() + ':' + new Date(date).getMinutes()
     }
     const articleCreate = () => {
-      router.push({ name: 'ArticleCreate'})
+        router.push({ name: 'ArticleCreate'})
     }
     onMounted (() => {
       store.dispatch('articlePageList')

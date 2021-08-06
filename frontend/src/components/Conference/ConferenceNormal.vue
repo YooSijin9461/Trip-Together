@@ -34,6 +34,7 @@
 import { onMounted, reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import { ElMessage } from 'element-plus'
 
 export default ({
   name: 'ConferenceNormal',
@@ -59,10 +60,14 @@ export default ({
       emit('openConferenceCreateDialog')
     }
     const clickConference = (conferenceNo) => {
-      store.dispatch('conferenceDetail', conferenceNo)
-        .then(() => {
-          emit('openConferenceDialog')
-        })
+      if (!state.token) {
+        ElMessage.error('로그인이 필요합니다.')
+      } else {
+        store.dispatch('conferenceDetail', conferenceNo)
+          .then(() => {
+            emit('openConferenceDialog')
+          })
+      }
     }
     const pageChange = (val) => {
       const start = (val - 1) * 9
