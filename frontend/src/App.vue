@@ -47,6 +47,7 @@ export default {
     Sidebar,
   },
   setup() {
+
     const state = reactive ({
       logoutDialogOpen: false,
       searchDialogOpen: false,

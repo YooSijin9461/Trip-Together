@@ -9,17 +9,23 @@
     </div>
     <div v-if="state.category === ''">
       <ConferenceAll
-        @openConferenceDialog="onOpenConferenceDialog"/>
+        @openConferenceDialog="onOpenConferenceDialog"
+        @openConferenceCreateDialog="onOpenConferenceCreateDialog"/>
     </div>
     <div v-else-if="state.category === 'normal'">
       <ConferenceNormal
-        @openConferenceDialog="onOpenConferenceDialog"/>
+        @openConferenceDialog="onOpenConferenceDialog"
+        @openConferenceCreateDialog="onOpenConferenceCreateDialog"/>
     </div>
     <div v-if="state.category === 'guide'">
       <ConferenceGuide
-        @openConferenceDialog="onOpenConferenceDialog"/>
+        @openConferenceDialog="onOpenConferenceDialog"
+        @openConferenceCreateDialog="onOpenConferenceCreateDialog"/>
     </div>
   </div>
+  <ConferenceCreate
+    :open="state.conferenceCreateDialogOpen"
+    @closeConferenceCreateDialog="onCloseConferenceCreateDialog"/>
   <ConferenceDialog
     :open="state.conferenceDialogOpen"
     @closeConferenceDialog="onCloseConferenceDialog"/>
@@ -30,6 +36,7 @@ import { reactive } from 'vue'
 import ConferenceAll from '@/components/Conference/ConferenceAll.vue'
 import ConferenceNormal from '@/components/Conference/ConferenceNormal.vue'
 import ConferenceGuide from '@/components/Conference/ConferenceGuide.vue'
+import ConferenceCreate from '@/components/Conference/ConferenceCreate.vue'
 import ConferenceDialog from '@/components/Conference/ConferenceDialog.vue'
 
 export default ({
@@ -38,12 +45,14 @@ export default ({
     ConferenceAll,
     ConferenceNormal,
     ConferenceGuide,
+    ConferenceCreate,
     ConferenceDialog
   },
   setup() {
     const state = reactive ({
       category: '',
       conferenceDialogOpen: false,
+      conferenceCreateDialogOpen: false,
     })
     const onOpenConferenceDialog = () => {
       state.conferenceDialogOpen = true
@@ -51,8 +60,14 @@ export default ({
     const onCloseConferenceDialog = () => {
       state.conferenceDialogOpen = false
     }
+    const onOpenConferenceCreateDialog = () => {
+      state.conferenceCreateDialogOpen = true
+    }
+    const onCloseConferenceCreateDialog = () => {
+      state.conferenceCreateDialogOpen = false
+    }
 
-    return { state, onOpenConferenceDialog, onCloseConferenceDialog }
+    return { state, onOpenConferenceDialog, onCloseConferenceDialog, onOpenConferenceCreateDialog, onCloseConferenceCreateDialog }
   },
 })
 </script>

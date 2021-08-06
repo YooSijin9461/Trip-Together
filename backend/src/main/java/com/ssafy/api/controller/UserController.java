@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -83,6 +82,10 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<User> register(
+<<<<<<< HEAD
+			@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo) throws IllegalStateException, IllegalArgumentException, IOException {
+		MultipartFile file = registerInfo.getFile();
+=======
 			@RequestPart("files") @ApiParam(required = false) MultipartFile file,
 			@RequestPart("사용자 아이디") @ApiParam(required = true)String userId,
 			@RequestPart("사용자 비밀번호") @ApiParam(required = true)String password,
@@ -96,7 +99,11 @@ public class UserController {
 			@RequestParam("가이드 여부") @ApiParam(required = false)boolean isGuide
 			/*@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo*/) throws IllegalStateException, IOException {
 		//file = registerInfo.getFile();
+<<<<<<< HEAD
 		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
+=======
+>>>>>>> a78e9be55403b7741b6db567a3f0c3d1f4771d5d
+>>>>>>> b9760de12c89d34980e9f25bb85511033c6e148e
 		if(file != null && file.getSize() > 0) {
 			String rootPath = FileSystemView.getFileSystemView().getHomeDirectory().toString();
 		    String basePath = rootPath + "/" + "single";

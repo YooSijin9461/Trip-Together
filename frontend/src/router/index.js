@@ -56,7 +56,7 @@ const routes = [
   {
     path: '/articles/:articleId',
     name: 'Article',
-    component: () => import('@/components/Board/Article.vue')
+    component: () => import('@/components/Board/Article.vue'),
   },
   {
     path: '/articles/create',
