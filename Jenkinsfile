@@ -57,8 +57,15 @@ pipeline {
 				sh 'docker images -f "dangling=true" -q \
 					| xargs -r docker rmi'
 				// docker container 실행
-				sh 'docker run -d --name frontimg -p 80:80 frontimg:latest'
-				sh 'docker run -d --name backimg -p 8080:8080 -p 8443:8443 backimg:latest'
+				sh 'docker run -d --name frontimg \
+				-p 80:80 \
+				-p 443:443 \
+				-v /tmp:./frontend
+				--network our-net \
+				frontimg:latest'
+				sh 'docker run -d --name backimg \
+						--network our-net \
+						backimg:latest'
 			}
 		}
 	}
