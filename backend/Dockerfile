@@ -1,5 +1,5 @@
 FROM openjdk:8-jdk-alpine
-#VOLUME /tmp
+VOLUME /tmp
 #COPY gradlew ./
 
 #RUN echo $ls
