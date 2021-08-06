@@ -124,7 +124,8 @@ export default createStore({
     },
     signup ({ commit }, payload) {
       return axios
-        .post(`${BASE_URL}/api/v1/users`, payload)
+        //.post(`${BASE_URL}/api/v1/users`, payload)
+        .post(`/api/v1/users`, payload)
     },
     profile ({ commit }, token) {
       return axios
