@@ -33,26 +33,26 @@
     <div v-if="state.category === 'article'">
       <div class="container">
         <span v-for="result in state.searchPageResult" :key="result">
-        <hr class="my-0">
-        <div class="d-flex align-items-center py-3" id="article" @click="clickArticle(result.boardNo)">
-          <p class="col-8 my-0">{{ result.boardTitle }}</p>
-          <div class="col">
-            <p class="my-0"><i class="fas fa-user"></i>{{ result.userId }}</p>
-          </div>
-          <div class="col">
-            <span v-if="result.boardTime">
-              <span v-if="result.boardTime.slice(0, 10) === state.today.toJSON().slice(0, 10)">
-                <p class="my-0"><i class="far fa-clock"></i>{{ UTCtoKST(result.boardTime) }}</p>
+          <hr class="my-0">
+          <div class="d-flex align-items-center py-3" id="article" @click="clickArticle(result.boardNo)">
+            <p class="col-8 my-0">{{ result.boardTitle }}</p>
+            <div class="col">
+              <p class="my-0"><i class="fas fa-user"></i>{{ result.userId }}</p>
+            </div>
+            <div class="col">
+              <span v-if="result.boardTime">
+                <span v-if="result.boardTime.slice(0, 10) === state.today.toJSON().slice(0, 10)">
+                  <p class="my-0"><i class="far fa-clock"></i>{{ UTCtoKST(result.boardTime) }}</p>
+                </span>
+                <span v-else>
+                  <p class="my-0"><i class="far fa-clock"></i>{{ result.boardTime.slice(0, 10) }}</p>
+                </span>
               </span>
               <span v-else>
-                <p class="my-0"><i class="far fa-clock"></i>{{ result.boardTime.slice(0, 10) }}</p>
+                <p class="my-0"><i class="far fa-clock"></i>{{ state.today.toJSON().slice(0,10) }}</p>
               </span>
-            </span>
-            <span v-else>
-              <p class="my-0"><i class="far fa-clock"></i>{{ state.today.toJSON().slice(0,10) }}</p>
-            </span>
+            </div>
           </div>
-        </div>
         </span>
         <hr class="mt-0">
       </div>    
@@ -70,7 +70,7 @@
             </div>
           </div>
         </span>
-        <hr>
+        <hr class="mt-0">
       </div>
     </div>
     <div class="search-pagination">
@@ -95,6 +95,7 @@
 import { reactive, computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 
 export default {
   name: 'Login',
@@ -133,44 +134,63 @@ export default {
     })
 
     const clickSearch = () => {
-      if (state.category === 'room') {
-        if (state.roomCategory === 'roomOwner') {
-          store.dispatch('conferenceSearch', { searchKey: 'owner', searchValue: state.form.search })
-            .then(({ data }) => {
-              state.searchResult = data
-              state.searchPageResult = data.slice(0, 10)
-            })
-        } else {
-          store.dispatch('conferenceSearch', { searchKey: 'title', searchValue: state.form.search })
-            .then(({ data }) => {
-              state.searchResult = data
-              state.searchPageResult = data.slice(0, 10)
-            })
+      if (state.form.search) {
+        if (state.category === 'room') {
+          if (state.roomCategory === 'roomOwner') {
+            store.dispatch('conferenceSearch', { searchKey: 'owner', searchValue: state.form.search })
+              .then(({ data }) => {
+                state.searchResult = data
+                state.searchPageResult = data.slice(0, 10)
+              })
+            state.innerVisible = true
+            emit('closeSearchDialog')
+          } 
+          else if (state.roomCategory === 'roomTitle') {
+            store.dispatch('conferenceSearch', { searchKey: 'title', searchValue: state.form.search })
+              .then(({ data }) => {
+                state.searchResult = data
+                state.searchPageResult = data.slice(0, 10)
+              })
+            state.innerVisible = true
+            emit('closeSearchDialog')
+          } else {
+            ElMessage.error('검색 조건을 선택하세요.')
+          }
+        } else if (state.category === 'article') {
+          if (state.articleCategory === 'articleOwner') {
+            store.dispatch('articleSearch', { searchKey: 'userId', searchValue: state.form.search })
+              .then(({ data }) => {
+                state.searchResult = data
+                state.searchPageResult = data.slice(0, 10)
+              })
+            state.innerVisible = true
+            emit('closeSearchDialog')
+          } 
+          else if (state.articleCategory === 'articleTitle') {
+            store.dispatch('articleSearch', { searchKey: 'boardTitle', searchValue: state.form.search })
+              .then(({ data }) => {
+                state.searchResult = data
+                state.searchPageResult = data.slice(0, 10)
+              })
+            state.innerVisible = true
+            emit('closeSearchDialog')
+          } 
+          else if (state.articleCategory === 'articleContent') {
+            store.dispatch('articleSearch', { searchKey: 'boardContent', searchValue: state.form.search })
+              .then(({ data }) => {
+                state.searchResult = data
+                state.searchPageResult = data.slice(0, 10)
+              })
+            state.innerVisible = true
+            emit('closeSearchDialog')
+          } else {
+            ElMessage.error('검색 조건을 선택하세요.')
+          }
         }
-      } else if (state.category === 'article') {
-        if (state.articleCategory === 'articleOwner') {
-          store.dispatch('articleSearch', { searchKey: 'userId', searchValue: state.form.search })
-            .then(({ data }) => {
-              state.searchResult = data
-              state.searchPageResult = data.slice(0, 10)
-            })
-        } else if (state.articleCategory === 'articleTitle') {
-          store.dispatch('articleSearch', { searchKey: 'boardTitle', searchValue: state.form.search })
-            .then(({ data }) => {
-              state.searchResult = data
-              state.searchPageResult = data.slice(0, 10)
-            })
-        } else {
-          store.dispatch('articleSearch', { searchKey: 'boardContent', searchValue: state.form.search })
-            .then(({ data }) => {
-              state.searchResult = data
-              state.searchPageResult = data.slice(0, 10)
-            })
-        }
+        
+      } else {
+        ElMessage.error('검색어를 입력하세요.')
       }
-      state.innerVisible = true
-      emit('closeSearchDialog')
-      emit('openSearchResult')
     }
     const pageChange = (val) => {
       const start = (val - 1) * 10
