@@ -41,7 +41,7 @@ public class User extends BaseEntity{
     // 이미지 등록 추가
     @Transient
     String orgImg;	// 선택한 파일명
-    @Transient
+    @Transient		// DB에 컬럼으로 저장안되도록 무시하는 어노테이션
     MultipartFile file;		// 이미지 등록을 위한 파일
     //
     
