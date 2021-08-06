@@ -162,11 +162,13 @@ export default {
             formData.append('gender', state.form.gender)
             formData.append('phoneNum', state.form.phoneNum)
             formData.append('email', state.form.email)
-            formData.append('img', state.form.profileImg)
             formData.append('mbti', state.form.mbti)
             formData.append('guide', state.form.guide)
-            // formData.append('profileImg', state.form.profileImg)
-            console.log(formData)
+            formData.append('file', state.form.profileImg)
+            
+            for (let key of formData.entries()) {
+              console.log(`${key}`)
+            }
           //   store.dispatch('signup',
           //     { userId: state.form.userId,
           //       userName: state.form.userName,

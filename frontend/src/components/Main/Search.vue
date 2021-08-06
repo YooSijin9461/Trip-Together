@@ -33,8 +33,8 @@
     <div v-if="state.category === 'article'">
       <div class="container">
         <span v-for="result in state.searchPageResult" :key="result">
-        <hr>
-        <div class="d-flex align-items-center" id="article" @click="clickArticle(result.boardNo)">
+        <hr class="my-0">
+        <div class="d-flex align-items-center py-3" id="article" @click="clickArticle(result.boardNo)">
           <p class="col-8 my-0">{{ result.boardTitle }}</p>
           <div class="col">
             <p class="my-0"><i class="fas fa-user"></i>{{ result.userId }}</p>
@@ -54,7 +54,7 @@
           </div>
         </div>
         </span>
-        <hr>
+        <hr class="mt-0">
       </div>    
     </div>
     <div v-else-if="state.category === 'room'">
