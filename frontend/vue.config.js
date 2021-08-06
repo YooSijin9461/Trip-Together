@@ -22,5 +22,6 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
   },
-  lintOnSave: false
+  lintOnSave: false,
+  outputDir: '../backend/src/main/resources/dist'
 }
