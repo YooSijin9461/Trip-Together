@@ -60,7 +60,7 @@ pipeline {
 				sh 'docker run -d --name frontimg \
 				-p 80:80 \
 				-p 443:443 \
-				-v /var/lib/docker/volumes:/usr/share/nginx/html/frontend \
+				-v /var/lib/docker/volumes:./frontend \
 				--network our-net \
 				frontimg:latest'
 				sh 'docker run -d --name backimg \
