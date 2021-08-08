@@ -83,7 +83,6 @@ public class UserController {
         @ApiResponse(code = 404, message = "사용자 없음"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-<<<<<<< HEAD
 	public ResponseEntity<User> register(
 			@RequestPart("files") @ApiParam(required = false) MultipartFile file,
 			@RequestPart("사용자 아이디") @ApiParam(required = true)String userId,
@@ -130,55 +129,52 @@ public class UserController {
 		registerInfo.setMbti(mbti);
 		registerInfo.setAvgScore(avgScore);
 		registerInfo.setGuide(isGuide);
-//		registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
-//		registerInfo.setOrgImg(file.getOriginalFilename());
+
 		User user = userService.createUser(registerInfo);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-=======
-    public ResponseEntity<User> register(
-            @RequestPart("files") @ApiParam(required = false) MultipartFile file,
-            @RequestPart("사용자 아이디") @ApiParam(required = true)String userId,
-            @RequestPart("사용자 비밀번호") @ApiParam(required = true)String password,
-            @RequestPart("사용자 이름") @ApiParam(required = true)String userName,
-            @RequestParam("사용자 성별") @ApiParam(required = true)char gender,
-            @RequestPart("사용자 핸드폰") @ApiParam(required = true)String phoneNum,
-            @RequestPart("사용자 이메일") @ApiParam(required = true)String email,
-            @RequestParam @ApiParam(required = true)int age,
-            @RequestPart("사용자 MBTI") @ApiParam(required = false)String mbti,
-            @RequestParam("사용자 평점") @ApiParam(required = false)double avgScore,
-            @RequestParam("가이드 여부") @ApiParam(required = false)boolean isGuide
-            /*@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo*/) throws IllegalStateException, IOException {
-        //file = registerInfo.getFile();
-        UserRegisterPostReq registerInfo = new UserRegisterPostReq();
-        if(file != null && file.getSize() > 0) {
-            String rootPath = FileSystemView.getFileSystemView().getHomeDirectory().toString();
-            String basePath = rootPath + "/" + "single";
-            String filePath = basePath + "/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
-            File dest = new File(filePath);
-            file.transferTo(dest); // 파일 업로드 작업 수행
-            
-//            Resource res = resourceLoader.getResource("resources/upload");
-//            registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
-//            registerInfo.setOrgImg(file.getOriginalFilename());
-//            file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
-        }
-        registerInfo.setUserId(userId);
-        registerInfo.setPassword(password);
-        registerInfo.setUserName(userName);
-        registerInfo.setGender(gender);
-        registerInfo.setPhoneNum(phoneNum);
-        registerInfo.setEmail(email);
-        registerInfo.setAge(age);
-        registerInfo.setMbti(mbti);
-        registerInfo.setAvgScore(avgScore);
-        registerInfo.setGuide(isGuide);
-        registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
-        registerInfo.setOrgImg(file.getOriginalFilename());
-        User user = userService.createUser(registerInfo);
-        return new ResponseEntity<User>(user, HttpStatus.OK);
-    }
->>>>>>> 8ed7ca45a77e2a5dfc9b7cf0034c81a1e56c20ae
+//    public ResponseEntity<User> register(
+//            @RequestPart("files") @ApiParam(required = false) MultipartFile file,
+//            @RequestPart("사용자 아이디") @ApiParam(required = true)String userId,
+//            @RequestPart("사용자 비밀번호") @ApiParam(required = true)String password,
+//            @RequestPart("사용자 이름") @ApiParam(required = true)String userName,
+//            @RequestParam("사용자 성별") @ApiParam(required = true)char gender,
+//            @RequestPart("사용자 핸드폰") @ApiParam(required = true)String phoneNum,
+//            @RequestPart("사용자 이메일") @ApiParam(required = true)String email,
+//            @RequestParam @ApiParam(required = true)int age,
+//            @RequestPart("사용자 MBTI") @ApiParam(required = false)String mbti,
+//            @RequestParam("사용자 평점") @ApiParam(required = false)double avgScore,
+//            @RequestParam("가이드 여부") @ApiParam(required = false)boolean isGuide
+//            /*@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo*/) throws IllegalStateException, IOException {
+//        //file = registerInfo.getFile();
+//        UserRegisterPostReq registerInfo = new UserRegisterPostReq();
+//        if(file != null && file.getSize() > 0) {
+//            String rootPath = FileSystemView.getFileSystemView().getHomeDirectory().toString();
+//            String basePath = rootPath + "/" + "single";
+//            String filePath = basePath + "/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
+//            File dest = new File(filePath);
+//            file.transferTo(dest); // 파일 업로드 작업 수행
+//            
+////            Resource res = resourceLoader.getResource("resources/upload");
+////            registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
+////            registerInfo.setOrgImg(file.getOriginalFilename());
+////            file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
+//        }
+//        registerInfo.setUserId(userId);
+//        registerInfo.setPassword(password);
+//        registerInfo.setUserName(userName);
+//        registerInfo.setGender(gender);
+//        registerInfo.setPhoneNum(phoneNum);
+//        registerInfo.setEmail(email);
+//        registerInfo.setAge(age);
+//        registerInfo.setMbti(mbti);
+//        registerInfo.setAvgScore(avgScore);
+//        registerInfo.setGuide(isGuide);
+//        registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
+//        registerInfo.setOrgImg(file.getOriginalFilename());
+//        User user = userService.createUser(registerInfo);
+//        return new ResponseEntity<User>(user, HttpStatus.OK);
+//    }
 	
 	@GetMapping()
 	@ApiOperation(value = "사용자 목록", notes = "사용자 목록을 List로 반환")
@@ -288,6 +284,19 @@ public class UserController {
 		return ResponseEntity.status(200).body(UserRes.of(user));
 	}
 	
+	@PatchMapping()
+	@ApiOperation(value = "방 입장 시 User 테이블의 conference_room_no 수정")
+	@ApiResponses({
+	        @ApiResponse(code = 200, message = "성공"),
+	        @ApiResponse(code = 404, message = "사용자 없음"),
+	        @ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<User> modifyConferenceRoomNo(@RequestParam int conferenceRoomNo, @RequestParam String userId) {
+		User user = userService.getUserByUserId(userId);		// 아이디에 맞는 사용자 찾아옴
+		user = userService.modifyConferenceRoomNo(userId, conferenceRoomNo);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
+	
 	// 삭제 완료
 	@DeleteMapping("/{userId}")
 	@ApiOperation(value = "유저 정보 삭제")
@@ -310,4 +319,6 @@ public class UserController {
 	public ResponseEntity<List<User>> getUsersByConferenceNo(@PathVariable int conferenceNo){
 		return new ResponseEntity<List<User>>(userService.getUsersByConferenceNo(conferenceNo), HttpStatus.OK);
 	}
+	
+	
 }
