@@ -60,12 +60,13 @@ pipeline {
 				sh 'docker run -d --name frontimg \
 				-p 80:80 \
 				-p 443:443 \
-				-v /var/lib/docker/volumes:/usr/share/nginx/html/dist \
+				-v /var/lib/docker/volumes:/var/www/html \
 				--network our-net \
 				frontimg:latest'
 				sh 'docker run -d --name backimg \
-						--network our-net \
-						backimg:latest'
+				-p 8443:8443 \
+				--network our-net \
+				backimg:latest'
 			}
 		}
 	}
