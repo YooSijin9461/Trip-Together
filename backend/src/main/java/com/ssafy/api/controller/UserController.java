@@ -2,6 +2,8 @@ package com.ssafy.api.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,10 +84,6 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<User> register(
-<<<<<<< HEAD
-			@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo) throws IllegalStateException, IllegalArgumentException, IOException {
-		MultipartFile file = registerInfo.getFile();
-=======
 			@RequestPart("files") @ApiParam(required = false) MultipartFile file,
 			@RequestPart("사용자 아이디") @ApiParam(required = true)String userId,
 			@RequestPart("사용자 비밀번호") @ApiParam(required = true)String password,
@@ -99,22 +97,27 @@ public class UserController {
 			@RequestParam("가이드 여부") @ApiParam(required = false)boolean isGuide
 			/*@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo*/) throws IllegalStateException, IOException {
 		//file = registerInfo.getFile();
-<<<<<<< HEAD
 		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
-=======
->>>>>>> a78e9be55403b7741b6db567a3f0c3d1f4771d5d
->>>>>>> b9760de12c89d34980e9f25bb85511033c6e148e
+		String path = null;
 		if(file != null && file.getSize() > 0) {
-			String rootPath = FileSystemView.getFileSystemView().getHomeDirectory().toString();
-		    String basePath = rootPath + "/" + "single";
-		    String filePath = basePath + "/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
-		    File dest = new File(filePath);
-		    file.transferTo(dest); // 파일 업로드 작업 수행
+//			String rootPath = FileSystemView.getFileSystemView().getHomeDirectory().toString();
+//		    String basePath = rootPath + "/" + "single";
+//		    String filePath = basePath + "/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
+//		    File dest = new File(filePath);
+//		    file.transferTo(dest); // 파일 업로드 작업 수행
 		    
-//			Resource res = resourceLoader.getResource("resources/upload");
-//			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
-//			registerInfo.setOrgImg(file.getOriginalFilename());
-//			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
+			Resource res = resourceLoader.getResource("resources/upload");
+			//URI uri = res.getURI();
+			//path = res.getFilename();
+			//path = uri.getPath();
+			File f = res.getFile();
+			//File dir = new File(path);
+			if(!f.exists())
+				f.mkdirs();
+			
+			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
+			registerInfo.setOrgImg(file.getOriginalFilename());
+			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
 		}
 		registerInfo.setUserId(userId);
 		registerInfo.setPassword(password);
@@ -126,12 +129,11 @@ public class UserController {
 		registerInfo.setMbti(mbti);
 		registerInfo.setAvgScore(avgScore);
 		registerInfo.setGuide(isGuide);
-		registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
-		registerInfo.setOrgImg(file.getOriginalFilename());
+//		registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
+//		registerInfo.setOrgImg(file.getOriginalFilename());
 		User user = userService.createUser(registerInfo);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-	
 	
 	@GetMapping()
 	@ApiOperation(value = "사용자 목록", notes = "사용자 목록을 List로 반환")
