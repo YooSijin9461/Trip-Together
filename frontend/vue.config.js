@@ -5,7 +5,6 @@ module.exports = {
     https: true,
     port: 8083,
     open: true,
-    host: '0.0.0.0',
     proxy: {
       '/api/v1': {
         // target: 'https://localhost:8443/'
