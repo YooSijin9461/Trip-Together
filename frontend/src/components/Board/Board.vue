@@ -1,13 +1,15 @@
 <template>
-  <div class="container">
-    <el-tabs type="card" @tab-click="handleClick">
-      <el-tab-pane label="공지사항">
-        <NoticeList/>
-      </el-tab-pane>
-      <el-tab-pane label="게시글">
-        <ArticleList/>
-      </el-tab-pane>
-    </el-tabs>
+  <div class="d-flex justify-content-center">
+    <div class="board-container">
+      <el-tabs type="card" @tab-click="handleClick">
+        <el-tab-pane label="공지사항">
+          <NoticeList/>
+        </el-tab-pane>
+        <el-tab-pane label="게시글">
+          <ArticleList/>
+        </el-tab-pane>
+      </el-tabs>
+    </div>
   </div>
 </template>
 
@@ -26,3 +28,8 @@ export default {
   },
 }
 </script>
+<style>
+.board-container {
+  width: 80%;
+}
+</style>

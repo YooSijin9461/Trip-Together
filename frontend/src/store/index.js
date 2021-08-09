@@ -152,15 +152,15 @@ export default createStore({
     // 방
     conferenceList ({ commit }) {
       return axios
-        .get(`/api/v1/conferences`)
+        .get(`${BASE_URL}/api/v1/conferences`)
     },
     conferenceCreate ({ commit }, payload) {
       return axios
-        .post(`/api/v1/conferences`, payload)
+        .post(`${BASE_URL}/api/v1/conferences`, payload)
     },
     conferenceDetail ({ commit }, conferenceNo) {
       return axios
-        .get(`/api/v1/conferences/${conferenceNo}`)
+        .get(`${BASE_URL}/api/v1/conferences/${conferenceNo}`)
         .then(({ data }) => {
           commit("CONFERENCEINFO", data)
         })
@@ -168,50 +168,58 @@ export default createStore({
     conferenceSearch ({ commit }, { searchKey, searchValue }) {
       const params = new URLSearchParams([[searchKey, searchValue]])
       return axios
-        .get(`/api/v1/conferences/search`, { params })
+        .get(`${BASE_URL}/api/v1/conferences/search`, { params })
     },
     conferenceDelete ({ commit }, conferenceNo) {
       return axios
-        .delete(`/api/v1/conferences/${conferenceNo}`)
+        .delete(`${BASE_URL}/api/v1/conferences/${conferenceNo}`)
     },
 
     // 게시글
     articlePageList ({ commit }, pageNo) {
       return axios
-        .get(`/api/v1/boards?page=${pageNo}&size=10`)
+        .get(`${BASE_URL}/api/v1/boards?page=${pageNo}&size=10`)
     },
     articleDetail ({ commit }, boardNo) {
       return axios
-        .get(`/api/v1/boards/${boardNo}`)
+        .get(`${BASE_URL}/api/v1/boards/${boardNo}`)
         .then(({ data }) => {
           commit("BOARDINFO", data)
         })
     },
     articleCreate ({ commit }, payload) {
       return axios
-        .post(`/api/v1/boards`, payload)
+        .post(`${BASE_URL}/api/v1/boards`, payload)
     },
     articleSearch ({ commit }, { searchKey, searchValue }) {
       const params = new URLSearchParams([[searchKey, searchValue]])
       return axios
-      .get(`/api/v1/boards/search`, { params })
+      .get(`${BASE_URL}/api/v1/boards/search`, { params })
+    },
+    articleUpdate ({ commit }, payload) {
+      return axios
+        .patch(`${BASE_URL}/api/v1/boards/${payload.boardNo}`, payload.data)
+    },
+    articleDelete ({ commit }, boardNo) {
+      return axios
+        .delete(`${BASE_URL}/api/v1/boards/${boardNo}`)
     },
 
     // 공지
     noticePageList ({ commit }, pageNo) {
       return axios
-        .get(`/api/v1/notices?page=${pageNo}&size=10`)
+        .get(`${BASE_URL}/api/v1/notices?page=${pageNo}&size=10`)
     },
     noticeDetail ({ commit }, noticeNo) {
       return axios
-        .get(`/api/v1/notices/${noticeNo}`)
+        .get(`${BASE_URL}/api/v1/notices/${noticeNo}`)
         .then(({ data }) => {
           commit("NOTICEINFO", data)
         })
     },
     noticeCreate ({ commit }, payload) {
       return axios
-        .post(`/api/v1/notices`, payload)
+        .post(`${BASE_URL}/api/v1/notices`, payload)
     }
   },
 
@@ -289,6 +297,9 @@ export default createStore({
     },
     getBoardcreate (state) {
       return state.boardCreate
+    },
+    getBoardno (state) {
+      return state.boardNo
     },
 
     // 공지
