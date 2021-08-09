@@ -3,11 +3,13 @@ package com.ssafy.api.controller;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.db.entity.Chat;
 
 @RestController
+@CrossOrigin("*")
 public class GreetingController {
 	
 	// 이 부분은 서로서로 채팅하기 전에 혼자 들어와서 메시지쳤을 때 잘 전송되는지 확인하기 위함
