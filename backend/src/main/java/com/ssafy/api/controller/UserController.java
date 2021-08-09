@@ -108,15 +108,21 @@ public class UserController {
 //		    File dest = new File(filePath);
 //		    file.transferTo(dest); // 파일 업로드 작업 수행
 		    
-			Resource res = resourceLoader.getResource("resources/upload");
-			//URI uri = res.getURI();
-			//path = res.getFilename();
-			//path = uri.getPath();
+//			Resource res = resourceLoader.getResource("resources/upload");
+//			File f = res.getFile();
+//			if(!f.exists())
+//				f.mkdirs();
+//			System.out.println(res.getFile());
+			
+			Resource res = resourceLoader.getResource("classpath:/upload/");
 			File f = res.getFile();
-			//File dir = new File(path);
 			if(!f.exists())
 				f.mkdirs();
 			System.out.println(res.getFile());
+<<<<<<< HEAD
+=======
+			
+>>>>>>> 68264de118767efc4f25ca3c856425aa79b41ec3
 			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
 			registerInfo.setOrgImg(file.getOriginalFilename());
 			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
