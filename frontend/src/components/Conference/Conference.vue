@@ -58,7 +58,7 @@ export default {
     // webRTC 기능 
 
     const kurentoUtils = require('kurento-utils')
-    const socket = new WebSocket('wss://' + location.host + ':8888/groupcall')
+    const socket = new WebSocket('wss://' + location.host + ':8443/groupcall')
     const PARTICIPANT_MAIN_CLASS = 'participant main';
     const PARTICIPANT_CLASS = 'participant';
     const participants = {}
