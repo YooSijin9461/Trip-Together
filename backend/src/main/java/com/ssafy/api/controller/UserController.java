@@ -119,7 +119,10 @@ public class UserController {
 			if(!f.exists())
 				f.mkdirs();
 			System.out.println(res.getFile());
+<<<<<<< HEAD
 			
+=======
+>>>>>>> 35548c0c3993cf06b46102e83aea33831357925f
 			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
 			registerInfo.setOrgImg(file.getOriginalFilename());
 			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
