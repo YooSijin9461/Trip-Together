@@ -65,7 +65,7 @@ pipeline {
 				frontimg:latest'
 				sh 'docker run -d --name backimg \
 				-p 8443:8443 \
-				--net host \
+				--network our-net \
 				backimg:latest'
 			}
 		}
