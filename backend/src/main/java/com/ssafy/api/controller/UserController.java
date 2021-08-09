@@ -114,7 +114,7 @@ public class UserController {
 //				f.mkdirs();
 //			System.out.println(res.getFile());
 			
-			Resource res = resourceLoader.getResource("classpath:/upload/");
+			Resource res = resourceLoader.getResource("classpath:/dist/upload/");
 			File f = res.getFile();
 			if(!f.exists())
 				f.mkdirs();
