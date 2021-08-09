@@ -84,17 +84,17 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<User> register(
-			@RequestPart("files") @ApiParam(required = false) MultipartFile file,
+			@RequestPart(required=false) MultipartFile file,
 			@RequestPart("사용자 아이디") @ApiParam(required = true)String userId,
 			@RequestPart("사용자 비밀번호") @ApiParam(required = true)String password,
 			@RequestPart("사용자 이름") @ApiParam(required = true)String userName,
 			@RequestParam("사용자 성별") @ApiParam(required = true)char gender,
 			@RequestPart("사용자 핸드폰") @ApiParam(required = true)String phoneNum,
 			@RequestPart("사용자 이메일") @ApiParam(required = true)String email,
-			@RequestParam @ApiParam(required = true)int age,
-			@RequestPart("사용자 MBTI") @ApiParam(required = false)String mbti,
-			@RequestParam("사용자 평점") @ApiParam(required = false)double avgScore,
-			@RequestParam("가이드 여부") @ApiParam(required = false)boolean isGuide
+			@RequestParam(required=true) String age,
+			@RequestPart(required=false) String mbti,
+			@RequestParam(required=false) String avgScore,
+			@RequestParam(required=false) boolean isGuide
 			/*@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo*/) throws IllegalStateException, IOException {
 		//file = registerInfo.getFile();
 		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
@@ -125,9 +125,12 @@ public class UserController {
 		registerInfo.setGender(gender);
 		registerInfo.setPhoneNum(phoneNum);
 		registerInfo.setEmail(email);
-		registerInfo.setAge(age);
+		registerInfo.setAge(Integer.parseInt(age));
 		registerInfo.setMbti(mbti);
-		registerInfo.setAvgScore(avgScore);
+		if(avgScore == null)
+			registerInfo.setAvgScore(0.0);
+		else
+			registerInfo.setAvgScore(Double.parseDouble(avgScore));
 		registerInfo.setGuide(isGuide);
 
 		User user = userService.createUser(registerInfo);
