@@ -116,7 +116,7 @@ public class UserController {
 			//File dir = new File(path);
 			if(!f.exists())
 				f.mkdirs();
-			
+			System.out.println(res.getFile());
 			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
 			registerInfo.setOrgImg(file.getOriginalFilename());
 			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));

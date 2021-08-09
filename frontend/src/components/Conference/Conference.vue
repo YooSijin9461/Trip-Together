@@ -288,7 +288,6 @@ export default {
       socket.onopen = () =>{
         register(state.username, state.conferenceNo)
       }
-      emit('closeSearchDialog')
     })
     // onUnmounted(() => {
     //   leaveRoom = () => {
