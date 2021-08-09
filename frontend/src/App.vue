@@ -18,6 +18,7 @@
     @closeLogoutDialog="onCloseLogoutDialog"/>
   <Search
     :open="state.searchDialogOpen"
+    @openConferenceDialog="onOpenConferenceDialog"
     @closeSearchDialog="onCloseSearchDialog"/>
   <ConferenceDialog
     :open="state.conferenceDialogOpen"

@@ -34,7 +34,7 @@
       <div class="container">
         <span v-for="result in state.searchPageResult" :key="result">
           <hr class="my-0">
-          <div class="d-flex align-items-center py-3" id="article" @click="clickArticle(result.boardNo)">
+          <div class="d-flex align-items-center py-3" id="searchResult" @click="clickArticle(result.boardNo)">
             <p class="col-8 my-0">{{ result.boardTitle }}</p>
             <div class="col">
               <p class="my-0"><i class="fas fa-user"></i>{{ result.userId }}</p>
@@ -60,8 +60,8 @@
     <div v-else-if="state.category === 'room'">
       <div class="container">
         <span v-for="result in state.searchPageResult" :key="result">
-          <hr>
-          <div class="d-flex align-items-center" @click="clickRoom(result.conferenceNo)">
+          <hr class="my-0">
+          <div class="d-flex align-items-center py-3" id="searchResult" @click="clickRoom(result.conferenceNo)">
             <div class="col-9">
               <p class="my-0">{{ result.title }}</p>
             </div>
@@ -113,6 +113,7 @@ export default {
     const searchForm = ref(null)
 
     const state = reactive({
+      token: computed(() => store.getters['getToken']),
       category: '',
       roomCategory: '',
       articleCategory: '',
@@ -203,14 +204,30 @@ export default {
       state.form.search = ''
       emit('closeSearchDialog')
     }
+    const clickRoom = (roomNo) => {
+      if (!state.token) {
+        ElMessage.error('로그인이 필요합니다.')
+      } else {
+        store.dispatch('conferenceDetail', roomNo)
+          .then(() => {
+            emit('openConferenceDialog')
+            state.innerVisible = false
+          })
+      }
+    }
     const clickArticle = (boardNo) => {
-      store.dispatch('articleDetail', boardNo)
-        .then(() => {
-          router.push({ name: 'Article', params: { articleId: boardNo }})
-        })
+      if (!state.token) {
+        ElMessage.error('로그인이 필요합니다.')
+      } else {
+        store.dispatch('articleDetail', boardNo)
+          .then(() => {
+            router.push({ name: 'Article', params: { articleId: boardNo }})
+            state.innerVisible = false
+          })
+      }
     }
 
-    return { searchForm, state, clickSearch, handleClose, UTCtoKST, pageChange, clickArticle }
+    return { searchForm, state, clickSearch, handleClose, UTCtoKST, pageChange, clickRoom, clickArticle }
   },
 }
 </script>
@@ -224,14 +241,15 @@ export default {
   margin-right: 5px;
 }
 .innerDialog {
-  width: 80% !important;
+  width: 80%;
+  max-width: 720px;
 }
 .search-pagination {
   display: flex;
-  margin-top: 1rem;
+  margin-top: 5%;
   justify-content: center;
 }
-#article:hover {
+#searchResult:hover {
   cursor: pointer;
   background-color: #EAEAEA;
 }

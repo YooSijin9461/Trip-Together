@@ -69,11 +69,16 @@ export default {
     })
 
     const clickConferenceDialog = () => {
-      if (state.password == state.inputPassword) {
+      if (state.password) {
+        if (state.password === state.inputPassword) {
+          router.push({ name: 'Conference', params: { conferenceId: state.conferenceNo}})
+          emit('closeConferenceDialog')
+        } else {
+          ElMessage.error('비밀번호가 틀렸습니다.')
+        }
+      } else {
         router.push({ name: 'Conference', params: { conferenceId: state.conferenceNo}})
         emit('closeConferenceDialog')
-      } else {
-        ElMessage.error('비밀번호가 틀렸습니다.')
       }
     }
 
