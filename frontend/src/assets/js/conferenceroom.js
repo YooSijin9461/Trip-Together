@@ -17,7 +17,7 @@
 
 import { Participant } from './participant'
 
-var ws = new WebSocket('wss://' + location.host + '/groupcall');
+var ws = new WebSocket('wss://' + location.host + ':8443' + '/groupcall');
 var participants = {};
 var name;
 
