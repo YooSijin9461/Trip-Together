@@ -6,11 +6,13 @@ VOLUME /tmp
 #RUN chmod +x gradlew
 #RUN ./gradlew clean build
 
-COPY gradlew .
-COPY gradle gradle
-COPY build.gradle .
-COPY settings.gradle .
-COPY src src
+COPY . .
+
+#COPY gradlew .
+#COPY gradle gradle
+#COPY build.gradle .
+#COPY settings.gradle .
+#COPY src src
 #RUN gradle cleanQuerydslSourcesDir
 
 #RUN ./gradlew build --stacktrace
