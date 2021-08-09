@@ -31,6 +31,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import com.ssafy.api.service.UserService;
 
 /**
  * 
@@ -48,7 +49,10 @@ public class CallHandler extends TextWebSocketHandler {
 
   @Autowired
   private UserRegistry registry;
-
+  
+  @Autowired
+  private UserService userServcie;
+  
   @Override
   public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
     final JsonObject jsonMessage = gson.fromJson(message.getPayload(), JsonObject.class);
@@ -99,7 +103,11 @@ public class CallHandler extends TextWebSocketHandler {
     final String roomName = params.get("room").getAsString();
     final String name = params.get("name").getAsString();
     log.info("PARTICIPANT {}: trying to join room {}", name, roomName);
-
+    
+    // 이 부분 추가
+    userServcie.modifyConferenceRoomNo(name, Integer.parseInt(roomName));
+    // 
+    
     Room room = roomManager.getRoom(roomName);
     final UserSession user = room.join(name, session);
     registry.register(user);
@@ -107,6 +115,11 @@ public class CallHandler extends TextWebSocketHandler {
 
   private void leaveRoom(UserSession user) throws IOException {
     final Room room = roomManager.getRoom(user.getRoomName());
+    
+    // 이부분 추가
+    userServcie.modifyConferenceRoomNo(user.getName(), null);
+    // 이부분 추가
+    
     room.leave(user);
     if (room.getParticipants().isEmpty()) {
       roomManager.removeRoom(room);
