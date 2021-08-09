@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <h1 class="mt-5 mb-4">게시글</h1>
-    
     <span v-for="article in state.articleList" :key="article">
       <!-- <span v-if="index"> -->
         <hr class="article-line my-0">
@@ -30,14 +29,14 @@
     <div class="mt-4 d-flex justify-content-end" v-if="state.token">
       <el-button type="primary" @click="articleCreate">글쓰기</el-button>
     </div>
-  </div>
-  <div class="pagination">
-    <el-pagination
-      :page-size="15"
-      layout="prev, pager, next"
-      :total="state.articleCount"
-      @current-change="pageChange">
-    </el-pagination>
+    <div class="article-pagination">
+      <el-pagination
+        :page-size="15"
+        layout="prev, pager, next"
+        :total="state.articleCount"
+        @current-change="pageChange">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -113,10 +112,9 @@ export default {
 .userId {
   font-size: 12px;
 }
-.pagination {
-  position: fixed;
-  bottom: 5rem;
-  left: 45%;
-  right: 55%;
+.article-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
 }
 </style>

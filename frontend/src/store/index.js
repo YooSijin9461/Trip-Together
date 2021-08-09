@@ -196,6 +196,14 @@ export default createStore({
       return axios
       .get(`${BASE_URL}/api/v1/boards/search`, { params })
     },
+    articleUpdate ({ commit }, payload) {
+      return axios
+        .patch(`${BASE_URL}/api/v1/boards/${payload.boardNo}`, payload.data)
+    },
+    articleDelete ({ commit }, boardNo) {
+      return axios
+        .delete(`${BASE_URL}/api/v1/boards/${boardNo}`)
+    },
 
     // 공지
     noticePageList ({ commit }, pageNo) {
@@ -289,6 +297,9 @@ export default createStore({
     },
     getBoardcreate (state) {
       return state.boardCreate
+    },
+    getBoardno (state) {
+      return state.boardNo
     },
 
     // 공지

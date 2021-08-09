@@ -18,14 +18,14 @@
       </div>
     </span>
     <hr class="notice-line my-0">
-  </div>
-  <div class="pagination">
-    <el-pagination
-      :page-size="10"
-      layout="prev, pager, next"
-      :total="state.noticeCount"
-      @current-change="pageChange">
-    </el-pagination>
+    <div class="notice-pagination">
+      <el-pagination
+        :page-size="10"
+        layout="prev, pager, next"
+        :total="state.noticeCount"
+        @current-change="pageChange">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -96,5 +96,10 @@ export default {
 }
 .userId {
   font-size: 12px;
+}
+.notice-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
 }
 </style>
