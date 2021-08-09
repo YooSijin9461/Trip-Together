@@ -230,16 +230,15 @@ public class UserController {
 		return ResponseEntity.status(200).body(UserRes.of(user));
 	}
 	
-//	@PostMapping("/{userId}")
-//	@ApiOperation(value = "유저 정보 확인", notes = "유저 정보 보내기(토큰에 다 넣는 것 대신)")
-//	@ApiResponses({
-//		@ApiResponse(code = 409, message = "이미 존재하는 유저"),
-//		@ApiResponse(code = 500, message = "성공"),
-//		@ApiResponse(code = 200, message = "성공")
-//	})
-//	public ResponseEntity<User> readUserInfo(@PathVariable String userId){
-//		return new ResponseEntity<>(userService.getUserByUserId(userId), HttpStatus.OK);
-//	}
+	@PostMapping("/{userId}")	// GetMapping으로 하니까 'getUsersByConferenceNo' 이 API랑 구분을 못한다는 에러 떠서 PostMapping으로 함
+	@ApiOperation(value = "유저 정보 확인", notes = "유저 정보 보내기(토큰에 다 넣는 것 대신)")
+	@ApiResponses({
+		@ApiResponse(code = 500, message = "성공"),
+		@ApiResponse(code = 200, message = "성공")
+	})
+	public ResponseEntity<User> readUserInfo(@PathVariable String userId){
+		return new ResponseEntity<>(userService.getUserByUserId(userId), HttpStatus.OK);
+	}
 
 	// PostMapping된 유저 정보 확인 API로 같이 할 수 있지 않을까?
 //	@GetMapping("/{userId}")
@@ -305,7 +304,6 @@ public class UserController {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
-	// 삭제 완료
 	@DeleteMapping("/{userId}")
 	@ApiOperation(value = "유저 정보 삭제")
 	@ApiResponses({
