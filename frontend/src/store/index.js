@@ -178,7 +178,7 @@ export default createStore({
     // 게시글
     articlePageList ({ commit }, pageNo) {
       return axios
-        .get(`${BASE_URL}/api/v1/boards?page=${pageNo}&size=10`)
+        .get(`/api/v1/boards?page=${pageNo}&size=10`)
     },
     articleDetail ({ commit }, boardNo) {
       return axios
