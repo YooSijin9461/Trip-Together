@@ -152,15 +152,15 @@ export default createStore({
     // 방
     conferenceList ({ commit }) {
       return axios
-        .get(`${BASE_URL}/api/v1/conferences`)
+        .get(`/api/v1/conferences`)
     },
     conferenceCreate ({ commit }, payload) {
       return axios
-        .post(`${BASE_URL}/api/v1/conferences`, payload)
+        .post(`/api/v1/conferences`, payload)
     },
     conferenceDetail ({ commit }, conferenceNo) {
       return axios
-        .get(`${BASE_URL}/api/v1/conferences/${conferenceNo}`)
+        .get(`/api/v1/conferences/${conferenceNo}`)
         .then(({ data }) => {
           commit("CONFERENCEINFO", data)
         })
@@ -168,11 +168,11 @@ export default createStore({
     conferenceSearch ({ commit }, { searchKey, searchValue }) {
       const params = new URLSearchParams([[searchKey, searchValue]])
       return axios
-        .get(`${BASE_URL}/api/v1/conferences/search`, { params })
+        .get(`/api/v1/conferences/search`, { params })
     },
     conferenceDelete ({ commit }, conferenceNo) {
       return axios
-        .delete(`${BASE_URL}/api/v1/conferences/${conferenceNo}`)
+        .delete(`/api/v1/conferences/${conferenceNo}`)
     },
 
     // 게시글
@@ -182,36 +182,36 @@ export default createStore({
     },
     articleDetail ({ commit }, boardNo) {
       return axios
-        .get(`${BASE_URL}/api/v1/boards/${boardNo}`)
+        .get(`/api/v1/boards/${boardNo}`)
         .then(({ data }) => {
           commit("BOARDINFO", data)
         })
     },
     articleCreate ({ commit }, payload) {
       return axios
-        .post(`${BASE_URL}/api/v1/boards`, payload)
+        .post(`/api/v1/boards`, payload)
     },
     articleSearch ({ commit }, { searchKey, searchValue }) {
       const params = new URLSearchParams([[searchKey, searchValue]])
       return axios
-      .get(`${BASE_URL}/api/v1/boards/search`, { params })
+      .get(`/api/v1/boards/search`, { params })
     },
 
     // 공지
     noticePageList ({ commit }, pageNo) {
       return axios
-        .get(`${BASE_URL}/api/v1/notices?page=${pageNo}&size=10`)
+        .get(`/api/v1/notices?page=${pageNo}&size=10`)
     },
     noticeDetail ({ commit }, noticeNo) {
       return axios
-        .get(`${BASE_URL}/api/v1/notices/${noticeNo}`)
+        .get(`/api/v1/notices/${noticeNo}`)
         .then(({ data }) => {
           commit("NOTICEINFO", data)
         })
     },
     noticeCreate ({ commit }, payload) {
       return axios
-        .post(`${BASE_URL}/api/v1/notices`, payload)
+        .post(`/api/v1/notices`, payload)
     }
   },
 
