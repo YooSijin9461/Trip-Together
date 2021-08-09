@@ -64,7 +64,7 @@ pipeline {
 				--network our-net \
 				frontimg:latest'
 				sh 'docker run -d --name backimg \
-				--network our-net \
+				--net host \
 				backimg:latest'
 			}
 		}

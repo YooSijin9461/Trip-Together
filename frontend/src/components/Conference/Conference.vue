@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { reactive, onMounted, computed, onUnmounted } from 'vue'
+import { reactive, onMounted, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
@@ -44,7 +44,7 @@ export default {
   components: {
     Chat,
   },
-  setup() {
+  setup(props, { emit }) {
     const store = useStore()
     const router = useRouter()
 
@@ -288,6 +288,7 @@ export default {
       socket.onopen = () =>{
         register(state.username, state.conferenceNo)
       }
+      emit('closeSearchDialog')
     })
     // onUnmounted(() => {
     //   leaveRoom = () => {
