@@ -12,6 +12,7 @@ import javax.swing.filechooser.FileSystemView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
@@ -114,15 +115,22 @@ public class UserController {
 //				f.mkdirs();
 //			System.out.println(res.getFile());
 			
+<<<<<<< HEAD
 			Resource res = resourceLoader.getResource("classpath:upload/");
 			File f = res.getFile();
+=======
+			ClassPathResource resource = new ClassPathResource("dist/upload/");
+			
+			//Resource res = resourceLoader.getResource("classpath:/dist/upload/");
+			File f = resource.getFile();
+>>>>>>> 9f9afc8be1aaea21969d1cf05fc05a2f5b334c8f
 			if(!f.exists())
 				f.mkdirs();
-			System.out.println(res.getFile());
+			System.out.println(resource.getFile());
 			
 			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
 			registerInfo.setOrgImg(file.getOriginalFilename());
-			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
+			file.transferTo(new File(resource.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
 		}
 		registerInfo.setUserId(userId);
 		registerInfo.setPassword(password);
@@ -230,16 +238,15 @@ public class UserController {
 		return ResponseEntity.status(200).body(UserRes.of(user));
 	}
 	
-//	@PostMapping("/{userId}")
-//	@ApiOperation(value = "유저 정보 확인", notes = "유저 정보 보내기(토큰에 다 넣는 것 대신)")
-//	@ApiResponses({
-//		@ApiResponse(code = 409, message = "이미 존재하는 유저"),
-//		@ApiResponse(code = 500, message = "성공"),
-//		@ApiResponse(code = 200, message = "성공")
-//	})
-//	public ResponseEntity<User> readUserInfo(@PathVariable String userId){
-//		return new ResponseEntity<>(userService.getUserByUserId(userId), HttpStatus.OK);
-//	}
+	@PostMapping("/{userId}")	// GetMapping으로 하니까 'getUsersByConferenceNo' 이 API랑 구분을 못한다는 에러 떠서 PostMapping으로 함
+	@ApiOperation(value = "유저 정보 확인", notes = "유저 정보 보내기(토큰에 다 넣는 것 대신)")
+	@ApiResponses({
+		@ApiResponse(code = 500, message = "성공"),
+		@ApiResponse(code = 200, message = "성공")
+	})
+	public ResponseEntity<User> readUserInfo(@PathVariable String userId){
+		return new ResponseEntity<>(userService.getUserByUserId(userId), HttpStatus.OK);
+	}
 
 	// PostMapping된 유저 정보 확인 API로 같이 할 수 있지 않을까?
 //	@GetMapping("/{userId}")
@@ -305,7 +312,6 @@ public class UserController {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
-	// 삭제 완료
 	@DeleteMapping("/{userId}")
 	@ApiOperation(value = "유저 정보 삭제")
 	@ApiResponses({

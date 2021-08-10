@@ -14,7 +14,7 @@ module.exports = {
         // target: 'https://localhost:8443/'
         target: 'https://i5d201.p.ssafy.io:8443/',
       },
-      '/groupcall': {
+      '/group-call': {
         // target: 'https://localhost:8443/'
         target: 'https://i5d201.p.ssafy.io:8443/',
       },
@@ -23,7 +23,7 @@ module.exports = {
         target: 'https://i5d201.p.ssafy.io:8443/',
       },
       '/websocket': {
-        target: 'https://0.0.0.0/',
+        target: 'https://i5d201.p.ssafy.io:8443/',
       }
     },
     historyApiFallback: true,
