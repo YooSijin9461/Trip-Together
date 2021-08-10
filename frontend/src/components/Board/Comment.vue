@@ -1,15 +1,32 @@
 <template>
-  <div class="d-flex justify-content-between">
-    <div class="align-items-center">
-      <i class="fas fa-user userId me-2"></i>{{ comment.userId }} :
-      {{ comment.comment }}
+  <div class="comment-container">
+    <div class="d-flex align-items-center justify-content-between">
+      <div>
+        <i class="fas fa-user userId me-2"></i>{{ comment.userId }}
+      </div>
+      <div v-if="comment.userId===state.loginId">
+        <i class="el-icon-edit update-icon mx-1" @click="[commentDetail(comment.commentNo), state.dialogVisible=true]"></i>
+        <i class="el-icon-delete delete-icon mx-1" @click="deleteComment(comment.commentNo)"></i>
+      </div>
     </div>
-    <div v-if="comment.userId===state.loginId">
-      <el-button type="warning" icon="el-icon-edit" circle @click="updateComment(comment.commentNo)"></el-button>
-      <el-button type="danger"  icon="el-icon-delete" circle @click="deleteComment(comment.commentNo)"></el-button>
-    </div>
+    {{ comment.comment }}
   </div>
-  <hr>
+  <hr class="my-1">
+  <el-dialog
+    custom-class="comment-update"
+    title="댓글 수정"
+    v-model="state.dialogVisible">
+        <el-input
+          placeholder="내용을 입력해주세요."
+          v-model="state.comment">
+        </el-input>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button type="primary" @click="updateComment(comment.commentNo)">수정</el-button>
+        <el-button @click="state.dialogVisible = false">취소</el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 
 <script>
@@ -28,11 +45,12 @@ export default {
     const store = useStore()
     const state = reactive({
       loginId: computed (() => store.getters['getUserid']),
+      dialogVisible: false,
+      comment: '',
     })
 
-
-    const deleteComment = (commentId) => {
-      store.dispatch('deleteComment', commentId )
+    const deleteComment = (commentNo) => {
+      store.dispatch('deleteComment', commentNo )
         .then(() => {
           ElMessage({
             message: '댓글이 삭제되었습니다.',
@@ -40,16 +58,52 @@ export default {
           })
         })
     }
-    const updateComment = (commentId) => {
-      store.dispatch('updateComment', commentId )
+    const commentDetail = (commentNo) => {
+      store.dispatch('commentDetail', commentNo)
+        .then(({ data }) => {
+          state.comment = data.comment
+        })
+    }
+    const updateComment = (commentNo) => {
+      const updateData = {
+        comment: state.comment
+      }
+      store.dispatch('updateComment', { commentNo: commentNo, data: updateData })
         .then(() => {
           ElMessage({
             message: '댓글이 수정되었습니다.',
             type: 'success'
           })
+          state.dialogVisible = false
         })
     }
-    return { state, deleteComment, updateComment }
+    return { state, deleteComment, commentDetail, updateComment }
   },
 }
 </script>
+
+<style>
+.comment-container {
+  margin: 0 1%;
+}
+.comment-button {
+  border-radius: 100%;
+  padding: 6px;
+  min-height: 0;
+}
+.update-icon:hover {
+  color: blue;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 17px;
+}
+.delete-icon:hover {
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 17px;
+}
+.comment-update {
+  min-width: 400px;
+}
+</style>
