@@ -12,6 +12,7 @@ import javax.swing.filechooser.FileSystemView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
@@ -114,15 +115,17 @@ public class UserController {
 //				f.mkdirs();
 //			System.out.println(res.getFile());
 			
-			Resource res = resourceLoader.getResource("classpath:/dist/upload/");
-			File f = res.getFile();
+			ClassPathResource resource = new ClassPathResource("dist/upload/");
+			
+			//Resource res = resourceLoader.getResource("classpath:/dist/upload/");
+			File f = resource.getFile();
 			if(!f.exists())
 				f.mkdirs();
-			System.out.println(res.getFile());
+			System.out.println(resource.getFile());
 			
 			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
 			registerInfo.setOrgImg(file.getOriginalFilename());
-			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
+			file.transferTo(new File(resource.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
 		}
 		registerInfo.setUserId(userId);
 		registerInfo.setPassword(password);
