@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { reactive, computed, onMounted } from 'vue'
+import { reactive, computed, onUpdated } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
@@ -82,7 +82,7 @@ export default {
       loginId: computed (() => store.getters['getUserid']),
       dialogVisible: false,
       comment: '',
-      commentList: [],
+      commentList: computed (() => store.getters['getCommentlist']),
     })
     const clickToList = () => {
       router.push({ name: 'ArticleList' })
@@ -124,22 +124,20 @@ export default {
       })
         .then(({ data }) => {
           console.log(data)
-          // state.comments.push(data)
           ElMessage ({
             message: '댓글을 작성하였습니다.',
             type: 'success',
           });
           store.dispatch('commentList', data.boardNo)
-            .then(({ data }) => {
-            state.commentList = data
+            .then(() => {
             state.comment = ''
             })
         })
     }
-    onMounted (() => {
+    onUpdated (() => {
       store.dispatch('commentList', state.articleNo)
-        .then(({ data }) => {
-          state.commentList = data
+        .then(() => {
+          state.commentList = computed(() => store.getters['getCommentlist'])
         })
     })
     return { state, clickToList, clickDelete, clickUpdate, createComment }
