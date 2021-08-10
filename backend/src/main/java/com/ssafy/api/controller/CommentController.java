@@ -62,7 +62,7 @@ public class CommentController {
 		
 	}
 	
-	@GetMapping("/{boardNo}")
+	@GetMapping("list/{boardNo}")
 	@ApiOperation(value = "댓글 목록", notes = "게시글 번호에 해당하는 댓글 목록 반환")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "성공"),
