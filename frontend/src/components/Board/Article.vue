@@ -122,8 +122,8 @@ export default {
         comment: state.comment, 
         userId: state.loginId
       })
-        .then(() => {
-          // console.log(data)
+        .then(({ data }) => {
+          console.log(data)
           // state.comments.push(data)
           ElMessage ({
             message: '댓글을 작성하였습니다.',
