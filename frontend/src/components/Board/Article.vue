@@ -129,16 +129,12 @@ export default {
             type: 'success',
           });
           store.dispatch('commentList', data.boardNo)
-            .then(() => {
-            state.comment = ''
-            })
+          state.comment = ''
         })
     }
     onUpdated (() => {
       store.dispatch('commentList', state.articleNo)
-        .then(() => {
-          state.commentList = computed(() => store.getters['getCommentlist'])
-        })
+      state.commentList = computed(() => store.getters['getCommentlist'])
     })
     return { state, clickToList, clickDelete, clickUpdate, createComment }
   },
