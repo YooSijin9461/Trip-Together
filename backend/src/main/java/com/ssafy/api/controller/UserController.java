@@ -3,15 +3,18 @@ package com.ssafy.api.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.ServletContext;
 import javax.swing.filechooser.FileSystemView;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -78,6 +81,9 @@ public class UserController {
 	@Autowired
 	ResourceLoader resourceLoader;
 	
+	@Value("${spring.resources.static-locations}")
+	String uploadDir;
+	
 	@PostMapping()
     @ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
@@ -87,45 +93,32 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<User> register(
-			@RequestPart(required=false) MultipartFile file,
-			@RequestPart("사용자 아이디") @ApiParam(required = true)String userId,
-			@RequestPart("사용자 비밀번호") @ApiParam(required = true)String password,
-			@RequestPart("사용자 이름") @ApiParam(required = true)String userName,
-			@RequestParam("사용자 성별") @ApiParam(required = true)char gender,
-			@RequestPart("사용자 핸드폰") @ApiParam(required = true)String phoneNum,
-			@RequestPart("사용자 이메일") @ApiParam(required = true)String email,
-			@RequestParam(required=true) String age,
-			@RequestPart(required=false) String mbti,
-			@RequestParam(required=false) String avgScore,
-			@RequestParam(required=false) boolean isGuide
-			/*@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo*/) throws IllegalStateException, IOException {
-		//file = registerInfo.getFile();
+			@RequestPart(value="file", required = false) MultipartFile file,
+			@RequestParam(required = true)String userId,
+			@RequestParam(required = true)String password,
+			@RequestParam(required = true)String userName,
+			@RequestParam(required = true)char gender,
+			@RequestParam(required = true)String phoneNum,
+			@RequestParam(required = true)String email,
+			@RequestParam(required = true) String age,
+			@RequestParam(required = false) String mbti,
+			@RequestParam(required = false) String avgScore,
+			@RequestParam(required = false) boolean isGuide
+			/*@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo*/) throws IllegalStateException, IOException, URISyntaxException {
 		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
-		String path = null;
 		if(file != null && file.getSize() > 0) {
-//			String rootPath = FileSystemView.getFileSystemView().getHomeDirectory().toString();
-//		    String basePath = rootPath + "/" + "single";
-//		    String filePath = basePath + "/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
-//		    File dest = new File(filePath);
-//		    file.transferTo(dest); // 파일 업로드 작업 수행
-		    
-//			Resource res = resourceLoader.getResource("resources/upload");
-//			File f = res.getFile();
-//			if(!f.exists())
-//				f.mkdirs();
-//			System.out.println(res.getFile());
-			
-			ClassPathResource resource = new ClassPathResource("dist/upload/");
-			
-			//Resource res = resourceLoader.getResource("classpath:/dist/upload/");
-			File f = resource.getFile();
+			ClassPathResource res = new ClassPathResource("/dist/upload/");
+			//Resource res = resourceLoader.getResource("/dist/upload/");
+			File f = res.getFile();
 			if(!f.exists())
 				f.mkdirs();
-			System.out.println(resource.getFile());
+			System.out.println(res.getFile());
+			//System.out.println("uploadDir : " + uploadDir);
 			
 			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
 			registerInfo.setOrgImg(file.getOriginalFilename());
-			file.transferTo(new File(resource.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
+//			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
+//			file.transferTo(new File(uploadDir + "upload/" + registerInfo.getImg()));
 		}
 		registerInfo.setUserId(userId);
 		registerInfo.setPassword(password);
@@ -144,48 +137,6 @@ public class UserController {
 		User user = userService.createUser(registerInfo);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-//    public ResponseEntity<User> register(
-//            @RequestPart("files") @ApiParam(required = false) MultipartFile file,
-//            @RequestPart("사용자 아이디") @ApiParam(required = true)String userId,
-//            @RequestPart("사용자 비밀번호") @ApiParam(required = true)String password,
-//            @RequestPart("사용자 이름") @ApiParam(required = true)String userName,
-//            @RequestParam("사용자 성별") @ApiParam(required = true)char gender,
-//            @RequestPart("사용자 핸드폰") @ApiParam(required = true)String phoneNum,
-//            @RequestPart("사용자 이메일") @ApiParam(required = true)String email,
-//            @RequestParam @ApiParam(required = true)int age,
-//            @RequestPart("사용자 MBTI") @ApiParam(required = false)String mbti,
-//            @RequestParam("사용자 평점") @ApiParam(required = false)double avgScore,
-//            @RequestParam("가이드 여부") @ApiParam(required = false)boolean isGuide
-//            /*@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo*/) throws IllegalStateException, IOException {
-//        //file = registerInfo.getFile();
-//        UserRegisterPostReq registerInfo = new UserRegisterPostReq();
-//        if(file != null && file.getSize() > 0) {
-//            String rootPath = FileSystemView.getFileSystemView().getHomeDirectory().toString();
-//            String basePath = rootPath + "/" + "single";
-//            String filePath = basePath + "/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
-//            File dest = new File(filePath);
-//            file.transferTo(dest); // 파일 업로드 작업 수행
-//            
-////            Resource res = resourceLoader.getResource("resources/upload");
-////            registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
-////            registerInfo.setOrgImg(file.getOriginalFilename());
-////            file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
-//        }
-//        registerInfo.setUserId(userId);
-//        registerInfo.setPassword(password);
-//        registerInfo.setUserName(userName);
-//        registerInfo.setGender(gender);
-//        registerInfo.setPhoneNum(phoneNum);
-//        registerInfo.setEmail(email);
-//        registerInfo.setAge(age);
-//        registerInfo.setMbti(mbti);
-//        registerInfo.setAvgScore(avgScore);
-//        registerInfo.setGuide(isGuide);
-//        registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
-//        registerInfo.setOrgImg(file.getOriginalFilename());
-//        User user = userService.createUser(registerInfo);
-//        return new ResponseEntity<User>(user, HttpStatus.OK);
-//    }
 	
 	@GetMapping()
 	@ApiOperation(value = "사용자 목록", notes = "사용자 목록을 List로 반환")
