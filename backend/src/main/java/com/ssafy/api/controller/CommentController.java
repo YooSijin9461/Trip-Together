@@ -62,15 +62,15 @@ public class CommentController {
 		
 	}
 	
-//	@GetMapping("/{boardNo}")
-//	@ApiOperation(value = "댓글 목록", notes = "게시글 번호에 해당하는 댓글 목록 반환")
-//	@ApiResponses({
-//		@ApiResponse(code = 200, message = "성공"),
-//		@ApiResponse(code = 500, message = "서버 오류")
-//	})
-//	public ResponseEntity<List<Comments>> selectComment(@PathVariable int boardNo){
-//		return new ResponseEntity<List<Comments>>(commentService.selectComment(boardNo), HttpStatus.OK);
-//	}
+	@GetMapping("/{boardNo}")
+	@ApiOperation(value = "댓글 목록", notes = "게시글 번호에 해당하는 댓글 목록 반환")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "성공"),
+		@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<List<Comments>> selectComment(@PathVariable int boardNo){
+		return new ResponseEntity<List<Comments>>(commentService.selectComment(boardNo), HttpStatus.OK);
+	}
 	
 	@PostMapping("/{commentNo}")
 	@ApiOperation(value = "댓글 상세 조회", notes = "<strong>댓글 번호</strong>를 통해 댓글 상세정보 조회")

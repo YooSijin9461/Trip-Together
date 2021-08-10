@@ -93,7 +93,7 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<User> register(
-			@RequestPart(value = "file", required = false)MultipartFile file,
+			@RequestPart(value="file", required = false) MultipartFile file,
 			@RequestParam(required = true)String userId,
 			@RequestParam(required = true)String password,
 			@RequestParam(required = true)String userName,
@@ -110,17 +110,8 @@ public class UserController {
 		if(file != null && file.getSize() > 0) {
 			ClassPathResource res = new ClassPathResource("/dist/upload/");
 			//Resource res = resourceLoader.getResource("/dist/upload/");
-<<<<<<< HEAD
 //			Resource res = resourceLoader.getResource("classpath:upload/");
 			File f = res.getFile();
-=======
-			
-//			Resource res = resourceLoader.getResource("classpath:upload/");
-//			File f = res.getFile();
-			ClassPathResource resource = new ClassPathResource("dist/upload/");
-			
-			File f = resource.getFile();
->>>>>>> e7e1b10bd95d3773328067dd39a6996d7595c135
 			if(!f.exists())
 				f.mkdirs();
 			System.out.println(res.getFile());
