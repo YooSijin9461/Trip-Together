@@ -93,7 +93,6 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<User> register(
-<<<<<<< HEAD
 			@RequestPart(value="file", required = false) MultipartFile file,
 			@RequestParam(required = true)String userId,
 			@RequestParam(required = true)String password,
@@ -106,54 +105,16 @@ public class UserController {
 			@RequestParam(required = false) String avgScore,
 			@RequestParam(required = false) boolean isGuide
 			/*@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo*/) throws IllegalStateException, IOException, URISyntaxException {
-=======
-			@RequestPart(value="file", required=false) MultipartFile file,
-			@RequestParam(required = true) String userId,
-			@RequestParam(required = true) String password,
-			@RequestParam(required = true) String userName,
-			@RequestParam(required = true) char gender,
-			@RequestParam(required = true) String phoneNum,
-			@RequestParam(required = true) String email,
-			@RequestParam(required=true) String age,
-			@RequestParam(required=false) String mbti,
-			@RequestParam(required=false) String avgScore,
-			@RequestParam(required=false) boolean isGuide
-			/*@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo*/) throws IllegalStateException, IOException {
 		//file = registerInfo.getFile();
->>>>>>> 099fd439dd71e40e1d7f163dd4dff62e5c90da27
 		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
 		if(file != null && file.getSize() > 0) {
-<<<<<<< HEAD
 			ClassPathResource res = new ClassPathResource("/dist/upload/");
 			//Resource res = resourceLoader.getResource("/dist/upload/");
-			File f = res.getFile();
-=======
-//			String rootPath = FileSystemView.getFileSystemView().getHomeDirectory().toString();
-//		    String basePath = rootPath + "/" + "single";
-//		    String filePath = basePath + "/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
-//		    File dest = new File(filePath);
-//		    file.transferTo(dest); // 파일 업로드 작업 수행
-		    
-//			Resource res = resourceLoader.getResource("resources/upload");
-//			File f = res.getFile();
-//			if(!f.exists())
-//				f.mkdirs();
-//			System.out.println(res.getFile());
 			
-<<<<<<< HEAD
-			Resource res = resourceLoader.getResource("classpath:upload/");
 			File f = res.getFile();
-=======
-			ClassPathResource resource = new ClassPathResource("dist/upload/");
-			
-			//Resource res = resourceLoader.getResource("classpath:/dist/upload/");
-			File f = resource.getFile();
->>>>>>> 9f9afc8be1aaea21969d1cf05fc05a2f5b334c8f
->>>>>>> 099fd439dd71e40e1d7f163dd4dff62e5c90da27
 			if(!f.exists())
 				f.mkdirs();
 			System.out.println(res.getFile());
-			//System.out.println("uploadDir : " + uploadDir);
 			
 			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
 			registerInfo.setOrgImg(file.getOriginalFilename());
