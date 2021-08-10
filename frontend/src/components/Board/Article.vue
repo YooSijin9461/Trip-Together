@@ -9,6 +9,12 @@
       </div>
       <hr class="article-line mt-3 mb-4">
       <span>{{ state.content }}</span>
+      <hr>
+      <h2>댓글</h2>
+      <el-input placeholder="댓글을 입력해주세요." v-model="state.comment" @keyup.enter="createComment"></el-input>
+      <hr>
+      <Comment
+        v-for="(comment, idx) in state.commentList" :key="idx" :comment="comment"/>
       <div class="to-list">
         <el-button type="primary" @click="clickToList">목록</el-button>
       </div>
@@ -55,7 +61,13 @@ import { reactive, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
+import Comment from '@/components/Board/Comment.vue'
+
 export default {
+  name: "Article",
+  components: {
+    Comment,
+  },
   setup() {
     const store = useStore()
     const router = useRouter()
@@ -68,7 +80,9 @@ export default {
       updateContent: store.getters['getBoardcontent'],
       articleNo: computed (() => store.getters['getBoardno']),
       loginId: computed (() => store.getters['getUserid']),
-      dialogVisible: false
+      dialogVisible: false,
+      comment: '',
+      commentList: computed (() => store.getters['getCommentlist']),
     })
     const clickToList = () => {
       router.push({ name: 'ArticleList' })
@@ -101,7 +115,23 @@ export default {
           router.push({ name: 'ArticleList' })
         })
     }
-    return { state, clickToList, clickDelete, clickUpdate }
+
+    const createComment = () => {
+      store.dispatch('createComment', { 
+        boardNo: state.articleNo, 
+        comment: state.comment, 
+        userId: state.loginId
+      })
+        .then(({ data }) => {
+          // state.comments.push(data)
+          ElMessage ({
+            message: '댓글을 작성하였습니다.',
+            type: 'success',
+          });
+          store.dispatch('commentList', data.boardNo)
+        })
+    }
+    return { state, clickToList, clickDelete, clickUpdate, createComment }
   },
 }
 </script>
