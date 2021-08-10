@@ -86,15 +86,15 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<User> register(
-			@RequestPart(required=false) MultipartFile file,
-			@RequestPart("사용자 아이디") @ApiParam(required = true)String userId,
-			@RequestPart("사용자 비밀번호") @ApiParam(required = true)String password,
-			@RequestPart("사용자 이름") @ApiParam(required = true)String userName,
-			@RequestParam("사용자 성별") @ApiParam(required = true)char gender,
-			@RequestPart("사용자 핸드폰") @ApiParam(required = true)String phoneNum,
-			@RequestPart("사용자 이메일") @ApiParam(required = true)String email,
+			@RequestPart(value="file", required=false) MultipartFile file,
+			@RequestParam(required = true) String userId,
+			@RequestParam(required = true) String password,
+			@RequestParam(required = true) String userName,
+			@RequestParam(required = true) char gender,
+			@RequestParam(required = true) String phoneNum,
+			@RequestParam(required = true) String email,
 			@RequestParam(required=true) String age,
-			@RequestPart(required=false) String mbti,
+			@RequestParam(required=false) String mbti,
 			@RequestParam(required=false) String avgScore,
 			@RequestParam(required=false) boolean isGuide
 			/*@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo*/) throws IllegalStateException, IOException {
@@ -114,7 +114,7 @@ public class UserController {
 //				f.mkdirs();
 //			System.out.println(res.getFile());
 			
-			Resource res = resourceLoader.getResource("classpath:/upload/");
+			Resource res = resourceLoader.getResource("classpath:upload/");
 			File f = res.getFile();
 			if(!f.exists())
 				f.mkdirs();
