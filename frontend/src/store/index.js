@@ -219,7 +219,7 @@ export default createStore({
     },
     commentList ({ commit }, articleNo) {
       return axios
-        .get(`${BASE_URL}/api/v1/${articleNo}/comments`)
+        .get(`${BASE_URL}/api/v1/comments/${articleNo}`)
         .then(({ data }) => {
           console.log(data)
           // commit("COMMENTLIST", data)
