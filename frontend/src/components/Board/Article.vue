@@ -130,6 +130,10 @@ export default {
             type: 'success',
           });
           store.dispatch('commentList', data.boardNo)
+            .then(({ data }) => {
+            state.commentList = data
+            state.comment = ''
+            })
         })
     }
     onMounted (() => {

@@ -219,11 +219,15 @@ export default createStore({
     },
     commentList ({ commit }, articleNo) {
       return axios
-        .get(`${BASE_URL}/api/v1/comments/${articleNo}`)
-        .then(({ data }) => {
-          console.log(data)
+        .get(`${BASE_URL}/api/v1/comments/list?boardNo=${articleNo}`)
+        // .then(({ data }) => {
+        //   console.log(data)
           // commit("COMMENTLIST", data)
-        })
+        // })
+    },
+    deleteComment ({ commit }, commentId ) {
+      return axios
+        .delete(`${BASE_URL}/api/v1/comments/${commentId}`)
     },
 
     // 공지
