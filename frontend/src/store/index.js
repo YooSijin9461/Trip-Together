@@ -221,7 +221,8 @@ export default createStore({
       return axios
         .get(`${BASE_URL}/api/v1/comments/${articleNo}`)
         .then(({ data }) => {
-          commit("COMMENTLIST", data)
+          console.log(data)
+          // commit("COMMENTLIST", data)
         })
     },
 
@@ -324,7 +325,7 @@ export default createStore({
 
     // 댓글
     getCommentlist (state) {
-      return state.comments
+      return state.commentList
     },
 
     // 공지
