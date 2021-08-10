@@ -43,7 +43,7 @@ import io.swagger.annotations.ApiResponses;
  */
 @Api(value = "댓글 API", tags = {"Comment"})
 @RestController
-@RequestMapping("/api/v1/comments")
+@RequestMapping("/api/v1")
 @CrossOrigin("*")
 public class CommentController {
 	@Autowired
@@ -62,7 +62,7 @@ public class CommentController {
 		
 	}
 	
-	@GetMapping("/{boardNo}")
+	@GetMapping("/{boardNo}/comments")
 	@ApiOperation(value = "댓글 목록", notes = "게시글 번호에 해당하는 댓글 목록 반환")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "성공"),
@@ -72,7 +72,7 @@ public class CommentController {
 		return new ResponseEntity<List<Comments>>(commentService.selectComment(boardNo), HttpStatus.OK);
 	}
 	
-	@PostMapping("/{commentNo}")
+	@PostMapping("/comments/{commentNo}")
 	@ApiOperation(value = "댓글 상세 조회", notes = "<strong>댓글 번호</strong>를 통해 댓글 상세정보 조회")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "성공"),
@@ -82,7 +82,7 @@ public class CommentController {
 		return new ResponseEntity<>(commentService.getInfoByCommentNo(commentNo), HttpStatus.OK);
 	}
 	
-	@PatchMapping("/{commentNo}")
+	@PatchMapping("/comments/{commentNo}")
 	@ApiOperation(value = "댓글 수정")
 	@ApiResponses({
 	        @ApiResponse(code = 200, message = "성공"),
@@ -96,7 +96,7 @@ public class CommentController {
 		return new ResponseEntity<>(comment, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/{commentNo}")
+	@DeleteMapping("/comments/{commentNo}")
 	@ApiOperation(value = "댓글 삭제")
 	@ApiResponses({
 	        @ApiResponse(code = 200, message = "성공"),
