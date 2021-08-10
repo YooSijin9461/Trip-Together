@@ -23,7 +23,8 @@ module.exports = {
         target: 'https://i5d201.p.ssafy.io:8443/',
       },
       '/websocket': {
-        target: 'https://i5d201.p.ssafy.io:8443/',
+        target: 'https://0.0.0.0:8443/',
+        // target: 'https://i5d201.p.ssafy.io:8443/',
       }
     },
     historyApiFallback: true,
