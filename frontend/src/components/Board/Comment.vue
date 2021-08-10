@@ -1,13 +1,12 @@
 <template>
-  <div>
+  <div class="d-flex">
     <i class="fas fa-user userId me-2"></i>{{ comment.userId }} :
     {{ comment.comment }}
     <div class="text-end">
-      <el-button type="warning" icon="el-icon-edit" circle></el-button>
-      <el-button type="danger"  icon="el-icon-delete" circle @click="deleteComment(commentId)"></el-button>
+      <el-button type="warning" icon="el-icon-edit" circle @click="updateComment(comment.commentNo)"></el-button>
+      <el-button type="danger"  icon="el-icon-delete" circle @click="deleteComment(comment.commentNo)"></el-button>
     </div>
     <hr>
-    {{ comment }}
   </div>
 </template>
 
@@ -29,8 +28,8 @@ export default {
     })
 
 
-    const deleteComment = () => {
-      store.dispatch('deleteComment', state.commentId )
+    const deleteComment = (commentId) => {
+      store.dispatch('deleteComment', commentId )
         .then(() => {
           ElMessage({
             message: '댓글이 삭제되었습니다.',
@@ -38,7 +37,16 @@ export default {
           })
         })
     }
-    return { state, deleteComment }
+    const updateComment = (commentId) => {
+      store.dispatch('updateComment', commentId )
+        .then(() => {
+          ElMessage({
+            message: '댓글이 수정되었습니다.',
+            type: 'success'
+          })
+        })
+    }
+    return { state, deleteComment, updateComment }
   },
 }
 </script>

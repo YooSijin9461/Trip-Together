@@ -132,6 +132,7 @@ export default {
           store.dispatch('commentList', data.boardNo)
             .then(({ data }) => {
             state.commentList = data
+            state.comment = ''
             })
         })
     }
