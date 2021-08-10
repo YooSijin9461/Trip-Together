@@ -105,7 +105,6 @@ public class CallHandler extends TextWebSocketHandler {
     log.info("PARTICIPANT {}: trying to join room {}", name, roomName);
     
     // 이 부분 추가
-//    userServcie.modifyConferenceRoomNo(name, Integer.parseInt(roomName));
     // userServcie.modifyConferenceRoomNo(name, Integer.parseInt(roomName));
     // 
     
@@ -118,7 +117,6 @@ public class CallHandler extends TextWebSocketHandler {
     final Room room = roomManager.getRoom(user.getRoomName());
     
     // 이부분 추가
-//    userServcie.modifyConferenceRoomNo(user.getName(), null);
     // userServcie.modifyConferenceRoomNo(user.getName(), null);
     // 이부분 추가
     
