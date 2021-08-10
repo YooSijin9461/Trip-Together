@@ -2,8 +2,12 @@
   <div>
     <i class="fas fa-user userId me-2"></i>{{ comment.userId }} :
     {{ comment.comment }}
-    <el-button type="warning">수정</el-button>
-    <el-button type="danger" @click="deleteComment(commentId)">삭제</el-button>
+    <div class="text-end">
+      <el-button type="warning" icon="el-icon-edit" circle></el-button>
+      <el-button type="danger"  icon="el-icon-delete" circle @click="deleteComment(commentId)"></el-button>
+    </div>
+    <hr>
+    {{ comment }}
   </div>
 </template>
 
