@@ -1,17 +1,19 @@
 <template>
-  <div class="d-flex">
-    <i class="fas fa-user userId me-2"></i>{{ comment.userId }} :
-    {{ comment.comment }}
-    <div class="text-end">
+  <div class="d-flex justify-content-between">
+    <div class="align-items-center">
+      <i class="fas fa-user userId me-2"></i>{{ comment.userId }} :
+      {{ comment.comment }}
+    </div>
+    <div v-if="comment.userId===state.loginId">
       <el-button type="warning" icon="el-icon-edit" circle @click="updateComment(comment.commentNo)"></el-button>
       <el-button type="danger"  icon="el-icon-delete" circle @click="deleteComment(comment.commentNo)"></el-button>
     </div>
-    <hr>
   </div>
+  <hr>
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import { useStore } from 'vuex'
 import { ElMessage } from 'element-plus'
 
@@ -25,6 +27,7 @@ export default {
   setup() {
     const store = useStore()
     const state = reactive({
+      loginId: computed (() => store.getters['getUserid']),
     })
 
 
