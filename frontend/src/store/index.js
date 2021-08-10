@@ -225,6 +225,10 @@ export default createStore({
           // commit("COMMENTLIST", data)
         // })
     },
+    deleteComment ({ commit }, commentId ) {
+      return axios
+        .delete(`${BASE_URL}/api/v1/comments/${commentId}`)
+    },
 
     // 공지
     noticePageList ({ commit }, pageNo) {
