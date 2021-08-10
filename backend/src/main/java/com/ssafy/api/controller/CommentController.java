@@ -68,7 +68,7 @@ public class CommentController {
 		@ApiResponse(code = 200, message = "성공"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<List<Comments>> selectComment(int boardNo){
+	public ResponseEntity<List<Comments>> selectComment(@PathVariable int boardNo){
 		return new ResponseEntity<List<Comments>>(commentService.selectComment(boardNo), HttpStatus.OK);
 	}
 	

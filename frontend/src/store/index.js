@@ -40,6 +40,9 @@ const getDefaultState = () => {
     boardContent: null,
     boardRate: null,
     boardCreate: null,
+    
+    // 댓글
+    commentList: [],
 
     // 공지
     noticeNo: null,
@@ -100,6 +103,10 @@ export default createStore({
       state.boardCreate = boardinfo.boardTime
     },
 
+    // 댓글
+    COMMENTLIST (state, comments) {
+      state.commentList = comments
+    },
 
     // 공지
     NOTICEINFO (state, noticeinfo) {
@@ -204,6 +211,20 @@ export default createStore({
       return axios
         .delete(`${BASE_URL}/api/v1/boards/${boardNo}`)
     },
+    
+    // 댓글
+    createComment ({ commit }, payload) {
+      return axios
+        .post(`${BASE_URL}/api/v1/comments`, payload)
+    },
+    commentList ({ commit }, articleNo) {
+      return axios
+        .get(`${BASE_URL}/api/v1/comments/${articleNo}`)
+        .then(({ data }) => {
+          console.log(data)
+          // commit("COMMENTLIST", data)
+        })
+    },
 
     // 공지
     noticePageList ({ commit }, pageNo) {
@@ -300,6 +321,11 @@ export default createStore({
     },
     getBoardno (state) {
       return state.boardNo
+    },
+
+    // 댓글
+    getCommentlist (state) {
+      return state.commentList
     },
 
     // 공지
