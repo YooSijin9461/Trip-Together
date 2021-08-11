@@ -82,6 +82,16 @@ public class CommentController {
 		return new ResponseEntity<>(commentService.getInfoByCommentNo(commentNo), HttpStatus.OK);
 	}
 	
+	@GetMapping("user/{userId}")
+	@ApiOperation(value = "댓글 목록", notes = "사용자가 입력한 댓글 목록 반환")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "성공"),
+		@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<List<Comments>> getCommentByUserId(@PathVariable String userId){
+		return new ResponseEntity<>(commentService.selectCommentByUserId(userId), HttpStatus.OK);
+	}
+	
 	@PatchMapping("/{commentNo}")
 	@ApiOperation(value = "댓글 수정")
 	@ApiResponses({

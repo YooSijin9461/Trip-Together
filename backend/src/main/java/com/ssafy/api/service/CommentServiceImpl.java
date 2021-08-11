@@ -56,4 +56,10 @@ public class CommentServiceImpl implements CommentService {
 		commentRepository.delete(comment);
 	}
 
+	@Override
+	public List<Comments> selectCommentByUserId(String userId) {
+		List<Comments> comments = commentRepositorySupport.findAllByUserId(userId).get();
+		return comments;
+	}
+
 }

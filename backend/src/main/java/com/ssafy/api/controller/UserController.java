@@ -2,31 +2,20 @@ package com.ssafy.api.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.List;
-import java.util.Optional;
 
-import javax.servlet.ServletContext;
-import javax.swing.filechooser.FileSystemView;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,27 +26,18 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ssafy.api.request.UserLoginPostReq;
 import com.ssafy.api.request.UserModifyPostReq;
 import com.ssafy.api.request.UserRegisterPostReq;
-import com.ssafy.api.response.UserLoginPostRes;
 import com.ssafy.api.response.UserRes;
 import com.ssafy.api.service.RoomService;
 import com.ssafy.api.service.UserService;
 import com.ssafy.common.auth.SsafyUserDetails;
-import com.ssafy.common.model.response.BaseResponseBody;
-import com.ssafy.common.util.JwtTokenUtil;
-import com.ssafy.db.entity.Board;
-import com.ssafy.db.entity.BoardSpec;
-import com.ssafy.db.entity.ConferenceRoom;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.UserSpec;
 import com.ssafy.db.repository.UserRepository;
-import com.ssafy.db.repository.UserRepositorySupport;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import springfox.documentation.annotations.ApiIgnore;
@@ -84,10 +64,15 @@ public class UserController {
 	
 	@Value("${spring.resources.static-locations}")
 	String uploadDir;
+<<<<<<< HEAD
+
+	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+=======
 	
 
 	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 
+>>>>>>> 7cfb8fb044d882d934c373643b8eb8ca1f2c0bd5
     @ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),

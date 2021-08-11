@@ -19,4 +19,5 @@ public interface CommentRepository extends JpaRepository<Comments, Integer> {
 //    Optional<List<User>> findByConferenceRoomNo(int conferenceNo);
 	  Optional<Comments> findByCommentNo(int commentNo);
 	  Optional<List<Comments>> findByBoardNo(int boardNo);
+	  Optional<List<Comments>> findAllByUserId(String userId);
 }

@@ -75,4 +75,9 @@ public class BoardServiceImpl implements BoardService {
 		boardRepository.delete(board);
 	}
 
+	@Override
+	public List<Board> selectByUserId(String userId) {
+		List<Board> boards = boardRepositorySupport.findAllByUserId(userId).get();
+		return boards;
+	}
 }
