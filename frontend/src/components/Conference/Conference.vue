@@ -39,6 +39,13 @@ import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import Chat from './Chat.vue'
+
+var socket = new WebSocket('wss://' + 'i5d201.p.ssafy.io:8443' + '/groupcall');
+
+window.onbeforeunload = function() {
+  socket.close()
+}
+
 export default {
   name: 'Conference',
   components: {
@@ -58,14 +65,14 @@ export default {
     // webRTC 기능 
 
     const kurentoUtils = require('kurento-utils')
-    const socket = new WebSocket('wss://' + 'i5d201.p.ssafy.io:8443' + '/groupcall')
+    //const socket = new WebSocket('wss://' + 'i5d201.p.ssafy.io:8443' + '/groupcall');
     const PARTICIPANT_MAIN_CLASS = 'participant main';
     const PARTICIPANT_CLASS = 'participant';
     const participants = {}
 
-    window.onbeforeunload = function() {
-      socket.close()
-    }
+    // window.onbeforeunload = function() {
+    //   socket.close()
+    // }
 
     socket.onmessage = (message) => {
       const parsedMessage = JSON.parse(message.data)
