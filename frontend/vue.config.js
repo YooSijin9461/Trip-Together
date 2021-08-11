@@ -3,7 +3,7 @@
 module.exports = {
   devServer: {
     https: true,
-    port: 8443,
+    port: 8083,
     open: true,
     proxy: {
       '/api/v1': {
