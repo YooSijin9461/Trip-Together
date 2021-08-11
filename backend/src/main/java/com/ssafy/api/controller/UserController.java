@@ -93,7 +93,8 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<User> register(
-			@RequestPart(value="file", required = false) MultipartFile file,
+			@RequestParam("file") MultipartFile file,
+			/* @RequestPart(value="file", required = false) MultipartFile file, */
 			@RequestParam(required = true)String userId,
 			@RequestParam(required = true)String password,
 			@RequestParam(required = true)String userName,
