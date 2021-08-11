@@ -8,20 +8,25 @@
         <span>{{ state.userId }}</span>
       </div>
       <hr class="article-line mt-3 mb-4">
-      <span>{{ state.content }}</span>
+      <div class="article-content">
+        <span>{{ state.content }}</span>
+      </div>
       <hr>
-      <h2>댓글</h2>
-      <el-input placeholder="댓글을 입력해주세요." v-model="state.comment" @keyup.enter="createComment"></el-input>
-      <hr>
-      <Comment
-        v-for="(comment, idx) in state.commentList" :key="idx" :comment="comment"/>
-      <div class="to-list">
+      <div class="article-buttons">
         <el-button type="primary" @click="clickToList">목록</el-button>
+        <div v-if="state.userId === state.loginId" class="article-button">
+          <el-button @click="state.dialogVisible = true">수정</el-button>
+          <el-button type="danger" @click="clickDelete(state.articleNo)">삭제</el-button>
+        </div>
       </div>
-      <div v-if="state.userId === state.loginId" class="article-button">
-        <el-button @click="state.dialogVisible = true">수정</el-button>
-        <el-button type="danger" @click="clickDelete(state.articleNo)">삭제</el-button>
+      <h4>댓글</h4>
+      <div class="d-flex">
+        <el-input class="pe-2" placeholder="댓글을 입력해주세요." v-model="state.comment" @keyup.enter="createComment"></el-input>
+        <el-button type="primary" @click="createComment">작성</el-button>
       </div>
+      <hr class="mb-1">
+      <Comment
+        v-for="(comment, idx) in state.commentList.slice().reverse()" :key="idx" :comment="comment"/>
       <el-dialog
         custom-class="article-update"
         title="게시글 수정"
@@ -39,7 +44,7 @@
             </div>
             <el-input
               type="textarea"
-              :rows="18"
+              :rows="10"
               placeholder="내용을 입력해주세요."
               v-model="state.updateContent">
             </el-input>
@@ -57,7 +62,7 @@
 </template>
 
 <script>
-import { reactive, computed, onMounted } from 'vue'
+import { reactive, computed, onUpdated } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
@@ -82,7 +87,7 @@ export default {
       loginId: computed (() => store.getters['getUserid']),
       dialogVisible: false,
       comment: '',
-      commentList: [],
+      commentList: computed (() => store.getters['getCommentlist']),
     })
     const clickToList = () => {
       router.push({ name: 'ArticleList' })
@@ -117,26 +122,28 @@ export default {
     }
 
     const createComment = () => {
-      store.dispatch('createComment', { 
-        boardNo: state.articleNo, 
-        comment: state.comment, 
-        userId: state.loginId
-      })
-        .then(({ data }) => {
-          console.log(data)
-          // state.comments.push(data)
-          ElMessage ({
-            message: '댓글을 작성하였습니다.',
-            type: 'success',
-          });
-          store.dispatch('commentList', data.boardNo)
+      if (state.comment) {
+        store.dispatch('createComment', { 
+          boardNo: state.articleNo, 
+          comment: state.comment, 
+          userId: state.loginId
         })
+          .then(({ data }) => {
+            ElMessage ({
+              message: '댓글을 작성하였습니다.',
+              type: 'success',
+            });
+            store.dispatch('commentList', data.boardNo)
+              .then(() => {
+                state.comment = ''
+              })
+          })
+      } else {
+        ElMessage.error("댓글을 입력하세요.")
+      }
     }
-    onMounted (() => {
+    onUpdated (() => {
       store.dispatch('commentList', state.articleNo)
-        .then(({ data }) => {
-          state.commentList = data
-        })
     })
     return { state, clickToList, clickDelete, clickUpdate, createComment }
   },
@@ -166,13 +173,16 @@ export default {
   width: 80%;
 }
 .to-list {
-  position: absolute;
-  bottom: 2%;
-  left: 2%;
 }
-.article-button {
-  position: absolute;
-  bottom: 2%;
-  right: 2%;
+.article-content {
+  min-height: 30%;
+}
+.article-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5%;
+}
+.article-update {
+  min-width: 400px;
 }
 </style>

@@ -63,6 +63,7 @@ export default {
       } else {
         store.dispatch('articleDetail', boardNo)
           .then(() => {
+            store.dispatch('commentList', boardNo)
             router.push({ name: 'Article', params: { articleId: boardNo }})
           })
       }
