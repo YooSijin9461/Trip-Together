@@ -46,7 +46,7 @@ export default {
     })
 
     const connect = () => {
-      const socket = new SockJS('https://i5d201.p.ssafy.io:8443/websocket');
+      const socket = new SockJS('https://3.34.94.178:8443/websocket');
       state.stompClient = Stomp.over(socket);
       state.stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
