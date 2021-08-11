@@ -27,7 +27,7 @@
     </span>
     <hr class="article-line my-0">
     <div class="mt-4 d-flex justify-content-end" v-if="state.token">
-      <el-button type="primary" @click="articleCreate">글쓰기</el-button>
+      <el-button type="success" @click="articleCreate">글쓰기</el-button>
     </div>
     <div class="article-pagination">
       <el-pagination

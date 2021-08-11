@@ -55,17 +55,6 @@
   <nav class="mt-5">
     <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
       <button 
-        class="nav-link active" 
-        id="nav-conference-tab" 
-        data-bs-toggle="tab" 
-        data-bs-target="#nav-conference" 
-        type="button" 
-        role="tab" 
-        aria-controls="nav-conference" 
-        aria-selected="true">
-        <i class="fas fa-video me-2"></i>방
-      </button>
-      <button 
         class="nav-link" 
         id="nav-article-tab" 
         data-bs-toggle="tab" 
@@ -76,6 +65,17 @@
         aria-selected="false">
         <i class="far fa-clipboard me-2"></i>게시글
       </button>
+      <button 
+        class="nav-link active" 
+        id="nav-conference-tab" 
+        data-bs-toggle="tab" 
+        data-bs-target="#nav-conference" 
+        type="button" 
+        role="tab" 
+        aria-controls="nav-conference" 
+        aria-selected="true">
+        <i class="far fa-comment me-2"></i>댓글
+      </button> 
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
@@ -130,10 +130,16 @@ button[aria-selected="false"] {
 }
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
   font-weight: bold;
-  color: orange;
+  color: lightgreen;
 }
 .nav-link:hover {
   font-weight: bold;
-  color: orange;
+  color: lightgreen;
+}
+.nav-tabs {
+  border-bottom: 1px solid lightgreen;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    border-color: lightgreen lightgreen #fff;
 }
 </style>

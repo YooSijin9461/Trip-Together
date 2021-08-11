@@ -102,7 +102,7 @@ img:hover {
 }
 .owner:hover {
   cursor: pointer;
-  color: black;
+  color: green;
   font-weight: bold;
 }
 .pagination {

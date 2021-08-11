@@ -6,7 +6,7 @@
     </div>
     <ul class="side-list nav-links">
       <li>
-        <a href="#" @click="clickSideHome">
+        <a @click="clickSideHome">
           <i class="fas fa-home" @click="clickSideHome"></i>
           <span class="links_name">홈</span>
         </a>
@@ -14,7 +14,7 @@
       </li>
       <li :class="{ showMenu: state.conferenceShow }">
         <div class="icon-link">
-          <a href="#">
+          <a>
             <i class="fas fa-video" @click="clickSideConference"></i>
             <span class="links_name me-auto">방</span>
             <span class="tooltip">방</span>
@@ -23,14 +23,14 @@
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">방</a></li>
-          <li><a href="#" @click="clickConferenceCategory('')">전체보기</a></li>
-          <li><a href="#" @click="clickConferenceCategory('normal')">일반</a></li>
-          <li><a href="#" @click="clickConferenceCategory('guide')">가이드</a></li>
+          <li><a @click="clickConferenceCategory('')">전체보기</a></li>
+          <li><a @click="clickConferenceCategory('normal')">일반</a></li>
+          <li><a @click="clickConferenceCategory('guide')">가이드</a></li>
         </ul>
       </li>
       <li :class="{ showMenu: state.articleShow }">
         <div class="icon-link">
-          <a href="#">
+          <a>
             <i class="far fa-clipboard" @click="clickSideBoard"></i>
             <span class="links_name me-auto">게시판</span>
             <span class="tooltip">게시판</span>
@@ -39,12 +39,12 @@
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">게시판</a></li>
-          <li><a href="#" @click="clickSideNotice">공지사항</a></li>
-          <li><a href="#" @click="clickSideArticle">게시글</a></li>
+          <li><a @click="clickSideNotice">공지사항</a></li>
+          <li><a @click="clickSideArticle">게시글</a></li>
         </ul>
       </li>
       <li>
-        <a href="#" @click="clickSideSearch">
+        <a @click="clickSideSearch">
           <i class="fas fa-search" @click="clickSideSearch"></i>
           <span class="links_name">검색</span>
         </a>
@@ -151,6 +151,9 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+a:hover {
+  cursor: pointer;
 }
 .sidebar{
   position: fixed;
