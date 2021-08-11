@@ -258,7 +258,7 @@ public class UserController {
 			return ResponseEntity.status(500).body(UserRes.of(user));
 	}
 	
-	@GetMapping("/{conferenceNo}")
+	@GetMapping("/conferences/{conferenceNo}")
 	@ApiOperation(value = "방 번호로 참여중인 유저 리스트 가져오기")
 	public ResponseEntity<List<User>> getUsersByConferenceNo(@PathVariable int conferenceNo){
 		return new ResponseEntity<List<User>>(userService.getUsersByConferenceNo(conferenceNo), HttpStatus.OK);
