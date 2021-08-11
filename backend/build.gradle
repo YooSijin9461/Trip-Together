@@ -208,6 +208,7 @@ dependencies {
 	//compile("com.fasterxml.jackson.core:jackson-databind:2.12.4")
 	
 	// multipart 종속성 추가
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.16.8'
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
 }

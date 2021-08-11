@@ -117,5 +117,11 @@ public class UserRegisterPostReq {
 	public void setOrgImg(String orgImg) {
 		this.orgImg = orgImg;
 	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 	
 }
