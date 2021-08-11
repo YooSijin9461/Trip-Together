@@ -5,9 +5,6 @@
       @openSearchDialog="onOpenSearchDialog"
       @openLogoutDialog="onOpenLogoutDialog"/>
   </div>
-  <div class="ms-5 ps-5">
-    <hr class="mt-2">
-  </div>
   <div class="router mt-4">
     <router-view
       @openConferenceDialog="onOpenConferenceDialog"

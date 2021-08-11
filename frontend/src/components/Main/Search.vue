@@ -85,7 +85,7 @@
   </template>
   <template #footer>
     <span class="dialog-footer">
-      <el-button type="primary" @click="clickSearch">검색</el-button>
+      <el-button type="success" @click="clickSearch">검색</el-button>
     </span>
   </template>
 </el-dialog>
@@ -252,5 +252,43 @@ export default {
 #searchResult:hover {
   cursor: pointer;
   background-color: #EAEAEA;
+}
+.el-select .el-input.is-focus .el-input__inner {
+  border-color: lightgreen !important;
+}
+.el-select__popper.el-popper[role=tooltip] {
+  border: 1px solid lightgreen !important;
+}
+.el-select__popper.el-popper[role=tooltip] .el-popper__arrow::before {
+  border-top: 1px solid lightgreen !important;
+  border-left: 1px solid lightgreen !important;
+}
+.el-select .el-input__inner:focus {
+  border-color: lightgreen !important;
+}
+.el-select-dropdown__item.selected {
+  color: green !important;
+}
+.el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
+  background-color: #e4ffe4 !important;
+}
+input.el-input__inner:focus {
+  border: 1px solid lightgreen;
+}
+#searchResult:hover {
+  cursor: pointer;
+  background-color: #e4ffe4;
+  font-weight: bold;
+  color: green;
+}
+.el-pager li.active, .el-pager li:hover {
+  color: green !important;
+}
+.el-pagination button:hover {
+  font-weight: bold;
+  color: green !important;
+}
+.el-tabs__item.is-active, .el-tabs__item:hover {
+    color: green !important;
 }
 </style>

@@ -99,12 +99,7 @@ export default {
   padding: 15px 0px;
   align-items: center;
 }
-.article-box:hover {
-  cursor: pointer;
-  background-color: #e4ffe4;
-  font-weight: bold;
-  color: green;
-}
+
 .date {
   font-size: 12px;
 }
@@ -118,6 +113,12 @@ export default {
   display: flex;
   justify-content: center;
   margin-top: 5%;
+}
+.article-box:hover {
+  cursor: pointer;
+  background-color: #e4ffe4;
+  font-weight: bold;
+  color: green;
 }
 .el-pager li.active, .el-pager li:hover {
   color: green;
