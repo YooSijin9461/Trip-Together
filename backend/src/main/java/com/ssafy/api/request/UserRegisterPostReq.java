@@ -42,9 +42,9 @@ public class UserRegisterPostReq {
 	@ApiModelProperty(name="선택한 파일명", example="")
 	@Nullable
 	String orgImg;
-//	@ApiModelProperty(name="이미지 등록을 위한 파일")
-//	@Nullable
-//	MultipartFile file;
+	@ApiModelProperty(name="이미지 등록을 위한 파일")
+	@Nullable
+	MultipartFile file;
 	public String getUserId() {
 		return userId;
 	}
