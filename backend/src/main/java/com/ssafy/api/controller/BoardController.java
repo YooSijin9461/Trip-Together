@@ -110,6 +110,16 @@ public class BoardController {
 		return new ResponseEntity<>(boardService.getInfoByBoardNo(boardNo), HttpStatus.OK);
 	}
 	
+	@GetMapping("user/{userId}")
+	@ApiOperation(value = "게시글 목록", notes = "사용자가 등록한 게시글 목록 반환")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "성공"),
+		@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<List<Board>> getBoardByUserId(@PathVariable String userId){
+		return new ResponseEntity<>(boardService.selectByUserId(userId), HttpStatus.OK);
+	}
+	
 	@PatchMapping("/{boardNo}")
 	@ApiOperation(value = "게시글 수정")
 	@ApiResponses({
