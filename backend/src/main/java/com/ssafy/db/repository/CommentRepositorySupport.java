@@ -38,4 +38,12 @@ public class CommentRepositorySupport {
 		if(comments == null) return Optional.empty();
 		return Optional.ofNullable(comments);
     }
+
+	public Optional<List<Comments>> findAllByUserId(String userId) {
+		List<Comments> comments = jpaQueryFactory.select(qComment).from(qComment)
+								.where(qComment.userId.eq(userId))
+								.fetch();
+		if(comments == null) return Optional.empty();
+		return Optional.ofNullable(comments);
+	}
 }

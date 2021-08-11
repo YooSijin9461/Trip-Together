@@ -20,6 +20,7 @@ public interface BoardRepository extends JpaRepository<Board, Integer>, JpaSpeci
 //    Optional<User> findByUserId(String userId);
 //    Optional<List<User>> findByConferenceRoomNo(int conferenceNo);
 	Optional<Board> findByBoardNo(int boardNo);
+	Optional<List<Board>> findAllByUserId(String userId);
 	Page<Board> findAll(Pageable pageable);
 	List<Board> findByBoardTitleContaining(String title, Pageable pageable);
 	List<Board> findByBoardContentContaining(String content, Pageable pageable);

@@ -28,8 +28,11 @@ public class BoardRepositorySupport {
        return Optional.ofNullable(board);
     }
     
-//    public Optional<List<Board>> selectBoard(){
-//    	List<Board> boards = jpaQueryFactory.select(qBoard).from(qBoard)
-//    						
-//    }
+    public Optional<List<Board>> findAllByUserId(String userId){
+    	List<Board> boards = jpaQueryFactory.select(qBoard).from(qBoard)
+    						.where(qBoard.userId.eq(userId)).fetch();
+    	if(boards == null) return Optional.empty();
+    	return Optional.ofNullable(boards);
+    						
+    }
 }
