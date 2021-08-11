@@ -85,7 +85,10 @@ public class UserController {
 	@Value("${spring.resources.static-locations}")
 	String uploadDir;
 	
-	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+	@PostMapping(/*
+					 * consumes = {MediaType.APPLICATION_JSON_VALUE,
+					 * MediaType.MULTIPART_FORM_DATA_VALUE}
+					 */)
     @ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),

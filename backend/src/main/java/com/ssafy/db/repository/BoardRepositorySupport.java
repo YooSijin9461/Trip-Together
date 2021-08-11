@@ -1,5 +1,6 @@
 package com.ssafy.db.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +28,8 @@ public class BoardRepositorySupport {
        return Optional.ofNullable(board);
     }
     
+//    public Optional<List<Board>> selectBoard(){
+//    	List<Board> boards = jpaQueryFactory.select(qBoard).from(qBoard)
+//    						
+//    }
 }
