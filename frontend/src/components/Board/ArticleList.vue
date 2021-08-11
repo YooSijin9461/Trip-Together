@@ -101,8 +101,9 @@ export default {
 }
 .article-box:hover {
   cursor: pointer;
-  background-color: #EAEAEA;
+  background-color: #e4ffe4;
   font-weight: bold;
+  color: green;
 }
 .date {
   font-size: 12px;
@@ -117,5 +118,15 @@ export default {
   display: flex;
   justify-content: center;
   margin-top: 5%;
+}
+.el-pager li.active, .el-pager li:hover {
+  color: green;
+}
+.el-pagination button:hover {
+  font-weight: bold;
+  color: green;
+}
+.el-tabs__item.is-active, .el-tabs__item:hover {
+    color: green;
 }
 </style>

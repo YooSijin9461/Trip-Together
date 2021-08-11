@@ -1,5 +1,5 @@
 <template>
-  <img class="main-logo" src="../../assets/logo.png" @click="clickLogo">
+  <img class="main-logo" src="../../assets/TTlogo.png" @click="clickLogo">
   <div class="nav-box d-flex justify-content-end align-items-center my-3">
     <div class="nav-button">
       <span v-if="state.token">
@@ -60,9 +60,10 @@ export default {
 <style>
 .main-logo {
   position: absolute;
-  left: 51%;
-  width: 60px;
-  height: 50px;
+  left: 49%;
+  top: 10px;
+  width: 120px;
+  height: 60px;
 }
 .menu-logo {
   display: inline-block;

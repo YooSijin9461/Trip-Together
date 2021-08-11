@@ -182,6 +182,7 @@ export default {
   .more:hover {
     cursor: pointer;
     font-weight: bold;
+    color: green;
   }
   th {
     width: 100px;
@@ -192,8 +193,9 @@ export default {
   }
   .home-board-box:hover {
     cursor: pointer;
-    background-color: #EAEAEA;
+    background-color: #e4ffe4;
     font-weight: bold;
+    color: green;
   }
   .owner {
     font-size: 12px;
