@@ -97,8 +97,8 @@ public class UserController {
     })
 	public ResponseEntity<User> register(
 //			@RequestParam("file") MultipartFile file,
-//			@RequestPart(value="file", required = false) MultipartFile file,
-			@ModelAttribute(value="file") MultipartFile file,
+			@RequestPart(value="file", required = false) MultipartFile file,
+//			@ModelAttribute(value="file") MultipartFile file,
 			@RequestParam(required = true)String userId,
 			@RequestParam(required = true)String password,
 			@RequestParam(required = true)String userName,
