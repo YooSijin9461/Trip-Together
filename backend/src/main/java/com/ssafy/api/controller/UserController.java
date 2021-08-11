@@ -91,7 +91,7 @@ public class UserController {
 		//file = registerInfo.getFile();
 		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
 		if(file != null && file.getSize() > 0) {
-			ClassPathResource res = new ClassPathResource("./src/main/resources/dist/upload");
+			ClassPathResource res = new ClassPathResource("/src/main/resources/dist/upload");
 //			ClassPathResource res = new ClassPathResource("/dist/upload/");
 			//Resource res = resourceLoader.getResource("/dist/upload/");
 //			Resource res = resourceLoader.getResource("classpath:upload/");
