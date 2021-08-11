@@ -64,7 +64,13 @@ public class UserController {
 	
 	@Value("${spring.resources.static-locations}")
 	String uploadDir;
+<<<<<<< HEAD
 	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+=======
+
+	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+	
+>>>>>>> bdf447c7b3526c35c120c023d1d33ea5bdf674be
     @ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
@@ -166,7 +172,7 @@ public class UserController {
 		return ResponseEntity.status(200).body(UserRes.of(user));
 	}
 	
-	@PostMapping("/{userId}")	// GetMapping으로 하니까 'getUsersByConferenceNo' 이 API랑 구분을 못한다는 에러 떠서 PostMapping으로 함
+	@GetMapping("/{userId}")	// GetMapping으로 하니까 'getUsersByConferenceNo' 이 API랑 구분을 못한다는 에러 떠서 PostMapping으로 함
 	@ApiOperation(value = "유저 정보 확인", notes = "유저 정보 보내기(토큰에 다 넣는 것 대신)")
 	@ApiResponses({
 		@ApiResponse(code = 500, message = "성공"),
@@ -256,7 +262,7 @@ public class UserController {
 			return ResponseEntity.status(500).body(UserRes.of(user));
 	}
 	
-	@GetMapping("/{conferenceNo}")
+	@GetMapping("/conferences/{conferenceNo}")
 	@ApiOperation(value = "방 번호로 참여중인 유저 리스트 가져오기")
 	public ResponseEntity<List<User>> getUsersByConferenceNo(@PathVariable int conferenceNo){
 		return new ResponseEntity<List<User>>(userService.getUsersByConferenceNo(conferenceNo), HttpStatus.OK);

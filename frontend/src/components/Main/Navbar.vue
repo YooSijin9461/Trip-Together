@@ -49,7 +49,7 @@ export default {
       emit('openLogoutDialog')
     }
     const clickProfile = () => {
-      router.push({ name: 'Profile' })
+      router.push({ name: 'MyProfile' })
     }
 
     return { state, clickLogo, clickLogin, clickSignup, clickLogout, clickProfile }   

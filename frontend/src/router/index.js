@@ -8,8 +8,13 @@ const routes = [
   },
   {
     path: '/profile',
-    name: 'Profile',
-    component: () => import('@/components/User/Profile.vue')
+    name: 'MyProfile',
+    component: () => import('@/components/User/MyProfile.vue')
+  },
+  {
+    path: '/profile/:userId',
+    name: 'OtherProfile',
+    component: () => import('@/components/User/OtherProfile.vue')
   },
 
   // 방
