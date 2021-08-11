@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -87,7 +88,7 @@ public class UserController {
 	
 
 	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-
+	@ResponseBody
     @ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
