@@ -21,6 +21,16 @@ const getDefaultState = () => {
     isGuide: false,
     userprofileimg: null,
     
+    // 타유저
+    otherName: null,
+    otherId: null,
+    otherAge: null,
+    otherGender: null,
+    otherPhonenum: null,
+    otherEmail: null,
+    otherMBTI: null,
+    otherGuide: false,
+    otherImg: null,
 
     // 방
     conferenceNo: null,
@@ -78,6 +88,17 @@ export default createStore({
     },
     CLEAR_STATE (state) {
       Object.assign(state, getDefaultState())
+    },
+    OTHERINFO (state, otherinfo) {
+      state.otherName = otherinfo.userName
+      state.otherId = otherinfo.userId
+      state.otherGender = otherinfo.gender
+      state.otherPhonenum = otherinfo.phoneNum
+      state.otherEmail = otherinfo.email
+      state.otherAge = otherinfo.age
+      state.otherImg = otherinfo.img
+      state.otherGuide = otherinfo.guide
+      state.otherMBTI = otherinfo.mbti
     },
 
     // 방
@@ -143,6 +164,13 @@ export default createStore({
             headers: { "Authorization" : "Bearer " + token }
           }
         )
+    },
+    otherProfile ({ commit }, userId) {
+      return axios
+        .post(`${BASE_URL}/api/v1/users/${userId}`)
+        .then(({ data }) => {
+          commit("OTHERINFO", data)
+        })
     },
     profileImg ({ commit }, payload) {
       return axios
@@ -289,6 +317,35 @@ export default createStore({
     },
     getUserguide (state) {
       return state.guide
+    },
+
+    // 타유저
+    getOtherid (state) {
+      return state.otherId
+    },
+    getOthername (state) {
+      return state.otherName
+    },
+    getOtherage (state) {
+      return state.otherAge
+    },
+    getOthergender (state) {
+      return state.otherGender
+    },
+    getOtherphonenum (state) {
+      return state.phoneNum
+    },
+    getOthermbti (state) {
+      return state.otherMBTI
+    },
+    getOtherguide (state) {
+      return state.otherGuide
+    },
+    getOtherimg (state) {
+      return state.otherImg
+    },
+    getOtheremail (state) {
+      return state.otherEmail
     },
 
     // 방
