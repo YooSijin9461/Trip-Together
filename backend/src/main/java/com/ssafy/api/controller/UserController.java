@@ -91,8 +91,7 @@ public class UserController {
 		//file = registerInfo.getFile();
 		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
 		if(file != null && file.getSize() > 0) {
-			ClassPathResource res = new ClassPathResource("/src/main/resources/dist/upload");
-//			ClassPathResource res = new ClassPathResource("/dist/upload/");
+			ClassPathResource res = new ClassPathResource("/dist/upload/");
 			//Resource res = resourceLoader.getResource("/dist/upload/");
 //			Resource res = resourceLoader.getResource("classpath:upload/");
 			File f = res.getFile();
@@ -175,9 +174,8 @@ public class UserController {
 		@ApiResponse(code = 500, message = "성공"),
 		@ApiResponse(code = 200, message = "성공")
 	})
-	public ResponseEntity<UserRes> readUserInfo(@PathVariable String userId){
-		User user = userService.getUserByUserId(userId);
-		return ResponseEntity.status(200).body(UserRes.of(user));
+	public ResponseEntity<User> readUserInfo(@PathVariable String userId){
+		return new ResponseEntity<>(userService.getUserByUserId(userId), HttpStatus.OK);
 	}
 
 	// PostMapping된 유저 정보 확인 API로 같이 할 수 있지 않을까?
@@ -260,7 +258,7 @@ public class UserController {
 			return ResponseEntity.status(500).body(UserRes.of(user));
 	}
 	
-	@GetMapping("/conferences/{conferenceNo}")
+	@GetMapping("conference/{conferenceNo}")
 	@ApiOperation(value = "방 번호로 참여중인 유저 리스트 가져오기")
 	public ResponseEntity<List<User>> getUsersByConferenceNo(@PathVariable int conferenceNo){
 		return new ResponseEntity<List<User>>(userService.getUsersByConferenceNo(conferenceNo), HttpStatus.OK);
