@@ -91,9 +91,10 @@
 </template>
 
 <script>
-import { reactive, onMounted } from 'vue'
+import { reactive, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import { ElMessage } from 'element-plus'
 
 export default {
   name: 'Home',
@@ -102,6 +103,7 @@ export default {
     const store = useStore()
 
     const state = reactive ({
+      token: computed (() => store.getters['getToken']),
       conferenceList: [],
       articleList: [],
       noticeList: [],
@@ -122,10 +124,14 @@ export default {
       router.push({ name: 'NoticeList' })
     }
     const clickArticle = (boardNo) => {
-      store.dispatch('articleDetail', boardNo)
-        .then(() => {
-          router.push({ name: 'Article', params: { articleId: boardNo }})
-        })
+      if (state.token) {
+        store.dispatch('articleDetail', boardNo)
+          .then(() => {
+            router.push({ name: 'Article', params: { articleId: boardNo }})
+          })
+      } else {
+        ElMessage.error('로그인이 필요합니다.')
+      }
     }
     const clickConference = (conferenceNo) => {
       store.dispatch('conferenceDetail', conferenceNo)
@@ -136,10 +142,14 @@ export default {
         })
     }
     const clickNotice = (noticeNo) => {
-      store.dispatch('noticeDetail', noticeNo)
-        .then(() => {
-          router.push({ name: 'Notice', params: { noticeId: noticeNo }})
-        })
+      if (state.token) {
+        store.dispatch('noticeDetail', noticeNo)
+          .then(() => {
+            router.push({ name: 'Notice', params: { noticeId: noticeNo }})
+          })
+      } else {
+        ElMessage.error('로그인이 필요합니다.')
+      }
     }
 
     onMounted (() => {

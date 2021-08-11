@@ -10,7 +10,7 @@
   </el-form>
   <template #footer>
     <span class="dialog-footer">
-      <el-button type="primary" @click="clickLogin">로그인</el-button>
+      <el-button type="success" @click="clickLogin">로그인</el-button>
     </span>
   </template>
 </el-dialog>
