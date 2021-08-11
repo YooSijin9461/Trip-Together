@@ -100,9 +100,12 @@ img:hover {
   width: 50px;
   height: 50px;
 }
+.owner {
+  font-size: 14px;
+}
 .owner:hover {
   cursor: pointer;
-  color: black;
+  color: green;
   font-weight: bold;
 }
 .pagination {
