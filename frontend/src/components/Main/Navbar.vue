@@ -1,6 +1,6 @@
 <template>
   <img class="main-logo" src="../../assets/TTlogo.png" @click="clickLogo">
-  <div class="nav-box d-flex justify-content-end align-items-center my-3">
+  <div class="nav-box d-flex justify-content-end align-items-center">
     <div class="nav-button">
       <span v-if="state.token">
         <el-dropdown>
@@ -61,17 +61,24 @@ export default {
 .main-logo {
   position: absolute;
   left: 49%;
-  top: 10px;
+  top: 5px;
   width: 120px;
   height: 60px;
 }
 .menu-logo {
   display: inline-block;
 }
-
 .nav-box {
-  height: 40px;
-  margin-left: 78px;
-  margin-right: 24px;
+  height: 70px;
+  padding-left: 78px;
+  padding-right: 24px;
+  border-bottom: 1px solid lightgreen;
+}
+.el-popper.is-light,.el-popper.is-light .el-popper__arrow::before {
+  border:1px solid lightgreen !important;
+} 
+.el-dropdown-menu__item:focus,.el-dropdown-menu__item:not(.is-disabled):hover {
+  background-color: #e4ffe4 !important;
+  color: green !important;
 }
 </style>

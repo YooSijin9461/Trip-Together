@@ -163,41 +163,56 @@ export default {
 </script>
 
 <style>
-  .el-carousel__item h3 {
-    color: #475669;
-    font-size: 14px;
-    opacity: 0.75;
-    line-height: 200px;
-    margin: 0;
-  }
-  .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-  }
-  .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
-  }
-  .more {
-    text-align: end;
-  }
-  .more:hover {
-    cursor: pointer;
-    font-weight: bold;
-    color: green;
-  }
-  th {
-    width: 100px;
-  }
-  .home-board-box {
-    padding: 15px 0px;
-    align-items: center;
-  }
-  .home-board-box:hover {
-    cursor: pointer;
-    background-color: #e4ffe4;
-    font-weight: bold;
-    color: green;
-  }
-  .owner {
-    font-size: 12px;
-  }
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 200px;
+  margin: 0;
+}
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+.el-carousel__item:nth-child(2n+1) {
+  background-color: #d3dce6;
+}
+.more {
+  text-align: end;
+}
+.more:hover {
+  cursor: pointer;
+  font-weight: bold;
+  color: green;
+}
+th {
+  width: 100px;
+}
+.home-board-box {
+  padding: 15px 0px;
+  align-items: center;
+}
+.home-board-box:hover {
+  cursor: pointer;
+  background-color: #e4ffe4;
+  font-weight: bold;
+  color: green;
+}
+.owner {
+  font-size: 12px;
+}
+.el-tabs--border-card {
+  border: 1px solid lightgreen;
+}
+.el-tabs--border-card>.el-tabs__header {
+  border-bottom: 1px solid lightgreen;
+  background-color: #e4ffe4;
+}
+.el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active {
+  color: green;
+  border-right-color: lightgreen;
+  border-left-color: lightgreen;
+}
+.el-tabs--border-card>.el-tabs__header .el-tabs__item:not(.is-disabled):hover {
+  color: green;
+}
 </style>

@@ -13,16 +13,16 @@
       </div>
       <hr>
       <div class="article-buttons">
-        <el-button type="primary" @click="clickToList">목록</el-button>
+        <el-button type="success" @click="clickToList">목록</el-button>
         <div v-if="state.userId === state.loginId" class="article-button">
-          <el-button @click="state.dialogVisible = true">수정</el-button>
+          <el-button type="primary" @click="state.dialogVisible = true">수정</el-button>
           <el-button type="danger" @click="clickDelete(state.articleNo)">삭제</el-button>
         </div>
       </div>
       <h4>댓글</h4>
       <div class="d-flex">
         <el-input class="pe-2" placeholder="댓글을 입력해주세요." v-model="state.comment" @keyup.enter="createComment"></el-input>
-        <el-button type="primary" @click="createComment">작성</el-button>
+        <el-button type="success" @click="createComment">작성</el-button>
       </div>
       <hr class="mb-1">
       <Comment

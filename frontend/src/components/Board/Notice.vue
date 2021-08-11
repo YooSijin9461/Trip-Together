@@ -5,7 +5,7 @@
       <hr class="notice-line mt-3 mb-4">
       <span>{{ state.content }}</span>
       <div class="to-list">
-        <el-button type="primary" @click="clickToList">목록</el-button>
+        <el-button type="success" @click="clickToList">목록</el-button>
       </div>
     </div>
   </div>
