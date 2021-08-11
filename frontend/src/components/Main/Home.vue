@@ -91,9 +91,10 @@
 </template>
 
 <script>
-import { reactive, onMounted } from 'vue'
+import { reactive, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import { ElMessage } from 'element-plus'
 
 export default {
   name: 'Home',
@@ -102,6 +103,7 @@ export default {
     const store = useStore()
 
     const state = reactive ({
+      token: computed (() => store.getters['getToken']),
       conferenceList: [],
       articleList: [],
       noticeList: [],
@@ -122,10 +124,14 @@ export default {
       router.push({ name: 'NoticeList' })
     }
     const clickArticle = (boardNo) => {
-      store.dispatch('articleDetail', boardNo)
-        .then(() => {
-          router.push({ name: 'Article', params: { articleId: boardNo }})
-        })
+      if (state.token) {
+        store.dispatch('articleDetail', boardNo)
+          .then(() => {
+            router.push({ name: 'Article', params: { articleId: boardNo }})
+          })
+      } else {
+        ElMessage.error('로그인이 필요합니다.')
+      }
     }
     const clickConference = (conferenceNo) => {
       store.dispatch('conferenceDetail', conferenceNo)
@@ -136,10 +142,14 @@ export default {
         })
     }
     const clickNotice = (noticeNo) => {
-      store.dispatch('noticeDetail', noticeNo)
-        .then(() => {
-          router.push({ name: 'Notice', params: { noticeId: noticeNo }})
-        })
+      if (state.token) {
+        store.dispatch('noticeDetail', noticeNo)
+          .then(() => {
+            router.push({ name: 'Notice', params: { noticeId: noticeNo }})
+          })
+      } else {
+        ElMessage.error('로그인이 필요합니다.')
+      }
     }
 
     onMounted (() => {
@@ -163,41 +173,56 @@ export default {
 </script>
 
 <style>
-  .el-carousel__item h3 {
-    color: #475669;
-    font-size: 14px;
-    opacity: 0.75;
-    line-height: 200px;
-    margin: 0;
-  }
-  .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-  }
-  .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
-  }
-  .more {
-    text-align: end;
-  }
-  .more:hover {
-    cursor: pointer;
-    font-weight: bold;
-    color: green;
-  }
-  th {
-    width: 100px;
-  }
-  .home-board-box {
-    padding: 15px 0px;
-    align-items: center;
-  }
-  .home-board-box:hover {
-    cursor: pointer;
-    background-color: #e4ffe4;
-    font-weight: bold;
-    color: green;
-  }
-  .owner {
-    font-size: 12px;
-  }
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 200px;
+  margin: 0;
+}
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+.el-carousel__item:nth-child(2n+1) {
+  background-color: #d3dce6;
+}
+.more {
+  text-align: end;
+}
+.more:hover {
+  cursor: pointer;
+  font-weight: bold;
+  color: green;
+}
+th {
+  width: 100px;
+}
+.home-board-box {
+  padding: 15px 0px;
+  align-items: center;
+}
+.home-board-box:hover {
+  cursor: pointer;
+  background-color: #e4ffe4;
+  font-weight: bold;
+  color: green;
+}
+.owner {
+  font-size: 12px;
+}
+.el-tabs--border-card {
+  border: 1px solid lightgreen;
+}
+.el-tabs--border-card>.el-tabs__header {
+  border-bottom: 1px solid lightgreen;
+  background-color: #e4ffe4;
+}
+.el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active {
+  color: green;
+  border-right-color: lightgreen;
+  border-left-color: lightgreen;
+}
+.el-tabs--border-card>.el-tabs__header .el-tabs__item:not(.is-disabled):hover {
+  color: green;
+}
 </style>

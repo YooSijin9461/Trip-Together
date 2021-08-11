@@ -23,7 +23,7 @@
   </div>
   <template #footer>
     <span class="dialog-footer">
-      <el-button type="primary" @click="clickConferenceDialog()">입장하기</el-button>
+      <el-button type="success" @click="clickConferenceDialog()">입장하기</el-button>
     </span>
   </template>
 </el-dialog>
@@ -49,6 +49,7 @@ export default {
     const conferenceDialogForm = ref(null)
 
     const state = reactive({
+      token: computed(() => store.getters['getToken']),
       owner: computed(() => store.getters['getUsername']),
       title: computed(() => store.getters['getConferencetitle']),
       description: computed(() => store.getters['getConferencedescription']),
@@ -69,16 +70,20 @@ export default {
     })
 
     const clickConferenceDialog = () => {
-      if (state.password) {
-        if (state.password === state.inputPassword) {
+      if (state.token) {
+        if (state.password) {
+          if (state.password === state.inputPassword) {
+            router.push({ name: 'Conference', params: { conferenceId: state.conferenceNo}})
+            emit('closeConferenceDialog')
+          } else {
+            ElMessage.error('비밀번호가 틀렸습니다.')
+          }
+        } else {
           router.push({ name: 'Conference', params: { conferenceId: state.conferenceNo}})
           emit('closeConferenceDialog')
-        } else {
-          ElMessage.error('비밀번호가 틀렸습니다.')
         }
       } else {
-        router.push({ name: 'Conference', params: { conferenceId: state.conferenceNo}})
-        emit('closeConferenceDialog')
+        ElMessage.error('로그인이 필요합니다.')
       }
     }
 
