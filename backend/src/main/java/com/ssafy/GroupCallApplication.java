@@ -6,10 +6,13 @@ import java.net.URI;
 import java.net.URL;
 import java.nio.charset.Charset;
 
+import javax.servlet.MultipartConfigElement;
+
 import org.kurento.client.KurentoClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
@@ -17,6 +20,8 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
@@ -77,4 +82,18 @@ public class GroupCallApplication implements WebSocketConfigurer{
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
       registry.addHandler(groupCallHandler(), "/groupcall").setAllowedOrigins("*"); // crossorigin문제 해결
     }
+    //MultipartResolver Bean 추가
+    @Bean
+    public MultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(2000000000);
+        return multipartResolver;
+    }
+//    @Bean
+//    public MultipartConfigElement multipartConfigElement() {
+//    MultipartConfigFactory factory = new MultipartConfigFactory();
+//    factory.setMaxFileSize("512MB");
+//    factory.setMaxRequestSize("512MB");
+//    return factory.createMultipartConfig();
+//    }
 }
