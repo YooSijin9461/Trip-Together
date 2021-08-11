@@ -1,8 +1,7 @@
 <template>
   <div class="sidebar" :class="{ open: state.isOpen }">
     <div class="logo-details">
-      <i class="fas fa-home icon"></i>
-      <div class="logo_name">CodingLab</div>
+      <img class="icon ms-2" src="../../assets/TTlogo.png" @click="clickLogo">
       <i class="fas fa-bars" id="btn" @click="closeBtn"></i>
     </div>
     <ul class="side-list nav-links">
@@ -159,13 +158,16 @@ export default {
   top: 0;
   height: 100%;
   width: 78px;
-  background: white;
+  background: lightgreen;
   padding: 6px 14px;
   z-index: 99;
   transition: all 0.5s ease;
+  opacity: 0.85;
 }
 .sidebar.open{
   width: 250px;
+  background-color: lightgreen;
+  opacity: 0.85;
 }
 .sidebar .logo-details{
   height: 60px;
@@ -173,20 +175,20 @@ export default {
   align-items: center;
   position: relative;
 }
+.icon {
+  width: 125px;
+  height: 60px;
+}
 .sidebar .logo-details .icon{
   opacity: 0;
   transition: all 0.5s ease;
 }
-.sidebar .logo-details .logo_name{
-  color: black;
-  font-size: 20px;
-  font-weight: 600;
-  opacity: 0;
-  transition: all 0.5s ease;
-}
-.sidebar.open .logo-details .icon,
-.sidebar.open .logo-details .logo_name{
+.sidebar.open .logo-details .icon {
   opacity: 1;
+}
+.sidebar .logo-details #btn:hover {
+  color: white;
+  font-size: 25px;
 }
 .sidebar .logo-details #btn{
   position: absolute;
@@ -226,7 +228,7 @@ export default {
   top: -20px;
   left: calc(100% + 15px);
   z-index: 3;
-  background: #fff;
+  background: white;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   padding: 6px 12px;
   border-radius: 4px;
@@ -259,10 +261,10 @@ export default {
   align-items: center;
   text-decoration: none;
   transition: all 0.4s ease;
-  background: white;
+  background: lightgreen;
 }
 .sidebar li a:hover{
-  background: orange;
+  background: white;
 }
 .sidebar li a .links_name{
   color: black;
@@ -280,7 +282,8 @@ export default {
 .sidebar li a:hover .links_name,
 .sidebar li a:hover i{
   transition: all 0.5s ease;
-  color: white;
+  color: green;
+  font-weight: bold;
 }
 .sidebar li i{
   height: 50px;
@@ -295,7 +298,7 @@ export default {
   left: 0;
   bottom: -8px;
   padding: 10px 14px;
-  background: orange;
+  background: white;
   transition: all 0.5s ease;
   overflow: hidden;
 }
@@ -317,7 +320,7 @@ export default {
 .sidebar li.side-profile .name {
   font-size: 15px;
   font-weight: 400;
-  color: white;
+  color: black;
   white-space: nowrap;
 }
 .sidebar .side-profile #log_out{
@@ -325,7 +328,7 @@ export default {
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  background: orange;
+  background: white;
   width: 100%;
   height: 60px;
   line-height: 60px;
@@ -355,37 +358,40 @@ export default {
   display: block;
 }
 .sidebar .nav-links li.showMenu .icon-link {
-  background-color: orange;
+  background-color: white;
   border-radius: 12px 12px 0 0;
 }
 .sidebar .nav-links li.showMenu .icon-link a{
-  background-color: orange;
-  color: white;
+  background-color: white;
+  color: lightgreen;
 }
 .sidebar .nav-links li.showMenu .icon-link a i{
-  color: white;
+  color: green;
+  font-weight: bold;
 }
 .sidebar .nav-links li.showMenu .icon-link a span{
-  color: white;
+  color: green;
+  font-weight: bold;
 }
 .sidebar .nav-links li.showMenu .sub-menu li {
-  color: white;
-  background-color: orange;
+  color: green;
+  background-color: white;
 }
 .sidebar .nav-links li.showMenu i.arrow{
   transform: rotate(-180deg);
 }
 .sidebar .nav-links li.showMenu .sub-menu li a {
-    color: black;
-    background-color: orange;
+    color: green;
+    background-color: white;
 }
 .sidebar .nav-links li.showMenu .sub-menu li a:hover {
-    color: white;
+    color: green;
+    font-weight: bold;
 }
 .sidebar .nav-links li .sub-menu{
   padding: 6px 6px 14px 80px;
   margin-top: -10px;
-  background: orange;
+  background: white;
   border-radius: 12px;
   display: none;
 }
