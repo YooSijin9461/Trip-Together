@@ -71,7 +71,7 @@
   </el-form>
   <template #footer>
     <span class="dialog-footer">
-      <el-button type="primary" @click="clickSignup">회원가입</el-button>
+      <el-button type="success" @click="clickSignup">회원가입</el-button>
     </span>
   </template>
 </el-dialog>

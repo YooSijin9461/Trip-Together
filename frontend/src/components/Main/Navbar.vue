@@ -81,4 +81,8 @@ export default {
   background-color: #e4ffe4 !important;
   color: green !important;
 }
-</style>
+.el-button--default:focus, .el-button--default:hover {
+  color: green !important;
+  border-color: lightgreen !important;
+  background-color: #e4ffe4 !important;
+}</style>

@@ -259,10 +259,6 @@ export default {
 .el-select__popper.el-popper[role=tooltip] {
   border: 1px solid lightgreen !important;
 }
-.el-select__popper.el-popper[role=tooltip] .el-popper__arrow::before {
-  border-top: 1px solid lightgreen !important;
-  border-left: 1px solid lightgreen !important;
-}
 .el-select .el-input__inner:focus {
   border-color: lightgreen !important;
 }
