@@ -175,8 +175,9 @@ public class UserController {
 		@ApiResponse(code = 500, message = "성공"),
 		@ApiResponse(code = 200, message = "성공")
 	})
-	public ResponseEntity<User> readUserInfo(@PathVariable String userId){
-		return new ResponseEntity<>(userService.getUserByUserId(userId), HttpStatus.OK);
+	public ResponseEntity<UserRes> readUserInfo(@PathVariable String userId){
+		User user = userService.getUserByUserId(userId);
+		return ResponseEntity.status(200).body(UserRes.of(user));
 	}
 
 	// PostMapping된 유저 정보 확인 API로 같이 할 수 있지 않을까?
