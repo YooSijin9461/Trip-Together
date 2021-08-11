@@ -139,10 +139,17 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
-    implementation('commons-io:commons-io:2.6')
-    implementation('commons-fileupload:commons-fileupload:1.4')
+    implementation("commons-io:commons-io:2.6")
+    implementation("commons-fileupload:commons-fileupload:1.4")
     implementation("org.apache.commons:commons-collections4:4.4")
     implementation("org.apache.commons:commons-lang3:3.9")
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations
+	implementation ("com.fasterxml.jackson.core:jackson-annotations:2.11.4")
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
+	implementation ("com.fasterxml.jackson.core:jackson-core:2.11.4")
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+	implementation ("com.fasterxml.jackson.core:jackson-databind:2.11.4")
+    
 
     implementation("com.querydsl:querydsl-jpa:${querydslVer}")
     implementation("com.querydsl:querydsl-apt:${querydslVer}")
@@ -196,7 +203,7 @@ dependencies {
             //'org.bouncycastle:bcprov-jdk15on:1.60',
             'io.jsonwebtoken:jjwt-jackson:0.11.2' // or 'io.jsonwebtoken:jjwt-gson:0.11.2' for gson
     // post 타입 415에러를 해결하기 위한 dependency
-	compile('com.fasterxml.jackson.core:jackson-databind:2.4.3')
+	//compile("com.fasterxml.jackson.core:jackson-databind:2.12.4")
 }
 
 test {
