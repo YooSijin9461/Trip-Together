@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="container d-flex justify-content-end createBtn" v-if="state.token">
-      <el-button class="me-5" type="primary" @click="clickConferenceCreate">방 생성</el-button>
+      <el-button class="me-5" type="success" @click="clickConferenceCreate">방 생성</el-button>
     </div>
   </div>
   <div class="pagination">
