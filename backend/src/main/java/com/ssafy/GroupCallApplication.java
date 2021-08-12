@@ -80,7 +80,7 @@ public class GroupCallApplication implements WebSocketConfigurer{
     }
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-      registry.addHandler(groupCallHandler(), "/groupcall").setAllowedOrigins("*").withSockJS(); // crossorigin문제 해결
+      registry.addHandler(groupCallHandler(), "/groupcall").setAllowedOrigins("*"); // crossorigin문제 해결
     }
 //    //MultipartResolver Bean 추가
 //    @Bean
