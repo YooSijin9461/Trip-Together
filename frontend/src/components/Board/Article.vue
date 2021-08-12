@@ -176,6 +176,7 @@ export default {
 }
 .article-content {
   min-height: 30%;
+  word-break: break-all;
 }
 .article-buttons {
   display: flex;
