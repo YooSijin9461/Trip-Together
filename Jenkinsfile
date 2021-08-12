@@ -31,6 +31,8 @@ pipeline {
 			agent any
 			
 			steps {
+				sh 'cd ./backend && chmod +x gradlew && ./gradlew clean build'
+				
 				sh 'docker build -t frontimg:latest ./frontend'
 				sh 'docker build -t backimg:latest ./backend'
 			}
