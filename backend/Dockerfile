@@ -3,7 +3,6 @@ VOLUME /tmp
 #COPY gradlew ./
 
 #RUN echo $ls
-#RUN chmod +x gradlew
 #RUN ./gradlew clean build
 
 COPY . .
@@ -15,10 +14,11 @@ COPY . .
 #COPY src src
 #RUN gradle cleanQuerydslSourcesDir
 
-#RUN ./gradlew build --stacktrace
-#RUN ./gradlew bootjar
+RUN chmod +x gradlew
+RUN ./gradlew build --stacktrace
+RUN ./gradlew bootjar
 
-#COPY --from=builder build/libs/*.jar app.jar
+COPY --from=builder build/libs/*.jar app.jar
 
 ADD ./build/libs/*.jar app.jar
 #ENV JAVA_OPTS=""
