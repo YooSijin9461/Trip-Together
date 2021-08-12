@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -88,7 +89,7 @@ public class UserController {
 	String uploadDir;
 	
 //	@PostMapping(/* consumes = {MediaType.MULTIPART_FORM_DATA_VALUE} */)
-	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 	@ResponseBody
     @ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
@@ -114,6 +115,9 @@ public class UserController {
 			/*@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo*/) throws IllegalStateException, IOException, URISyntaxException {
 		//file = registerInfo.getFile();
 		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
+		
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.set("Accept", "multipart/form-data");
 		if(file != null && file.getSize() > 0) {
 //			ClassPathResource res = new ClassPathResource("/src/main/resources/dist/upload/");
 			ClassPathResource res = new ClassPathResource("/dist/upload/");
