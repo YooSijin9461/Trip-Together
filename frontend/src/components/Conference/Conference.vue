@@ -1,6 +1,10 @@
 <template>
   <div id="room">
     <div class="d-flex justify-content-center align-items-center py-2">
+      <!-- 지도버튼 -->
+      <div>
+        <i class="fas fa-map-marked-alt map-icon" @click="clickMap"></i>
+      </div>
       <h2 class="my-0 mx-auto">{{ state.conferenceTitle }}</h2>
       <!-- 채팅버튼 -->
       <div 
@@ -12,8 +16,23 @@
       </div>
     </div>
     <hr>
-    <div class="container">
-      <div id="participants"></div>
+    <div class="conference">
+      <div class="conference-box">
+        <div class="conference-container">
+          <div :class="{ participants: state.mapVisible }" id="participants"></div>
+          <div :class="{ showMap: state.mapVisible }">
+            <div class="map">
+              <Map/>
+            </div>
+          </div>
+        </div>
+        <div v-if="state.username === state.owner">
+          <el-button type="danger" id="leave" @click="roomDelete()">나가기</el-button>
+        </div>
+        <div v-else>
+          <el-button type="danger" id="leave" @click="leaveRoom()">나가기</el-button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -25,12 +44,7 @@
       <Chat/>
     </div>
   </div>
-  <div v-if="state.username === state.owner">
-    <el-button type="danger" id="leave" @click="roomDelete()">나가기</el-button>
-  </div>
-  <div v-else>
-    <el-button type="danger" id="leave" @click="leaveRoom()">나가기</el-button>
-  </div>
+  
 </template>
 
 <script>
@@ -39,13 +53,15 @@ import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import Chat from './Chat.vue'
+import Map from './Map.vue'
 
 export default {
   name: 'Conference',
   components: {
     Chat,
+    Map,
   },
-  setup(props, { emit }) {
+  setup() {
     const store = useStore()
     const router = useRouter()
 
@@ -53,8 +69,14 @@ export default {
       username: computed(() => store.getters['getUsername']),
       conferenceNo: computed(() => store.getters['getConferenceno']),
       conferenceTitle: computed(() => store.getters['getConferencetitle']),
-      owner: computed(() => store.getters['getConferenceowner'])
+      owner: computed(() => store.getters['getConferenceowner']),
+      mapVisible: false,
     })
+
+    const clickMap = () => {
+      state.mapVisible = !state.mapVisible
+      console.log(state.mapVisible)
+    }
 
     // webRTC 기능 
 
@@ -297,7 +319,7 @@ export default {
     //     participants[key].dispose()
     //   }
     // })
-    return { state, leaveRoom, callResponse, roomDelete }
+    return { state, clickMap, leaveRoom, callResponse, roomDelete }
   }
 }
 </script>
@@ -307,20 +329,16 @@ export default {
   width: 100%;
   text-align: center;
 }
-#leave {
-  position: absolute;
-  right: 5%;
-  bottom: 5%;
-}
 .participant {
 	margin: 10px;
 	width: 30%;
+  max-width: 365px;
 	text-align: center;
 	overflow: hide;
 	float: left;
 	padding: 10px;
 	border-radius: 10px;
-  background-color: lightgoldenrodyellow;
+  background-color: #e4ffe4;
 	-webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px
 		rgba(0, 0, 0, 0.3);
 	box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px
@@ -334,13 +352,14 @@ export default {
 .participant:hover {
 	opacity: 1;
   cursor: pointer;
-	background-color: orange;
+	background-color: lightgreen;
 	-webkit-transition: all 0.5s linear;
 	transition: all 0.5s linear;
 }
 .participant video, .participant.main video {
 	width: 100%!important;
   height: auto!important;
+  max-height: 300px;
   border-radius: 5px;
   margin-bottom: 2%;
 }
@@ -351,12 +370,10 @@ export default {
 }
 
 .participant.main {
-	width: 40%;
+	width: 30%;
+  max-width: 365px;
 	margin: 10px;
-}
-
-.participant.main video {
-	height: auto;
+  background-color: lightgreen;
 }
 
 .animate {
@@ -405,7 +422,6 @@ a.hovertext {
 	text-decoration: none !important;
 	text-align: center;
 }
-
 a.hovertext:after {
 	content: attr(title);
 	position: absolute;
@@ -422,24 +438,69 @@ a.hovertext:after {
 	-o-transition: 0.5s;
 	-ms-transition: 0.5s;
 }
-
 a.hovertext:hover:after, a.hovertext:focus:after {
 	opacity: 1.0;
 }
-
 .offcanvas-end {
   width: 300px;
 }
-
 .offcanvas-body {
   padding: 1rem 0;
 }
-
 .chatting-icon {
   font-size: 25px;
   padding-right: 2rem;
   position: absolute;
   top: 6.9rem;
   right: 1rem;
+}
+.chatting-icon:hover {
+  color: lightgreen;
+}
+.map-icon {
+  font-size: 25px;
+  position: absolute;
+  top:6.9rem;
+  left: 7rem;
+}
+.map-icon:hover {
+  cursor: pointer;
+  color: lightgreen;
+}
+.conference {
+  display: flex;
+  justify-content: center;
+}
+.conference-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 85%;
+  width: 85%;
+}
+.conference-container {
+  width: 100%;
+  height: 100%;
+}
+.showMap {
+  height: 100%;
+}
+.conference div .map {
+  display: none;
+  height: 100%;
+}
+.conference div.showMap .map {
+  display: block;
+  margin: 10px;
+}
+.vue-map-container {
+  height: 75%;
+  width: 100%;
+}
+.participants {
+  display: flex;
+  justify-content: center;
 }
 </style>
