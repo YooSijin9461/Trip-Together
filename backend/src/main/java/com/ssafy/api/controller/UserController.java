@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.core.io.Resource;
 
 import com.ssafy.api.request.UserModifyPostReq;
 import com.ssafy.api.request.UserRegisterPostReq;
@@ -64,13 +65,8 @@ public class UserController {
 	
 	@Value("${spring.resources.static-locations}")
 	String uploadDir;
-<<<<<<< HEAD
-	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-=======
-
-	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 	
->>>>>>> bdf447c7b3526c35c120c023d1d33ea5bdf674be
+	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     @ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
@@ -80,7 +76,7 @@ public class UserController {
     })
 	public ResponseEntity<User> register(
 //			@RequestParam("file") MultipartFile file,
-			@RequestPart(value="file", required = false) MultipartFile file,
+			MultipartFile file,
 			@RequestParam(required = true)String userId,
 			@RequestParam(required = true)String password,
 			@RequestParam(required = true)String userName,
@@ -95,9 +91,9 @@ public class UserController {
 		//file = registerInfo.getFile();
 		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
 		if(file != null && file.getSize() > 0) {
-			ClassPathResource res = new ClassPathResource("/src/main/resources/dist/upload");
-//			ClassPathResource res = new ClassPathResource("/dist/upload/");
-			//Resource res = resourceLoader.getResource("/dist/upload/");
+//			ClassPathResource res = new ClassPathResource("/src/main/resources/dist/upload");
+			ClassPathResource res = new ClassPathResource("/dist/upload/");
+//			Resource res = resourceLoader.getResource("/src/main/resources/dist/upload");
 //			Resource res = resourceLoader.getResource("classpath:upload/");
 			File f = res.getFile();
 			if(!f.exists())
