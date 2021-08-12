@@ -14,10 +14,11 @@ COPY . .
 #COPY src src
 #RUN gradle cleanQuerydslSourcesDir
 
-RUN chmod +x gradlew
-RUN ./gradlew build --stacktrace
+RUN chmod +x ./gradlew
+#RUN ./gradlew build --stacktrace
 RUN ./gradlew bootjar
 
+FROM adoptopenjdk:8-jdk-hotspot
 COPY --from=builder build/libs/*.jar app.jar
 
 #ADD ./build/libs/*.jar app.jar
