@@ -126,6 +126,9 @@ public class UserController {
 				f.mkdirs();
 			System.out.println(res.getFile());
 			
+			f.setWritable(true);
+			f.setReadable(true);
+			
 			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
 			registerInfo.setOrgImg(file.getOriginalFilename());
 			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
