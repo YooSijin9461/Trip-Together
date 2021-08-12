@@ -87,13 +87,8 @@ public class UserController {
 	@Value("${spring.resources.static-locations}")
 	String uploadDir;
 	
-<<<<<<< HEAD
-	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-=======
-
-	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+	@PostMapping(/* consumes = {MediaType.MULTIPART_FORM_DATA_VALUE} */)
 	@ResponseBody
->>>>>>> b9d6f1acfaccd260dfbee18e24cecd3b1c741fa3
     @ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
@@ -102,13 +97,9 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<User> register(
-//			@RequestParam("file") MultipartFile file,
-<<<<<<< HEAD
-			MultipartFile file,
-=======
-			@RequestPart(value="file", required = false) MultipartFile file,
+			@RequestParam("file") MultipartFile file,
+//			@RequestPart(value="file", required = false) MultipartFile file,
 //			@ModelAttribute(value="file") MultipartFile file,
->>>>>>> b9d6f1acfaccd260dfbee18e24cecd3b1c741fa3
 			@RequestParam(required = true)String userId,
 			@RequestParam(required = true)String password,
 			@RequestParam(required = true)String userName,
@@ -123,15 +114,9 @@ public class UserController {
 		//file = registerInfo.getFile();
 		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
 		if(file != null && file.getSize() > 0) {
-<<<<<<< HEAD
-//			ClassPathResource res = new ClassPathResource("/src/main/resources/dist/upload");
-			ClassPathResource res = new ClassPathResource("/dist/upload/");
-//			Resource res = resourceLoader.getResource("/src/main/resources/dist/upload");
-=======
 //			ClassPathResource res = new ClassPathResource("/src/main/resources/dist/upload/");
 			ClassPathResource res = new ClassPathResource("/dist/upload/");
 			//Resource res = resourceLoader.getResource("/dist/upload/");
->>>>>>> b9d6f1acfaccd260dfbee18e24cecd3b1c741fa3
 //			Resource res = resourceLoader.getResource("classpath:upload/");
 			File f = res.getFile();
 			if(!f.exists())
@@ -160,6 +145,7 @@ public class UserController {
 		User user = userService.createUser(registerInfo);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
+	
 	
 	@GetMapping()
 	@ApiOperation(value = "사용자 목록", notes = "사용자 목록을 List로 반환")
