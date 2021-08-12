@@ -90,7 +90,7 @@ public class UserController {
 	String uploadDir;
 	
 //	@PostMapping(/* consumes = {MediaType.MULTIPART_FORM_DATA_VALUE} */)
-	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = {MediaType.MULTIPART_FORM_DATA_VALUE})
+	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 	@ResponseBody
     @ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
@@ -100,8 +100,8 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<User> register(
-			@RequestParam("file") MultipartFile file,
-//			@RequestPart(value="file", required = false) MultipartFile file,
+//			@RequestParam("file") MultipartFile file,
+			@RequestPart(value="file", required = false) MultipartFile file,
 //			@ModelAttribute(value="file") MultipartFile file,
 			@RequestParam(required = true)String userId,
 			@RequestParam(required = true)String password,
