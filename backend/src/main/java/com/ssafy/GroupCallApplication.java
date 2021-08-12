@@ -82,13 +82,13 @@ public class GroupCallApplication implements WebSocketConfigurer{
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
       registry.addHandler(groupCallHandler(), "/groupcall").setAllowedOrigins("*"); // crossorigin문제 해결
     }
-    //MultipartResolver Bean 추가
-    @Bean
-    public MultipartResolver multipartResolver() {
-        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setMaxUploadSize(2000000000);
-        return multipartResolver;
-    }
+//    //MultipartResolver Bean 추가
+//    @Bean
+//    public MultipartResolver multipartResolver() {
+//        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+//        multipartResolver.setMaxUploadSize(2000000000);
+//        return multipartResolver;
+//    }
 //    @Bean
 //    public MultipartConfigElement multipartConfigElement() {
 //    MultipartConfigFactory factory = new MultipartConfigFactory();
