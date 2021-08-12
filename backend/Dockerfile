@@ -7,7 +7,7 @@ FROM openjdk:8-jdk-alpine
 #RUN echo $ls
 #RUN ./gradlew clean build
 
-COPY . .
+#COPY . .
 
 #COPY gradlew .
 #COPY gradle gradle
