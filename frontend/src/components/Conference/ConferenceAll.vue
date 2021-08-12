@@ -9,7 +9,7 @@
               <img class="profile" :src="state.circleUrl">
               <div>
                 <span class="mt-2 mx-2">{{ conference.title }}</span><br>
-                <span class="owner mx-2" @click="clickOtherProfile(conference.owner)">{{ conference.owner }}</span>
+                <span class="owner mx-2" @click="clickProfile(conference.owner)">{{ conference.owner }}</span>
               </div>
             </div>
           </div>
@@ -50,10 +50,10 @@ export default ({
       conferenceCount: 0,
     })
 
-    const clickOtherProfile = (otherId) => {
-      store.dispatch('otherProfile', otherId)
+    const clickProfile = (userId) => {
+      store.dispatch('profile', userId)
         .then(() => {
-          router.push({ name: 'OtherProfile', params: { userId: otherId }})  
+          router.push({ name: 'Profile', params: { userId: userId }})  
         })
     }
     const clickConferenceCreate = () => {
@@ -81,7 +81,7 @@ export default ({
           state.conferenceCount = state.conferenceList.length
         })
     })
-    return { state, clickOtherProfile, clickConferenceCreate, clickConference, pageChange }
+    return { state, clickProfile, clickConferenceCreate, clickConference, pageChange }
   },
 })
 </script>

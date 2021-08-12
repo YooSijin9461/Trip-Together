@@ -68,33 +68,63 @@
   <nav class="mt-5">
     <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
       <button 
-        class="nav-link" 
+        class="nav-link active" 
         id="nav-article-tab" 
         data-bs-toggle="tab" 
         data-bs-target="#nav-article" 
         type="button" 
         role="tab" 
         aria-controls="nav-article" 
-        aria-selected="false">
+        aria-selected="true">
         <i class="far fa-clipboard me-2"></i>게시글
-      </button>
+      </button> 
       <button 
-        class="nav-link active" 
-        id="nav-conference-tab" 
+        class="nav-link" 
+        id="nav-comment-tab" 
         data-bs-toggle="tab" 
-        data-bs-target="#nav-conference" 
+        data-bs-target="#nav-comment" 
         type="button" 
         role="tab" 
-        aria-controls="nav-conference" 
-        aria-selected="true">
+        aria-controls="nav-comment" 
+        aria-selected="false">
         <i class="far fa-comment me-2"></i>댓글
-      </button> 
+      </button>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-conference" role="tabpanel" aria-labelledby="nav-conference-tab">
+    <div class="tab-pane fade show active" id="nav-article" role="tabpanel" aria-labelledby="nav-article-tab">
+      <div class="mt-3 container" v-if="!state.userArticle.length">
+        <h3 class="text-center my-5">작성한 게시글이 없습니다.</h3>
+      </div>
+      <div class="mt-3 container" v-else>
+        <h5 class="text-center my-5">{{ state.userArticle.length }}개의 게시글이 있습니다.</h5>
+        <div v-for="article in state.userArticle.slice().reverse()" :key="article">
+          <hr class="article-line my-0">
+          <div class="article-box d-flex" @click="clickArticle(article.boardNo)">
+            <p class="ms-5 mb-0 title col-8">{{ article.boardTitle }}</p>
+            <div class="col d-flex">
+              <p class="mb-0 userId"><i class="fas fa-user userId me-2"></i>{{ article.userId }}</p>
+            </div>
+            <div class="col">
+              <span v-if="article.boardTime">
+                <span v-if="article.boardTime.slice(0, 10) === state.today.toJSON().slice(0, 10)">
+                  <p class="mb-0 date"><i class="far fa-clock date me-2"></i>{{ UTCtoKST(article.boardTime) }}</p>
+                </span>
+                <span v-else>
+                  <p class="mb-0 date"><i class="far fa-clock date me-2"></i>{{ article.boardTime.slice(0, 10) }}</p>
+                </span>
+              </span>
+              <span v-else>
+                <p class="mb-0 date"><i class="far fa-clock date me-2"></i>{{ state.today.toJSON().slice(0,10) }}</p>
+              </span>
+            </div>
+          </div>
+        </div>
+        <hr class="article-line my-0">
+      </div>
     </div>
-    <div class="tab-pane fade" id="nav-article" role="tabpanel" aria-labelledby="nav-article-tab">
+    <div class="tab-pane fade" id="nav-comment" role="tabpanel" aria-labelledby="nav-comment-tab">
+      hi
     </div>
   </div>
 </template>
@@ -102,6 +132,8 @@
 <script>
 import { reactive, computed, onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 
 export default {
   name: 'Profile',
@@ -109,22 +141,26 @@ export default {
   },
   setup() {
     const store = useStore()
+    const router = useRouter()
 
     const state = reactive({
       dialogImageUrl: '',
       dialogVisible: false,
       disabled: false,
       value: ref(3.7),
-      userName: computed(() => store.getters['getUsername']),
-      userId: computed(() => store.getters['getUserid']),
+      userName: computed(() => store.getters['getProfilename']),
+      userId: computed(() => store.getters['getProfileid']),
+      userEmail: computed(() => store.getters['getProfileemail']),
+      userMBTI: computed(() => store.getters['getProfilembti']),
+      userAge: computed(() => store.getters['getProfileage']),
+      userGender: computed(() => store.getters['getProfilegender']),
+      userArticle: [],
       token: computed(() => store.getters['getToken']),
+      today: new Date(),
     })
-    onMounted (() => {
-      store.dispatch('profile', state.token)
-        .then(({ data }) => {
-          console.log(data)
-        })
-    })
+    // onMounted (() => {
+    //   store.dispatch('otherProfile', state.token)
+    // })
     const handleRemove = (file) => {
       console.log(file)
     }
@@ -135,7 +171,29 @@ export default {
     const handleDownload = (file) => {
       console.log(file)
     }
-    return { state, handleRemove, handlePictureCardPreview, handleDownload }
+    const clickArticle = (boardNo) => {
+      if (!state.token) {
+        ElMessage.error('로그인이 필요합니다.')
+      } else {
+        store.dispatch('articleDetail', boardNo)
+          .then(() => {
+            store.dispatch('commentList', boardNo)
+            router.push({ name: 'Article', params: { articleId: boardNo }})
+          })
+      }
+    }
+    const UTCtoKST = (date) => {
+      return new Date(date).getHours() + ':' + new Date(date).getMinutes()
+    }
+    onMounted (() => {
+      store.dispatch('userArticle', state.userId)
+        .then(({ data }) => {
+          state.userArticle = data
+          console.log(state.userArticle.length)
+        })
+    })
+
+    return { state, handleRemove, handlePictureCardPreview, handleDownload, clickArticle, UTCtoKST }
   },
 }
 </script>
@@ -157,5 +215,24 @@ button[aria-selected="false"] {
 }
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
     border-color: lightgreen lightgreen #fff;
+}
+.article-box {
+  padding: 15px 0px;
+  align-items: center;
+}
+.date {
+  font-size: 12px;
+}
+.article-line {
+  color: gray;
+}
+.userId {
+  font-size: 12px;
+}
+.article-box:hover {
+  cursor: pointer;
+  background-color: #e4ffe4;
+  font-weight: bold;
+  color: green;
 }
 </style>

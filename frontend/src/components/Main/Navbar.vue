@@ -7,7 +7,7 @@
           <span class="el-dropdown-link">{{ state.userName }}</span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item @click="clickProfile">내 정보</el-dropdown-item>
+              <el-dropdown-item @click="clickProfile(state.userId)">내 정보</el-dropdown-item>
               <el-dropdown-item @click="clickLogout">로그아웃</el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -35,6 +35,7 @@ export default {
       searchDialogOpen: false,
       token: computed(() => store.getters['getToken']),
       userName: computed(() => store.getters['getUsername']),
+      userId: computed(() => store.getters['getUserid']),
     })
     const clickLogo = () => {
       router.push({ name: 'Home'})
@@ -48,10 +49,12 @@ export default {
     const clickLogout = () => {
       emit('openLogoutDialog')
     }
-    const clickProfile = () => {
-      router.push({ name: 'MyProfile' })
+    const clickProfile = (userId) => {
+      store.dispatch('profile', userId)
+        .then(() => {
+          router.push({ name: 'Profile', params: { userId: userId }})  
+        })
     }
-
     return { state, clickLogo, clickLogin, clickSignup, clickLogout, clickProfile }   
   },
 }

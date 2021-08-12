@@ -6,15 +6,15 @@ const routes = [
     name: 'Home',
     component: () => import('@/components/Main/Home.vue')
   },
-  {
-    path: '/profile',
-    name: 'MyProfile',
-    component: () => import('@/components/User/MyProfile.vue')
-  },
+  // {
+  //   path: '/profile',
+  //   name: 'MyProfile',
+  //   component: () => import('@/components/User/MyProfile.vue')
+  // },
   {
     path: '/profile/:userId',
-    name: 'OtherProfile',
-    component: () => import('@/components/User/OtherProfile.vue')
+    name: 'Profile',
+    component: () => import('@/components/User/Profile.vue')
   },
 
   // 방

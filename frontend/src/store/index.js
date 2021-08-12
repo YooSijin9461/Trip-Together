@@ -21,16 +21,16 @@ const getDefaultState = () => {
     isGuide: false,
     userprofileimg: null,
     
-    // 타유저
-    otherName: null,
-    otherId: null,
-    otherAge: null,
-    otherGender: null,
-    otherPhonenum: null,
-    otherEmail: null,
-    otherMBTI: null,
-    otherGuide: false,
-    otherImg: null,
+    // 프로필
+    profileName: null,
+    profileId: null,
+    profileAge: null,
+    profileGender: null,
+    profilePhonenum: null,
+    profileEmail: null,
+    profileMBTI: null,
+    profileGuide: false,
+    profileImg: null,
 
     // 방
     conferenceNo: null,
@@ -50,7 +50,7 @@ const getDefaultState = () => {
     boardContent: null,
     boardRate: null,
     boardCreate: null,
-    
+
     // 댓글
     commentList: [],
 
@@ -89,16 +89,16 @@ export default createStore({
     CLEAR_STATE (state) {
       Object.assign(state, getDefaultState())
     },
-    OTHERINFO (state, otherinfo) {
-      state.otherName = otherinfo.userName
-      state.otherId = otherinfo.userId
-      state.otherGender = otherinfo.gender
-      state.otherPhonenum = otherinfo.phoneNum
-      state.otherEmail = otherinfo.email
-      state.otherAge = otherinfo.age
-      state.otherImg = otherinfo.img
-      state.otherGuide = otherinfo.guide
-      state.otherMBTI = otherinfo.mbti
+    USERPROFILE (state, profile) {
+      state.profileName = profile.userName
+      state.profileId = profile.userId
+      state.profileGender = profile.gender
+      state.profilePhonenum = profile.phoneNum
+      state.profileEmail = profile.email
+      state.profileAge = profile.age
+      state.profileImg = profile.img
+      state.profileGuide = profile.guide
+      state.profileMBTI = profile.mbti
     },
 
     // 방
@@ -157,19 +157,19 @@ export default createStore({
       return axios
         .post(`${BASE_URL}/api/v1/users`, payload)
     },
-    profile ({ commit }, token) {
-      return axios
-        .get(`${BASE_URL}/api/v1/users/me`,
-          { 
-            headers: { "Authorization" : "Bearer " + token }
-          }
-        )
-    },
-    otherProfile ({ commit }, userId) {
+    // profile ({ commit }, token) {
+    //   return axios
+    //     .get(`${BASE_URL}/api/v1/users/me`,
+    //       { 
+    //         headers: { "Authorization" : "Bearer " + token }
+    //       }
+    //     )
+    // },
+    profile ({ commit }, userId) {
       return axios
         .post(`${BASE_URL}/api/v1/users/${userId}`)
         .then(({ data }) => {
-          commit("OTHERINFO", data)
+          commit("USERPROFILE", data)
         })
     },
     profileImg ({ commit }, payload) {
@@ -238,6 +238,10 @@ export default createStore({
     articleDelete ({ commit }, boardNo) {
       return axios
         .delete(`${BASE_URL}/api/v1/boards/${boardNo}`)
+    },
+    userArticle ({ commit }, username) {
+      return axios
+        .get(`${BASE_URL}/api/v1/boards/user/${username}`)
     },
     
     // 댓글
@@ -319,33 +323,33 @@ export default createStore({
       return state.guide
     },
 
-    // 타유저
-    getOtherid (state) {
-      return state.otherId
+    // 프로필
+    getProfileid (state) {
+      return state.profileId
     },
-    getOthername (state) {
-      return state.otherName
+    getProfilename (state) {
+      return state.profileName
     },
-    getOtherage (state) {
-      return state.otherAge
+    getProfileage (state) {
+      return state.profileAge
     },
-    getOthergender (state) {
-      return state.otherGender
+    getProfilegender (state) {
+      return state.profileGender
     },
-    getOtherphonenum (state) {
-      return state.phoneNum
+    getProfilephonenum (state) {
+      return state.profilePhonenum
     },
-    getOthermbti (state) {
-      return state.otherMBTI
+    getProfilembti (state) {
+      return state.profileMBTI
     },
-    getOtherguide (state) {
-      return state.otherGuide
+    getProfileguide (state) {
+      return state.profileGuide
     },
-    getOtherimg (state) {
-      return state.otherImg
+    getProfileimg (state) {
+      return state.profileImg
     },
-    getOtheremail (state) {
-      return state.otherEmail
+    getProfileemail (state) {
+      return state.profileEmail
     },
 
     // 방
