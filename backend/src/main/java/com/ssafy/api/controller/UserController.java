@@ -2,6 +2,7 @@ package com.ssafy.api.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -12,6 +13,8 @@ import java.util.Optional;
 import javax.servlet.ServletContext;
 import javax.swing.filechooser.FileSystemView;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,6 +92,7 @@ public class UserController {
 	@Value("${spring.resources.static-locations}")
 	String uploadDir;
 	
+	@SuppressWarnings("deprecation")
 	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 	@ResponseBody
     @ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
@@ -121,13 +125,23 @@ public class UserController {
 			ClassPathResource res = new ClassPathResource("/dist/upload/");
 			//Resource res = resourceLoader.getResource("/dist/upload/");
 //			Resource res = resourceLoader.getResource("classpath:upload/");
-			File f = res.getFile();
+//			File f = res.getFile();
+//			if(!f.exists())
+//				f.mkdirs();
+//			System.out.println(res.getFile());
+			
+			InputStream inputStream = res.getInputStream();
+			File f = File.createTempFile("test", ".txt");
+			try {
+			    FileUtils.copyInputStreamToFile(inputStream, f);
+			} finally {
+			    IOUtils.closeQuietly(inputStream);
+			}
 			if(!f.exists())
 				f.mkdirs();
-			System.out.println(res.getFile());
 			
-			f.setWritable(true);
-			f.setReadable(true);
+//			f.setWritable(true);
+//			f.setReadable(true);
 			
 			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
 			registerInfo.setOrgImg(file.getOriginalFilename());
