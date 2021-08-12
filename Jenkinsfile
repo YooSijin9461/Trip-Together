@@ -35,9 +35,6 @@ pipeline {
 				
 				sh 'docker build -t frontimg:latest ./frontend'
 				sh 'docker build -t backimg:latest ./backend'
-
-				sh 'chmod 777 /src/main/resources'
-				sh 'chmod 777 /src/main/resources/dist'
 			}
 		}
 		stage('Docker run') {
@@ -72,6 +69,8 @@ pipeline {
 				-p 8443:8443 \
 				--network our-net \
 				backimg:latest'
+
+				sh 'docker exec -it backimg sh' && 'chmod 777 /src/main/resources' && 'chmod 777 /src/main/resources/dist' && 'chmod -R 777 bin/main/dist'
 			}
 		}
 	}
