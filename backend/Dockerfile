@@ -1,4 +1,5 @@
-FROM openjdk:8-jdk-alpine
+#FROM openjdk:8-jdk-alpine
+FROM adoptopenjdk:8-jdk-hotspot AS builder
 VOLUME /tmp
 #COPY gradlew ./
 
