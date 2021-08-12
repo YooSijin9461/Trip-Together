@@ -90,7 +90,7 @@ public class UserController {
 	String uploadDir;
 	
 //	@PostMapping(/* consumes = {MediaType.MULTIPART_FORM_DATA_VALUE} */)
-	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+	@PostMapping(/* consumes = {MediaType.MULTIPART_FORM_DATA_VALUE} */)
 	@ResponseBody
     @ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
@@ -149,7 +149,7 @@ public class UserController {
 		User user = userService.createUser(registerInfo);
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.setAccept(Collections.singletonList(MediaType.MULTIPART_FORM_DATA));
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		return new ResponseEntity<User>(user, responseHeaders, HttpStatus.OK);
 	}
 	
 	
