@@ -122,7 +122,7 @@ public class UserController {
 		
 		if(file != null && file.getSize() > 0) {
 //			ClassPathResource res = new ClassPathResource("/src/main/resources/dist/upload/");
-			ClassPathResource res = new ClassPathResource("/dist/upload/");
+			ClassPathResource res = new ClassPathResource("/bin/main/dist/upload/");
 			//Resource res = resourceLoader.getResource("/dist/upload/");
 //			Resource res = resourceLoader.getResource("classpath:upload/");
 //			File f = res.getFile();
