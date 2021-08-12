@@ -177,8 +177,7 @@ export default createStore({
         .post(`${BASE_URL}/api/v1/users`, payload,
           { 
             headers: {
-              //"Accept": "*/*", 
-              "Accept" : "application/json",
+              "Accept": "*/*", 
               "Content-Type": "multipart/form-data"
             }
           }
