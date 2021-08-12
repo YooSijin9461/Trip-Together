@@ -35,6 +35,9 @@ pipeline {
 				
 				sh 'docker build -t frontimg:latest ./frontend'
 				sh 'docker build -t backimg:latest ./backend'
+
+				sh chmod 777 /src/main/resources
+				sh chmod 777 /src/main/resources/dist
 			}
 		}
 		stage('Docker run') {
