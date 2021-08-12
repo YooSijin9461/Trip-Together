@@ -37,6 +37,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.core.io.Resource;
 
 import com.ssafy.api.request.UserLoginPostReq;
 import com.ssafy.api.request.UserModifyPostReq;
@@ -86,7 +87,6 @@ public class UserController {
 	@Value("${spring.resources.static-locations}")
 	String uploadDir;
 	
-
 	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 	@ResponseBody
     @ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
