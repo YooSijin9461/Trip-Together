@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -118,6 +119,7 @@ public class UserController {
 		
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.set("Accept", "multipart/form-data");
+		responseHeaders.setAccept(Collections.singletonList(MediaType.MULTIPART_FORM_DATA));
 		if(file != null && file.getSize() > 0) {
 //			ClassPathResource res = new ClassPathResource("/src/main/resources/dist/upload/");
 			ClassPathResource res = new ClassPathResource("/dist/upload/");
