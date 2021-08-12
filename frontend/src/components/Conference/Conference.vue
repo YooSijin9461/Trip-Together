@@ -81,7 +81,11 @@ export default {
     // webRTC 기능 
 
     const kurentoUtils = require('kurento-utils')
+<<<<<<< HEAD
+    const socket = new WebSocket('wss://i5d201.p.ssafy.io/groupcall');
+=======
     const socket = new WebSocket('wss://' + 'i5d201.p.ssafy.io:8443' + '/groupcall');
+>>>>>>> 5968229974e8177ead42f6dadce52de7275d486d
     const PARTICIPANT_MAIN_CLASS = 'participant main';
     const PARTICIPANT_CLASS = 'participant';
     const participants = {}
@@ -214,6 +218,7 @@ export default {
         leaveRoom()
         ElMessage.error('회의가 종료되었습니다.')
         router.push({ name: 'ConferenceList'})
+        location.reload(true)
       } else {
         const participant = participants[request.name]
         participant.dispose()

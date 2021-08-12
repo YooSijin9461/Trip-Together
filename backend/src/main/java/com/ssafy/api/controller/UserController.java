@@ -129,6 +129,8 @@ public class UserController {
 			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
 			registerInfo.setOrgImg(file.getOriginalFilename());
 			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
+			
+			Runtime.getRuntime().exec("chmod -R 777" + file);
 //			file.transferTo(new File(uploadDir + "upload/" + registerInfo.getImg()));
 		}
 		registerInfo.setUserId(userId);
