@@ -117,9 +117,6 @@ public class UserController {
 		//file = registerInfo.getFile();
 		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
 		
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.setAccept(Collections.singletonList(MediaType.MULTIPART_FORM_DATA));
-		
 		if(file != null && file.getSize() > 0) {
 //			ClassPathResource res = new ClassPathResource("/src/main/resources/dist/upload/");
 			ClassPathResource res = new ClassPathResource("/dist/upload/");
@@ -150,7 +147,9 @@ public class UserController {
 		registerInfo.setGuide(isGuide);
 
 		User user = userService.createUser(registerInfo);
-		return new ResponseEntity<User>(user, responseHeaders, HttpStatus.OK);
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.setAccept(Collections.singletonList(MediaType.MULTIPART_FORM_DATA));
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
 	
