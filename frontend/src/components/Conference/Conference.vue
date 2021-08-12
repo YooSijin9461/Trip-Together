@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { reactive, onMounted, computed } from 'vue'
+import { reactive, onMounted, onUnmounted, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
@@ -248,8 +248,7 @@ export default {
 
       video.id = 'video-' + name;
       video.autoplay = true;
-      video.controls = false;
-
+      video.controls = true;
 
       this.getElement = function() {
         return container;
@@ -312,13 +311,13 @@ export default {
         register(state.username, state.conferenceNo)
       }
     })
-    // onUnmounted(() => {
-    //   leaveRoom = () => {
-    //   sendMessage({ id: 'leaveRoom' })
-    //   for (const key in participants) {
-    //     participants[key].dispose()
-    //   }
-    // })
+    onUnmounted(() => {
+      if(state.username === state.owner) {
+        roomDelete()
+      } else {
+        leaveRoom()
+      }
+    })
     return { state, clickMap, leaveRoom, callResponse, roomDelete }
   }
 }
@@ -328,6 +327,9 @@ export default {
 #room {
   width: 100%;
   text-align: center;
+}
+.participants .participant, .participants .participant.main {
+  width: 225px;
 }
 .participant {
 	margin: 10px;

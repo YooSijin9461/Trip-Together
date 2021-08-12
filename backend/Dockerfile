@@ -1,9 +1,10 @@
 FROM openjdk:8-jdk-alpine
-VOLUME /tmp
+
+#FROM adoptopenjdk:8-jdk-hotspot AS builder
+#VOLUME /tmp
 #COPY gradlew ./
 
 #RUN echo $ls
-#RUN chmod +x gradlew
 #RUN ./gradlew clean build
 
 COPY . .
@@ -13,11 +14,13 @@ COPY . .
 #COPY build.gradle .
 #COPY settings.gradle .
 #COPY src src
-#RUN gradle cleanQuerydslSourcesDir
 
+#RUN gradle cleanQuerydslSourcesDir
+#RUN chmod +x ./gradlew
 #RUN ./gradlew build --stacktrace
 #RUN ./gradlew bootjar
 
+#FROM adoptopenjdk:8-jdk-hotspot
 #COPY --from=builder build/libs/*.jar app.jar
 
 ADD ./build/libs/*.jar app.jar
