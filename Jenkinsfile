@@ -69,6 +69,8 @@ pipeline {
 				-p 8443:8443 \
 				--network our-net \
 				backimg:latest'
+
+				sh 'sudo docker exec -it backimg sh && chmod777 /src/main/resources && chmod777 /bin/main/dist/upload'
 			}
 		}
 	}
