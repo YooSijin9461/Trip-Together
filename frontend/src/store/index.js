@@ -167,7 +167,7 @@ export default createStore({
     },
     otherProfile ({ commit }, userId) {
       return axios
-        .get(`${BASE_URL}/api/v1/users/${userId}`)
+        .post(`${BASE_URL}/api/v1/users/${userId}`)
         .then(({ data }) => {
           commit("OTHERINFO", data)
         })
