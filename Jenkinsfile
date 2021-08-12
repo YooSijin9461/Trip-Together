@@ -70,7 +70,7 @@ pipeline {
 				--network our-net \
 				backimg:latest'
 
-				sh 'winpty docker exec -it backimg sh && chmod777 /src/main/resources && chmod777 /bin/main/dist/upload'
+				//sh 'docker exec -it backimg sh && chmod777 /src/main/resources && chmod777 /bin/main/dist/upload'
 			}
 		}
 	}
