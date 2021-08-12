@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="container d-flex justify-content-end createBtn" v-if="state.token">
-      <el-button class="me-5" type="primary" @click="clickConferenceCreate">방 생성</el-button>
+      <el-button class="me-5" type="success" @click="clickConferenceCreate">방 생성</el-button>
     </div>
   </div>
   <div class="pagination">
@@ -100,9 +100,12 @@ img:hover {
   width: 50px;
   height: 50px;
 }
+.owner {
+  font-size: 14px;
+}
 .owner:hover {
   cursor: pointer;
-  color: black;
+  color: green;
   font-weight: bold;
 }
 .pagination {
