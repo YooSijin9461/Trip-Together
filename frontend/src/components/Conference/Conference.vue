@@ -183,7 +183,10 @@ export default {
     }
     const roomDelete = () => {
       leaveRoom()
-      store.dispatch('conferenceDelete', state.conferenceNo)
+      store.dispatch('conferenceLeave', state.userId)
+        .then(() => {
+          store.dispatch('conferenceDelete', state.conferenceNo)
+        })
     }
     const leaveRoom = () => {
       sendMessage({ id: 'leaveRoom' })
