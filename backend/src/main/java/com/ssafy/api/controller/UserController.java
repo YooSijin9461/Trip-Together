@@ -131,7 +131,7 @@ public class UserController {
 //				f.mkdirs();
 //			System.out.println(res.getFile());
 			
-			res.getPath();
+//			res.getPath();
 			InputStream inputStream = res.getInputStream();
 			File f = File.createTempFile("test", ".txt");
 			FileUtils.copyInputStreamToFile(inputStream, f);
