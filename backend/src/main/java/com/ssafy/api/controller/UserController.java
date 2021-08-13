@@ -3,35 +3,24 @@ package com.ssafy.api.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-
-import javax.servlet.ServletContext;
-import javax.swing.filechooser.FileSystemView;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,29 +31,19 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.core.io.Resource;
 
-import com.ssafy.api.request.UserLoginPostReq;
 import com.ssafy.api.request.UserModifyPostReq;
 import com.ssafy.api.request.UserRegisterPostReq;
-import com.ssafy.api.response.UserLoginPostRes;
 import com.ssafy.api.response.UserRes;
 import com.ssafy.api.service.RoomService;
 import com.ssafy.api.service.UserService;
 import com.ssafy.common.auth.SsafyUserDetails;
-import com.ssafy.common.model.response.BaseResponseBody;
-import com.ssafy.common.util.JwtTokenUtil;
-import com.ssafy.db.entity.Board;
-import com.ssafy.db.entity.BoardSpec;
-import com.ssafy.db.entity.ConferenceRoom;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.UserSpec;
 import com.ssafy.db.repository.UserRepository;
-import com.ssafy.db.repository.UserRepositorySupport;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import springfox.documentation.annotations.ApiIgnore;
@@ -132,6 +111,7 @@ public class UserController {
 //			System.out.println(res.getFile());
 			
 //			res.getPath();
+			System.out.println("에러발견 1");
 			InputStream inputStream = res.getInputStream();
 			File f = File.createTempFile("temp", ".jpg");
 			try {
@@ -139,8 +119,10 @@ public class UserController {
 			} finally {
 			    IOUtils.closeQuietly(inputStream);
 			}
+			System.out.println("에러발견 2");
 			if(!f.exists())
 				f.mkdirs();
+			System.out.println("에러발견 3");
 			
 //			f.setWritable(true);
 //			f.setReadable(true);
@@ -148,6 +130,7 @@ public class UserController {
 			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
 			registerInfo.setOrgImg(file.getOriginalFilename());
 			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
+			System.out.println("에러발견 4");
 			
 //			Runtime.getRuntime().exec("chmod -R 777" + file);
 //			file.transferTo(new File(uploadDir + "upload/" + registerInfo.getImg()));
@@ -280,7 +263,7 @@ public class UserController {
 		return ResponseEntity.status(200).body(UserRes.of(user));
 	}
 	
-	@PatchMapping("conference")
+	@PatchMapping("conference/{conferenceNo}")
 	@ApiOperation(value = "방 입장 시 User 테이블의 conference_room_no 수정")
 	@ApiResponses({
 	        @ApiResponse(code = 200, message = "성공"),
@@ -309,9 +292,9 @@ public class UserController {
 			return ResponseEntity.status(500).body(UserRes.of(user));
 	}
 	
-	@GetMapping("conference")
+	@GetMapping("conference/{conferenceNo}")
 	@ApiOperation(value = "방 번호로 참여중인 유저 리스트 가져오기")
-	public ResponseEntity<List<User>> getUsersByConferenceNo(@RequestParam int conferenceNo){
+	public ResponseEntity<List<User>> getUsersByConferenceNo(@PathVariable int conferenceNo){
 		return new ResponseEntity<List<User>>(userService.getUsersByConferenceNo(conferenceNo), HttpStatus.OK);
 	}
 	
