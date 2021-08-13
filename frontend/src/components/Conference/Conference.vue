@@ -164,8 +164,8 @@ export default {
         }
       }
       console.log(state.userId + " registered in room " + state.conferenceNo);
-      const participant = new Participant(state.username);
-      participants[state.username] = participant;
+      const participant = new Participant(state.userId);
+      participants[state.userId] = participant;
       const video = participant.getVideoElement();
 
       const options = {
