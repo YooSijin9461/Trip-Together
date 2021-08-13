@@ -81,14 +81,14 @@ export default {
       if (state.token) {
         if (state.password) {
           if (state.password === state.inputPassword) {
-            // store.dispatch('conferenceEnter', { conferenceNo: state.conferenceNo, userId: state.userId })
+            store.dispatch('conferenceEnter', { conferenceNo: state.conferenceNo, userId: state.userId })
             router.push({ name: 'Conference', params: { conferenceId: state.conferenceNo}})
             emit('closeConferenceDialog')
           } else {
             ElMessage.error('비밀번호가 틀렸습니다.')
           }
         } else {
-          // store.dispatch('conferenceEnter', { conferenceNo: state.conferenceNo, userId: state.userId })
+          store.dispatch('conferenceEnter', { conferenceNo: state.conferenceNo, userId: state.userId })
           router.push({ name: 'Conference', params: { conferenceId: state.conferenceNo}})
           emit('closeConferenceDialog')
         }

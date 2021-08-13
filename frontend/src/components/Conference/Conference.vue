@@ -190,7 +190,7 @@ export default {
       for (const key in participants) {
         participants[key].dispose()
       }
-      // store.dispatch('conferenceLeave', state.userId)
+      store.dispatch('conferenceLeave', state.userId)
       router.push({ name: 'ConferenceList' })
       socket.close()
     }
@@ -214,6 +214,7 @@ export default {
     const onParticipantLeft = (request) => {
       console.log('Participant' + request.name + ' left')
       if (request.name === state.owner) {
+        store.dispatch('conferenceLeave', state.userId)
         leaveRoom()
         ElMessage.error('회의가 종료되었습니다.')
         router.push({ name: 'ConferenceList'})
