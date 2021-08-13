@@ -133,6 +133,7 @@ public class UserController {
 			res.getPath();
 			InputStream inputStream = res.getInputStream();
 			File f = File.createTempFile("test", ".txt");
+			FileUtils.copyInputStreamToFile(inputStream, f);
 			try {
 			    FileUtils.copyInputStreamToFile(inputStream, f);
 			} finally {
@@ -279,18 +280,18 @@ public class UserController {
 		return ResponseEntity.status(200).body(UserRes.of(user));
 	}
 	
-	@PatchMapping("conference/{conferenceNo}")
-    @ApiOperation(value = "방 입장 시 User 테이블의 conference_room_no 수정")
-    @ApiResponses({
-            @ApiResponse(code = 200, message = "성공"),
-            @ApiResponse(code = 404, message = "사용자 없음"),
-            @ApiResponse(code = 500, message = "서버 오류")
-    })
-    public ResponseEntity<User> modifyConferenceRoomNo(@RequestParam int conferenceRoomNo, @RequestParam String userId) {
-        User user = userService.getUserByUserId(userId);        // 아이디에 맞는 사용자 찾아옴
-        user = userService.modifyConferenceRoomNo(userId, conferenceRoomNo);
-        return new ResponseEntity<User>(user, HttpStatus.OK);
-    }
+	@PatchMapping()
+	@ApiOperation(value = "방 입장 시 User 테이블의 conference_room_no 수정")
+	@ApiResponses({
+	        @ApiResponse(code = 200, message = "성공"),
+	        @ApiResponse(code = 404, message = "사용자 없음"),
+	        @ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<User> modifyConferenceRoomNo(@RequestParam int conferenceRoomNo, @RequestParam String userId) {
+		User user = userService.getUserByUserId(userId);		// 아이디에 맞는 사용자 찾아옴
+		user = userService.modifyConferenceRoomNo(userId, conferenceRoomNo);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
 	
 	@DeleteMapping("/{userId}")
 	@ApiOperation(value = "유저 정보 삭제")
