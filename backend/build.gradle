@@ -204,13 +204,17 @@ dependencies {
             // Uncomment the next line if you want to use RSASSA-PSS (PS256, PS384, PS512) algorithms:
             //'org.bouncycastle:bcprov-jdk15on:1.60',
             'io.jsonwebtoken:jjwt-jackson:0.11.2' // or 'io.jsonwebtoken:jjwt-gson:0.11.2' for gson
-    // post 타입 415에러를 해결하기 위한 dependency
-	//compile("com.fasterxml.jackson.core:jackson-databind:2.12.4")
 	
 	//multipart 종속성 추가
 	//compile group: 'org.projectlombok', name: 'lombok', version: '1.16.8'
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    
+    //jackson-dataformat 의존성 추가
+    compile 'org.springframework.boot:spring-boot-starter-log4j2' //log4j2
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
+	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.12.4'
+
 }
 
 test {
