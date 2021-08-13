@@ -311,7 +311,7 @@ public class UserController {
 	
 	@GetMapping("conference")
 	@ApiOperation(value = "방 번호로 참여중인 유저 리스트 가져오기")
-	public ResponseEntity<List<User>> getUsersByConferenceNo(@PathVariable int conferenceNo){
+	public ResponseEntity<List<User>> getUsersByConferenceNo(@RequestParam int conferenceNo){
 		return new ResponseEntity<List<User>>(userService.getUsersByConferenceNo(conferenceNo), HttpStatus.OK);
 	}
 	
