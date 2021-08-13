@@ -285,7 +285,7 @@ public class UserController {
 	})
 	public ResponseEntity<User> modifyConferenceRoomNoNull(@RequestParam String userId) {
 		User user = userService.getUserByUserId(userId);		// 아이디에 맞는 사용자 찾아옴
-		user = userService.modifyConferenceRoomNo(userId, null);
+		user = userService.modifyConferenceRoomNoNull(userId);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	

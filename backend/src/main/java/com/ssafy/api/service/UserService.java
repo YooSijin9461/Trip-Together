@@ -16,5 +16,6 @@ public interface UserService {
 	User modifyUser(UserModifyPostReq update, String userId);
 	void deleteUser(String userId);
 	List<User> getUsersByConferenceNo(int conferenceNo);
-	User modifyConferenceRoomNo(String userId, Object conferenceRoomNo);
+	User modifyConferenceRoomNo(String userId, Integer conferenceRoomNo);
+	User modifyConferenceRoomNoNull(String userId);
 }

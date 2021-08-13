@@ -91,10 +91,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User modifyConferenceRoomNo(String userId, Object conferenceRoomNo) {
+	public User modifyConferenceRoomNo(String userId, Integer conferenceRoomNo) {
 		User user = userRepositorySupport.findUserByUserId(userId).get();
-		ConferenceRoom room = roomRepositorySupport.findByConferenceNo((int)conferenceRoomNo).get();
+		ConferenceRoom room = roomRepositorySupport.findByConferenceNo(conferenceRoomNo).get();			
 		user.setConferenceRoomNo(room.getConferenceNo());
+		return userRepository.save(user);
+	}
+
+	@Override
+	public User modifyConferenceRoomNoNull(String userId) {
+		User user = userRepositorySupport.findUserByUserId(userId).get();
+		user.setConferenceRoomNo(null);
 		return userRepository.save(user);
 	}
 }
