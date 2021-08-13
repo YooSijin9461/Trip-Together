@@ -217,7 +217,6 @@ export default {
         leaveRoom()
         ElMessage.error('회의가 종료되었습니다.')
         router.push({ name: 'ConferenceList'})
-        location.reload(true)
       } else {
         const participant = participants[request.name]
         participant.dispose()
@@ -292,7 +291,6 @@ export default {
 
       this.onIceCandidate = function (candidate, wp) {
           console.log("Local candidate" + JSON.stringify(candidate));
-
           var message = {
             id: 'onIceCandidate',
             candidate: candidate,
@@ -302,7 +300,6 @@ export default {
       }
 
       Object.defineProperty(this, 'rtcPeer', { writable: true});
-
       this.dispose = function() {
         console.log('Disposing participant ' + this.name);
         this.rtcPeer.dispose();
