@@ -129,7 +129,7 @@ public class UserController {
 			
 			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
 			registerInfo.setOrgImg(file.getOriginalFilename());
-			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
+//			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
 			System.out.println("에러발견 4");
 			
 //			Runtime.getRuntime().exec("chmod -R 777" + file);
