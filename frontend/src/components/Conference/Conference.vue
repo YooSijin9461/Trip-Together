@@ -26,7 +26,7 @@
             </div>
           </div>
         </div>
-        <div v-if="state.username === state.owner">
+        <div v-if="state.userId === state.owner">
           <el-button type="danger" id="leave" @click="roomDelete()">나가기</el-button>
         </div>
         <div v-else>
@@ -163,7 +163,7 @@ export default {
           }
         }
       }
-      console.log(state.username + " registered in room " + state.conferenceNo);
+      console.log(state.userId + " registered in room " + state.conferenceNo);
       const participant = new Participant(state.username);
       participants[state.username] = participant;
       const video = participant.getVideoElement();
@@ -316,7 +316,7 @@ export default {
       }
     })
     onUnmounted(() => {
-      if(state.username === state.owner) {
+      if(state.userId === state.owner) {
         roomDelete()
       } else {
         leaveRoom()
