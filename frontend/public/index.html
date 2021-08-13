@@ -18,7 +18,7 @@
     <script type="text/javascript" src="/js/sockjs/lib/sockjs.min.js"></script>
     <script type="text/javascript" src="/js/stomp/lib/stomp.min.js"></script>
 
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQSO94FGet7QhWF02tr7_bWYoOZE5ZGGQ&libraries=visualization&callback=initMap"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQSO94FGet7QhWF02tr7_bWYoOZE5ZGGQ&libraries=visualization"></script>
   </head>
   <body>
     <noscript>
@@ -26,38 +26,5 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-    <script>
-      var map
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 0, lng: 0},
-          zoom: 3,
-          styles: [{
-            featureType: 'poi',
-            stylers: [{ visibility: 'on' }]  // Turn off POI.
-          },
-          {
-            featureType: 'transit.station',
-            stylers: [{ visibility: 'on' }]  // Turn off bus, train stations etc.
-          }],
-          disableDoubleClickZoom: true,
-          streetViewControl: true,
-        });
-        
-        map.addListener('click', function(e) {
-          var marker = new google.maps.Marker({
-            position: e.latLng,
-            map: map,
-          });
-          marker.addListener('dblclick', () => {
-            marker.setMap(null)
-          })
-          marker.addListener('click', function() {
-            map.center = marker.position
-            map.zoom = 12
-          })
-        });
-      }
-    </script>
   </body>
 </html>
