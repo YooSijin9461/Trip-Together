@@ -14,7 +14,7 @@ import javax.servlet.ServletContext;
 import javax.swing.filechooser.FileSystemView;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -133,7 +133,7 @@ public class UserController {
 			
 //			res.getPath();
 			InputStream inputStream = res.getInputStream();
-			File f = File.createTempFile("test", ".txt");
+			File f = File.createTempFile("temp", ".jpg");
 			try {
 			    FileUtils.copyInputStreamToFile(inputStream, f);
 			} finally {
