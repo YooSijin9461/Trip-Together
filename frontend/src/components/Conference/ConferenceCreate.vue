@@ -106,7 +106,7 @@ export default {
         if (valid) {
           store.dispatch('conferenceCreate', { 
             owner: state.form.owner,
-            owner_id: state.form.ownerId,
+            ownerId: state.form.ownerId,
             title: state.form.title,
             description: state.form.description,
             conferenceCategory: state.form.category,
@@ -115,12 +115,13 @@ export default {
             thumbnailUrl: `https://source.unsplash.com/collection/${state.random}`,
             active: true })
           .then(({ data }) => {
+            store.dispatch('conferenceEnter', { conferenceNo: data.conferenceNo, userId: data.ownerId })
             ElMessage ({
               message: 'Conference create Success !',
               type: 'success',
             });
             emit('closeConferenceCreateDialog')
-            store.dispatch('conferenceEnter', { conferenceNo: data.conferenceNo, userId: data.ownerId })
+            
             store.dispatch('conferenceDetail', data.conferenceNo)
               .then(() => {
                 router.push({name: 'Conference', params: { conferenceId: data.conferenceNo}})

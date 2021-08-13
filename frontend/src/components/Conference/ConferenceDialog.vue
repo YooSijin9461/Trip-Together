@@ -8,8 +8,23 @@
     <hr class="article-line mb-3">
     <div class="d-flex align-items-center">
       <img class="dialog-profile me-2" src="../../assets/user.png">
-      <div v-if="state.userConference">
-        <span>{{ state.owner }} 외 {{ state.userConference.length }}명</span>
+      <div v-if="state.userConference.length">
+        <span>{{ state.ownerId }} 외 
+          <span class="conference-participant">
+            {{ state.userConference.length }}명
+            <span class="user-tooltip">
+              <span v-for="(user, index) in state.userConference" :key="index">
+                <span v-if="index < state.userConference.length - 1">
+                  <span>{{ user.userId }}, </span> 
+                </span>
+                <span v-else>
+                  <span>{{ user.userId }}</span> 
+                </span>
+              </span>
+            </span>
+            <!-- <span class="tooltip"><span>{{ user.userId }}</span></span> -->
+          </span>
+        </span>
       </div>
       <div v-else>
         <span>{{ state.owner }}</span>
@@ -76,27 +91,33 @@ export default {
       dialogVisible: computed(() => props.open),
       formLabelWidth: '120px',
     })
-
     const clickConferenceDialog = () => {
       if (state.token) {
         if (state.password) {
           if (state.password === state.inputPassword) {
-            store.dispatch('conferenceEnter', { conferenceNo: state.conferenceNo, userId: state.userId })
-            router.push({ name: 'Conference', params: { conferenceId: state.conferenceNo}})
-            emit('closeConferenceDialog')
+            if (state.userConference.length + 1 < state.limit) {
+              store.dispatch('conferenceEnter', { conferenceNo: state.conferenceNo, userId: state.userId })
+              router.push({ name: 'Conference', params: { conferenceId: state.conferenceNo}})
+              emit('closeConferenceDialog')
+            } else {
+              ElMessage.error('제한인원이 초과되었습니다.')
+            }
           } else {
             ElMessage.error('비밀번호가 틀렸습니다.')
           }
         } else {
-          store.dispatch('conferenceEnter', { conferenceNo: state.conferenceNo, userId: state.userId })
-          router.push({ name: 'Conference', params: { conferenceId: state.conferenceNo}})
-          emit('closeConferenceDialog')
+          if (state.userConference.length + 1 < state.limit) {
+            store.dispatch('conferenceEnter', { conferenceNo: state.conferenceNo, userId: state.userId })
+            router.push({ name: 'Conference', params: { conferenceId: state.conferenceNo}})
+            emit('closeConferenceDialog')
+          } else {
+            ElMessage.error('제한인원이 초과되었습니다.')
+          }
         }
       } else {
         ElMessage.error('로그인이 필요합니다.')
       }
     }
-
     const handleClose = () => {
       state.inputPassword = ''
       emit('closeConferenceDialog')
@@ -115,5 +136,32 @@ export default {
   border-radius: 100%;
   width: 20px;
   height: 20px;
+}
+.conference-participant .user-tooltip {
+  position: absolute;
+  z-index: 3;
+  background: white;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0s;
+}
+.conference-participant:hover {
+  color: green;
+  font-weight: bold;
+  cursor: pointer;
+}
+.conference-participant:hover .user-tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.2s ease;
+  top: 39%;
+  left:30%;
+  transform: translateY(-50%);
 }
 </style>

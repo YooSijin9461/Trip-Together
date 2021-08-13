@@ -112,7 +112,7 @@ export default createStore({
       state.conferenceCategory = conferenceinfo.conferenceCategory
       state.conferencePassword = conferenceinfo.conferencePassword
       state.conferenceOwner = conferenceinfo.owner
-      state.conferenceOwnerId = conferenceinfo.owner_id
+      state.conferenceOwnerId = conferenceinfo.ownerId
       state.conferenceTitle = conferenceinfo.title
       state.conferenceDescription = conferenceinfo.description
       state.conferenceLimit = conferenceinfo.limitUsersNum
@@ -130,7 +130,7 @@ export default createStore({
       state.boardCreate = boardinfo.boardTime
     },
 
-    // 댓글
+    // 댓글`
     COMMENTLIST (state, comments) {
       state.commentList = comments
     },
