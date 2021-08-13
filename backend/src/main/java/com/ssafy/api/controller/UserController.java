@@ -293,6 +293,19 @@ public class UserController {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
+	@PatchMapping("conferencedel")
+	@ApiOperation(value = "방 퇴장 시 User 테이블의 conference_room_no 값을 null로 수정")
+	@ApiResponses({
+	        @ApiResponse(code = 200, message = "성공"),
+	        @ApiResponse(code = 404, message = "사용자 없음"),
+	        @ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<User> modifyConferenceRoomNoNull(@RequestParam String userId) {
+		User user = userService.getUserByUserId(userId);		// 아이디에 맞는 사용자 찾아옴
+		user = userService.modifyConferenceRoomNo(userId, null);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
+	
 	@DeleteMapping("/{userId}")
 	@ApiOperation(value = "유저 정보 삭제")
 	@ApiResponses({
