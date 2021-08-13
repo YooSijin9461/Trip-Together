@@ -130,6 +130,7 @@ public class UserController {
 //				f.mkdirs();
 //			System.out.println(res.getFile());
 			
+			res.getPath();
 			InputStream inputStream = res.getInputStream();
 			File f = File.createTempFile("test", ".txt");
 			try {
