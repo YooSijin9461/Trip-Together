@@ -120,7 +120,7 @@ export default {
               type: 'success',
             });
             emit('closeConferenceCreateDialog')
-            store.dispatch('conferenceEnter', { conferenceNo: data.conferenceNo, userId: data.ownerId })
+            // store.dispatch('conferenceEnter', { conferenceNo: data.conferenceNo, userId: data.ownerId })
             store.dispatch('conferenceDetail', data.conferenceNo)
               .then(() => {
                 router.push({name: 'Conference', params: { conferenceId: data.conferenceNo}})
