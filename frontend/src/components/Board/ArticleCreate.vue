@@ -29,7 +29,7 @@
     <hr class="article-line mt-0 mb-4">
     <div class="d-flex justify-content-end">
       <el-button class="me-1" @click="clickCancle">취소</el-button>
-      <el-button type="primary" @click="clickOK">작성</el-button>
+      <el-button type="success" @click="clickOK">작성</el-button>
     </div>
   </div>
 </template>

@@ -5,7 +5,7 @@
       <hr class="article-line mb-3">
       <div class="d-flex align-items-center">
         <img class="article-profile me-2" src="../../assets/selfie1.jpg">
-        <span>{{ state.userId }}</span>
+        <span class="article-userid" @click="clickProfile(state.userId)">{{ state.userId }}</span>
       </div>
       <hr class="article-line mt-3 mb-4">
       <div class="article-content">
@@ -120,7 +120,12 @@ export default {
           router.push({ name: 'ArticleList' })
         })
     }
-
+    const clickProfile = (userId) => {
+      store.dispatch('profile', userId)
+        .then(() => {
+          router.push({ name: 'Profile', params: { userId: userId }})  
+        })
+    }
     const createComment = () => {
       if (state.comment) {
         store.dispatch('createComment', { 
@@ -145,7 +150,7 @@ export default {
     onUpdated (() => {
       store.dispatch('commentList', state.articleNo)
     })
-    return { state, clickToList, clickDelete, clickUpdate, createComment }
+    return { state, clickToList, clickDelete, clickUpdate, clickProfile, createComment }
   },
 }
 </script>
@@ -185,5 +190,10 @@ export default {
 }
 .article-update {
   min-width: 400px;
+}
+.article-userid:hover {
+  cursor: pointer;
+  color: green;
+  font-weight: bold;
 }
 </style>

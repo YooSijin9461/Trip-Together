@@ -50,7 +50,7 @@ export default {
 
     const state = reactive({
       token: computed(() => store.getters['getToken']),
-      owner: computed(() => store.getters['getUsername']),
+      owner: computed(() => store.getters['getConferenceowner']),
       title: computed(() => store.getters['getConferencetitle']),
       description: computed(() => store.getters['getConferencedescription']),
       category: computed(() => store.getters['getConferencecategory']),

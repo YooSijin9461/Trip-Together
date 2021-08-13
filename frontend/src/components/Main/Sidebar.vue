@@ -50,7 +50,13 @@
         </a>
         <span class="tooltip">검색</span>
       </li>
-
+      <li>
+        <a @click="clickSideBack">
+          <i class="fas fa-backward" @click="clickSideBack"></i>
+          <span class="links_name">뒤로가기</span>
+        </a>
+        <span class="tooltip">뒤로가기</span>
+      </li>
       <div v-show="state.token">
         <li class="side-profile">
           <div class="profile-details">
@@ -99,7 +105,6 @@ export default {
       state.isOpen = false
       state.conferenceShow = false
       state.articleShow = false
-
     }
     const clickSideConference = () => {
       router.push({ name: 'ConferenceList' })
@@ -140,8 +145,10 @@ export default {
     const clickSideLogout = () => {
       emit('openLogoutDialog')
     }
-
-    return { state, closeBtn, clickConferenceShow, clickArticleShow, clickSideHome, clickSideConference, clickConferenceCategory, clickSideBoard, clickSideSearch, clickSideLogout, clickSideNotice, clickSideArticle }
+    const clickSideBack = () => {
+      router.go(-1)
+    }
+    return { state, closeBtn, clickConferenceShow, clickArticleShow, clickSideHome, clickSideConference, clickConferenceCategory, clickSideBoard, clickSideSearch, clickSideLogout, clickSideNotice, clickSideArticle, clickSideBack }
   },
 }
 </script>

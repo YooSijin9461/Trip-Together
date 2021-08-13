@@ -251,7 +251,7 @@ export default createStore({
     },
     commentList ({ commit }, articleNo) {
       return axios
-        .get(`${BASE_URL}/api/v1/comments/list?boardNo=${articleNo}`)
+        .get(`${BASE_URL}/api/v1/comments/list/${articleNo}`)
         .then(({ data }) => {
           commit("COMMENTLIST", data)
         })
@@ -267,6 +267,10 @@ export default createStore({
     commentDetail ({ commit }, commentNo) {
       return axios
         .post(`${BASE_URL}/api/v1/comments/${commentNo}`)
+    },
+    userComment ({ commit }, userId) {
+      return axios
+        .get(`${BASE_URL}/api/v1/comments/user/${userId}`)
     },
 
     // 공지

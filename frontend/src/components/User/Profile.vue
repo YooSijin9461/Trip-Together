@@ -124,7 +124,27 @@
       </div>
     </div>
     <div class="tab-pane fade" id="nav-comment" role="tabpanel" aria-labelledby="nav-comment-tab">
-      hi
+      <div class="mt-3 container" v-if="!state.userComment.length">
+        <h3 class="text-center my-5">작성한 댓글이 없습니다.</h3>
+      </div>
+      <div class="mt-3 container" v-else>
+        <h5 class="text-center my-5">{{ state.userComment.length }}개의 댓글 있습니다.</h5>
+        <div v-for="comment in state.userComment.slice().reverse()" :key="comment">
+          <hr class="comment-line my-0">
+          <div class="comment-box d-flex" @click="clickArticle(comment.boardNo)">
+            <p class="ms-5 mb-0 title col-8">{{ comment.comment }}</p>
+            <div class="col">
+              <span v-if="comment.commentTime.slice(0, 10) === state.today.toJSON().slice(0, 10)">
+                <p class="mb-0 date"><i class="far fa-clock date me-2"></i>{{ UTCtoKST(comment.commentTime) }}</p>
+              </span>
+              <span v-else>
+                <p class="mb-0 date"><i class="far fa-clock date me-2"></i>{{ comment.commentTime.slice(0, 10) }}</p>
+              </span>
+            </div>
+          </div>
+        </div>
+        <hr class="comment-line my-0">
+      </div>
     </div>
   </div>
 </template>
@@ -155,6 +175,7 @@ export default {
       userAge: computed(() => store.getters['getProfileage']),
       userGender: computed(() => store.getters['getProfilegender']),
       userArticle: [],
+      userComment: [],
       token: computed(() => store.getters['getToken']),
       today: new Date(),
     })
@@ -183,13 +204,17 @@ export default {
       }
     }
     const UTCtoKST = (date) => {
-      return new Date(date).getHours() + ':' + new Date(date).getMinutes()
+      return new Date(date).getHours() + ':' + ('0' + new Date(date).getMinutes()).slice(-2)
     }
     onMounted (() => {
       store.dispatch('userArticle', state.userId)
         .then(({ data }) => {
           state.userArticle = data
-          console.log(state.userArticle.length)
+        })
+      store.dispatch('userComment', state.userId)
+        .then(({ data }) => {
+          state.userComment = data
+          console.log(state.userComment.length)
         })
     })
 
@@ -230,6 +255,19 @@ button[aria-selected="false"] {
   font-size: 12px;
 }
 .article-box:hover {
+  cursor: pointer;
+  background-color: #e4ffe4;
+  font-weight: bold;
+  color: green;
+}
+.comment-box {
+  padding: 15px 0px;
+  align-items: center;
+}
+.comment-line {
+  color: gray;
+}
+.comment-box:hover {
   cursor: pointer;
   background-color: #e4ffe4;
   font-weight: bold;

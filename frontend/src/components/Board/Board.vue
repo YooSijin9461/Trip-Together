@@ -32,4 +32,17 @@ export default {
 .board-container {
   width: 80%;
 }
+.el-tabs--card>.el-tabs__header .el-tabs__item {
+  border-left: 1px solid lightgreen;
+}
+.el-tabs--card>.el-tabs__header .el-tabs__nav {
+  border: 1px solid lightgreen;
+  border-bottom: none;
+}
+.el-tabs--card>.el-tabs__header {
+  border-bottom: 1px solid lightgreen;
+}
+.el-tabs__item.is-top.is-active {
+  font-weight: bold;
+}
 </style>

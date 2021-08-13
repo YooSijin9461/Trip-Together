@@ -11,16 +11,11 @@
           <p class="mb-0 userId"><i class="fas fa-user userId me-2"></i>{{ article.userId }}</p>
         </div>
         <div class="col">
-          <span v-if="article.boardTime">
-            <span v-if="article.boardTime.slice(0, 10) === state.today.toJSON().slice(0, 10)">
-              <p class="mb-0 date"><i class="far fa-clock date me-2"></i>{{ UTCtoKST(article.boardTime) }}</p>
-            </span>
-            <span v-else>
-              <p class="mb-0 date"><i class="far fa-clock date me-2"></i>{{ article.boardTime.slice(0, 10) }}</p>
-            </span>
+          <span v-if="article.boardTime.slice(0, 10) === state.today.toJSON().slice(0, 10)">
+            <p class="mb-0 date"><i class="far fa-clock date me-2"></i>{{ UTCtoKST(article.boardTime) }}</p>
           </span>
           <span v-else>
-            <p class="mb-0 date"><i class="far fa-clock date me-2"></i>{{ state.today.toJSON().slice(0,10) }}</p>
+            <p class="mb-0 date"><i class="far fa-clock date me-2"></i>{{ article.boardTime.slice(0, 10) }}</p>
           </span>
         </div>
       </div>
@@ -69,7 +64,22 @@ export default {
       }
     }
     const UTCtoKST = (date) => {
-      return new Date(date).getHours() + ':' + new Date(date).getMinutes()
+      const hour = new Date(date).getHours()
+      const minute = new Date(date).getMinutes()
+      var newHour = ''
+      var newMinute = ''
+      console.log(hour, minute)
+      if (hour < 10) {
+        newHour = '0' + hour
+      } else {
+        newHour = hour
+      }
+      if (minute < 10) {
+        newMinute = '0' + minute
+      } else {
+        newMinute = minute
+      }
+      return newHour + ':' + newMinute
     }
     const articleCreate = () => {
         router.push({ name: 'ArticleCreate'})

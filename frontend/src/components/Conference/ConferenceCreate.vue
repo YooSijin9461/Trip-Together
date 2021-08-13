@@ -39,7 +39,7 @@
   </el-form>
   <template #footer>
     <span class="dialog-footer">
-      <el-button type="primary" @click="clickConferenceCreate">생성하기</el-button>
+      <el-button type="success" @click="clickConferenceCreate">생성하기</el-button>
     </span>
   </template>
 </el-dialog>
