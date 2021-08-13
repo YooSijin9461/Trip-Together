@@ -190,7 +190,7 @@ export default {
       for (const key in participants) {
         participants[key].dispose()
       }
-      store.dispatch('conferenceLeave', state.userId)
+      // store.dispatch('conferenceLeave', state.userId)
       router.push({ name: 'ConferenceList' })
       socket.close()
     }
