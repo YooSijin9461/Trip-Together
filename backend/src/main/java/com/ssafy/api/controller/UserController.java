@@ -280,7 +280,7 @@ public class UserController {
 		return ResponseEntity.status(200).body(UserRes.of(user));
 	}
 	
-	@PatchMapping("conference/{conferenceNo}")
+	@PatchMapping("conference")
 	@ApiOperation(value = "방 입장 시 User 테이블의 conference_room_no 수정")
 	@ApiResponses({
 	        @ApiResponse(code = 200, message = "성공"),
@@ -309,7 +309,7 @@ public class UserController {
 			return ResponseEntity.status(500).body(UserRes.of(user));
 	}
 	
-	@GetMapping("conference/{conferenceNo}")
+	@GetMapping("conference")
 	@ApiOperation(value = "방 번호로 참여중인 유저 리스트 가져오기")
 	public ResponseEntity<List<User>> getUsersByConferenceNo(@PathVariable int conferenceNo){
 		return new ResponseEntity<List<User>>(userService.getUsersByConferenceNo(conferenceNo), HttpStatus.OK);
