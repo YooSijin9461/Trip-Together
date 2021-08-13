@@ -38,6 +38,7 @@ const getDefaultState = () => {
     conferenceCategory: null,
     conferencePassword: null,
     conferenceOwner: null,
+    conferenceOwnerId: null,
     conferenceTitle: null,
     conferenceDescription: null,
     conferenceLimit: null,
@@ -111,6 +112,7 @@ export default createStore({
       state.conferenceCategory = conferenceinfo.conferenceCategory
       state.conferencePassword = conferenceinfo.conferencePassword
       state.conferenceOwner = conferenceinfo.owner
+      state.conferenceOwnerId = conferenceinfo.ownerId
       state.conferenceTitle = conferenceinfo.title
       state.conferenceDescription = conferenceinfo.description
       state.conferenceLimit = conferenceinfo.limitUsersNum
@@ -381,6 +383,9 @@ export default createStore({
     // 방
     getConferenceowner (state) {
       return state.conferenceOwner
+    },
+    getConferenceownerid (state) {
+      return state.conferenceOwnerId
     },
     getConferenceno (state) {
       return state.conferenceNo

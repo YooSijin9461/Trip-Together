@@ -66,7 +66,8 @@ export default {
 
     const state = reactive({
       form: {
-        owner: computed(() => store.getters['getUserid']),
+        owner: computed(() => store.getters['getUsername']),
+        ownerId: computed(() => store.getters['getUserid']),
         title: '',
         description: '',
         category: '',
@@ -104,13 +105,14 @@ export default {
       conferenceCreateForm.value.validate((valid) => {
         if (valid) {
           store.dispatch('conferenceCreate', { 
-            owner: state.form.owner, 
+            owner: state.form.owner,
+            ownerId: state.form.ownerId,
             title: state.form.title,
             description: state.form.description,
             conferenceCategory: state.form.category,
             conferencePassword: state.form.password,
             limitUsersNum: state.form.limit,
-            thumbnailUrl: `https://source.unsplash.com/collection/${state.random}/nature`,
+            thumbnailUrl: `https://source.unsplash.com/collection/${state.random}`,
             active: true })
           .then(({ data }) => {
             ElMessage ({
@@ -118,9 +120,9 @@ export default {
               type: 'success',
             });
             emit('closeConferenceCreateDialog')
+            store.dispatch('conferenceEnter', { conferenceNo: data.conferenceNo, userId: data.ownerId })
             store.dispatch('conferenceDetail', data.conferenceNo)
               .then(() => {
-                store.dispatch('conferenceEnter', { conferenceNo: state.conferenceNo, userId: state.userId })
                 router.push({name: 'Conference', params: { conferenceId: data.conferenceNo}})
               })
           })

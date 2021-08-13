@@ -26,7 +26,7 @@
             </div>
           </div>
         </div>
-        <div v-if="state.userId === state.owner">
+        <div v-if="state.username === state.owner">
           <el-button type="danger" id="leave" @click="roomDelete()">나가기</el-button>
         </div>
         <div v-else>
@@ -66,7 +66,6 @@ export default {
     const router = useRouter()
 
     const state = reactive ({
-      userId: computed(() => store.getters['getUserid']),
       username: computed(() => store.getters['getUsername']),
       conferenceNo: computed(() => store.getters['getConferenceno']),
       conferenceTitle: computed(() => store.getters['getConferencetitle']),
@@ -163,9 +162,9 @@ export default {
           }
         }
       }
-      console.log(state.userId + " registered in room " + state.conferenceNo);
-      const participant = new Participant(state.userId);
-      participants[state.userId] = participant;
+      console.log(state.username + " registered in room " + state.conferenceNo);
+      const participant = new Participant(state.username);
+      participants[state.username] = participant;
       const video = participant.getVideoElement();
 
       const options = {
@@ -190,7 +189,7 @@ export default {
       for (const key in participants) {
         participants[key].dispose()
       }
-      store.dispatch('conferenceLeave', state.userId)
+      store.dispatch('conferenceLeave', state.conferenceNo)
       router.push({ name: 'ConferenceList' })
       socket.close()
     }
@@ -312,11 +311,11 @@ export default {
 
     onMounted(() => {
       socket.onopen = () =>{
-        register(state.userId, state.conferenceNo)
+        register(state.username, state.conferenceNo)
       }
     })
     onUnmounted(() => {
-      if(state.userId === state.owner) {
+      if(state.username === state.owner) {
         roomDelete()
       } else {
         leaveRoom()

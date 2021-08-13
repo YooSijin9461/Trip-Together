@@ -57,6 +57,7 @@ export default {
       token: computed(() => store.getters['getToken']),
       userId: computed(() => store.getters['getUserid']),
       owner: computed(() => store.getters['getConferenceowner']),
+      ownerId: computed(() => store.getters['getConferenceownerid']),
       title: computed(() => store.getters['getConferencetitle']),
       description: computed(() => store.getters['getConferencedescription']),
       category: computed(() => store.getters['getConferencecategory']),
