@@ -112,7 +112,7 @@ export default createStore({
       state.conferenceCategory = conferenceinfo.conferenceCategory
       state.conferencePassword = conferenceinfo.conferencePassword
       state.conferenceOwner = conferenceinfo.owner
-      state.conferenceOwnerId = conferenceinfo.ownerId
+      state.conferenceOwnerId = conferenceinfo.owner_id
       state.conferenceTitle = conferenceinfo.title
       state.conferenceDescription = conferenceinfo.description
       state.conferenceLimit = conferenceinfo.limitUsersNum

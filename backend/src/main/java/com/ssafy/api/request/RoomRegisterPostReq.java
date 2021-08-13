@@ -16,6 +16,8 @@ public class RoomRegisterPostReq {
 	String conferenceCategory;
 	@ApiModelProperty(name="방 비밀번호", example="1234")
 	String conferencePassword;
+	@ApiModelProperty(name="방 비밀번호", example="1234")
+	String owner;
 	@ApiModelProperty(name="방 생성자 ID", example="subin")
 	String ownerId;
 	@ApiModelProperty(name="방 썸네일", example="abcd.jpg")

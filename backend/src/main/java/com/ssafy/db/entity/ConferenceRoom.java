@@ -30,7 +30,7 @@ public class ConferenceRoom extends BaseEntity{
     String conferenceCategory;
     String conferencePassword;
     String owner;
-    String owner_id;
+    String ownerId;
     String thumbnailUrl;
     String title;
     String description;

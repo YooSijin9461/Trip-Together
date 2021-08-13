@@ -106,7 +106,7 @@ export default {
         if (valid) {
           store.dispatch('conferenceCreate', { 
             owner: state.form.owner,
-            ownerId: state.form.ownerId,
+            owner_id: state.form.ownerId,
             title: state.form.title,
             description: state.form.description,
             conferenceCategory: state.form.category,
