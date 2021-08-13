@@ -73,7 +73,8 @@ export default {
         onPassword: false,
         password: '',
         limit: '',
-        align: 'left'
+        align: 'left',
+        thumbnail: "https://source.unsplash.com/1600x900/?nature"
       },
       rules: {
         owner: [
@@ -109,6 +110,7 @@ export default {
             conferenceCategory: state.form.category,
             conferencePassword: state.form.password,
             limitUsersNum: state.form.limit,
+            thumbnailUrl: state.form.thumbnail,
             active: true })
           .then(({ data }) => {
             ElMessage ({

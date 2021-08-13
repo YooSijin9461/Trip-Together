@@ -3,17 +3,42 @@
     <div class="row d-flex align-items-center">
       <!-- 이미지 -->
       <div class="col-3">
-        <el-upload
-          class="avatar-uploader"
-          action="#"
-          :show-file-list="false"
-          :on-success="handleAvatarSuccess"
-          :before-upload="beforeAvatarUpload"
-        >
-          <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+        <el-upload action="#" list-type="picture-card" :auto-upload="false">
+          <template #default>
+            <i class="el-icon-plus"></i>
+          </template>
+          <template #file="{file}">
+            <div>
+              <img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
+              <span class="el-upload-list__item-actions">
+                <span
+                  class="el-upload-list__item-preview"
+                  @click="handlePictureCardPreview(file)"
+                >
+                  <i class="el-icon-zoom-in"></i>
+                </span>
+                <span
+                  v-if="!disabled"
+                  class="el-upload-list__item-delete"
+                  @click="handleDownload(file)"
+                >
+                  <i class="el-icon-download"></i>
+                </span>
+                <span
+                  v-if="!disabled"
+                  class="el-upload-list__item-delete"
+                  @click="handleRemove(file)"
+                >
+                  <i class="el-icon-delete"></i>
+                </span>
+              </span>
+            </div>
+          </template>
         </el-upload>
       </div>
+      <el-dialog v-model="dialogVisible">
+        <img width="100%" :src="dialogImageUrl" alt="" />
+      </el-dialog>
       <div class="col">
         <div class="d-flex">
           <div class="me-5">
@@ -103,7 +128,6 @@
         <h3 class="text-center my-5">작성한 댓글이 없습니다.</h3>
       </div>
       <div class="mt-3 container" v-else>
-        <hr class="my-0">
         <h5 class="text-center my-5">{{ state.userComment.length }}개의 댓글 있습니다.</h5>
         <div v-for="comment in state.userComment.slice().reverse()" :key="comment">
           <hr class="comment-line my-0">
@@ -140,7 +164,9 @@ export default {
     const router = useRouter()
 
     const state = reactive({
-      imageUrl: '',
+      dialogImageUrl: '',
+      dialogVisible: false,
+      disabled: false,
       value: ref(3.7),
       userName: computed(() => store.getters['getProfilename']),
       userId: computed(() => store.getters['getProfileid']),
@@ -153,9 +179,6 @@ export default {
       token: computed(() => store.getters['getToken']),
       today: new Date(),
     })
-    // onMounted (() => {
-    //   store.dispatch('otherProfile', state.token)
-    // })
     const handleRemove = (file) => {
       console.log(file)
     }
@@ -188,25 +211,11 @@ export default {
       store.dispatch('userComment', state.userId)
         .then(({ data }) => {
           state.userComment = data
+          console.log(state.userComment.length)
         })
     })
-    const handleAvatarSuccess = (res, file) => {
-      state.imageUrl = URL.createObjectURL(file.raw)
-    }
-    const beforeAvatarUpload = (file) => {
-      const isJPG = file.type === 'image/jpeg'
-      const isLt10M = file.size / 1024 / 1024 < 10
 
-      if (!isJPG) {
-        ElMessage.error('Avtar picture must be JPG format!')
-      }
-      if (!isLt10M) {
-        ElMessage.error('Avatar picture size can not exceed 10MB!')
-      }
-      return isJPG && isLt10M
-    }
-
-    return { state, handleRemove, handlePictureCardPreview, handleDownload, clickArticle, UTCtoKST, handleAvatarSuccess, beforeAvatarUpload }
+    return { state, handleRemove, handlePictureCardPreview, handleDownload, clickArticle, UTCtoKST }
   },
 }
 </script>
