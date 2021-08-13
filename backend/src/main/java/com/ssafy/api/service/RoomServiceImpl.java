@@ -30,7 +30,7 @@ public class RoomServiceImpl implements RoomService{
 		ConferenceRoom room = new ConferenceRoom();
 		room.setConferenceCategory(roomRegisterInfo.getConferenceCategory());
 		room.setConferencePassword(roomRegisterInfo.getConferencePassword());
-		room.setOwner(roomRegisterInfo.getOwner());
+		room.setOwner(roomRegisterInfo.getOwnerId());
 		room.setThumbnailUrl(roomRegisterInfo.getThumbnailUrl());
 		room.setTitle(roomRegisterInfo.getTitle());
 		room.setDescription(roomRegisterInfo.getDescription());
