@@ -381,6 +381,9 @@ export default createStore({
     getConferenceactive (state) {
       return state.conferenceActive
     },
+    getConferencethumbnail (state) {
+      return state.conferenceThumbnail
+    },
 
     // 게시글
     getBoarduserid (state) {
