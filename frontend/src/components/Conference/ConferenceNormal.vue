@@ -4,7 +4,7 @@
       <div class="col-4 g-4" v-for="conference in state.conferencePageList" :key="conference">
         <div class="d-flex justify-content-center">
           <div class="block">
-            <img class="conference_thumbnail" src="../../assets/selfie1.jpg" @click="clickConference(conference.conferenceNo)">
+            <img class="conference_thumbnail" :src="conference.thumbnailUrl" @click="clickConference(conference.conferenceNo)">
             <div class="mt-2 d-flex align-items-center">
               <img class="profile" :src="state.circleUrl">
               <div>

@@ -1,15 +1,10 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-4 g-4" v-for="conference in state.conferencePageList" :key="conference">
+      <div class="col-4 g-4" v-for="(conference, index) in state.conferencePageList" :key="index">
         <div class="d-flex justify-content-center">
           <div class="block">
-            <div v-if="conference.thumbnailUrl">
-              <img class="conference_thumbnail" :src="conference.thumbnailUrl" @click="clickConference(conference.conferenceNo)">
-            </div>
-            <!-- <div v-else>
-              <img class="conference_thumbnail" :src="state.roomUrl" @click="clickConference(conference.conferenceNo)">
-            </div> -->
+            <img class="conference_thumbnail" :src="conference.thumbnailUrl" @click="clickConference(conference.conferenceNo)">
             <div class="mt-2 d-flex align-items-center">
               <img class="profile" :src="state.circleUrl">
               <div>
@@ -47,7 +42,6 @@ export default ({
     const router = useRouter()
     const store = useStore()
     const state = reactive ({
-      roomUrl: new URL("https://source.unsplash.com/1600x900/?nature"),
       circleUrl: require("@/assets/selfie.jpg"),
       token: computed(() => store.getters['getToken']),
       category: '',

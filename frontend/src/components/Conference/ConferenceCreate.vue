@@ -74,7 +74,6 @@ export default {
         password: '',
         limit: '',
         align: 'left',
-        thumbnail: "https://source.unsplash.com/1600x900/?nature"
       },
       rules: {
         owner: [
@@ -98,6 +97,7 @@ export default {
       },
       dialogVisible: computed(() => props.open),
       formLabelWidth: '120px',
+      random: Math.random()*1000
     })
 
     const clickConferenceCreate = () => {
@@ -110,7 +110,7 @@ export default {
             conferenceCategory: state.form.category,
             conferencePassword: state.form.password,
             limitUsersNum: state.form.limit,
-            thumbnailUrl: state.form.thumbnail,
+            thumbnailUrl: `https://source.unsplash.com/collection/${state.random}/nature`,
             active: true })
           .then(({ data }) => {
             ElMessage ({

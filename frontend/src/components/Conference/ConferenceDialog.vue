@@ -73,6 +73,7 @@ export default {
       if (state.token) {
         if (state.password) {
           if (state.password === state.inputPassword) {
+            store.dispatch('')
             router.push({ name: 'Conference', params: { conferenceId: state.conferenceNo}})
             emit('closeConferenceDialog')
           } else {
