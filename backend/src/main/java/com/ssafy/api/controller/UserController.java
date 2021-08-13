@@ -279,16 +279,16 @@ public class UserController {
 		return ResponseEntity.status(200).body(UserRes.of(user));
 	}
 	
-	@PatchMapping()
+	@PatchMapping("conference/{conferenceNo}")
 	@ApiOperation(value = "방 입장 시 User 테이블의 conference_room_no 수정")
 	@ApiResponses({
 	        @ApiResponse(code = 200, message = "성공"),
 	        @ApiResponse(code = 404, message = "사용자 없음"),
 	        @ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<User> modifyConferenceRoomNo(@RequestParam int conferenceRoomNo, @RequestParam String userId) {
+	public ResponseEntity<User> modifyConferenceRoomNo(@RequestParam int conferenceNo, @RequestParam String userId) {
 		User user = userService.getUserByUserId(userId);		// 아이디에 맞는 사용자 찾아옴
-		user = userService.modifyConferenceRoomNo(userId, conferenceRoomNo);
+		user = userService.modifyConferenceRoomNo(userId, conferenceNo);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
