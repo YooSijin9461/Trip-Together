@@ -115,7 +115,6 @@ export default {
             thumbnailUrl: `https://source.unsplash.com/collection/${state.random}`,
             active: true })
           .then(({ data }) => {
-            store.dispatch('conferenceEnter', { conferenceNo: data.conferenceNo, userId: data.ownerId })
             ElMessage ({
               message: 'Conference create Success !',
               type: 'success',
