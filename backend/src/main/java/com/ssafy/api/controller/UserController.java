@@ -280,7 +280,7 @@ public class UserController {
 		return ResponseEntity.status(200).body(UserRes.of(user));
 	}
 	
-	@PatchMapping()
+	@PatchMapping("conference/{conferenceNo}")
 	@ApiOperation(value = "방 입장 시 User 테이블의 conference_room_no 수정")
 	@ApiResponses({
 	        @ApiResponse(code = 200, message = "성공"),
