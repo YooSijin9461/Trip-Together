@@ -134,7 +134,6 @@ public class UserController {
 //			res.getPath();
 			InputStream inputStream = res.getInputStream();
 			File f = File.createTempFile("test", ".txt");
-			FileUtils.copyInputStreamToFile(inputStream, f);
 			try {
 			    FileUtils.copyInputStreamToFile(inputStream, f);
 			} finally {
