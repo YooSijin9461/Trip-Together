@@ -312,7 +312,7 @@ export default {
 
     onMounted(() => {
       socket.onopen = () =>{
-        register(state.username, state.conferenceNo)
+        register(state.userId, state.conferenceNo)
       }
     })
     onUnmounted(() => {

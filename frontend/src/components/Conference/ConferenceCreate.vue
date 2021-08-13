@@ -120,9 +120,9 @@ export default {
             emit('closeConferenceCreateDialog')
             store.dispatch('conferenceDetail', data.conferenceNo)
               .then(() => {
+                store.dispatch('conferenceEnter', { conferenceNo: state.conferenceNo, userId: state.userId })
                 router.push({name: 'Conference', params: { conferenceId: data.conferenceNo}})
               })
-            store.dispatch('conferenceEnter', { conferenceNo: state.conferenceNo, userId: state.userId })
           })
           .catch(function () {
             ElMessage.error('Conference create Failed !')
