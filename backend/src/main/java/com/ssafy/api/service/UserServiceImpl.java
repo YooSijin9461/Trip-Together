@@ -9,7 +9,9 @@ import org.springframework.util.Assert;
 
 import com.ssafy.api.request.UserModifyPostReq;
 import com.ssafy.api.request.UserRegisterPostReq;
+import com.ssafy.db.entity.ConferenceRoom;
 import com.ssafy.db.entity.User;
+import com.ssafy.db.repository.RoomRepositorySupport;
 import com.ssafy.db.repository.UserRepository;
 import com.ssafy.db.repository.UserRepositorySupport;
 
@@ -23,6 +25,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepositorySupport userRepositorySupport;
+	
+	@Autowired
+	RoomRepositorySupport roomRepositorySupport;
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -88,7 +93,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User modifyConferenceRoomNo(String userId, Object conferenceRoomNo) {
 		User user = userRepositorySupport.findUserByUserId(userId).get();
-		user.setConferenceRoomNo((int)conferenceRoomNo);
+		ConferenceRoom room = roomRepositorySupport.findByConferenceNo((int)conferenceRoomNo).get();
+		user.setConferenceRoomNo(room.getConferenceNo());
 		return userRepository.save(user);
 	}
 }
