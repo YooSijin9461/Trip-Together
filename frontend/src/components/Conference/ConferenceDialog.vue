@@ -8,7 +8,12 @@
     <hr class="article-line mb-3">
     <div class="d-flex align-items-center">
       <img class="dialog-profile me-2" src="../../assets/user.png">
-      <span>{{ state.owner }}</span>
+      <div v-if="state.userConference">
+        <span>{{ state.owner }} 외 {{ state.userConference.length }}명</span>
+      </div>
+      <div v-else>
+        <span>{{ state.owner }}</span>
+      </div>
     </div>
     <hr class="article-line mt-3 mb-3">
     <span>{{ state.description }}</span>
@@ -50,6 +55,7 @@ export default {
 
     const state = reactive({
       token: computed(() => store.getters['getToken']),
+      userId: computed(() => store.getters['getUserid']),
       owner: computed(() => store.getters['getConferenceowner']),
       title: computed(() => store.getters['getConferencetitle']),
       description: computed(() => store.getters['getConferencedescription']),
@@ -58,6 +64,7 @@ export default {
       inputPassword: '',
       limit: computed(() => store.getters['getConferencelimit']),
       conferenceNo: computed(() => store.getters['getConferenceno']),
+      userConference: computed(() => store.getters['getUserconference']),
       onPassword: false,
       align: 'left',
       rules: {
@@ -73,13 +80,14 @@ export default {
       if (state.token) {
         if (state.password) {
           if (state.password === state.inputPassword) {
-            store.dispatch('')
+            store.dispatch('conferenceEnter', { conferenceNo: state.conferenceNo, userId: state.userId })
             router.push({ name: 'Conference', params: { conferenceId: state.conferenceNo}})
             emit('closeConferenceDialog')
           } else {
             ElMessage.error('비밀번호가 틀렸습니다.')
           }
         } else {
+          store.dispatch('conferenceEnter', { conferenceNo: state.conferenceNo, userId: state.userId })
           router.push({ name: 'Conference', params: { conferenceId: state.conferenceNo}})
           emit('closeConferenceDialog')
         }

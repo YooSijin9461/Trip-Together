@@ -20,7 +20,8 @@ const getDefaultState = () => {
     usermbti: null,
     isGuide: false,
     userprofileimg: null,
-    
+    userConference: [],
+
     // 프로필
     profileName: null,
     profileId: null,
@@ -100,6 +101,9 @@ export default createStore({
       state.profileGuide = profile.guide
       state.profileMBTI = profile.mbti
     },
+    USERCONFERENCE (state, userConference) {
+      state.userConference = userConference
+    },
 
     // 방
     CONFERENCEINFO (state, conferenceinfo) {
@@ -172,6 +176,13 @@ export default createStore({
           commit("USERPROFILE", data)
         })
     },
+    userConference ({ commit }, conferenceNo) {
+      return axios
+        .get(`${BASE_URL}/api/v1/users/conference/${conferenceNo}`)
+        .then(({ data }) => {
+          commit("USERCONFERENCE", data)
+        })
+    },
     profileImg ({ commit }, payload) {
       return axios
         .post(`${BASE_URL}/api/v1/users`, payload,
@@ -208,6 +219,14 @@ export default createStore({
     conferenceDelete ({ commit }, conferenceNo) {
       return axios
         .delete(`${BASE_URL}/api/v1/conferences/${conferenceNo}`)
+    },
+    conferenceEnter ({ commit }, params) {
+      return axios
+        .patch(`${BASE_URL}/api/v1/users/conference?conferenceNo=${params.conferenceNo}&userId=${params.userId}`)
+    },
+    conferenceLeave ({ commit }, userId) {
+      return axios
+        .patch(`${BASE_URL}/api/v1/users/conferencedel?userId=${userId}`)
     },
 
     // 게시글
@@ -325,6 +344,9 @@ export default createStore({
     },
     getUserguide (state) {
       return state.guide
+    },
+    getUserconference (state) {
+      return state.userConference
     },
 
     // 프로필

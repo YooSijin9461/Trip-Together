@@ -66,7 +66,7 @@ export default {
 
     const state = reactive({
       form: {
-        owner: computed(() => store.getters['getUsername']),
+        owner: computed(() => store.getters['getUserid']),
         title: '',
         description: '',
         category: '',
@@ -122,6 +122,7 @@ export default {
               .then(() => {
                 router.push({name: 'Conference', params: { conferenceId: data.conferenceNo}})
               })
+            store.dispatch('conferenceEnter', { conferenceNo: state.conferenceNo, userId: state.userId })
           })
           .catch(function () {
             ElMessage.error('Conference create Failed !')

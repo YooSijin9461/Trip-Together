@@ -66,6 +66,7 @@ export default {
     const router = useRouter()
 
     const state = reactive ({
+      userId: computed(() => store.getters['getUserid']),
       username: computed(() => store.getters['getUsername']),
       conferenceNo: computed(() => store.getters['getConferenceno']),
       conferenceTitle: computed(() => store.getters['getConferencetitle']),
@@ -189,6 +190,7 @@ export default {
       for (const key in participants) {
         participants[key].dispose()
       }
+      store.dispatch('conferenceLeave', state.userId)
       router.push({ name: 'ConferenceList' })
       socket.close()
     }

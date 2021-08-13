@@ -65,6 +65,7 @@ export default ({
       } else {
         store.dispatch('conferenceDetail', conferenceNo)
           .then(() => {
+            store.dispatch('userConference', conferenceNo)
             emit('openConferenceDialog')
           })
       }
