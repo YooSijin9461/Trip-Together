@@ -24,7 +24,7 @@
     </el-form-item>
     <el-form-item prop="limit" label="제한인원" :label-width="state.formLabelWidth">
       <el-select v-model="state.form.limit" autocomplete="off">
-        <el-option label="없음" value=""></el-option>
+        <el-option label="없음" value="10"></el-option>
         <el-option label="2" value="2"></el-option>
         <el-option label="3" value="3"></el-option>
         <el-option label="4" value="4"></el-option>
