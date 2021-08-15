@@ -50,7 +50,6 @@ const getDefaultState = () => {
     boardUserId: null,
     boardTitle: null,
     boardContent: null,
-    boardRate: null,
     boardCreate: null,
 
     // 댓글
@@ -126,7 +125,6 @@ export default createStore({
       state.boardUserId = boardinfo.userId
       state.boardTitle = boardinfo.boardTitle
       state.boardContent = boardinfo.boardContent
-      state.boardRate = boardinfo.boardRate
       state.boardCreate = boardinfo.boardTime
     },
 

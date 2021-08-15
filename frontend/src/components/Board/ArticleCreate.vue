@@ -11,12 +11,6 @@
     <hr class="article-line my-0">
     <div class="d-flex my-4 mx-5">
       <div class="col-1 d-flex align-items-center">
-        <span>별점</span>
-      </div>
-      <el-rate v-model="state.rate" allow-half/>
-    </div>
-    <div class="d-flex my-4 mx-5">
-      <div class="col-1 d-flex align-items-center">
         <span>내용</span>
       </div>
       <el-input
@@ -48,7 +42,6 @@ export default {
     const state = reactive ({
       input: ref(''),
       textarea: ref(''),
-      rate: ref(3.5),
       userid: computed(() => store.getters['getUserid']),
     })
 
@@ -57,10 +50,10 @@ export default {
     }
     const clickOK = () => {
       store.dispatch('articleCreate', {
-          userId: state.userid,
-          boardTitle: state.input,
-          boardContent: state.textarea,
-          boardRate: state.rate })
+        userId: state.userid,
+        boardTitle: state.input,
+        boardContent: state.textarea,
+      })
         .then(({ data }) => {
           ElMessage ({
             message: 'Article Create Success !',
