@@ -10,7 +10,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@ApiModel("BoardRegisterPostRequest")
+@ApiModel("RecommendRegisterPostRequest")
 public class RecommendRegisterPostReq {
 	@ApiModelProperty(name="작성자", example="ksh7628")
 	String userId;

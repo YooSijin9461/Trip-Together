@@ -23,11 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.api.request.BoardModifyPostReq;
 import com.ssafy.api.request.BoardRegisterPostReq;
 import com.ssafy.api.service.BoardService;
-import com.ssafy.api.service.CommentService;
 import com.ssafy.db.entity.Board;
-import com.ssafy.db.entity.BoardSpec;
-import com.ssafy.db.entity.Comments;
-import com.ssafy.db.repository.BoardRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -45,11 +41,6 @@ import io.swagger.annotations.ApiResponses;
 public class BoardController {
 	@Autowired
 	BoardService boardService;
-	@Autowired
-	CommentService commentService;
-	
-	@Autowired
-	BoardRepository boardRepository;
 	
 	
 	@PostMapping()
