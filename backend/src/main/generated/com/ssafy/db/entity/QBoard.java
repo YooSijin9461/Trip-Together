@@ -23,8 +23,6 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final NumberPath<Integer> boardNo = createNumber("boardNo", Integer.class);
     
-    //public final NumberPath<Double> boardRate = createNumber("boardRate", Double.class);
-
     public final NumberPath<Integer> likeCount = createNumber("likeCount", Integer.class);
     
     public final NumberPath<Integer> hateCount = createNumber("hateCount", Integer.class);

@@ -16,6 +16,4 @@ public class BoardModifyPostReq {
 	String boardTitle;
 	@ApiModelProperty(name="게시글 내용", example="게시글입니다1")
 	String boardContent;
-	//@ApiModelProperty(name="게시글 평점", example="2.0")
-	//double boardRate;
 }
