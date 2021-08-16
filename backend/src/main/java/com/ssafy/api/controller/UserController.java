@@ -111,18 +111,26 @@ public class UserController {
 //			System.out.println(res.getFile());
 			
 //			res.getPath();
-			System.out.println("에러발견 1");
+			
+			// 이미지 저장 경로
+			String basePath = "/bin/main/dist/upload/";
+
+			String filePath = basePath + "/" + file.getOriginalFilename();
+
+			File dest = new File(filePath);
+
+			// 파일 업로드
+			file.transferTo(dest);
 			InputStream inputStream = res.getInputStream();
 			File f = File.createTempFile("temp", ".jpg");
 			try {
 			    FileUtils.copyInputStreamToFile(inputStream, f);
+			    file.transferTo(f);
 			} finally {
 			    IOUtils.closeQuietly(inputStream);
 			}
-			System.out.println("에러발견 2");
 			if(!f.exists())
 				f.mkdirs();
-			System.out.println("에러발견 3");
 			
 //			f.setWritable(true);
 //			f.setReadable(true);
@@ -130,7 +138,6 @@ public class UserController {
 			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
 			registerInfo.setOrgImg(file.getOriginalFilename());
 //			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
-			System.out.println("에러발견 4");
 			
 //			Runtime.getRuntime().exec("chmod -R 777" + file);
 //			file.transferTo(new File(uploadDir + "upload/" + registerInfo.getImg()));
@@ -155,6 +162,27 @@ public class UserController {
 		return new ResponseEntity<User>(user, responseHeaders, HttpStatus.OK);
 	}
 	
+	@PostMapping("/file")
+	public String uploadFile(@RequestParam("file") MultipartFile file) throws Exception {
+		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
+		
+		// 이미지 저장 경로
+		String basePath = "/bin/main/dist/upload";
+
+		String filePath = basePath + "/" + file.getOriginalFilename();
+
+		File dest = new File(filePath);
+
+		// 파일 업로드
+		file.transferTo(dest);
+		
+		registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
+		registerInfo.setOrgImg(file.getOriginalFilename());
+//		file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
+		
+		//return filePath;
+		return "Uploaded";
+	}
 	
 	@GetMapping()
 	@ApiOperation(value = "사용자 목록", notes = "사용자 목록을 List로 반환")
