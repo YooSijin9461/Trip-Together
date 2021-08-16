@@ -18,6 +18,11 @@ public class BoardRegisterPostReq {
 	String boardTitle;
 	@ApiModelProperty(name="게시글 내용", example="게시글입니다1")
 	String boardContent;
-	@ApiModelProperty(name="게시글 평점", example="2.0")		// 이걸 직접 등록하는게 맞는지?
-	double boardRate;
+	//@ApiModelProperty(name="게시글 평점", example="2.0")		// 이걸 직접 등록하는게 맞는지?
+	//double boardRate;
+	@ApiModelProperty(name="게시글 좋아요 개수", example="10")	
+	int likeCount;
+	@ApiModelProperty(name="게시글 싫어요 개수", example="11")	
+	int hateCount;
+	
 }

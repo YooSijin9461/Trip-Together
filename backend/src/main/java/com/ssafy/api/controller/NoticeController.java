@@ -52,8 +52,8 @@ public class NoticeController {
 		@ApiResponse(code = 200, message = "성공"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<Notice> registerRoom(
-			@RequestBody @ApiParam(value="방 등록 정보", required = true) NoticeRegisterPostReq registerInfo){
+	public ResponseEntity<Notice> registerNotice(
+			@RequestBody @ApiParam(value="공지사항 등록 정보", required = true) NoticeRegisterPostReq registerInfo){
 		Notice notice = noticeService.createNotice(registerInfo);
 		return new ResponseEntity<>(notice, HttpStatus.OK);
 		

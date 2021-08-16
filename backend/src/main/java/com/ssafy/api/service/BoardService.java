@@ -21,6 +21,10 @@ public interface BoardService {
 	List<Board> searchId(String userId, Pageable pageable);
 	List<Board> selectByUserId(String userId);
 	Board getInfoByBoardNo(int boardNo);
-	Board modifyBoard(BoardModifyPostReq boardModifyInfo, int noticeNo);
+	Board modifyBoard(BoardModifyPostReq boardModifyInfo, int boardNo);
+	Board modifyLikeCountAdd(int boardNo);
+	Board modifyLikeCountCancel(int boardNo);
+	Board modifyHateCountAdd(int boardNo);
+	Board modifyHateCountCancel(int boardNo);
 	void deleteBoard(int boardNo);
 }

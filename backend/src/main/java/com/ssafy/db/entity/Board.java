@@ -31,7 +31,8 @@ public class Board {
 	String userId;
 	String boardTitle;
 	String boardContent;
-	double boardRate;
+	int likeCount;
+	int hateCount;
 	
 	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	//@Temporal(TemporalType.TIMESTAMP)

@@ -29,7 +29,9 @@ public class BoardServiceImpl implements BoardService {
 		Board board = new Board();
 		board.setBoardTitle(boardRegisterInfo.getBoardTitle());
 		board.setBoardContent(boardRegisterInfo.getBoardContent());
-		board.setBoardRate(boardRegisterInfo.getBoardRate());
+		//board.setBoardRate(boardRegisterInfo.getBoardRate());
+		board.setLikeCount(boardRegisterInfo.getLikeCount());
+		board.setHateCount(boardRegisterInfo.getHateCount());
 		board.setUserId(boardRegisterInfo.getUserId());
 		return boardRepository.save(board);
 	}
@@ -65,7 +67,7 @@ public class BoardServiceImpl implements BoardService {
 		Board board = boardRepositorySupport.findByBoardNo(boardNo).get();
 		board.setBoardTitle(boardModifyInfo.getBoardTitle());
 		board.setBoardContent(boardModifyInfo.getBoardContent());
-		board.setBoardRate(boardModifyInfo.getBoardRate());
+		//board.setBoardRate(boardModifyInfo.getBoardRate());
 		return boardRepository.save(board);
 	}
 
@@ -80,4 +82,33 @@ public class BoardServiceImpl implements BoardService {
 		List<Board> boards = boardRepositorySupport.findAllByUserId(userId).get();
 		return boards;
 	}
+
+	@Override
+	public Board modifyLikeCountAdd(int boardNo) {
+		Board board = boardRepository.findByBoardNo(boardNo).get();
+		board.setLikeCount(board.getLikeCount() + 1);
+		return boardRepository.save(board);
+	}
+
+	@Override
+	public Board modifyLikeCountCancel(int boardNo) {
+		Board board = boardRepository.findByBoardNo(boardNo).get();
+		board.setLikeCount(board.getLikeCount() - 1);
+		return boardRepository.save(board);
+	}
+
+	@Override
+	public Board modifyHateCountAdd(int boardNo) {
+		Board board = boardRepository.findByBoardNo(boardNo).get();
+		board.setHateCount(board.getHateCount() + 1);
+		return boardRepository.save(board);
+	}
+
+	@Override
+	public Board modifyHateCountCancel(int boardNo) {
+		Board board = boardRepository.findByBoardNo(boardNo).get();
+		board.setHateCount(board.getHateCount() - 1);
+		return boardRepository.save(board);
+	}
+	
 }
