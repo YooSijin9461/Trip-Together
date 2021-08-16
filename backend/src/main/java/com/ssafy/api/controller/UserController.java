@@ -123,14 +123,14 @@ public class UserController {
 			file.transferTo(dest);
 			InputStream inputStream = res.getInputStream();
 			File f = File.createTempFile("temp", ".jpg");
+			if(!f.exists())
+				f.mkdirs();
 			try {
 			    FileUtils.copyInputStreamToFile(inputStream, f);
 			    file.transferTo(f);
 			} finally {
 			    IOUtils.closeQuietly(inputStream);
 			}
-			if(!f.exists())
-				f.mkdirs();
 			
 //			f.setWritable(true);
 //			f.setReadable(true);
