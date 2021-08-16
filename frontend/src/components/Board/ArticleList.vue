@@ -64,22 +64,7 @@ export default {
       }
     }
     const UTCtoKST = (date) => {
-      const hour = new Date(date).getHours()
-      const minute = new Date(date).getMinutes()
-      var newHour = ''
-      var newMinute = ''
-      console.log(hour, minute)
-      if (hour < 10) {
-        newHour = '0' + hour
-      } else {
-        newHour = hour
-      }
-      if (minute < 10) {
-        newMinute = '0' + minute
-      } else {
-        newMinute = minute
-      }
-      return newHour + ':' + newMinute
+      return ('0' + new Date(date).getHours()).slice(-2) + ':' + ('0' + new Date(date).getMinutes()).slice(-2)
     }
     const articleCreate = () => {
         router.push({ name: 'ArticleCreate'})

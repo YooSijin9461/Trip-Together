@@ -12,6 +12,28 @@
         <span>{{ state.content }}</span>
       </div>
       <hr>
+      <div class="d-flex mb-2">
+        <div v-if="!state.like">
+          <div class="like" @click="clickLike">
+            <i class="far fa-thumbs-up"></i> 좋아요
+          </div>
+        </div>
+        <div v-else>
+          <div class="liked" @click="clickLike">
+            <i class="fas fa-thumbs-up"></i> 좋아요 취소
+          </div>
+        </div>
+        <div v-if="!state.hate">
+          <div class="hate" @click="clickHate">
+            <i class="far fa-thumbs-down"></i> 싫어요
+          </div>
+        </div>
+        <div v-else>
+          <div class="hated" @click="clickHate">
+            <i class="fas fa-thumbs-down"></i> 싫어요 취소
+          </div>
+        </div>
+      </div>
       <div class="article-buttons">
         <el-button type="success" @click="clickToList">목록</el-button>
         <div v-if="state.userId === state.loginId" class="article-button">
@@ -88,6 +110,8 @@ export default {
       dialogVisible: false,
       comment: '',
       commentList: computed (() => store.getters['getCommentlist']),
+      like: null,
+      hate: null,
     })
     const clickToList = () => {
       router.push({ name: 'ArticleList' })
@@ -147,10 +171,22 @@ export default {
         ElMessage.error("댓글을 입력하세요.")
       }
     }
+    const clickLike = () => {
+      store.dispatch('articleLike', { userId: state.userId, boardNo: state.articleNo })
+        .then(({ data }) => {
+          state.like = data.likeCheck
+        })
+    }
+    const clickHate = () => {
+      store.dispatch('articleHate', { userId: state.userId, boardNo: state.articleNo })
+        .then(({ data }) => {
+          state.hate = data.hateCheck
+        })
+    }
     onUpdated (() => {
       store.dispatch('commentList', state.articleNo)
     })
-    return { state, clickToList, clickDelete, clickUpdate, clickProfile, createComment }
+    return { state, clickToList, clickDelete, clickUpdate, clickProfile, createComment, clickLike, clickHate }
   },
 }
 </script>
@@ -177,8 +213,6 @@ export default {
   max-width: 720px;
   width: 80%;
 }
-.to-list {
-}
 .article-content {
   min-height: 30%;
   word-break: break-all;
@@ -195,5 +229,39 @@ export default {
   cursor: pointer;
   color: green;
   font-weight: bold;
+}
+.like {
+  padding: 2px;
+  margin-right: 5px;
+}
+.like:hover {
+  cursor: pointer;
+  color: #409eff;
+  font-weight: bold;
+}
+.hate {
+  padding: 2px;
+}
+.hate:hover {
+  cursor: pointer;
+  color: #f56c6c;
+  font-weight: bold;
+}
+.liked {
+  padding: 2px;
+  margin-right: 5px;
+  color: #409eff;
+  font-weight: bold;
+}
+.hated {
+  padding: 2px;
+  color: #f56c6c;
+  font-weight: bold;
+}
+.liked:hover {
+  cursor: pointer;
+}
+.hated:hover {
+  cursor: pointer;
 }
 </style>

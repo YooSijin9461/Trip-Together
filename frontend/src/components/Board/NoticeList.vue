@@ -57,7 +57,7 @@ export default {
       }
     }
     const UTCtoKST = (date) => {
-      return new Date(date).getHours() + ':' + new Date(date).getMinutes()
+      return new Date(date).getHours() + ':' + ('0' + new Date(date).getMinutes()).slice(-2)
     }
     onMounted (() => {
       store.dispatch('noticePageList')
