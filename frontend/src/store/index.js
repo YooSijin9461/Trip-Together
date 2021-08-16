@@ -262,7 +262,15 @@ export default createStore({
       return axios
         .get(`${BASE_URL}/api/v1/boards/user/${username}`)
     },
-    
+    articleLike ({ commit }, { userId, boardNo }) {
+      return axios
+        .patch(`${BASE_URL}/api/v1/recommend/like?boardNo=${boardNo}&userId=${userId}`)
+    },
+    articleHate ({ commit }, { userId, boardNo }) {
+      return axios
+        .patch(`${BASE_URL}/api/v1/recommend/hate?boardNo=${boardNo}&userId=${userId}`)
+    },
+        
     // 댓글
     createComment ({ commit }, payload) {
       return axios
