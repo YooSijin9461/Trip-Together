@@ -113,7 +113,7 @@ public class UserController {
 //			res.getPath();
 			
 			// 이미지 저장 경로
-			String basePath = "/bin/main/dist/upload/";
+			String basePath = "/dist/upload/";
 
 			String filePath = basePath + "/" + file.getOriginalFilename();
 
