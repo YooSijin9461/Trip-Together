@@ -110,10 +110,11 @@ export default {
           }
           // state.marker.setMap(null)
       })
-      state.marker.addListener('click', function(e) {
+      state.marker.addListener('click', function({ latLng }) {
         console.log('마커클릭 =>'+JSON.stringify(e.latLng.toJSON(), null, 2))
         map.setZoom(14);
-        map.setCenter(JSON.stringify(e.latLng.toJSON(), null, 2))
+        // map.setCenter(state.marker.getPosition())
+        map.setCenter(latLng)
       })
     }
 
