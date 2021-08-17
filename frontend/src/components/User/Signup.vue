@@ -111,34 +111,34 @@ export default {
       },
       rules: {
         userId: [
-          { required: true, message: 'Please input ID', trigger: 'blur' }
+          { required: true, message: 'ID를 입력하세요.', trigger: 'blur' }
         ],
         userName: [
-          { required: true, message: 'Please input Name', trigger: 'blur' }
+          { required: true, message: '이름을 입력하세요.', trigger: 'blur' }
         ],
         password: [
-          { required: true, message: 'Please input password', trigger: 'blur' }
+          { required: true, message: '비밀번호를 입력하세요.', trigger: 'blur' }
         ],
         passwordConfirmation: [
-          { required: true, message: 'Please input passwordConfirmaton', trigger: 'blur' }
+          { required: true, message: '비밀번호를 한번 더 입력하세요.', trigger: 'blur' }
         ],
         age: [
-          { required: true, message: 'Please input Age', trigger: 'blur' }
+          { required: true, message: '나이를 입력하세요.', trigger: 'blur' }
         ],
         gender: [
-          { required: true, message: 'Please input Gender', trigger: 'blur' }
+          { required: true, message: '성별을 선택하세요.', trigger: 'blur' }
         ],
         phoneNum: [
-          { required: true, message: 'Please input Phone number', trigger: 'blur' }
+          { required: true, message: '핸드폰 번호를 입력하세요.', trigger: 'blur' }
         ],
         email: [
-          { required: true, message: 'Please input e-mail', trigger: 'blur' }
+          { required: true, message: 'e-mail을 입력하세요.', trigger: 'blur' }
         ],
         mbti: [
-          { required: false, message: 'Please input MBTI', trigger: 'blur' }
+          { required: false, message: 'MBTI를 입력하세요.', trigger: 'blur' }
         ],
         guide: [
-          { required: false, message: 'Please input guide', trigger: 'blur' }
+          { required: false, message: '가이드 여부를 선택하세요.', trigger: 'blur' }
         ],
       },
       dialogVisible: computed(() => props.open),
@@ -153,49 +153,55 @@ export default {
     const clickSignup = () => {
       signupForm.value.validate((valid) => {
         if (valid) {
-          if (state.form.password === state.form.passwordConfirmation) {
-            const formData = new FormData()
-            formData.append('userId', state.form.userId)
-            formData.append('userName', state.form.userName)
-            formData.append('password', state.form.password)
-            formData.append('age', state.form.age)
-            formData.append('gender', state.form.gender)
-            formData.append('phoneNum', state.form.phoneNum)
-            formData.append('email', state.form.email)
-            formData.append('mbti', state.form.mbti)
-            formData.append('guide', state.form.guide)
-            formData.append('file', state.form.profileImg)
-            
-            for (let key of formData.entries()) {
-              console.log(`${key}`)
-            }
-          //   store.dispatch('signup',
-          //     { userId: state.form.userId,
-          //       userName: state.form.userName,
-          //       password: state.form.password,
-          //       age: state.form.age,
-          //       gender: state.form.gender,
-          //       phoneNum: state.form.phoneNum,
-          //       email: state.form.email,
-          //       mbti: state.form.mbti,
-          //       guide: state.form.guide })
-            store.dispatch('profileImg', formData)
-            .then((res) => {
-              console.log(res)
-              ElMessage ({
-                message: 'Signup Success !',
-                type: 'success'
-              })
-              emit('closeSignupDialog')
-            })
-            .catch(function () {
-              ElMessage.error('Signup Failed')
-            })
-          } else {
-            ElMessage.error('password error !')
+          const idCheck = /^[a-zA-z0-9]{4,12}$/          
+          if (!idCheck.test(state.form.userId)) {
+            ElMessage.error("ID는 영문자 + 숫자 조합으로 4~12자리로 입력해야 합니다.")
           }
+          // 영문자 + 숫자 + 특수문자 조합(8~25자리 입력) 정규식
+          const passwordCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
+          if (!passwordCheck.test(state.form.password)) {
+            ElMessage.error("비밀번호는 영문자 + 숫자 + 특수문자 조합으로 8~25자리로 입력해야 합니다.")
+          }
+          if (state.form.password !== state.form.passwordConfirmation) {
+            ElMessage.error("비밀번호가 일치하지 않습니다.")
+          }
+          const phoneCheck = /^[0-9]+/g
+          if (!phoneCheck.test(state.form.phoneNum)) {
+            ElMessage.error("전화번호는 숫자만 입력할 수 있습니다.")
+          }
+          const emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          if (!emailCheck.test(state.form.email)) {
+            ElMessage.error("올바른 e-mail 형식이 아닙니다.")
+          }
+          const ageCheck = /^[0-9]+/g
+          if (!ageCheck.test(state.form.age)) {
+            ElMessage.error("나이는 숫자만 입력할 수 있습니다.")
+          }
+          const formData = new FormData()
+          formData.append('userId', state.form.userId)
+          formData.append('userName', state.form.userName)
+          formData.append('password', state.form.password)
+          formData.append('age', state.form.age)
+          formData.append('gender', state.form.gender)
+          formData.append('phoneNum', state.form.phoneNum)
+          formData.append('email', state.form.email)
+          formData.append('mbti', state.form.mbti)
+          formData.append('guide', state.form.guide)
+          formData.append('file', state.form.profileImg)
+                        
+          store.dispatch('profileImg', formData)
+          .then(() => {
+            ElMessage ({
+              message: '회원가입에 성공하였습니다.',
+              type: 'success'
+            })
+            emit('closeSignupDialog')
+          })
+          .catch(function () {
+            ElMessage.error('회원가입에 실패하였습니다.')
+          })
         } else {
-          ElMessage.error('Signup Failed !')
+          ElMessage.error('회원가입에 필요한 정보가 입력되지 않았습니다.')
         }
       })
     }
