@@ -78,7 +78,7 @@ export default {
     const sendMarker = (position) => {
       // console.log(position)
       state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify(position.toJSON(), null, 2));
-      console.log(JSON.stringify(position.toJSON(), null, 2))
+      console.log('json 확인 =>' + JSON.stringify(position.toJSON(), null, 2))
     }
 
     // function showMarker(marker) {
@@ -101,18 +101,25 @@ export default {
         map: map,
       })
       state.marker.setMap(map)
+      state.marker.addListener('dblclick', () => {
+          state.marker.setMap(null)
+      })
+      state.marker.addListener('click', function() {
+        map.setZoom(14);
+        map.setCenter(state.marker.getPosition())
+      })
     }
 
-    for (var i = 0; i < state.markerList.length; i++) {
-      if (state.markerList[i]) {
-        console.log(state.markerList[i])
-        state.marker = new google.maps.Marker({
-          position: state.markerList[i],
-          map: map,
-        })
-        state.marker.setMap(map)
-      }
-    }
+    // for (var i = 0; i < state.markerList.length; i++) {
+    //   if (state.markerList[i]) {
+    //     console.log(state.markerList[i])
+    //     state.marker = new google.maps.Marker({
+    //       position: state.markerList[i],
+    //       map: map,
+    //     })
+    //     state.marker.setMap(map)
+    //   }
+    // }
 
     onMounted (() => {
       connect()
