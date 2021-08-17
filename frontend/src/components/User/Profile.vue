@@ -3,7 +3,7 @@
     <div class="row d-flex align-items-center">
       <!-- 이미지 -->
       <div class="col-3">
-        <img class="profilepage-img" :src="'/var/www/html/upload/' + state.userProfileimg"  alt="">
+        <img class="profilepage-img" :src="'/api/v1/users/' + state.userProfileimg"  alt="">
       </div>
       <div class="col">
         <div class="d-flex">
@@ -138,9 +138,6 @@ export default {
     const router = useRouter()
 
     const state = reactive({
-      dialogImageUrl: '',
-      dialogVisible: false,
-      disabled: false,
       userName: computed(() => store.getters['getProfilename']),
       userId: computed(() => store.getters['getProfileid']),
       userEmail: computed(() => store.getters['getProfileemail']),
@@ -153,16 +150,6 @@ export default {
       token: computed(() => store.getters['getToken']),
       today: new Date(),
     })
-    const handleRemove = (file) => {
-      console.log(file)
-    }
-    const handlePictureCardPreview = (file) => {
-      state.dialogImageUrl = file.url
-      state.dialogVisible = true
-    }
-    const handleDownload = (file) => {
-      console.log(file)
-    }
     const clickArticle = (boardNo) => {
       if (!state.token) {
         ElMessage.error('로그인이 필요합니다.')
@@ -185,7 +172,6 @@ export default {
       store.dispatch('userComment', state.userId)
         .then(({ data }) => {
           state.userComment = data
-          console.log(state.userComment.length)
         })
     })
     // onUpdated (() => {
@@ -199,7 +185,7 @@ export default {
     //     })
     // })
 
-    return { state, handleRemove, handlePictureCardPreview, handleDownload, clickArticle, UTCtoKST }
+    return { state, clickArticle, UTCtoKST }
   },
 }
 </script>
