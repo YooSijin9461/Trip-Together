@@ -72,7 +72,7 @@
           </el-tab-pane>
         </el-tabs>
       </div>
-      <div id="map" class="col-6">
+      <div id="home-map" class="col-6">
       </div>
     </div>
   </div>
@@ -140,9 +140,9 @@ export default {
       }
     }
     const google = window.google
-    var map
+    var map, infoWindow
     function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
+      map = new google.maps.Map(document.getElementById('home-map'), {
         center: { lat: 37.564214, lng: 127.001699 },
         zoom: 10,
         styles: [{
@@ -156,6 +156,43 @@ export default {
         disableDoubleClickZoom: true,
         streetViewControl: true,
       });
+      infoWindow = new google.maps.InfoWindow();
+      const locationButton = document.createElement("button");
+      locationButton.textContent = "현재 위치 찾기";
+      locationButton.classList.add("custom-map-control-button");
+      map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+      locationButton.addEventListener("click", () => {
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+              infoWindow.setPosition(pos);
+              infoWindow.setContent("현재 위치입니다.");
+              infoWindow.open(map);
+              map.setCenter(pos);
+            },
+            () => {
+              handleLocationError(true, infoWindow, map.getCenter());
+            }
+          );
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      });
+    }
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+      infoWindow.setPosition(pos);
+      infoWindow.setContent(
+        browserHasGeolocation
+          ? "Error: The Geolocation service failed."
+          : "Error: Your browser doesn't support geolocation."
+      );
+      infoWindow.open(map);
     }
 
     onMounted (() => {
@@ -188,7 +225,7 @@ export default {
         })
     })
 
-    return { state, clickMoreConference, clickMoreArticle, clickMoreNotice, clickArticle, clickConference, clickNotice, initMap, map }
+    return { state, clickMoreConference, clickMoreArticle, clickMoreNotice, clickArticle, clickConference, clickNotice, initMap, map, infoWindow, handleLocationError }
   },
 }
 </script>
