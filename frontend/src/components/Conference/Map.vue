@@ -45,8 +45,8 @@ export default {
         //   map: map,
         // })
         sendMarker(latLng)
-        state.marker.addListener('dblclick', () => {
-          state.marker.setMap(null)
+        // state.marker.addListener('dblclick', () => {
+        //   state.marker.setMap(null)
           // for (var i = 0; i < state.markerList.length; i++) {
           //   if (state.markerList[i].position === state.marker.position) {
           //     state.markerList[i].state = 0
@@ -54,11 +54,11 @@ export default {
           //   }
           // }
         })
-        state.marker.addListener('click', function() {
-          map.setZoom(14);
-          map.setCenter(state.marker.getPosition())
-        })
-      });
+        // state.marker.addListener('click', function() {
+        //   map.setZoom(14);
+        //   map.setCenter(state.marker.getPosition())
+        // })
+      // });
     }
     
     const connect = () => {
