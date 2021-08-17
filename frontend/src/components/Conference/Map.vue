@@ -39,11 +39,12 @@ export default {
         streetViewControl: true,
       })
 
+      connect()
       map.addListener('click', function(e) {
         state.marker = new google.maps.Marker({
           position: e.latLng,
           map: map,
-        });
+        })
         sendMarker(e.latLng.lat, e.latLng.lng)
         state.marker.addListener('dblclick', () => {
           state.marker.setMap(null)
@@ -95,7 +96,6 @@ export default {
     }
     onMounted (() => {
       initMap()
-      connect()
     })
 
     onUnmounted (() => {
@@ -104,7 +104,6 @@ export default {
 
     onUpdated (() => {
       showMarker()
-      shareMarker()
     })
 
     return { state, onMounted, map, connect, disconnect, showMarker, sendMarker, shareMarker, onUnmounted, onUpdated }
