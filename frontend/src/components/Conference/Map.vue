@@ -41,24 +41,25 @@ export default {
       })
 
       map.addListener('click', function({ latLng }) {
-        state.marker = new google.maps.Marker({
-          position: latLng,
-          map: map,
-        })
-        sendMarker(state.marker.position)
-        state.marker.addListener('dblclick', () => {
-          state.marker.setMap(null)
-          // for (var i = 0; i < state.markerList.length; i++) {
-          //   if (state.markerList[i].position === state.marker.position) {
-          //     state.markerList[i].state = 0
-          //     sendMarker(state.marker.position, 0)
-          //   }
-          // }
-        })
-        state.marker.addListener('click', function() {
-          map.setZoom(14);
-          map.setCenter(state.marker.getPosition())
-        })
+        // state.marker = new google.maps.Marker({
+        //   position: latLng,
+        //   map: map,
+        // })
+        console.log(latLng)
+        sendMarker(latLng)
+        // state.marker.addListener('dblclick', () => {
+        //   state.marker.setMap(null)
+        //   // for (var i = 0; i < state.markerList.length; i++) {
+        //   //   if (state.markerList[i].position === state.marker.position) {
+        //   //     state.markerList[i].state = 0
+        //   //     sendMarker(state.marker.position, 0)
+        //   //   }
+        //   // }
+        // })
+        // state.marker.addListener('click', function() {
+        //   map.setZoom(14);
+        //   map.setCenter(state.marker.getPosition())
+        // })
       });
     }
     const connect = () => {
@@ -76,15 +77,18 @@ export default {
       }
     }
     const sendMarker = (position) => {
+      console.log(position)
       state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify( position ));
     }
 
     function showMarker(marker) {
       state.markerList.push(marker)
+      console.log(state.markerList.slice(-1))
       state.marker = new google.maps.Marker({
         position: state.markerList.slice(-1),
         map: map,
       })
+      console.log(state.marker)
     }
 
     // const shareMarker = () => {
