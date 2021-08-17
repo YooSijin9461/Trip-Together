@@ -33,7 +33,7 @@ export default {
         }],
         disableDoubleClickZoom: true,
         streetViewControl: true,
-      });
+      })
 
       map.addListener('click', function(e) {
         var marker = new google.maps.Marker({
@@ -45,9 +45,8 @@ export default {
           marker.setMap(null)
         })
         marker.addListener('click', function() {
-          state.mapPosition = marker.position
-          state.mapZoom = 12
-          initMap()
+          map.setZoom(14);
+          map.setCenter(marker.getPosition())
         })
       });
     }
