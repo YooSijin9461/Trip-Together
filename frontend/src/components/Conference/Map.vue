@@ -13,6 +13,7 @@ export default {
   setup() {
     const state = reactive ({
       stompClient: null,
+      marker: '',
       markerList: [],
       mapPosition: { lat: 37.564214, lng: 127.001699 },
       mapZoom: 10,
@@ -72,6 +73,15 @@ export default {
     function showMarker(marker) {
       state.markerList.push(marker)
     }
+
+    const shareMarker = () => {
+      for (var i = 0; i < state.markerList.length; i++) {
+        state.marker = new google.maps.Marker({
+          position: state.markerList[i].position,
+          map: map,
+        });
+      }
+    }
     onMounted (() => {
       connect()
       initMap()
@@ -81,7 +91,7 @@ export default {
       disconnect()
     })
 
-    return { state, onMounted, map, connect, disconnect, showMarker, sendMarker }
+    return { state, onMounted, map, connect, disconnect, showMarker, sendMarker, shareMarker }
   },
 }
 </script>
