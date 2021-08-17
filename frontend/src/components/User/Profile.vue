@@ -43,6 +43,7 @@
         <div class="d-flex">
           <div class="me-5">
             {{ state.userProfileimg }}
+            <img :src="state.userProfileimg" alt="">
             <p class="my-3">ID : {{ state.userId }}</p>
             <p class="my-3">이름 : {{ state.userName }}</p>
             <p class="my-3">e-mail : {{ state.userEmail }}</p>
