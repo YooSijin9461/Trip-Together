@@ -66,13 +66,13 @@ export default {
           state.noticeCount = data.totalElements
         })
     })
-    onUpdated (() => {
-      store.dispatch('noticePageList')
-        .then(({ data }) => {
-          state.noticeList = data.content
-          state.noticeCount = data.totalElements
-        })
-    })
+    // onUpdated (() => {
+    //   store.dispatch('noticePageList')
+    //     .then(({ data }) => {
+    //       state.noticeList = data.content
+    //       state.noticeCount = data.totalElements
+    //     })
+    // })
     const pageChange = (val) => {
       store.dispatch('noticePageList', val)
         .then(({ data }) => {

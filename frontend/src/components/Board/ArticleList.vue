@@ -84,13 +84,13 @@ export default {
           state.articleCount = data.totalElements
         })
     })
-    onUpdated (() => {
-      store.dispatch('articlePageList')
-        .then(({ data }) => {
-          state.articleList = data.content
-          state.articleCount = data.totalElements
-        })
-    })
+    // onUpdated (() => {
+    //   store.dispatch('articlePageList')
+    //     .then(({ data }) => {
+    //       state.articleList = data.content
+    //       state.articleCount = data.totalElements
+    //     })
+    // })
 
     const pageChange = (val) => {
       store.dispatch('articlePageList', val)
