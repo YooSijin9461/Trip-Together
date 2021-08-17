@@ -77,6 +77,7 @@ export default {
       }
     }
     const sendMarker = (lat, lng) => {
+      console.log('lat:' +lat+ 'lng: '+lng)
       state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify({'lat': lat, 'lng': lng}));
     }
 
