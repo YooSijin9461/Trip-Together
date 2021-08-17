@@ -79,7 +79,7 @@
 </template>
 
 <script>
-import { reactive, onMounted, computed } from 'vue'
+import { reactive, onMounted, computed, onUpdated } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { ElMessage } from 'element-plus'
@@ -160,6 +160,20 @@ export default {
 
     onMounted (() => {
       initMap()
+      store.dispatch('noticePageList')
+        .then(({ data }) => {
+          state.noticeList = data.content.slice(0, 6)
+        })
+      store.dispatch('conferenceList')
+        .then(({ data }) => {
+          state.conferenceList = data.content.slice(0, 6)
+        })
+      store.dispatch('articlePageList')
+        .then(({ data }) => {
+          state.articleList = data.content.slice(0, 6)
+        })
+    })
+    onUpdated (() => {
       store.dispatch('noticePageList')
         .then(({ data }) => {
           state.noticeList = data.content.slice(0, 6)

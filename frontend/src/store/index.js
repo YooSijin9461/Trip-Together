@@ -53,6 +53,8 @@ const getDefaultState = () => {
     boardCreate: null,
     like: null,
     hate: null,
+    likeCount: null,
+    hateCount: null,
 
     // 댓글
     commentList: [],
@@ -128,6 +130,8 @@ export default createStore({
       state.boardTitle = boardinfo.boardTitle
       state.boardContent = boardinfo.boardContent
       state.boardCreate = boardinfo.boardTime
+      state.likeCount = boardinfo.likeCount
+      state.hateCount = boardinfo.hateCount
     },
     RECOMMEND (state, check) {
       state.like = check.likeCheck
@@ -452,6 +456,12 @@ export default createStore({
     },
     getHate (state) {
       return state.hate
+    },
+    getLikecount (state) {
+      return state.likeCount
+    },
+    getHatecount (state) {
+      return state.hateCount
     },
 
     // 댓글

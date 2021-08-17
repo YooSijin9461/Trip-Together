@@ -104,39 +104,39 @@ public class UserController {
 		if(file != null && file.getSize() > 0) {
 			// 이미지 저장 경로
 //			String basePath = "src/main/resources/dist/upload/";
-			String basePath = "C:/SSAFY/work_pjt3/backend/src/main/resources/dist";
+			String basePath = "C:/Users/multicampus/Documents/S05P13D201/backend/src/main/resources/dist";
 			
 			String filePath = basePath + "/" + file.getOriginalFilename();
-			ClassPathResource res = new ClassPathResource(basePath); // /src/main/resources/dist/upload | /bin/main/dist/upload
+//			ClassPathResource res = new ClassPathResource(basePath); // /src/main/resources/dist/upload | /bin/main/dist/upload
 			
 			File dest = new File(filePath);
 			
 			// 파일 업로드
-//			file.transferTo(dest);
+			file.transferTo(dest);
 			
 //			Resource res = resourceLoader.getResource("/dist/upload/");
 //			Resource res = resourceLoader.getResource("classpath:upload/");
 //			File f = res.getFile();
 //			if(!f.exists())
 //				f.mkdirs();
-			System.out.println(res.getPath());
+//			System.out.println(res.getPath());
 			
 //			res.getPath();
 
 			// inputStream, outputStream을 이용하여 basePath경로로 파일 저장하기
-			System.out.println("inputStream start");
-			InputStream inputStream = res.getInputStream();
-			File f = new File(basePath + "/tmp.txt");
-			System.out.println("outputStream start");
-			FileOutputStream outSrouce = new FileOutputStream(f);
-			
-			byte[] data = new byte[1024];
-			int length = 0;
-			
-			while( (length = inputStream.read(data)) != -1)  {
-				outSrouce.write(data, 0, length);
-			}
-			System.out.println("outSource success");
+//			System.out.println("inputStream start");
+//			InputStream inputStream = res.getInputStream();
+//			File f = new File(basePath + "/tmp.txt");
+//			System.out.println("outputStream start");
+//			FileOutputStream outSrouce = new FileOutputStream(f);
+//			
+//			byte[] data = new byte[1024];
+//			int length = 0;
+//			
+//			while( (length = inputStream.read(data)) != -1)  {
+//				outSrouce.write(data, 0, length);
+//			}
+//			System.out.println("outSource success");
 //			File f = File.createTempFile("temp", ".jpg");
 //			if(!f.exists())
 //				f.mkdirs();

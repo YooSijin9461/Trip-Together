@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { onMounted, reactive, computed } from 'vue'
+import { onMounted, reactive, computed, onUpdated } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { ElMessage } from 'element-plus'
@@ -77,6 +77,14 @@ export default ({
       state.conferencePageList = state.guide.slice(start, start + 9)
     }
     onMounted (() => {
+      store.dispatch('conferenceList')
+        .then(({ data }) => {
+          state.conferenceList = data.content
+          state.conferencePageList = state.guide.slice(0, 9)
+          state.conferenceCount = state.guide.length
+        })
+    })
+    onUpdated (() => {
       store.dispatch('conferenceList')
         .then(({ data }) => {
           state.conferenceList = data.content
