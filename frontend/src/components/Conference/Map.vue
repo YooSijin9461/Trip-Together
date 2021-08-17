@@ -24,6 +24,7 @@ export default {
     const google = window.google
     var map
     function initMap() {
+      connect()
       map = new google.maps.Map(document.getElementById('map'), {
         center: state.mapPosition,
         zoom: state.mapZoom,
@@ -39,7 +40,6 @@ export default {
         streetViewControl: true,
       })
 
-      connect()
       map.addListener('click', function({ latLng }) {
         state.marker = new google.maps.Marker({
           position: latLng,
@@ -66,7 +66,6 @@ export default {
       state.stompClient = Stomp.over(socket);
       state.stompClient.connect({}, function () {
         state.stompClient.subscribe(`/topic/marker/${state.conferneceNo}`, function (marker) {
-          console.log('marker: ' + marker)
           showMarker(JSON.parse(marker.body))
         });
       });
@@ -77,7 +76,6 @@ export default {
       }
     }
     const sendMarker = (position) => {
-      console.log('position : ' + position)
       state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify( position ));
     }
 
@@ -92,6 +90,7 @@ export default {
             position: state.markerList[i],
             map: map,
           })
+          state.marker.setMap(map)
         }
       }
     }

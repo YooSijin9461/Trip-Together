@@ -76,7 +76,6 @@ export default {
 
     const clickMap = () => {
       state.mapVisible = !state.mapVisible
-      console.log(state.mapVisible)
     }
 
     // webRTC 기능 
