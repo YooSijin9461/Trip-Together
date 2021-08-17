@@ -371,6 +371,9 @@ export default createStore({
     getUserimg (state) {
       return state.userImg
     },
+    getUserconference (state) {
+      return state.userConference
+    },
 
     // 프로필
     getProfileid (state) {
