@@ -45,7 +45,7 @@ export default {
           position: e.latLng,
           map: map,
         })
-        sendMarker(e.latLng.lat, e.latLng.lng)
+        sendMarker(state.marker.position.lat, state.marker.position.lng)
         state.marker.addListener('dblclick', () => {
           state.marker.setMap(null)
           // for (var i = 0; i < state.markerList.length; i++) {
@@ -77,7 +77,7 @@ export default {
       }
     }
     const sendMarker = (lat, lng) => {
-      console.log('lat:' +lat+ 'lng: '+lng)
+      console.log('lat:'+lat+'lng: '+lng)
       state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify({'lat': lat, 'lng': lng}));
     }
 
