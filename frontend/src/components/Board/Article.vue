@@ -15,22 +15,22 @@
       <div class="d-flex mb-2">
         <div v-if="!state.like">
           <div class="like" @click="clickLike">
-            <i class="far fa-thumbs-up"></i> 좋아요
+            <span class="like-count">{{ state.likeCount }}</span> <i class="far fa-thumbs-up"></i> 좋아요
           </div>
         </div>
         <div v-else>
           <div class="liked" @click="clickLike">
-            <i class="fas fa-thumbs-up"></i> 좋아요 취소
+            <span class="like-count">{{ state.likeCount }}</span> <i class="fas fa-thumbs-up"></i> 좋아요 취소
           </div>
         </div>
         <div v-if="!state.hate">
           <div class="hate" @click="clickHate">
-            <i class="far fa-thumbs-down"></i> 싫어요
+            <span class="hate-count">{{ state.hateCount }}</span> <i class="far fa-thumbs-down"></i> 싫어요
           </div>
         </div>
         <div v-else>
           <div class="hated" @click="clickHate">
-            <i class="fas fa-thumbs-down"></i> 싫어요 취소
+            <span class="hate-count">{{ state.hateCount }}</span> <i class="fas fa-thumbs-down"></i> 싫어요 취소
           </div>
         </div>
       </div>
@@ -112,6 +112,8 @@ export default {
       commentList: computed (() => store.getters['getCommentlist']),
       like: computed (() => store.getters['getLike']),
       hate: computed (() => store.getters['getHate']),
+      likeCount: computed (() => store.getters['getLikecount']),
+      hateCount: computed (() => store.getters['getHatecount']),
     })
     const clickToList = () => {
       router.push({ name: 'ArticleList' })
@@ -188,6 +190,7 @@ export default {
     })
     onUpdated (() => {
       store.dispatch('commentList', state.articleNo)
+      store.dispatch('articleDetail', state.articleNo)
     })
     return { state, clickToList, clickDelete, clickUpdate, clickProfile, createComment, clickLike, clickHate }
   },
@@ -235,7 +238,7 @@ export default {
 }
 .like {
   padding: 2px;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 .like:hover {
   cursor: pointer;
@@ -266,5 +269,13 @@ export default {
 }
 .hated:hover {
   cursor: pointer;
+}
+.like-count {
+  color: #409eff;
+  font-weight: bold;
+}
+.hate-count {
+  color: #f56c6c;
+  font-weight: bold;
 }
 </style>

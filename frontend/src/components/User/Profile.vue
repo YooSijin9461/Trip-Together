@@ -101,7 +101,15 @@
         <div v-for="article in state.userArticle.slice().reverse()" :key="article">
           <hr class="article-line my-0">
           <div class="article-box d-flex" @click="clickArticle(article.boardNo)">
-            <p class="ms-5 mb-0 title col-8">{{ article.boardTitle }}</p>
+            <div class="col-8 d-flex align-items-center">
+              <p class="ms-3 mb-0 me-3">{{ article.boardTitle }}</p>
+              <div class="likeCount me-2">
+                <i class="fas fa-thumbs-up"></i> {{ article.likeCount }}
+              </div>
+              <div class="hateCount">
+                <i class="fas fa-thumbs-down"></i> {{ article.hateCount }}
+              </div>
+            </div>
             <div class="col d-flex">
               <p class="mb-0 userId"><i class="fas fa-user userId me-2"></i>{{ article.userId }}</p>
             </div>
@@ -150,7 +158,7 @@
 </template>
 
 <script>
-import { reactive, computed, onMounted, ref } from 'vue'
+import { reactive, computed, onMounted, ref, onUpdated } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
@@ -214,6 +222,16 @@ export default {
           console.log(state.userComment.length)
         })
     })
+    // onUpdated (() => {
+    //   store.dispatch('userArticle', state.userId)
+    //     .then(({ data }) => {
+    //       state.userArticle = data
+    //     })
+    //   store.dispatch('userComment', state.userId)
+    //     .then(({ data }) => {
+    //       state.userComment = data
+    //     })
+    // })
 
     return { state, handleRemove, handlePictureCardPreview, handleDownload, clickArticle, UTCtoKST }
   },
@@ -269,5 +287,13 @@ button[aria-selected="false"] {
   background-color: #e4ffe4;
   font-weight: bold;
   color: green;
+}
+.likeCount {
+  font-size: 12px;
+  color: #409eff;
+}
+.hateCount {
+  font-size: 12px;
+  color: #f56c6c;
 }
 </style>
