@@ -70,6 +70,7 @@ public class UserServiceImpl implements UserService {
 		user.setGender(u.getGender());
 		user.setEmail(u.getEmail());
 		user.setMbti(u.getMbti());
+		user.setImg(u.getImg());
 		return userRepository.save(user);
 	}
 	
