@@ -44,7 +44,7 @@ export default {
           position: e.latLng,
           map: map,
         });
-        sendMarker(state.marker.position)
+        sendMarker(e.latLng.lat, e.latLng.lng)
         state.marker.addListener('dblclick', () => {
           state.marker.setMap(null)
           // for (var i = 0; i < state.markerList.length; i++) {
@@ -75,8 +75,8 @@ export default {
         state.stompClient.disconnect();
       }
     }
-    const sendMarker = (position) => {
-      state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify({'lat': position.lat, 'lng': position.lng}));
+    const sendMarker = (lat, lng) => {
+      state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify({'lat': lat, 'lng': lng}));
     }
 
     function showMarker(marker) {
@@ -104,6 +104,7 @@ export default {
 
     onUpdated (() => {
       showMarker()
+      shareMarker()
     })
 
     return { state, onMounted, map, connect, disconnect, showMarker, sendMarker, shareMarker, onUnmounted, onUpdated }
