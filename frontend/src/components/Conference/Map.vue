@@ -45,13 +45,15 @@ export default {
         //   map: map,
         // })
         sendMarker(latLng)
-        console.log(parseFloat(state.markerList.slice(-1).lat))
-        console.log(parseFloat(state.markerList.slice(-1).lng))
-
+        console.log(state.markerList.slice(-1))
+        console.log(parseFloat(state.markerList.slice(-1).lat()))
+        console.log(parseFloat(state.markerList.slice(-1).lng()))
+        console.log(state.markerList.slice(-1).lat)
+        console.log(state.markerList.slice(-1).lng)
         new google.maps.Marker({
           position: {
-            'lat': parseFloat(state.markerList.slice(-1).lat),
-            'lng': parseFloat(state.markerList.slice(-1).lng),
+            lat: state.markerList.slice(-1).lat,
+            lng: state.markerList.slice(-1).lng,
           },
           map: map,
         })
