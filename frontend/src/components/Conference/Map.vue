@@ -78,7 +78,7 @@ export default {
     const sendMarker = (position) => {
       // console.log(position)
       state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify(position.toJSON(), null, 2));
-      console.log('json 확인 =>' + JSON.stringify(position.toJSON(), null, 2))
+      // console.log('json 확인 =>' + JSON.stringify(position.toJSON(), null, 2))
     }
 
     // function showMarker(marker) {
@@ -100,9 +100,14 @@ export default {
         position: state.markerList.slice(-1)[0],
         map: map,
       })
-      state.marker.setMap(map)
+      // state.marker.setMap(map)
       state.marker.addListener('dblclick', () => {
-          state.marker.setMap(null)
+        for (var i = 0; i < state.markerList.length; i++) {
+            if (state.markerList[i].position === state.marker.position) {
+              state.markerList[i] = null
+            }
+          }
+          // state.marker.setMap(null)
       })
       state.marker.addListener('click', function() {
         map.setZoom(14);
