@@ -95,10 +95,10 @@ export default {
     function showMarker(marker) {
       state.markerList.push(marker)
       console.log(state.markerList.slice(-1))
-      console.log(state.markerList.slice(-1)['lat'])
-      console.log(state.markerList.slice(-1)['lng'])
-      console.log(parseFloat(state.markerList.slice(-1)['lat']))
-      console.log(parseFloat(state.markerList.slice(-1)['lng']))
+      // console.log(state.markerList.slice(-1)['lat'])
+      // console.log(state.markerList.slice(-1)['lng'])
+      // console.log(parseFloat(state.markerList.slice(-1)['lat']))
+      // console.log(parseFloat(state.markerList.slice(-1)['lng']))
 
       const keys = Object.keys(state.markerList.slice(-1))
       const value = []
@@ -106,13 +106,21 @@ export default {
         const key = keys[i]
         value[i] = state.markerList.slice(-1)[key]
       }
-      console.log(value[0], value[1])
+      console.log(value)
+      console.log(value[0])
+      console.log(value[1])
 
       state.marker = new google.maps.Marker({
         position: {
           lat: value[0],
           lng: value[1],
         },
+        map: map,
+      })
+      state.marker.setMap(map)
+
+      state.marker = new google.maps.Marker({
+        position: value,
         map: map,
       })
       state.marker.setMap(map)
