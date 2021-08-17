@@ -27,7 +27,7 @@
         </span>
       </div>
       <div v-else>
-        <span>{{ state.owner }}</span>
+        <span>{{ state.ownerId }}</span>
       </div>
     </div>
     <hr class="article-line mt-3 mb-3">
