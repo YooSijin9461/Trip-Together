@@ -19,7 +19,7 @@
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item @click="clickProfile(state.userId)">내 정보</el-dropdown-item>
-              <el-dropdown-item @click="updateProfile">정보 수정</el-dropdown-item>
+              <el-dropdown-item @click="updateProfile()">정보 수정</el-dropdown-item>
               <el-dropdown-item @click="clickLogout">로그아웃</el-dropdown-item>
             </el-dropdown-menu>
           </template>

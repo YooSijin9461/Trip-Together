@@ -45,7 +45,6 @@ export default {
           position: latLng,
           map: map,
         })
-        console.log(latLng)
         sendMarker(state.marker.position)
         state.marker.addListener('dblclick', () => {
           state.marker.setMap(null)
@@ -78,8 +77,8 @@ export default {
       }
     }
     const sendMarker = (position) => {
-      console.log('position:'+position)
-      state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify( {'position' : Number(position.lat), 'lng': Number(position.lng)}));
+      console.log('position : ' + position)
+      state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify( position ));
     }
 
     function showMarker(marker) {
@@ -88,9 +87,9 @@ export default {
 
     const shareMarker = () => {
       for (var i = 0; i < state.markerList.length; i++) {
-        if (state.markerList[i].state) {
+        if (state.markerList[i]) {
           state.marker = new google.maps.Marker({
-            position: state.markerList[i].position,
+            position: state.markerList[i],
             map: map,
           })
         }

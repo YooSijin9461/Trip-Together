@@ -25,7 +25,7 @@
     <el-form-item prop="profileImg" label="프로필 사진" :label-width="state.formLabelWidth" >
       <input @change="fileSelect()" id="profileimg" type="file" accept="image/*" hidden/>
       <label class="profileimg" for="profileimg">파일 선택</label>
-      <span id="file-chosen">{{ state.form.profileImg }}</span><i v-if="state.form.profileImg" class="delete fas fa-times ms-2" @click="deletefile"></i>
+      <span id="file-chosen"></span><i v-if="state.form.profileImg" class="delete fas fa-times ms-2" @click="deletefile"></i>
     </el-form-item>
     <div class="row">
       <div class="col-7">
