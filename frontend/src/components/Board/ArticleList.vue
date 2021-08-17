@@ -9,7 +9,7 @@
         <div class="col-8 d-flex align-items-center">
           <p class="ms-3 mb-0 me-3">{{ article.boardTitle }}</p>
           <div class="likeCount me-2">
-            <i class="fas fa-thumbs-up"></i> {{ article.likeCount}}
+            <i class="fas fa-thumbs-up"></i> {{ article.likeCount }}
           </div>
           <div class="hateCount">
             <i class="fas fa-thumbs-down"></i> {{ article.hateCount }}
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { reactive, onMounted, computed } from 'vue'
+import { reactive, onMounted, computed, onUpdated } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
@@ -78,6 +78,13 @@ export default {
         router.push({ name: 'ArticleCreate'})
     }
     onMounted (() => {
+      store.dispatch('articlePageList')
+        .then(({ data }) => {
+          state.articleList = data.content
+          state.articleCount = data.totalElements
+        })
+    })
+    onUpdated (() => {
       store.dispatch('articlePageList')
         .then(({ data }) => {
           state.articleList = data.content

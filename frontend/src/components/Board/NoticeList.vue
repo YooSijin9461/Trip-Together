@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { reactive, onMounted, computed } from 'vue'
+import { reactive, onMounted, computed, onUpdated } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
@@ -60,6 +60,13 @@ export default {
       return new Date(date).getHours() + ':' + ('0' + new Date(date).getMinutes()).slice(-2)
     }
     onMounted (() => {
+      store.dispatch('noticePageList')
+        .then(({ data }) => {
+          state.noticeList = data.content
+          state.noticeCount = data.totalElements
+        })
+    })
+    onUpdated (() => {
       store.dispatch('noticePageList')
         .then(({ data }) => {
           state.noticeList = data.content
