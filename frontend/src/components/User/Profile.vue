@@ -3,7 +3,7 @@
     <div class="row d-flex align-items-center">
       <!-- 이미지 -->
       <div class="col-3">
-        <img class="profilepage-img" :src="profilepath" alt="">
+        <img class="profilepage-img" :src="state.profilepath" alt="">
       </div>
       <div class="col">
         <div class="d-flex">
