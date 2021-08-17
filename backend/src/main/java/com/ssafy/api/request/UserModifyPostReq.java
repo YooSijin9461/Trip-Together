@@ -26,4 +26,6 @@ public class UserModifyPostReq {
 	String mbti;
 	@ApiModelProperty(name="프로필 이미지")
 	String img;
+	@ApiModelProperty(name="유저 가이드여부", example="1")
+	boolean isGuide;
 }
