@@ -1,8 +1,8 @@
 <template>
   <div class="container mt-4">
-    <div class="row d-flex align-items-center">
+    <div class="row d-flex align-items-center mt-5">
       <!-- 이미지 -->
-      <div class="col-3">
+      <div class="col-3 ms-5">
         <img class="profilepage-img" :src="'/upload/' + state.userProfileimg"  alt="">
       </div>
       <div class="col">
@@ -196,8 +196,8 @@ button[aria-selected="false"] {
 }
 .profilepage-img {
   border: 1px solid lightgreen;
-  width: 150px;
-  height: 150px;
+  width: 175px;
+  height: 175px;
   border-radius: 100%;
 }
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
