@@ -19,6 +19,7 @@
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item @click="clickProfile(state.userId)">내 정보</el-dropdown-item>
+              <el-dropdown-item @click="updateProfile">정보 수정</el-dropdown-item>
               <el-dropdown-item @click="clickLogout">로그아웃</el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -33,7 +34,7 @@
 </template>
 
 <script>
-import { reactive, computed } from 'vue'
+import { reactive, computed, onUpdated } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 
@@ -96,7 +97,7 @@ export default {
   width: 35px;
   height: 35px;
   border-radius: 100%;
-  opacity: 0.8;
+  opacity: 0.9;
   margin-right: 10px;
 }
 .el-popper.is-light,.el-popper.is-light .el-popper__arrow::before {

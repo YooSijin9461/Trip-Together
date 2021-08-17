@@ -1,6 +1,6 @@
 <template>
-<el-dialog custom-class="Signup" title="회원가입" v-model="state.dialogVisible" @close="handleClose">
-  <el-form :model="state.form" :rules="state.rules" ref="signupForm" :label-position="state.form.align">
+<el-dialog custom-class="ProfileUpdate" title="정보 수정" v-model="state.dialogVisible" @close="handleClose">
+  <el-form :model="state.form" :rules="state.rules" ref="profileUpdateForm" :label-position="state.form.align">
     <el-form-item prop="userId" label="아이디" :label-width="state.formLabelWidth" >
       <el-input v-model="state.form.userId" autocomplete="off"></el-input>
     </el-form-item>
@@ -37,7 +37,7 @@
     <el-form-item prop="profileImg" label="프로필 사진" :label-width="state.formLabelWidth" >
       <input @change="fileSelect()" id="profileimg" type="file" accept="image/*" hidden/>
       <label class="profileimg" for="profileimg">파일 선택</label>
-      <span id="file-chosen"></span><i v-if="state.form.profileImg" class="delete fas fa-times ms-2" @click="deletefile"></i>
+      <span id="file-chosen"></span>
     </el-form-item>
 
     <div class="row">
@@ -85,7 +85,7 @@ import { useStore } from 'vuex'
 import { ElMessage } from 'element-plus'
 
 export default {
-  name: 'Signup',
+  name: 'ProfileUpdate',
   props: {
     open: {
       type: Boolean,
@@ -94,7 +94,7 @@ export default {
   },
   setup(props, { emit }) {
     const store = useStore()
-    const signupForm = ref(null)
+    const profileUpdateForm = ref(null)
 
     const state = reactive({
       form: {
@@ -149,16 +149,10 @@ export default {
 
     const fileSelect = () => {
       const profileimg = document.getElementById("profileimg")
-      const selectedimg = document.getElementById("file-chosen")
+      console.log(profileimg)
       state.form.profileImg = profileimg.files[0]
-      selectedimg.textContent = profileimg.files[0].name
     }
-    const deletefile = () => {
-      const selectedimg = document.getElementById("file-chosen")
-      state.form.profileImg = ''
-      selectedimg.textContent = ''
-    }
-    const clickSignup = () => {
+    const clickUpdate = () => {
       const idCheck = /^[a-zA-z0-9]{4,12}$/     
       const passwordCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
       const phoneCheck = /^[0-9]+/g
@@ -183,7 +177,7 @@ export default {
       else if (!emailCheck.test(state.form.email)) {
         ElMessage.error("올바른 e-mail 형식이 아닙니다.")
       } else {
-        signupForm.value.validate((valid) => {
+        profileUpdateForm.value.validate((valid) => {
           if (valid) {
             const formData = new FormData()
             formData.append('userId', state.form.userId)
@@ -200,16 +194,16 @@ export default {
             store.dispatch('profileImg', formData)
             .then(() => {
               ElMessage ({
-                message: '회원가입에 성공하였습니다.',
+                message: '회원정보를 수정하였습니다.',
                 type: 'success'
               })
-              emit('closeSignupDialog')
+              emit('closeProfileUpdateDialog')
             })
             .catch(function () {
-              ElMessage.error('회원가입에 실패하였습니다.')
+              ElMessage.error('수정에 필요한 정보가 입력되지 않았습니다.')
             })
           } else {
-            ElMessage.error('회원가입에 필요한 정보가 입력되지 않았습니다.')
+            ElMessage.error('수정에 필요한 정보가 입력되지 않았습니다.')
           }
         })
       }
@@ -226,33 +220,16 @@ export default {
       state.form.email = ''
       state.form.mbti = ''
       state.form.guide = false
-      emit('closeSignupDialog')
+      emit('closeProfileUpdateDialog')
     }
 
-    return { signupForm, state, clickSignup, handleClose, fileSelect, deletefile }
+    return { profileUpdateForm, state, clickUpdate, handleClose, fileSelect }
   },
 }
 </script>
 
 <style>
-.Signup {
+.ProfileUpdate {
   width: 400px !important;
-}
-.profileimg {
-  height: 40px !important;
-  border: 1px solid #dcdfe6;
-  padding: 0 5px;
-  border-radius: 5px;
-  margin-right: 5px;
-}
-.profileimg:hover {
-  border: 1px solid lightgreen;
-  background-color: #e4ffe4;
-  color: green;
-  cursor: pointer;
-}
-.delete:hover {
-  cursor: pointer;
-  color: #f56c6c;
 }
 </style>
