@@ -100,6 +100,23 @@ export default {
       console.log(parseFloat(state.markerList.slice(-1).lat))
       console.log(parseFloat(state.markerList.slice(-1).lng))
 
+      var myLatLngone = new google.maps.LatLng(state.markerList.slice(-1).lat, state.markerList.slice(-1).lng)
+      console.log(myLatLngone)
+      var myLatLngtwo = new google.maps.LatLng(parseFloat(state.markerList.slice(-1).lat), parseFloat(state.markerList.slice(-1).lng))
+      console.log(myLatLngtwo)
+
+      state.marker = new google.maps.Marker({
+        position: myLatLngone,
+        map: map,
+      })
+      state.marker.setMap(map)
+
+      state.marker = new google.maps.Marker({
+        position: myLatLngtwo,
+        map: map,
+      })
+      state.marker.setMap(map)
+
       state.marker = new google.maps.Marker({
         position: state.markerList.slice(-1),
         map: map,
