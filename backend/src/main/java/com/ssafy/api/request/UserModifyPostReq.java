@@ -1,5 +1,9 @@
 package com.ssafy.api.request;
 
+import javax.annotation.Nullable;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -25,7 +29,11 @@ public class UserModifyPostReq {
 	@ApiModelProperty(name="유저 mbti", example="ISFJ")
 	String mbti;
 	@ApiModelProperty(name="프로필 이미지")
+	@Nullable
 	String img;
 	@ApiModelProperty(name="유저 가이드여부", example="1")
 	boolean isGuide;
+	@ApiModelProperty(name="이미지 등록을 위한 파일")
+	@Nullable
+	MultipartFile file;
 }
