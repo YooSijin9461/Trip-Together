@@ -104,7 +104,7 @@ export default {
     })
 
     onUpdated (() => {
-      showMarker()
+      shareMarker()
     })
 
     return { state, onMounted, map, connect, disconnect, showMarker, sendMarker, shareMarker, onUnmounted, onUpdated }

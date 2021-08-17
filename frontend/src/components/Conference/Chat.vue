@@ -70,7 +70,6 @@ export default {
 
     function showChat(chat) {
       state.chatList.push(chat)
-
     }
 
     onMounted (() => {
