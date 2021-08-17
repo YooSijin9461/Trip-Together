@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { reactive, onMounted, onUnmounted } from 'vue'
+import { reactive, onMounted, onUnmounted, onUpdated } from 'vue'
 import SockJS from 'sockjs-client'
 import Stomp from 'stomp-websocket'
 
@@ -13,7 +13,7 @@ export default {
   setup() {
     const state = reactive ({
       stompClient: null,
-      marker: '',
+      marker: null,
       markerList: [],
       mapPosition: { lat: 37.564214, lng: 127.001699 },
       mapZoom: 10,
@@ -37,17 +37,17 @@ export default {
       })
 
       map.addListener('click', function(e) {
-        var marker = new google.maps.Marker({
+        state.marker = new google.maps.Marker({
           position: e.latLng,
           map: map,
         });
-        sendMarker(marker.position)
-        marker.addListener('dblclick', () => {
-          marker.setMap(null)
+        sendMarker(state.marker.position)
+        state.marker.addListener('dblclick', () => {
+          state.marker.setMap(null)
         })
-        marker.addListener('click', function() {
+        state.marker.addListener('click', function() {
           map.setZoom(14);
-          map.setCenter(marker.getPosition())
+          map.setCenter(state.marker.getPosition())
         })
       });
     }
@@ -91,7 +91,11 @@ export default {
       disconnect()
     })
 
-    return { state, onMounted, map, connect, disconnect, showMarker, sendMarker, shareMarker }
+    onUpdated (() => {
+      showMarker()
+    })
+
+    return { state, onMounted, map, connect, disconnect, showMarker, sendMarker, shareMarker, onUnmounted, onUpdated }
   },
 }
 </script>
