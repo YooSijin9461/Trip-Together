@@ -40,12 +40,13 @@ export default {
       })
 
       connect()
-      map.addListener('click', function(e) {
+      map.addListener('click', function({ latLng }) {
         state.marker = new google.maps.Marker({
-          position: e.latLng,
+          position: latLng,
           map: map,
         })
-        sendMarker(state.marker.position.lat, state.marker.position.lng)
+        console.log(latLng)
+        sendMarker(latLng.lat, latLng.lng)
         state.marker.addListener('dblclick', () => {
           state.marker.setMap(null)
           // for (var i = 0; i < state.markerList.length; i++) {
