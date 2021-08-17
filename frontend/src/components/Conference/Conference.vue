@@ -71,6 +71,7 @@ export default {
       conferenceNo: computed(() => store.getters['getConferenceno']),
       conferenceTitle: computed(() => store.getters['getConferencetitle']),
       owner: computed(() => store.getters['getConferenceowner']),
+      ownerId: computed(() => store.getters['getConferenceownerid']),
       mapVisible: false,
     })
 
@@ -215,7 +216,7 @@ export default {
     }
     const onParticipantLeft = (request) => {
       console.log('Participant' + request.name + ' left')
-      if (request.name === state.owner) {
+      if (request.name === state.ownerId) {
         store.dispatch('conferenceLeave', state.userId)
         leaveRoom()
         ElMessage.error('회의가 종료되었습니다.')
@@ -312,11 +313,11 @@ export default {
 
     onMounted(() => {
       socket.onopen = () =>{
-        register(state.username, state.conferenceNo)
+        register(state.userId, state.conferenceNo)
       }
     })
     onUnmounted(() => {
-      if(state.username === state.owner) {
+      if(state.userId === state.ownerId) {
         roomDelete()
       } else {
         leaveRoom()
