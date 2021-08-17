@@ -135,7 +135,7 @@
 </template>
 
 <script>
-import { reactive, computed, onMounted, ref } from 'vue'
+import { reactive, computed, onMounted, ref, onUpdated } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
@@ -187,16 +187,12 @@ export default {
           state.userComment = data
         })
     })
-    // onUpdated (() => {
-    //   store.dispatch('userArticle', state.userId)
-    //     .then(({ data }) => {
-    //       state.userArticle = data
-    //     })
-    //   store.dispatch('userComment', state.userId)
-    //     .then(({ data }) => {
-    //       state.userComment = data
-    //     })
-    // })
+    onUpdated (() => {
+      store.dispatch('profile', state.userId)
+        .then(() => {
+          router.push({ name: 'Profile', params: { userId: state.userId }})  
+        })
+    })
 
     return { state, clickArticle, UTCtoKST }
   },
