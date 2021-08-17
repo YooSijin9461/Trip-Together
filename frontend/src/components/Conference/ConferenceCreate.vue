@@ -24,7 +24,7 @@
     </el-form-item>
     <el-form-item prop="limit" label="제한인원" :label-width="state.formLabelWidth">
       <el-select v-model="state.form.limit" autocomplete="off">
-        <el-option label="없음" value="10"></el-option>
+        <el-option label="없음" value="없음"></el-option>
         <el-option label="2" value="2"></el-option>
         <el-option label="3" value="3"></el-option>
         <el-option label="4" value="4"></el-option>
@@ -81,19 +81,19 @@ export default {
           { required: true, message: 'Please input Owner', trigger: 'blur' }
         ],
         title: [
-          { required: true, message: 'Please input Title', trigger: 'blur' }
+          { required: true, message: '방 제목을 입력하세요.', trigger: 'blur' }
         ],
         description: [
-          { required: true, message: 'Please input Description', trigger: 'blur' }
+          { required: true, message: '방 설명을 입력하세요.', trigger: 'blur' }
         ],
         category: [
-          { required: true, message: 'Please check Category', trigger: 'blur' }
+          { required: true, message: '분류를 선택하세요.', trigger: 'blur' }
         ],
         password: [
-          { required: false, message: 'Please input Password', trigger: 'blur' }
+          { required: false, message: '비밀번호를 입력하세요.', trigger: 'blur' }
         ],
         limit: [
-          { required: false, message: 'Please input Age', trigger: 'blur' }
+          { required: true, message: '제한인원을 선택하세요.', trigger: 'blur' }
         ],
       },
       dialogVisible: computed(() => props.open),
@@ -104,6 +104,9 @@ export default {
     const clickConferenceCreate = () => {
       conferenceCreateForm.value.validate((valid) => {
         if (valid) {
+          if (state.form.limit === "없음") {
+            state.form.limit = 10
+          }
           store.dispatch('conferenceCreate', { 
             owner: state.form.owner,
             ownerId: state.form.ownerId,

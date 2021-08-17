@@ -6,7 +6,15 @@
         <hr class="article-line my-0">
       <!-- </span> -->
       <div class="article-box d-flex" @click="clickArticle(article.boardNo)">
-        <p class="ms-3 mb-0 title col-8">{{ article.boardTitle }}</p>
+        <div class="col-8 d-flex align-items-center">
+          <p class="ms-3 mb-0 me-3">{{ article.boardTitle }}</p>
+          <div class="likeCount me-2">
+            <i class="fas fa-thumbs-up"></i> {{ article.likeCount}}
+          </div>
+          <div class="hateCount">
+            <i class="fas fa-thumbs-down"></i> {{ article.hateCount }}
+          </div>
+        </div>
         <div class="col d-flex">
           <p class="mb-0 userId"><i class="fas fa-user userId me-2"></i>{{ article.userId }}</p>
         </div>
@@ -94,7 +102,6 @@ export default {
   padding: 15px 0px;
   align-items: center;
 }
-
 .date {
   font-size: 12px;
 }
@@ -124,5 +131,13 @@ export default {
 }
 .el-tabs__item.is-active, .el-tabs__item:hover {
     color: green;
+}
+.likeCount {
+  font-size: 12px;
+  color: #409eff;
+}
+.hateCount {
+  font-size: 12px;
+  color: #f56c6c;
 }
 </style>
