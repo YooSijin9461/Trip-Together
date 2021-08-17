@@ -103,8 +103,8 @@ public class UserController {
 		
 		if(file != null && file.getSize() > 0) {
 			// 이미지 저장 경로
-//			String basePath = "src/main/resources/dist/upload/";
-			String basePath = "C:/Users/multicampus/Documents/S05P13D201/backend/src/main/resources/dist";
+			String basePath = "/var/www/html/upload";
+//			String basePath = "C:/Users/multicampus/Documents/S05P13D201/backend/src/main/resources/dist";
 			
 			String filePath = basePath + "/" + file.getOriginalFilename();
 //			ClassPathResource res = new ClassPathResource(basePath); // /src/main/resources/dist/upload | /bin/main/dist/upload
