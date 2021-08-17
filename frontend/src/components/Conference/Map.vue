@@ -5,19 +5,22 @@
 </template>
 
 <script>
-import { reactive, onMounted } from 'vue'
+import { reactive, onMounted, onUnmounted } from 'vue'
+import SockJS from 'sockjs-client'
+import Stomp from 'stomp-websocket'
 
 export default {
   setup() {
     const state = reactive ({
-
+      stompClient: null,
+      markerList: [],
     })
     const google = window.google
     var map
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 37, lng: 126},
-        zoom: 7,
+        center: { lat: 37.564214, lng: 127.001699 },
+        zoom: 10,
         styles: [{
           featureType: 'poi',
           stylers: [{ visibility: 'on' }]  // Turn off POI.
@@ -45,11 +48,38 @@ export default {
         })
       });
     }
+    const connect = () => {
+      const socket = new SockJS('https://i5d201.p.ssafy.io:8443/websocket');
+      state.stompClient = Stomp.over(socket);
+      console.log('stompClient =>' + state.stompClient)
+      state.stompClient.connect({}, function (frame) {
+        console.log('Connected: frame =>' + frame);
+        state.stompClient.subscribe(`/topic/chat/${state.conferneceNo}`, function (chat) {
+          // showChat(JSON.parse(chat.body));
+          console.log(chat)
+        });
+      });
+    }
+    const disconnect = () => {
+      if (state.stompClient !== null) {
+        state.stompClient.disconnect();
+      }
+      console.log("Disconnected");
+    }
+    // const sendChat = () => {
+    //   const date = new Date();
+    //   const dateInfo = date.getHours() + ":" + ("0" + date.getMinutes()).slice(-2)
+    //   state.stompClient.send(`/app/chat/${state.conferneceNo}`, {}, JSON.stringify({'name': state.name, 'message': state.message, 'date': dateInfo}));
+    //   state.message = ''
+    // }
     onMounted (() => {
       initMap()
+      connect()
     })
-
-    return { state, onMounted, map }
+    onUnmounted (() => {
+      disconnect()
+    })
+    return { state, onMounted, map, connect, disconnect }
   },
 }
 </script>
