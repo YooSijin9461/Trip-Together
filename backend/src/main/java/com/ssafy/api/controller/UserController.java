@@ -99,16 +99,16 @@ public class UserController {
 		
 		if(file != null && file.getSize() > 0) {
 			// 이미지 저장 경로
-			String basePath = "/var/www/html/upload";
-//			String basePath = "C:/Users/multicampus/Documents/S05P13D201/backend/src/main/resources/dist";
+			String basePath = "/var/www/html/upload"; // ec2
+//			String basePath = "C:/Users/multicampus/Documents/S05P13D201/backend/src/main/resources/dist"; // 로컬
 			
-			String filePath = basePath + "/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
+			String filePath = basePath + "/" + userId + "_" + file.getOriginalFilename();
 			
 			File dest = new File(filePath);
 			
 			// 파일 업로드
 			file.transferTo(dest);
-			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
+			registerInfo.setImg(userId + "_" + file.getOriginalFilename());
 			
 		}
 		registerInfo.setUserId(userId);
