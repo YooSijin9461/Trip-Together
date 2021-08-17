@@ -114,7 +114,7 @@ export default {
         console.log('마커클릭 =>'+JSON.stringify(latLng.toJSON(), null, 2))
         map.setZoom(14);
         // map.setCenter(state.marker.getPosition())
-        map.center = JSON.stringify(latLng.toJSON(), null, 2)
+        map.setCenter(latLng())
       })
     }
 
