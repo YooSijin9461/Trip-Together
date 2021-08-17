@@ -15,14 +15,14 @@ export default {
     const store = useStore()
     const state = reactive ({
       stompClient: null,
-      marker: null,
+      // marker: null,
       markerList: [],
       conferneceNo: computed(() => store.getters['getConferenceno']),
       mapPosition: { lat: 37.564214, lng: 127.001699 },
       mapZoom: 10,
     })
     const google = window.google
-    var map
+    var map;
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
         center: state.mapPosition,
@@ -45,13 +45,6 @@ export default {
         //   map: map,
         // })
         sendMarker(latLng)
-        state.marker = new google.maps.Marker({
-          position: {
-            lat: parseFloat(state.markerList.slice(-1).lat),
-            lng: parseFloat(state.markerList.slice(-1).lng),
-          },
-          map: map,
-        })
         // state.marker.addListener('dblclick', () => {
         //   state.marker.setMap(null)
         //   // for (var i = 0; i < state.markerList.length; i++) {
@@ -61,11 +54,18 @@ export default {
         //   //   }
         //   // }
         // })
-        // state.marker.addListener('click', function() {
+        // marker.addListener('click', function() {
         //   map.setZoom(14);
         //   map.setCenter(state.marker.getPosition())
         // })
       });
+      new google.maps.Marker({
+        position: {
+          lat: parseFloat(state.markerList.slice(-1).lat),
+          lng: parseFloat(state.markerList.slice(-1).lng),
+        },
+        map: map,
+      })
     }
     const connect = () => {
       const socket = new SockJS('https://i5d201.p.ssafy.io:8443/websocket');
