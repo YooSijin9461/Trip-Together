@@ -38,11 +38,11 @@ export default {
           position: e.latLng,
           map: map,
         });
+        sendMarker(marker.position)
         marker.addListener('dblclick', () => {
           marker.setMap(null)
         })
         marker.addListener('click', function() {
-          console.log('클릭')
           map.center = marker.position
           map.zoom = 12
         })
@@ -51,12 +51,10 @@ export default {
     const connect = () => {
       const socket = new SockJS('https://i5d201.p.ssafy.io:8443/websocket');
       state.stompClient = Stomp.over(socket);
-      console.log('stompClient =>' + state.stompClient)
-      state.stompClient.connect({}, function (frame) {
-        console.log('Connected: frame =>' + frame);
-        state.stompClient.subscribe(`/topic/chat/${state.conferneceNo}`, function (chat) {
-          // showChat(JSON.parse(chat.body));
-          console.log(chat)
+      state.stompClient.connect({}, function () {
+        state.stompClient.subscribe(`/topic/chat/${state.conferneceNo}`, function (marker) {
+          console.log(marker)
+          showMarker(JSON.parse(marker.body))
         });
       });
     }
@@ -64,22 +62,24 @@ export default {
       if (state.stompClient !== null) {
         state.stompClient.disconnect();
       }
-      console.log("Disconnected");
     }
-    // const sendChat = () => {
-    //   const date = new Date();
-    //   const dateInfo = date.getHours() + ":" + ("0" + date.getMinutes()).slice(-2)
-    //   state.stompClient.send(`/app/chat/${state.conferneceNo}`, {}, JSON.stringify({'name': state.name, 'message': state.message, 'date': dateInfo}));
-    //   state.message = ''
-    // }
+    const sendMarker = (position) => {
+      state.stompClient.send(`/app/chat/${state.conferneceNo}`, {}, JSON.stringify({'position': position}));
+    }
+
+    function showMarker(marker) {
+      state.markerList.push(marker)
+    }
     onMounted (() => {
-      initMap()
       connect()
+      initMap()
     })
+
     onUnmounted (() => {
       disconnect()
     })
-    return { state, onMounted, map, connect, disconnect }
+
+    return { state, onMounted, map, connect, disconnect, showMarker, sendMarker }
   },
 }
 </script>
@@ -87,6 +87,6 @@ export default {
 <style>
 #map {
   width: 100%;
-  height: 40%;
+  height: 50%;
 }
 </style>
