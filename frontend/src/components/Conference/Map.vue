@@ -45,6 +45,16 @@ export default {
         //   map: map,
         // })
         sendMarker(latLng)
+        console.log(parseFloat(state.markerList.slice(-1).lat))
+        console.log(parseFloat(state.markerList.slice(-1).lng))
+
+        new google.maps.Marker({
+          position: {
+            'lat': parseFloat(state.markerList.slice(-1).lat),
+            'lng': parseFloat(state.markerList.slice(-1).lng),
+          },
+          map: map,
+        })
         // state.marker.addListener('dblclick', () => {
         //   state.marker.setMap(null)
         //   // for (var i = 0; i < state.markerList.length; i++) {
@@ -60,16 +70,7 @@ export default {
         // })
       });
     }
-    console.log(parseFloat(state.markerList.slice(-1).lat))
-    console.log(parseFloat(state.markerList.slice(-1).lng))
-
-    new google.maps.Marker({
-      position: {
-        'lat': parseFloat(state.markerList.slice(-1).lat),
-        'lng': parseFloat(state.markerList.slice(-1).lng),
-      },
-      map: map,
-    })
+    
     const connect = () => {
       const socket = new SockJS('https://i5d201.p.ssafy.io:8443/websocket');
       state.stompClient = Stomp.over(socket);
