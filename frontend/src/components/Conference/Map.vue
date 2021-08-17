@@ -45,6 +45,7 @@ export default {
           position: latLng,
           map: map,
         })
+        
         sendMarker(state.marker.position)
         state.marker.addListener('dblclick', () => {
           state.marker.setMap(null)
@@ -81,6 +82,7 @@ export default {
 
     function showMarker(marker) {
       state.markerList.push(marker)
+      console.log(state.markerList)
     }
 
     // const shareMarker = () => {
@@ -101,10 +103,6 @@ export default {
 
     onUnmounted (() => {
       disconnect()
-    })
-
-    onUpdated (() => {
-      // shareMarker()
     })
 
     return { state, onMounted, map, connect, disconnect, showMarker, sendMarker, onUnmounted, onUpdated }
