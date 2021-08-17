@@ -5,16 +5,19 @@
 </template>
 
 <script>
-import { reactive, onMounted, onUnmounted, onUpdated } from 'vue'
+import { reactive, onMounted, onUnmounted, onUpdated, computed } from 'vue'
 import SockJS from 'sockjs-client'
 import Stomp from 'stomp-websocket'
+import { useStore } from 'vuex'
 
 export default {
   setup() {
+    const store = useStore()
     const state = reactive ({
       stompClient: null,
       marker: null,
       markerList: [],
+      conferneceNo: computed(() => store.getters['getConferenceno']),
       mapPosition: { lat: 37.564214, lng: 127.001699 },
       mapZoom: 10,
     })
