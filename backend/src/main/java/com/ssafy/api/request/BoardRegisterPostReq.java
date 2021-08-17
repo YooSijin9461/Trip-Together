@@ -22,10 +22,6 @@ public class BoardRegisterPostReq {
 	String boardTitle;
 	@ApiModelProperty(name="게시글 내용", example="게시글입니다1")
 	String boardContent;
-	@ApiModelProperty(name="게시글 좋아요 개수", example="10")	
-	int likeCount;
-	@ApiModelProperty(name="게시글 싫어요 개수", example="11")	
-	int hateCount;
 	@ApiModelProperty(name="작성자 사진", example="abc.jpg")
 	String userImg;
 	@ApiModelProperty(name="게시글 사진", example="def.jpg")
@@ -51,18 +47,6 @@ public class BoardRegisterPostReq {
 	public void setBoardContent(String boardContent) {
 		this.boardContent = boardContent;
 	}
-	public int getLikeCount() {
-		return likeCount;
-	}
-	public void setLikeCount(int likeCount) {
-		this.likeCount = likeCount;
-	}
-	public int getHateCount() {
-		return hateCount;
-	}
-	public void setHateCount(int hateCount) {
-		this.hateCount = hateCount;
-	}
 	public String getUserImg() {
 		return userImg;
 	}
@@ -81,5 +65,4 @@ public class BoardRegisterPostReq {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
-	
 }

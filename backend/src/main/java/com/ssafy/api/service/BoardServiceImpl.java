@@ -35,8 +35,6 @@ public class BoardServiceImpl implements BoardService {
 		Board board = new Board();
 		board.setBoardTitle(boardRegisterInfo.getBoardTitle());
 		board.setBoardContent(boardRegisterInfo.getBoardContent());
-		board.setLikeCount(boardRegisterInfo.getLikeCount());
-		board.setHateCount(boardRegisterInfo.getHateCount());
 		board.setUserId(boardRegisterInfo.getUserId());
 		board.setUserImg(user.getImg());
 		board.setBoardImg(boardRegisterInfo.getBoardImg());
