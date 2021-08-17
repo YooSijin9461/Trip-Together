@@ -253,7 +253,9 @@ public class UserController {
 		modifyInfo.setMbti(mbti);
 		modifyInfo.setGuide(isGuide);
 		user = userService.modifyUser(modifyInfo, userId);
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.setAccept(Collections.singletonList(MediaType.MULTIPART_FORM_DATA));
+		return new ResponseEntity<User>(user, responseHeaders, HttpStatus.OK);
 	}
 	
 	@PatchMapping("conference")

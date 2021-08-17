@@ -195,9 +195,19 @@ export default createStore({
           }
         )
     },
-    profileUpdate ({ commit }, payload) {
+    profileUpdate ({ commit }, { userId, formData, params }) {
       return axios
-        .patch(`${BASE_URL}/api/v1/users/${payload.userId}?age=${payload.age}&email=${payload.email}&gender=${payload.gender}&mbti=${payload.mbti}&userName=${payload.userName}`)
+        .patch(`${BASE_URL}/api/v1/users/${userId}`, formData,
+          { 
+            headers: {
+              "Accept": "*/*", 
+              "Content-Type": "multipart/form-data"
+            },
+            params: {
+              params
+            }
+          }
+        )
         .then(({ data }) => {
           commit("USERINFO", data)
         })
