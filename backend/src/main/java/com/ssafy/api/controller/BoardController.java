@@ -62,15 +62,15 @@ public class BoardController {
 	})
 	public ResponseEntity<Board> registerBoard(
 			@RequestPart(value="file", required = false) MultipartFile file,
-//			@RequestParam(required = true) String boardTitle,
-//			@RequestParam(required = true) String boardContent
-			@RequestBody
-			@ApiParam(value="게시글 등록 정보", required = true) BoardRegisterPostReq registerInfo) throws IllegalStateException, IOException{
-//		BoardRegisterPostReq registerInfo = new BoardRegisterPostReq();
+			@RequestParam(required = true) String boardTitle,
+			@RequestParam(required = true) String boardContent,
+			@RequestParam(required = true) String userId
+			) throws IllegalStateException, IOException{
+		BoardRegisterPostReq registerInfo = new BoardRegisterPostReq();
 		if(file != null && file.getSize() > 0) {
 			// 이미지 저장 경로
-//			String basePath = "/var/www/html/boards/upload";
-			String basePath = "C:\\ssafy\\pjt3\\backend\\src\\main\\resources\\dist\\boards\\upload"; // 로컬
+			String basePath = "/var/www/html/boards/upload";
+//			String basePath = "C:\\Users\\multicampus\\Documents\\S05P13D201\\backend\\src\\main\\resources\\dist\\boards\\upload"; // 로컬
 
 			String filePath = basePath + "/" + file.getOriginalFilename();
 
@@ -86,11 +86,14 @@ public class BoardController {
 			registerInfo.setBoardImg(date + "_" + file.getOriginalFilename());
 			
 		}
+		registerInfo.setBoardTitle(boardTitle);
+		registerInfo.setBoardContent(boardContent);
+		registerInfo.setUserId(userId);
+		
 		Board board = boardService.createBoard(registerInfo);
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.setAccept(Collections.singletonList(MediaType.MULTIPART_FORM_DATA));
 		return new ResponseEntity<>(board, responseHeaders, HttpStatus.OK);
-		
 	}
 	
 	@GetMapping()
