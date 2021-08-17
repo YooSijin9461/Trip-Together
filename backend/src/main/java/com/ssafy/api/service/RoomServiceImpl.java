@@ -44,6 +44,7 @@ public class RoomServiceImpl implements RoomService{
 		room.setDescription(roomRegisterInfo.getDescription());
 		room.setActive(roomRegisterInfo.isActive());
 		room.setLimitUsersNum(roomRegisterInfo.getLimitUsersNum());
+		room.setOwnerGender(user.getGender());
 		return roomRepository.save(room);
 	}
 	

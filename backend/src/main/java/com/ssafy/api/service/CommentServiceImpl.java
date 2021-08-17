@@ -35,6 +35,7 @@ public class CommentServiceImpl implements CommentService {
 		comment.setBoardNo(commentRegisterInfo.getBoardNo());
 		comment.setUserId(commentRegisterInfo.getUserId());
 		comment.setUserImg(user.getImg());
+		comment.setUserGender(user.getGender());
 		return commentRepository.save(comment);
 	}
 

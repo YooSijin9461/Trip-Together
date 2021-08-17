@@ -37,6 +37,8 @@ public class Board {
 	int hateCount;
 	String userImg;
 	String boardImg;
+	char userGender;
+	
 	@Transient		// DB에 컬럼으로 저장안되도록 무시하는 어노테이션
     MultipartFile file;		// 이미지 등록을 위한 파일
 	
@@ -123,6 +125,14 @@ public class Board {
 
 	public void setBoardTime(Timestamp boardTime) {
 		this.boardTime = boardTime;
+	}
+	
+	public char getUserGender() {
+		return userGender;
+	}
+
+	public void setUserGender(char gender) {
+		this.userGender = gender;
 	}
 	
 	

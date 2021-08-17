@@ -31,4 +31,5 @@ public class Comments {
     Timestamp commentTime;
 	int boardNo;
 	String userImg;
+	char userGender;
 }

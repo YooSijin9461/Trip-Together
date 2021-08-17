@@ -37,6 +37,7 @@ public class ConferenceRoom extends BaseEntity{
     String ownerImg;
     boolean isActive;
     int limitUsersNum;
+    char ownerGender;
     
     //@OneToMany(mappedBy = "conferenceRoom")
     //List<User> users = new ArrayList<>();

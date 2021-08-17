@@ -38,6 +38,7 @@ public class BoardServiceImpl implements BoardService {
 		board.setUserId(boardRegisterInfo.getUserId());
 		board.setUserImg(user.getImg());
 		board.setBoardImg(boardRegisterInfo.getBoardImg());
+		board.setUserGender(user.getGender());
 		return boardRepository.save(board);
 	}
 
