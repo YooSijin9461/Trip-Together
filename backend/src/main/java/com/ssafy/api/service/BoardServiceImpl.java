@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 import com.ssafy.api.request.BoardModifyPostReq;
 import com.ssafy.api.request.BoardRegisterPostReq;
 import com.ssafy.db.entity.Board;
+import com.ssafy.db.entity.User;
 import com.ssafy.db.repository.BoardRepository;
 import com.ssafy.db.repository.BoardRepositorySupport;
+import com.ssafy.db.repository.UserRepository;
 
 /**
  * Board 관련 비즈니스 로직 처리를 위한 서비스 구현 정의.
@@ -22,16 +24,21 @@ public class BoardServiceImpl implements BoardService {
 	BoardRepository boardRepository;
 	
 	@Autowired
+	UserRepository userRepository;
+	
+	@Autowired
 	BoardRepositorySupport boardRepositorySupport;
 	
 	@Override
 	public Board createBoard(BoardRegisterPostReq boardRegisterInfo) {
+		User user = userRepository.findByUserId(boardRegisterInfo.getUserId()).get();
 		Board board = new Board();
 		board.setBoardTitle(boardRegisterInfo.getBoardTitle());
 		board.setBoardContent(boardRegisterInfo.getBoardContent());
 		board.setLikeCount(boardRegisterInfo.getLikeCount());
 		board.setHateCount(boardRegisterInfo.getHateCount());
 		board.setUserId(boardRegisterInfo.getUserId());
+		board.setUserImg(user.getImg());
 		return boardRepository.save(board);
 	}
 

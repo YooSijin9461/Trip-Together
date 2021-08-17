@@ -22,5 +22,7 @@ public class BoardRegisterPostReq {
 	int likeCount;
 	@ApiModelProperty(name="게시글 싫어요 개수", example="11")	
 	int hateCount;
+	@ApiModelProperty(name="작성자 사진", example="abc.jpg")
+	String userImg;
 	
 }

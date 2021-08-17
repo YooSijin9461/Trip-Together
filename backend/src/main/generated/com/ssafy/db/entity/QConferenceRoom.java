@@ -34,6 +34,8 @@ public class QConferenceRoom extends EntityPathBase<ConferenceRoom> {
     public final NumberPath<Integer> limitUsersNum = createNumber("limitUsersNum", Integer.class);
 
     public final StringPath owner = createString("owner");
+    
+    public final StringPath ownerImg = createString("ownerImg");
 
     public final DateTimePath<java.sql.Timestamp> startTime = createDateTime("startTime", java.sql.Timestamp.class);
 

@@ -34,6 +34,7 @@ public class ConferenceRoom extends BaseEntity{
     String thumbnailUrl;
     String title;
     String description;
+    String ownerImg;
     boolean isActive;
     int limitUsersNum;
     

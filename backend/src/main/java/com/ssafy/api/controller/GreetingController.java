@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.db.entity.Chat;
+import com.ssafy.db.entity.Marker;
 
 @RestController
 @CrossOrigin("*")
@@ -25,4 +26,11 @@ public class GreetingController {
 	public Chat chat(Chat chat) throws Exception {
 	  return new Chat(chat.getName(), chat.getMessage(), chat.getDate());
 	}
+	
+	@MessageMapping("/marker/{conferenceNo}")
+	@SendTo("/topic/marker/{conferenceNo}")
+	public Marker marker(Marker marker) throws Exception {
+		return new Marker(marker.getLat(), marker.getLng());
+	}
+	
 }

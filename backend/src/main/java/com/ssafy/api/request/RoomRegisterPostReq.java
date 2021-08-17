@@ -20,6 +20,8 @@ public class RoomRegisterPostReq {
 	String owner;
 	@ApiModelProperty(name="방 생성자 ID", example="subin")
 	String ownerId;
+	@ApiModelProperty(name="방 생성자 사진", example="1234.jpg")
+	String ownerImg;
 	@ApiModelProperty(name="방 썸네일", example="abcd.jpg")
 	String thumbnailUrl;
 	@ApiModelProperty(name="방 이름", example="부산여행")

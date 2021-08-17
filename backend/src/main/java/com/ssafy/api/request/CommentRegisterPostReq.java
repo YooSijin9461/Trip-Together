@@ -18,4 +18,5 @@ public class CommentRegisterPostReq {
 	String comment;
 	@ApiModelProperty(name="게시글 번호", example="1")		// 이걸 직접 등록하는게 맞는지?
 	int boardNo;
+	String userImg;
 }

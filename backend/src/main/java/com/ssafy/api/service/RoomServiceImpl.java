@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import com.ssafy.api.request.RoomModifyPostReq;
 import com.ssafy.api.request.RoomRegisterPostReq;
 import com.ssafy.db.entity.ConferenceRoom;
+import com.ssafy.db.entity.User;
 import com.ssafy.db.repository.RoomRepository;
 import com.ssafy.db.repository.RoomRepositorySupport;
+import com.ssafy.db.repository.UserRepository;
 
 /**
  * ConferenceRoom 관련 비즈니스 로직 처리를 위한 서비스 구현 정의.
@@ -23,15 +25,20 @@ public class RoomServiceImpl implements RoomService{
 	RoomRepository roomRepository;
 	
 	@Autowired
+	UserRepository userRepository;
+	
+	@Autowired
 	RoomRepositorySupport roomRepositorySupport;
 	
 	@Override
 	public ConferenceRoom createRoom(RoomRegisterPostReq roomRegisterInfo) {
+		User user = userRepository.findByUserId(roomRegisterInfo.getOwnerId()).get();
 		ConferenceRoom room = new ConferenceRoom();
 		room.setConferenceCategory(roomRegisterInfo.getConferenceCategory());
 		room.setConferencePassword(roomRegisterInfo.getConferencePassword());
 		room.setOwnerId(roomRegisterInfo.getOwnerId());
 		room.setOwner(roomRegisterInfo.getOwner());
+		room.setOwnerImg(user.getImg());
 		room.setThumbnailUrl(roomRegisterInfo.getThumbnailUrl());
 		room.setTitle(roomRegisterInfo.getTitle());
 		room.setDescription(roomRegisterInfo.getDescription());
