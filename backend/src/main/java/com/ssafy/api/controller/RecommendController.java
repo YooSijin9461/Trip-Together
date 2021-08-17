@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,6 +48,18 @@ public class RecommendController {
 	public ResponseEntity<Recommend> registerRecommend(
 			@RequestBody @ApiParam(value="좋아요 등록 정보", required = true) RecommendRegisterPostReq registerInfo){
 		Recommend recommend = recommendService.createRecommend(registerInfo);
+		return new ResponseEntity<Recommend>(recommend, HttpStatus.OK);
+	}
+	
+	@GetMapping("/info")
+	@ApiOperation(value = "추천 정보 조회", notes = "사용자가 해당 게시물에 대한 좋아요, 싫어요 체크 정보를 조회한다")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "성공"),
+		@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity<Recommend> selectRecommend(
+			@RequestParam(required = false) String userId, @RequestParam(required = false) int boardNo) {
+		Recommend recommend = recommendService.getInfoByUserIdAndBoardNo(userId, boardNo);
 		return new ResponseEntity<Recommend>(recommend, HttpStatus.OK);
 	}
 	
