@@ -24,7 +24,6 @@ export default {
     const google = window.google
     var map
     function initMap() {
-      connect()
       map = new google.maps.Map(document.getElementById('map'), {
         center: state.mapPosition,
         zoom: state.mapZoom,
@@ -45,8 +44,14 @@ export default {
         //   position: latLng,
         //   map: map,
         // })
-        console.log(latLng)
         sendMarker(latLng)
+        state.marker = new google.maps.Marker({
+          position: {
+            lat: parseFloat(state.markerList.slice(-1).lat),
+            lng: parseFloat(state.markerList.slice(-1).lng),
+          },
+          map: map,
+        })
         // state.marker.addListener('dblclick', () => {
         //   state.marker.setMap(null)
         //   // for (var i = 0; i < state.markerList.length; i++) {
@@ -95,15 +100,16 @@ export default {
     // }
     function showMarker(marker) {
       state.markerList.push(marker)
-      console.log(state.markerList.slice(-1))
-      state.marker = new google.maps.Marker({
-        position: {
-          lat: parseFloat(state.markerList.slice(-1).lat),
-          lng: parseFloat(state.markerList.slice(-1).lng),
-        },
-        map: map,
-      })
-      state.marker.setMap(map)
+      // console.log(state.markerList.slice(-1))
+
+      // state.marker = new google.maps.Marker({
+      //   position: {
+      //     lat: parseFloat(state.markerList.slice(-1).lat),
+      //     lng: parseFloat(state.markerList.slice(-1).lng),
+      //   },
+      //   map: map,
+      // })
+      // state.marker.setMap(map)
     }
 
     // const shareMarker = () => {
@@ -119,6 +125,7 @@ export default {
       // }
     // }
     onMounted (() => {
+      connect()
       initMap()
     })
 
