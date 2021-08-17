@@ -6,7 +6,9 @@
           <div class="block">
             <img class="conference_thumbnail" :src="conference.thumbnailUrl" @click="clickConference(conference.conferenceNo)">
             <div class="mt-2 d-flex align-items-center">
-              <img class="profile" :src="state.circleUrl">
+              <div v-if="conference.ownerImg">
+                <img class="profile" :src="conference.ownerImg">
+              </div>
               <div>
                 <span class="mt-2 mx-2">{{ conference.title }}</span><br>
                 <span class="owner mx-2" @click="clickProfile(conference.ownerId)">{{ conference.ownerId }}</span>

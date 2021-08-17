@@ -44,6 +44,7 @@ const getDefaultState = () => {
     conferenceLimit: null,
     conferenceActive: false,
     conferenceThumbnail: null,
+    conferenceOwnerimg: null,
 
     // 게시글
     boardNo: null,

@@ -190,7 +190,7 @@ export default {
     onUpdated (() => {
       store.dispatch('profile', state.userId)
         .then(() => {
-          router.push({ name: 'Profile', params: { userId: state.userId }})  
+          router.push({ name: 'Profile', params: { userId: state.userId }})
         })
     })
 

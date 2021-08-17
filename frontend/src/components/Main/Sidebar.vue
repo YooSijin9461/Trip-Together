@@ -60,7 +60,17 @@
       <div v-show="state.token">
         <li class="side-profile">
           <div class="profile-details">
-            <img :src="'/upload/' + state.userImg"  alt="">
+            <div v-if="state.userImg">
+              <img :src="'/upload/' + state.userImg"  alt="">
+            </div>
+            <div v-else>
+              <div v-if="state.gender === 'm'">
+                <img :src="state.male" alt="">
+              </div>
+              <div v-else>
+                <img :src="state.female" alt="">
+              </div>
+            </div>
             <div class="name">{{ state.username }}</div>
           </div>
           <i class="bx bx-log-out" id="log_out" @click="clickSideLogout"></i>
@@ -86,7 +96,10 @@ export default {
       articleShow: false,
       token: computed(() => store.getters['getToken']),
       username: computed(() => store.getters['getUsername']),
-      userImg: computed(() => store.getters['getUserimg'])
+      userImg: computed(() => store.getters['getUserimg']),
+      gender: computed(() => store.getters['getUsergender']),
+      male: require('@/assets/male.png'),
+      female: require('@/assets/female.png'),
     })
     const closeBtn = () => {
       state.isOpen = !state.isOpen
