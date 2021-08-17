@@ -3,52 +3,16 @@
     <div class="row d-flex align-items-center">
       <!-- 이미지 -->
       <div class="col-3">
-        <el-upload action="#" list-type="picture-card" :auto-upload="false">
-          <template #default>
-            <i class="el-icon-plus"></i>
-          </template>
-          <template #file="{file}">
-            <div>
-              <img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
-              <span class="el-upload-list__item-actions">
-                <span
-                  class="el-upload-list__item-preview"
-                  @click="handlePictureCardPreview(file)"
-                >
-                  <i class="el-icon-zoom-in"></i>
-                </span>
-                <span
-                  v-if="!disabled"
-                  class="el-upload-list__item-delete"
-                  @click="handleDownload(file)"
-                >
-                  <i class="el-icon-download"></i>
-                </span>
-                <span
-                  v-if="!disabled"
-                  class="el-upload-list__item-delete"
-                  @click="handleRemove(file)"
-                >
-                  <i class="el-icon-delete"></i>
-                </span>
-              </span>
-            </div>
-          </template>
-        </el-upload>
+        <img class="profilepage-img" :src="profilepath" alt="">
       </div>
-      <el-dialog v-model="dialogVisible">
-        <img width="100%" :src="dialogImageUrl" alt="" />
-      </el-dialog>
       <div class="col">
         <div class="d-flex">
-          <div class="me-5">
-            {{ state.userProfileimg }}
-            <img :src="state.imgsrc" alt="">
+          <div class="row">
             <p class="my-3">ID : {{ state.userId }}</p>
             <p class="my-3">이름 : {{ state.userName }}</p>
             <p class="my-3">e-mail : {{ state.userEmail }}</p>
           </div>
-          <div class="ms-5 ps-5">
+          <div class="row">
             <p class="my-3">나이 : {{ state.userAge }}</p>
             <div v-if="state.userGender === 'm'">
               <p class="my-3">성별 : 남자</p>
@@ -160,7 +124,7 @@
 </template>
 
 <script>
-import { reactive, computed, onMounted, ref, onUpdated } from 'vue'
+import { reactive, computed, onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
@@ -177,7 +141,6 @@ export default {
       dialogImageUrl: '',
       dialogVisible: false,
       disabled: false,
-      value: ref(3.7),
       userName: computed(() => store.getters['getProfilename']),
       userId: computed(() => store.getters['getProfileid']),
       userEmail: computed(() => store.getters['getProfileemail']),
@@ -185,7 +148,7 @@ export default {
       userAge: computed(() => store.getters['getProfileage']),
       userGender: computed(() => store.getters['getProfilegender']),
       userProfileimg: computed(() => store.getters['getProfileimg']),
-      imgsrc: `/var/wws/html/upload/${state.userProfileimg}`,
+      profilepath: null,
       userArticle: [],
       userComment: [],
       token: computed(() => store.getters['getToken']),
@@ -216,6 +179,8 @@ export default {
       return new Date(date).getHours() + ':' + ('0' + new Date(date).getMinutes()).slice(-2)
     }
     onMounted (() => {
+      state.profilepath = `/var/www/html/upload/${state.userProfileimg}`
+      console.log(state.profilepath)
       store.dispatch('userArticle', state.userId)
         .then(({ data }) => {
           state.userArticle = data
@@ -245,6 +210,12 @@ export default {
 <style>
 button[aria-selected="false"] {
   color: lightslategray;
+}
+.profilepage-img {
+  border: 1px solid lightgreen;
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
 }
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
   font-weight: bold;
