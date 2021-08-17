@@ -12,10 +12,10 @@ import lombok.Setter;
 @Setter
 @ApiModel("UserModifyPostRequest")
 public class UserModifyPostReq {
-	@ApiModelProperty(name="유저 Password", example="12345")
-	String password;
 	@ApiModelProperty(name="유저 성별", example="f")
 	char gender;
+	@ApiModelProperty(name="유저 이름", example="김수빈")
+	String userName;
 	@ApiModelProperty(name="유저 폰번호", example="123")
 	String phoneNum;
 	@ApiModelProperty(name="유저 email", example="1234")
@@ -24,8 +24,6 @@ public class UserModifyPostReq {
 	int age;
 	@ApiModelProperty(name="유저 mbti", example="ISFJ")
 	String mbti;
-	@ApiModelProperty(name="유저 가이드여부", example="false")
-	boolean isGuide;
-	@ApiModelProperty(name="유저 프로필", example="b.jpg")
+	@ApiModelProperty(name="프로필 이미지")
 	String img;
 }

@@ -215,17 +215,44 @@ public class UserController {
 //		return ResponseEntity.status(200).body(UserRes.of(user));
 //	}
 	
-	@PatchMapping("/{userId}")
+	@PatchMapping(value = "/{userId}", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 	@ApiOperation(value = "유저 정보 수정")
 	@ApiResponses({
 	        @ApiResponse(code = 200, message = "성공"),
 	        @ApiResponse(code = 404, message = "사용자 없음"),
 	        @ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<UserRes> modifyInfoById(@PathVariable String userId, @RequestBody UserModifyPostReq update) {
+	public ResponseEntity<User> modifyInfoById(
+			@PathVariable String userId, 
+			@RequestPart(value="file", required = false) MultipartFile file,
+			@RequestParam(required=false) String age,
+			@RequestParam(required=false) String userName,
+			@RequestParam(required=false) char gender,
+			@RequestParam(required=false) String email,
+			@RequestParam(required=false) String mbti) throws IllegalStateException, IOException {
+		
 		User user = userService.getUserByUserId(userId);		// 아이디에 맞는 사용자 찾아옴
-		user = userService.modifyUser(update, userId);
-		return ResponseEntity.status(200).body(UserRes.of(user));
+		UserModifyPostReq modifyInfo = new UserModifyPostReq();
+		if(file != null && file.getSize() > 0) {
+			String basePath = "/var/www/html/upload"; // ec2(프로필이니까 upload 폴더 그대로)
+	//		String basePath = "C:/Users/multicampus/Documents/S05P13D201/backend/src/main/resources/dist"; // 로컬
+			
+			String filePath = basePath + "/" + userId + "_" + file.getOriginalFilename();
+			
+			File dest = new File(filePath);
+			
+			// 파일 업로드
+			file.transferTo(dest);
+			modifyInfo.setImg(userId + "_" + file.getOriginalFilename());
+		}
+		modifyInfo.setAge(Integer.parseInt(age));
+		modifyInfo.setUserName(userName);
+		modifyInfo.setGender(gender);
+		modifyInfo.setEmail(email);
+		modifyInfo.setMbti(mbti);
+		
+		user = userService.modifyUser(modifyInfo, userId);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
 	@PatchMapping("conference")

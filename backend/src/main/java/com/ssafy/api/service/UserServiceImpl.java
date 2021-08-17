@@ -64,17 +64,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User modifyUser(UserModifyPostReq u, String userId) {
-		// 아이디, 이름, 평점 못 바꾸게
-		// 참여하고 있는 방은 일단 나중에!
 		User user = userRepositorySupport.findUserByUserId(userId).get();
-		user.setPassword(passwordEncoder.encode(u.getPassword()));
-		user.setGender(u.getGender());
-		user.setPhoneNum(u.getPhoneNum());
-		user.setEmail(u.getEmail());
 		user.setAge(u.getAge());
+		user.setUserName(u.getUserName());
+		user.setGender(u.getGender());
+		user.setEmail(u.getEmail());
 		user.setMbti(u.getMbti());
-		user.setGuide(u.isGuide());
-		user.setImg(u.getImg());
 		return userRepository.save(user);
 	}
 	
