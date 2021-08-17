@@ -45,19 +45,19 @@ export default {
         //   map: map,
         // })
         sendMarker(latLng)
-        // state.marker.addListener('dblclick', () => {
-        //   state.marker.setMap(null)
-        //   // for (var i = 0; i < state.markerList.length; i++) {
-        //   //   if (state.markerList[i].position === state.marker.position) {
-        //   //     state.markerList[i].state = 0
-        //   //     sendMarker(state.marker.position, 0)
-        //   //   }
-        //   // }
-        // })
-        // marker.addListener('click', function() {
-        //   map.setZoom(14);
-        //   map.setCenter(state.marker.getPosition())
-        // })
+        state.marker.addListener('dblclick', () => {
+          state.marker.setMap(null)
+          // for (var i = 0; i < state.markerList.length; i++) {
+          //   if (state.markerList[i].position === state.marker.position) {
+          //     state.markerList[i].state = 0
+          //     sendMarker(state.marker.position, 0)
+          //   }
+          // }
+        })
+        state.marker.addListener('click', function() {
+          map.setZoom(14);
+          map.setCenter(state.marker.getPosition())
+        })
       });
     }
     
@@ -94,62 +94,12 @@ export default {
     // }
     function showMarker(marker) {
       state.markerList.push(marker)
-      // console.log(state.markerList.slice(-1))
-      // console.log(state.markerList.slice(-1)[0])
-      // console.log(state.markerList.slice(-1)[0].lat)
-      // console.log(state.markerList.slice(-1)[0].lng)
 
       state.marker = new google.maps.Marker({
         position: state.markerList.slice(-1)[0],
         map: map,
       })
       state.marker.setMap(map)
-
-      // const keys = Object.keys(state.markerList.slice(-1))
-      // const value = []
-      // for (var i = 0; i < keys.length; i++) {
-      //   const key = keys[i]
-      //   value[i] = state.markerList.slice(-1)[key]
-      // }
-      // console.log(value[0])
-      // state.marker = new google.maps.Marker({
-      //   position: value[0],
-      //   map: map,
-      // })
-      // state.marker.setMap(map)
-
-      // var myLatLngone = new google.maps.LatLng(state.markerList.slice(-1)[0].lat, state.markerList.slice(-1)[0].lng)
-      // console.log(myLatLngone)
-      // var myLatLngtwo = new google.maps.LatLng(parseFloat(state.markerList.slice(-1)[0].lat), parseFloat(state.markerList.slice(-1)[0].lng))
-      // console.log(myLatLngtwo)
-      // var myLatLngthree = new google.maps.LatLng(parseFloat(value[0].lat), parseFloat(value[0].lng))
-      // console.log(myLatLngthree)
-      // var myLatLngfour = new google.maps.LatLng(parseFloat(value[0].lat), parseFloat(value[0].lng))
-      // console.log(myLatLngfour)
-      
-      // state.marker = new google.maps.Marker({
-      //   position: myLatLngone,
-      //   map: map,
-      // })
-      // state.marker.setMap(map)
-
-      // state.marker = new google.maps.Marker({
-      //   position: myLatLngtwo,
-      //   map: map,
-      // })
-      // state.marker.setMap(map)
-
-      // state.marker = new google.maps.Marker({
-      //   position: myLatLngthree,
-      //   map: map,
-      // })
-      // state.marker.setMap(map)
-
-      // state.marker = new google.maps.Marker({
-      //   position: myLatLngfour,
-      //   map: map,
-      // })
-      // state.marker.setMap(map)
     }
 
     for (var i = 0; i < state.markerList.length; i++) {
@@ -163,18 +113,6 @@ export default {
       }
     }
 
-    // const shareMarker = () => {
-      // for (var i = 0; i < state.markerList.length; i++) {
-      //   if (state.markerList[i]) {
-      //     console.log(state.markerList[i])
-      //     state.marker = new google.maps.Marker({
-      //       position: state.markerList[i],
-      //       map: map,
-      //     })
-      //     state.marker.setMap(map)
-      //   }
-      // }
-    // }
     onMounted (() => {
       connect()
       initMap()
