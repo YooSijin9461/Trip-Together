@@ -83,17 +83,18 @@ export default {
       state.markerList.push(marker)
     }
 
-    const shareMarker = () => {
-      for (var i = 0; i < state.markerList.length; i++) {
-        if (state.markerList[i]) {
-          state.marker = new google.maps.Marker({
-            position: state.markerList[i],
-            map: map,
-          })
-          state.marker.setMap(map)
-        }
-      }
-    }
+    // const shareMarker = () => {
+    //   for (var i = 0; i < state.markerList.length; i++) {
+    //     if (state.markerList[i]) {
+    //       console.log(state.markerList[i])
+    //       state.marker = new google.maps.Marker({
+    //         position: state.markerList[i],
+    //         map: map,
+    //       })
+    //       state.marker.setMap(map)
+    //     }
+    //   }
+    // }
     onMounted (() => {
       initMap()
     })
@@ -103,10 +104,10 @@ export default {
     })
 
     onUpdated (() => {
-      shareMarker()
+      // shareMarker()
     })
 
-    return { state, onMounted, map, connect, disconnect, showMarker, sendMarker, shareMarker, onUnmounted, onUpdated }
+    return { state, onMounted, map, connect, disconnect, showMarker, sendMarker, onUnmounted, onUpdated }
   },
 }
 </script>
