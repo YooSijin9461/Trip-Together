@@ -195,7 +195,7 @@ button[aria-selected="false"] {
   color: lightslategray;
 }
 .profilepage-img {
-  border: 1px solid lightgreen;
+  border: 3px solid lightgreen;
   width: 175px;
   height: 175px;
   border-radius: 100%;
