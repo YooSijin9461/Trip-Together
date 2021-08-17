@@ -30,7 +30,17 @@ public class RecommendServiceImpl implements RecommendService {
 	
 	@Override
 	public Recommend getInfoByUserIdAndBoardNo(String userId, int boardNo) {
-		return recommendRepository.findByUserIdAndBoardNo(userId, boardNo).get();
+		Recommend recommend = null;
+		if (!recommendRepository.findByUserIdAndBoardNo(userId, boardNo).isPresent()) {
+			RecommendRegisterPostReq recommendRegisterInfo = new RecommendRegisterPostReq();
+			recommendRegisterInfo.setUserId(userId);
+			recommendRegisterInfo.setBoardNo(boardNo);
+			recommend = createRecommend(recommendRegisterInfo);
+		} else {
+			recommend = recommendRepository.findByUserIdAndBoardNo(userId, boardNo).get();
+		}
+		
+		return recommend;
 	}
 
 	@Override
