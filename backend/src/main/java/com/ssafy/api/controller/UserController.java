@@ -100,10 +100,19 @@ public class UserController {
 		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
 		
 		if(file != null && file.getSize() > 0) {
-//			ClassPathResource res = new ClassPathResource("/src/main/resources/dist/upload/");
-//			ClassPathResource res = new ClassPathResource("/bin/main/dist/upload/");
-			ClassPathResource res = new ClassPathResource("/dist/upload/");
-			//Resource res = resourceLoader.getResource("/dist/upload/");
+			// 이미지 저장 경로
+			String basePath = "/dist/upload/";
+			
+			String filePath = basePath + "/" + file.getOriginalFilename();
+			
+			ClassPathResource res = new ClassPathResource(basePath); // /src/main/resources/dist/upload | /bin/main/dist/upload
+			
+			File dest = new File(filePath);
+			
+			// 파일 업로드
+//			file.transferTo(dest);
+			
+//			Resource res = resourceLoader.getResource("/dist/upload/");
 //			Resource res = resourceLoader.getResource("classpath:upload/");
 //			File f = res.getFile();
 //			if(!f.exists())
@@ -111,16 +120,8 @@ public class UserController {
 //			System.out.println(res.getFile());
 			
 //			res.getPath();
-			
-			// 이미지 저장 경로
-			String basePath = "/dist/upload/";
 
-			String filePath = basePath + "/" + file.getOriginalFilename();
 
-			File dest = new File(filePath);
-
-			// 파일 업로드
-			file.transferTo(dest);
 			InputStream inputStream = res.getInputStream();
 			File f = File.createTempFile("temp", ".jpg");
 			if(!f.exists())
