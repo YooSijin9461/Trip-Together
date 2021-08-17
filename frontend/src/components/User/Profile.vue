@@ -156,6 +156,8 @@ export default {
       userAge: computed(() => store.getters['getProfileage']),
       userGender: computed(() => store.getters['getProfilegender']),
       userProfileimg: computed(() => store.getters['getProfileimg']),
+      male: require('@/assets/male.png'),
+      female: require('@/assets/female.png'),
       userArticle: [],
       userComment: [],
       token: computed(() => store.getters['getToken']),
