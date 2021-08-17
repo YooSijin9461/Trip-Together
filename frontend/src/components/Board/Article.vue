@@ -172,19 +172,19 @@ export default {
       }
     }
     const clickLike = () => {
-      store.dispatch('articleLike', { userId: state.userId, boardNo: state.articleNo })
+      store.dispatch('articleLike', { userId: state.loginId, boardNo: state.articleNo })
         .then(() => {
-          store.dispatch('recommend', { userId: state.userId, boardNo: state.articleNo })
+          store.dispatch('recommend', { userId: state.loginId, boardNo: state.articleNo })
         })
     }
     const clickHate = () => {
-      store.dispatch('articleHate', { userId: state.userId, boardNo: state.articleNo })
+      store.dispatch('articleHate', { userId: state.loginId, boardNo: state.articleNo })
         .then(() => {
-          store.dispatch('recommend', { userId: state.userId, boardNo: state.articleNo })
+          store.dispatch('recommend', { userId: state.loginId, boardNo: state.articleNo })
         })
     }
     onMounted (() => {
-      store.dispatch('recommend', { userId: state.userId, boardNo: state.articleNo })
+      store.dispatch('recommend', { userId: state.loginId, boardNo: state.articleNo })
     })
     onUpdated (() => {
       store.dispatch('commentList', state.articleNo)
