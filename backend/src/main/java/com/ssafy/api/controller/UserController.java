@@ -229,7 +229,8 @@ public class UserController {
 			@RequestParam(required=false) String userName,
 			@RequestParam(required=false) char gender,
 			@RequestParam(required=false) String email,
-			@RequestParam(required=false) String mbti) throws IllegalStateException, IOException {
+			@RequestParam(required=false) String mbti,
+			@RequestParam(required = false) boolean isGuide) throws IllegalStateException, IOException {
 		
 		User user = userService.getUserByUserId(userId);		// 아이디에 맞는 사용자 찾아옴
 		UserModifyPostReq modifyInfo = new UserModifyPostReq();
@@ -250,9 +251,11 @@ public class UserController {
 		modifyInfo.setGender(gender);
 		modifyInfo.setEmail(email);
 		modifyInfo.setMbti(mbti);
-		
+		modifyInfo.setGuide(isGuide);
 		user = userService.modifyUser(modifyInfo, userId);
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.setAccept(Collections.singletonList(MediaType.MULTIPART_FORM_DATA));
+		return new ResponseEntity<User>(user, responseHeaders, HttpStatus.OK);
 	}
 	
 	@PatchMapping("conference")

@@ -194,10 +194,10 @@ export default {
             formData.append('phoneNum', state.form.phoneNum)
             formData.append('email', state.form.email)
             formData.append('mbti', state.form.mbti)
-            formData.append('guide', state.form.guide)
+            formData.append('isGuide', state.form.guide)
             formData.append('file', state.form.profileImg)
                           
-            store.dispatch('profileImg', formData)
+            store.dispatch('signup', formData)
             .then(() => {
               ElMessage ({
                 message: '회원가입에 성공하였습니다.',

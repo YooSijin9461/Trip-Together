@@ -169,18 +169,6 @@ export default createStore({
     logout ({ commit }) {
       commit("CLEAR_STATE")
     },
-    signup ({ commit }, payload) {
-      return axios
-        .post(`${BASE_URL}/api/v1/users`, payload)
-    },
-    // profile ({ commit }, token) {
-    //   return axios
-    //     .get(`${BASE_URL}/api/v1/users/me`,
-    //       { 
-    //         headers: { "Authorization" : "Bearer " + token }
-    //       }
-    //     )
-    // },
     profile ({ commit }, userId) {
       return axios
         .post(`${BASE_URL}/api/v1/users/${userId}`)
@@ -192,10 +180,11 @@ export default createStore({
       return axios
         .get(`${BASE_URL}/api/v1/users/conference/${conferenceNo}`)
         .then(({ data }) => {
+          console.log(data)
           commit("USERCONFERENCE", data)
         })
     },
-    profileImg ({ commit }, payload) {
+    singup ({ commit }, payload) {
       return axios
         .post(`${BASE_URL}/api/v1/users`, payload,
           { 
@@ -205,6 +194,23 @@ export default createStore({
             }
           }
         )
+    },
+    profileUpdate ({ commit }, { userId, formData, params }) {
+      return axios
+        .patch(`${BASE_URL}/api/v1/users/${userId}`, formData,
+          { 
+            headers: {
+              "Accept": "*/*", 
+              "Content-Type": "multipart/form-data"
+            },
+            params: {
+              params
+            }
+          }
+        )
+        .then(({ data }) => {
+          commit("USERINFO", data)
+        })
     },
 
     // 방
@@ -374,6 +380,9 @@ export default createStore({
     },
     getUserimg (state) {
       return state.userImg
+    },
+    getUserconference (state) {
+      return state.userConference
     },
 
     // 프로필
