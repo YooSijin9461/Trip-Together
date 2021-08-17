@@ -14,13 +14,15 @@ export default {
     const state = reactive ({
       stompClient: null,
       markerList: [],
+      mapPosition: { lat: 37.564214, lng: 127.001699 },
+      mapZoom: 10,
     })
     const google = window.google
     var map
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: 37.564214, lng: 127.001699 },
-        zoom: 10,
+        center: state.mapPosition,
+        zoom: state.mapZoom,
         styles: [{
           featureType: 'poi',
           stylers: [{ visibility: 'on' }]  // Turn off POI.
@@ -43,8 +45,9 @@ export default {
           marker.setMap(null)
         })
         marker.addListener('click', function() {
-          map.center = marker.position
-          map.zoom = 12
+          state.mapPosition = marker.position
+          state.mapZoom = 12
+          initMap()
         })
       });
     }
@@ -53,7 +56,7 @@ export default {
       state.stompClient = Stomp.over(socket);
       state.stompClient.connect({}, function () {
         state.stompClient.subscribe(`/topic/chat/${state.conferneceNo}`, function (marker) {
-          console.log(marker)
+          console.log('marker: ' + marker)
           showMarker(JSON.parse(marker.body))
         });
       });

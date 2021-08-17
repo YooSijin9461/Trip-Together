@@ -72,19 +72,7 @@
           </el-tab-pane>
         </el-tabs>
       </div>
-      <div class="col-6">
-        <GMapMap
-          :center="state.center"
-          :zoom="12"
-          map-type-id="terrain"
-          style="height: 410px">
-          <GMapMarker
-            :position="state.marker.position"
-            :clickable="true"
-            :draggable="true"
-            @click="state.center=state.marker.position"
-            />
-        </GMapMap>
+      <div id="map" class="col-6">
       </div>
     </div>
   </div>
@@ -151,8 +139,27 @@ export default {
         ElMessage.error('로그인이 필요합니다.')
       }
     }
+    const google = window.google
+    var map
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 37.564214, lng: 127.001699 },
+        zoom: 10,
+        styles: [{
+          featureType: 'poi',
+          stylers: [{ visibility: 'on' }]  // Turn off POI.
+        },
+        {
+          featureType: 'transit.station',
+          stylers: [{ visibility: 'on' }]  // Turn off bus, train stations etc.
+        }],
+        disableDoubleClickZoom: true,
+        streetViewControl: true,
+      });
+    }
 
     onMounted (() => {
+      initMap()
       store.dispatch('noticePageList')
         .then(({ data }) => {
           state.noticeList = data.content.slice(0, 6)
@@ -167,7 +174,7 @@ export default {
         })
     })
 
-    return { state, clickMoreConference, clickMoreArticle, clickMoreNotice, clickArticle, clickConference, clickNotice }
+    return { state, clickMoreConference, clickMoreArticle, clickMoreNotice, clickArticle, clickConference, clickNotice, initMap, map }
   },
 }
 </script>
