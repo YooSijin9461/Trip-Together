@@ -77,7 +77,8 @@ export default {
     }
     const sendMarker = (position) => {
       // console.log(position)
-      state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify( position ));
+      state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify(position.toJSON(), null, 2));
+      console.log(JSON.stringify(position.toJSON(), null, 2))
     }
 
     // function showMarker(marker) {
