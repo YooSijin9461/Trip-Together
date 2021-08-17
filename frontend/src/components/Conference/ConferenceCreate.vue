@@ -1,8 +1,8 @@
 <template>
 <el-dialog custom-class="conferenceCreate" title="방 생성하기" v-model="state.dialogVisible" @close="handleClose">
   <el-form :model="state.form" :rules="state.rules" ref="conferenceCreateForm" :label-position="state.form.align">
-    <el-form-item prop="owner" label="생성자" :label-width="state.formLabelWidth" >
-      <el-input v-model="state.form.owner" autocomplete="off" :disabled="true"></el-input>
+    <el-form-item prop="ownerId" label="생성자" :label-width="state.formLabelWidth" >
+      <el-input v-model="state.form.ownerId" autocomplete="off" :disabled="true"></el-input>
     </el-form-item>
     <el-form-item prop="title" label="제목" :label-width="state.formLabelWidth" >
       <el-input v-model="state.form.title" autocomplete="off"></el-input>
@@ -77,7 +77,7 @@ export default {
         align: 'left',
       },
       rules: {
-        owner: [
+        ownerId: [
           { required: true, message: 'Please input Owner', trigger: 'blur' }
         ],
         title: [
@@ -119,7 +119,7 @@ export default {
             active: true })
           .then(({ data }) => {
             ElMessage ({
-              message: 'Conference create Success !',
+              message: '방이 생성되었습니다.',
               type: 'success',
             });
             emit('closeConferenceCreateDialog')
@@ -130,10 +130,10 @@ export default {
               })
           })
           .catch(function () {
-            ElMessage.error('Conference create Failed !')
+            ElMessage.error('방 생성에 필요한 정보가 부족합니다.')
           })
         } else {
-          ElMessage.error('Conference Create Failed !')
+          ElMessage.error('방 생성에 필요한 정보가 부족합니다.')
         }
       })
     }

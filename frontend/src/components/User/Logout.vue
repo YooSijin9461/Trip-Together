@@ -36,7 +36,7 @@ export default {
     const clickLogout = () => {
       store.dispatch('logout')
       .then(() => {
-          ElMessage.error('Logout Completed !')
+          ElMessage.error('로그아웃 되었습니다.')
           emit('closeLogoutDialog')
           router.push({ name: 'Home' })
       })

@@ -59,19 +59,19 @@ export default {
           .then(() => {
             if (state.token) {
               ElMessage ({
-                message: 'Login Success !',
+                message: '로그인 되었습니다.',
                 type: 'success',
               });
               emit('closeLoginDialog')
             } else {
-              ElMessage.error('Id or Password error !')
+              ElMessage.error('ID 또는 비밀번호가 틀렸습니다.')
             }
           })
           .catch(function () {
-            ElMessage.error('Id or Password error !')
+            ElMessage.error('ID 또는 비밀번호가 틀렸습니다.')
           })
         } else {
-          ElMessage.error('Login Failed !')
+          ElMessage.error('ID 또는 비밀번호가 틀렸습니다.')
         }
       })
     }

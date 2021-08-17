@@ -1,9 +1,9 @@
 <template>
   <div class="container mt-4">
-    <div class="row d-flex align-items-center">
+    <div class="row d-flex align-items-center mt-5">
       <!-- 이미지 -->
-      <div class="col-3">
-        <img class="profilepage-img" :src="state.profilepath" alt="">
+      <div class="col-3 ms-5">
+        <img class="profilepage-img" :src="'/upload/' + state.userProfileimg"  alt="">
       </div>
       <div class="col">
         <div class="d-flex">
@@ -138,9 +138,6 @@ export default {
     const router = useRouter()
 
     const state = reactive({
-      dialogImageUrl: '',
-      dialogVisible: false,
-      disabled: false,
       userName: computed(() => store.getters['getProfilename']),
       userId: computed(() => store.getters['getProfileid']),
       userEmail: computed(() => store.getters['getProfileemail']),
@@ -148,22 +145,11 @@ export default {
       userAge: computed(() => store.getters['getProfileage']),
       userGender: computed(() => store.getters['getProfilegender']),
       userProfileimg: computed(() => store.getters['getProfileimg']),
-      profilepath: null,
       userArticle: [],
       userComment: [],
       token: computed(() => store.getters['getToken']),
       today: new Date(),
     })
-    const handleRemove = (file) => {
-      console.log(file)
-    }
-    const handlePictureCardPreview = (file) => {
-      state.dialogImageUrl = file.url
-      state.dialogVisible = true
-    }
-    const handleDownload = (file) => {
-      console.log(file)
-    }
     const clickArticle = (boardNo) => {
       if (!state.token) {
         ElMessage.error('로그인이 필요합니다.')
@@ -179,8 +165,6 @@ export default {
       return new Date(date).getHours() + ':' + ('0' + new Date(date).getMinutes()).slice(-2)
     }
     onMounted (() => {
-      state.profilepath = `/var/www/html/upload/${state.userProfileimg}`
-      console.log(state.profilepath)
       store.dispatch('userArticle', state.userId)
         .then(({ data }) => {
           state.userArticle = data
@@ -188,7 +172,6 @@ export default {
       store.dispatch('userComment', state.userId)
         .then(({ data }) => {
           state.userComment = data
-          console.log(state.userComment.length)
         })
     })
     // onUpdated (() => {
@@ -202,7 +185,7 @@ export default {
     //     })
     // })
 
-    return { state, handleRemove, handlePictureCardPreview, handleDownload, clickArticle, UTCtoKST }
+    return { state, clickArticle, UTCtoKST }
   },
 }
 </script>
@@ -212,9 +195,9 @@ button[aria-selected="false"] {
   color: lightslategray;
 }
 .profilepage-img {
-  border: 1px solid lightgreen;
-  width: 150px;
-  height: 150px;
+  border: 3px solid lightgreen;
+  width: 175px;
+  height: 175px;
   border-radius: 100%;
 }
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
