@@ -3,7 +3,7 @@
     <div class="row d-flex align-items-center">
       <!-- 이미지 -->
       <div class="col-3">
-        <img class="profilepage-img" :src="state.profilepath" alt="">
+        <img class="profilepage-img" :src="'/var/www/html/upload/' + state.userProfileimg"  alt="">
       </div>
       <div class="col">
         <div class="d-flex">
@@ -148,7 +148,6 @@ export default {
       userAge: computed(() => store.getters['getProfileage']),
       userGender: computed(() => store.getters['getProfilegender']),
       userProfileimg: computed(() => store.getters['getProfileimg']),
-      profilepath: null,
       userArticle: [],
       userComment: [],
       token: computed(() => store.getters['getToken']),
@@ -179,8 +178,6 @@ export default {
       return new Date(date).getHours() + ':' + ('0' + new Date(date).getMinutes()).slice(-2)
     }
     onMounted (() => {
-      state.profilepath = require(`/var/www/html/upload/${state.userProfileimg}`)
-      console.log(state.profilepath)
       store.dispatch('userArticle', state.userId)
         .then(({ data }) => {
           state.userArticle = data
