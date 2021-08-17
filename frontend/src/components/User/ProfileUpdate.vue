@@ -151,10 +151,20 @@ export default {
             formData.append('age', state.form.age)
             formData.append('email', state.form.email)
             formData.append('mbti', state.form.mbti)
-            formData.append('guide', state.form.guide)
+            formData.append('isGuide', state.form.guide)
             formData.append('file', state.form.profileImg)
-                          
-            store.dispatch('profileUpdate', formData)
+            
+            const params = new URLSearchParams();
+            params.append('userId', state.form.userId)
+            params.append('userName', state.form.userName)
+            params.append('gender', state.form.gender)
+            params.append('age', state.form.age)
+            params.append('email', state.form.email)
+            if (state.form.mbti) {
+              params.append('mbti', state.form.mbti)
+            }
+            params.append('isGuide', state.form.guide)
+            store.dispatch('profileUpdate', { userId: state.form.userId, formData: formData, params: params })
             .then(() => {
               ElMessage ({
                 message: '회원정보를 수정하였습니다.',
@@ -173,12 +183,14 @@ export default {
     }
 
     const handleClose = () => {
-      state.form.userId = ''
-      state.form.userName = ''
-      state.form.age = ''
-      state.form.email = ''
-      state.form.mbti = ''
-      state.form.guide = false
+      state.form.userId = store.getters['getUserid'],
+      state.form.userName = store.getters['getUsername'],
+      state.form.age = store.getters['getUserage'],
+      state.form.gender = store.getters['getUsergender'],
+      state.form.email = store.getters['getUseremail'],
+      state.form.profileImg = store.getters['getUserimg'],
+      state.form.mbti = store.getters['getUsermbti'],
+      state.form.guide = store.getters['getUserguide'],
       emit('closeProfileUpdateDialog')
     }
 
