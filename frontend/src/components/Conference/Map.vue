@@ -95,10 +95,15 @@ export default {
     function showMarker(marker) {
       state.markerList.push(marker)
       console.log(state.markerList.slice(-1))
-      // console.log(state.markerList.slice(-1)['lat'])
-      // console.log(state.markerList.slice(-1)['lng'])
-      // console.log(parseFloat(state.markerList.slice(-1)['lat']))
-      // console.log(parseFloat(state.markerList.slice(-1)['lng']))
+      console.log(state.markerList.slice(-1)[0])
+      console.log(state.markerList.slice(-1)[0].lat)
+      console.log(state.markerList.slice(-1)[0].lng)
+
+      state.marker = new google.maps.Marker({
+        position: state.markerList.slice(-1)[0],
+        map: map,
+      })
+      state.marker.setMap(map)
 
       const keys = Object.keys(state.markerList.slice(-1))
       const value = []
@@ -106,30 +111,22 @@ export default {
         const key = keys[i]
         value[i] = state.markerList.slice(-1)[key]
       }
-      console.log(value)
       console.log(value[0])
-      console.log(value[1])
-
       state.marker = new google.maps.Marker({
-        position: {
-          lat: value[0],
-          lng: value[1],
-        },
+        position: value[0],
         map: map,
       })
       state.marker.setMap(map)
 
-      state.marker = new google.maps.Marker({
-        position: value,
-        map: map,
-      })
-      state.marker.setMap(map)
-
-      var myLatLngone = new google.maps.LatLng(state.markerList.slice(-1)['lat'], state.markerList.slice(-1)['lng'])
+      var myLatLngone = new google.maps.LatLng(state.markerList.slice(-1)[0].lat, state.markerList.slice(-1)[0].lng)
       console.log(myLatLngone)
-      var myLatLngtwo = new google.maps.LatLng(parseFloat(state.markerList.slice(-1)['lat']), parseFloat(state.markerList.slice(-1)['lng']))
+      var myLatLngtwo = new google.maps.LatLng(parseFloat(state.markerList.slice(-1)[0].lat), parseFloat(state.markerList.slice(-1)[0].lng))
       console.log(myLatLngtwo)
-
+      var myLatLngthree = new google.maps.LatLng(parseFloat(value[0].lat), parseFloat(value[0].lng))
+      console.log(myLatLngthree)
+      var myLatLngfour = new google.maps.LatLng(parseFloat(value[0].lat), parseFloat(value[0].lng))
+      console.log(myLatLngfour)
+      
       state.marker = new google.maps.Marker({
         position: myLatLngone,
         map: map,
@@ -143,25 +140,13 @@ export default {
       state.marker.setMap(map)
 
       state.marker = new google.maps.Marker({
-        position: state.markerList.slice(-1),
+        position: myLatLngthree,
         map: map,
       })
       state.marker.setMap(map)
 
       state.marker = new google.maps.Marker({
-        position: {
-          lat: state.markerList.slice(-1).lat,
-          lng: state.markerList.slice(-1).lng,
-        },
-        map: map,
-      })
-      state.marker.setMap(map)
-
-      state.marker = new google.maps.Marker({
-        position: {
-          lat: parseFloat(state.markerList.slice(-1).lat),
-          lng: parseFloat(state.markerList.slice(-1).lng),
-        },
+        position: myLatLngfour,
         map: map,
       })
       state.marker.setMap(map)
