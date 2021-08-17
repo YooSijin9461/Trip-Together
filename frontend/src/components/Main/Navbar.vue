@@ -4,7 +4,18 @@
     <div class="nav-button">
       <span v-if="state.token">
         <el-dropdown>
-          <span class="el-dropdown-link">{{ state.userName }}</span>
+          <div v-if="state.userImg">
+            <span class="el-dropdown-link"><img class="nav-profile" :src="'/upload/' + state.userImg" alt="">{{ state.userId }}</span>
+          </div>
+          <div v-else>
+            <div v-if="state.userGender === 'm'">
+              <span class="el-dropdown-link"><img class="nav-profile" :src="state.male" alt="">{{ state.userId }}</span>
+            </div>
+            <!-- <div v-else-if="state.userGender === 'f'"> -->
+            <div v-else>
+              <span class="el-dropdown-link"><img class="nav-profile" :src="state.female" alt="">{{ state.userId }}</span>
+            </div>
+          </div>
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item @click="clickProfile(state.userId)">내 정보</el-dropdown-item>
@@ -36,6 +47,10 @@ export default {
       token: computed(() => store.getters['getToken']),
       userName: computed(() => store.getters['getUsername']),
       userId: computed(() => store.getters['getUserid']),
+      userImg: computed(() => store.getters['getUserimg']),
+      userGender: computed(() => store.getters['getUsergender']),
+      male: require('@/assets/male.png'),
+      female: require('@/assets/female.png'),
     })
     const clickLogo = () => {
       router.push({ name: 'Home'})
@@ -77,6 +92,13 @@ export default {
   padding-right: 24px;
   border-bottom: 1px solid lightgreen;
 }
+.nav-profile {
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  opacity: 0.8;
+  margin-right: 10px;
+}
 .el-popper.is-light,.el-popper.is-light .el-popper__arrow::before {
   border:1px solid lightgreen !important;
 } 
@@ -88,4 +110,5 @@ export default {
   color: green !important;
   border-color: lightgreen !important;
   background-color: #e4ffe4 !important;
-}</style>
+}
+</style>

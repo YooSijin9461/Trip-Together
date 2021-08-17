@@ -21,6 +21,7 @@ const getDefaultState = () => {
     isGuide: false,
     userprofileimg: null,
     userConference: [],
+    userImg: null,
 
     // 프로필
     profileName: null,
@@ -87,6 +88,7 @@ export default createStore({
       state.useremail = userinfo.email
       state.usermbti = userinfo.mbti
       state.isGuide = userinfo.guide
+      state.userImg = userinfo.img
     },
     LOGOUT (state) {
       state.isLogin = false
@@ -353,25 +355,25 @@ export default createStore({
       return state.userid
     },
     getUserage (state) {
-      return state.age
+      return state.userage
     },
     getUsergender (state) {
-      return state.gender
+      return state.usergender
     },
     getUserphonenum (state) {
-      return state.phonenum
+      return state.userphonenum
     },
     getUseremail (state) {
-      return state.email
+      return state.useremail
     },
     getUsermbti (state) {
-      return state.mbti
+      return state.usermbti
     },
     getUserguide (state) {
-      return state.guide
+      return state.isGuide
     },
-    getUserconference (state) {
-      return state.userConference
+    getUserimg (state) {
+      return state.userImg
     },
 
     // 프로필

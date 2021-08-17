@@ -60,7 +60,7 @@
       <div v-show="state.token">
         <li class="side-profile">
           <div class="profile-details">
-            <img :src="'/upload/' + state.userProfileimg"  alt="">
+            <img :src="'/upload/' + state.userImg"  alt="">
             <div class="name">{{ state.username }}</div>
           </div>
           <i class="bx bx-log-out" id="log_out" @click="clickSideLogout"></i>
@@ -86,7 +86,7 @@ export default {
       articleShow: false,
       token: computed(() => store.getters['getToken']),
       username: computed(() => store.getters['getUsername']),
-      userProfileimg: computed(() => store.getters['getProfileimg'])
+      userImg: computed(() => store.getters['getUserimg'])
     })
     const closeBtn = () => {
       state.isOpen = !state.isOpen

@@ -1,81 +1,85 @@
 <template>
-  <div class="container">
-    <el-carousel :interval="4000" type="card" height="400px">
-      <el-carousel-item v-for="item in 6" :key="item">
-        <!-- <h3 class="medium text-center">{{ item }}</h3> -->
-        <img class="w-100" src="../../assets/room1.jpg" alt="">
-      </el-carousel-item>
-    </el-carousel>
-  </div>
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-6">
-        <el-tabs type="border-card">
-          <el-tab-pane label="공지사항">
-            <div class="container mt-3">
-              <span v-for="(notice, index) in state.noticeList" :key="notice">
-                <span v-if="index">
-                  <hr class="my-0">
+<div class="home">
+  <div class="home-main">
+    <div class="container">
+      <el-carousel :interval="4000" type="card" height="400px">
+        <el-carousel-item v-for="item in 6" :key="item">
+          <!-- <h3 class="medium text-center">{{ item }}</h3> -->
+          <img class="w-100" src="../../assets/room1.jpg" alt="">
+        </el-carousel-item>
+      </el-carousel>
+    </div>
+    <div class="container mt-5 home-box">
+      <div class="row">
+        <div class="col-6">
+          <el-tabs type="border-card">
+            <el-tab-pane label="공지사항">
+              <div class="container mt-3">
+                <span v-for="(notice, index) in state.noticeList" :key="notice">
+                  <span v-if="index">
+                    <hr class="my-0">
+                  </span>
+                  <div class="home-board-box d-flex" @click="clickNotice(notice.noticeNo)">
+                    <div class="ms-3">
+                      <p class="mb-0 title">{{ notice.noticeTitle }}</p>
+                    </div>
+                  </div>
                 </span>
-                <div class="home-board-box d-flex" @click="clickNotice(notice.noticeNo)">
-                  <div class="ms-3">
-                    <p class="mb-0 title">{{ notice.noticeTitle }}</p>
-                  </div>
+                <div class="more mt-3" @click="clickMoreNotice">
+                  <p>더 보기...</p>
                 </div>
-              </span>
-              <div class="more mt-3" @click="clickMoreNotice">
-                <p>더 보기...</p>
               </div>
-            </div>
-          </el-tab-pane>
-          
-          <el-tab-pane class="w-100 h-100" label="방 목록">
-            <div class="container mt-3">
-              <span v-for="(conference, index) in state.conferenceList" :key="conference">
-                <span v-if="index">
-                  <hr class="my-0">
+            </el-tab-pane>
+            
+            <el-tab-pane class="w-100 h-100" label="방 목록">
+              <div class="container mt-3">
+                <span v-for="(conference, index) in state.conferenceList" :key="conference">
+                  <span v-if="index">
+                    <hr class="my-0">
+                  </span>
+                  <div class="home-board-box d-flex" @click="clickConference(conference.conferenceNo)">
+                    <div class="col-9 ms-3">
+                      <p class="mb-0 title">{{ conference.title }}</p>
+                    </div>
+                    <div class="col d-flex">
+                      <p class="mb-0 owner"><i class="fas fa-user owner me-2"></i>{{ conference.owner }}</p>
+                    </div>
+                  </div>
                 </span>
-                <div class="home-board-box d-flex" @click="clickConference(conference.conferenceNo)">
-                  <div class="col-9 ms-3">
-                    <p class="mb-0 title">{{ conference.title }}</p>
-                  </div>
-                  <div class="col d-flex">
-                    <p class="mb-0 owner"><i class="fas fa-user owner me-2"></i>{{ conference.owner }}</p>
-                  </div>
+                <div class="more mt-3" @click="clickMoreConference">
+                  <p>더 보기...</p>
                 </div>
-              </span>
-              <div class="more mt-3" @click="clickMoreConference">
-                <p>더 보기...</p>
               </div>
-            </div>
-          </el-tab-pane>
+            </el-tab-pane>
 
-          <el-tab-pane class="w-100 h-100" label="게시글">
-            <div class="container mt-3">
-              <span v-for="(article, index) in state.articleList" :key="article">
-                <span v-if="index">
-                  <hr class="my-0">
+            <el-tab-pane class="w-100 h-100" label="게시글">
+              <div class="container mt-3">
+                <span v-for="(article, index) in state.articleList" :key="article">
+                  <span v-if="index">
+                    <hr class="my-0">
+                  </span>
+                  <div class="home-board-box d-flex" @click="clickArticle(article.boardNo)">
+                    <div class="col-9 ms-3">
+                      <p class="mb-0 title">{{ article.boardTitle }}</p>
+                    </div>
+                    <div class="col d-flex">
+                      <p class="mb-0 owner"><i class="fas fa-user owner me-2"></i>{{ article.userId }}</p>
+                    </div>
+                  </div>
                 </span>
-                <div class="home-board-box d-flex" @click="clickArticle(article.boardNo)">
-                  <div class="col-9 ms-3">
-                    <p class="mb-0 title">{{ article.boardTitle }}</p>
-                  </div>
-                  <div class="col d-flex">
-                    <p class="mb-0 owner"><i class="fas fa-user owner me-2"></i>{{ article.userId }}</p>
-                  </div>
+                <div class="more mt-3" @click="clickMoreArticle">
+                  <p>더 보기...</p>
                 </div>
-              </span>
-              <div class="more mt-3" @click="clickMoreArticle">
-                <p>더 보기...</p>
               </div>
-            </div>
-          </el-tab-pane>
-        </el-tabs>
-      </div>
-      <div id="map" class="col-6">
+            </el-tab-pane>
+          </el-tabs>
+        </div>
+        <div id="map" class="col-6">
+        </div>
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -245,5 +249,17 @@ th {
 }
 .el-tabs--border-card>.el-tabs__header .el-tabs__item:not(.is-disabled):hover {
   color: green;
+}
+.home {
+  display: flex;
+  justify-content: center;
+}
+.home-main {
+  position: absolute;
+  width: 80%;
+  height: 85%;
+}
+.home-box {
+  height: 50% !important;
 }
 </style>
