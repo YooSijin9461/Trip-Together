@@ -163,9 +163,9 @@ export default {
           }
         }
       }
-      console.log(state.username + " registered in room " + state.conferenceNo);
-      const participant = new Participant(state.username);
-      participants[state.username] = participant;
+      console.log(state.userId + " registered in room " + state.conferenceNo);
+      const participant = new Participant(state.userId);
+      participants[state.userId] = participant;
       const video = participant.getVideoElement();
 
       const options = {
@@ -291,7 +291,6 @@ export default {
           };
         sendMessage(msg);
       }
-
 
       this.onIceCandidate = function (candidate, wp) {
           console.log("Local candidate" + JSON.stringify(candidate));
