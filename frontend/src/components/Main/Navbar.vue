@@ -71,7 +71,10 @@ export default {
           router.push({ name: 'Profile', params: { userId: userId }})  
         })
     }
-    return { state, clickLogo, clickLogin, clickSignup, clickLogout, clickProfile }   
+    const updateProfile = () => {
+      emit('openProfileUpdateDialog')
+    }
+    return { state, clickLogo, clickLogin, clickSignup, clickLogout, clickProfile, updateProfile }   
   },
 }
 </script>

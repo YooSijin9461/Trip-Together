@@ -44,9 +44,15 @@ export default {
           position: e.latLng,
           map: map,
         });
-        sendMarker(state.marker.position)
+        sendMarker(e.latLng.lat, e.latLng.lng)
         state.marker.addListener('dblclick', () => {
           state.marker.setMap(null)
+          // for (var i = 0; i < state.markerList.length; i++) {
+          //   if (state.markerList[i].position === state.marker.position) {
+          //     state.markerList[i].state = 0
+          //     sendMarker(state.marker.position, 0)
+          //   }
+          // }
         })
         state.marker.addListener('click', function() {
           map.setZoom(14);
@@ -58,7 +64,7 @@ export default {
       const socket = new SockJS('https://i5d201.p.ssafy.io:8443/websocket');
       state.stompClient = Stomp.over(socket);
       state.stompClient.connect({}, function () {
-        state.stompClient.subscribe(`/topic/chat/${state.conferneceNo}`, function (marker) {
+        state.stompClient.subscribe(`/topic/marker/${state.conferneceNo}`, function (marker) {
           console.log('marker: ' + marker)
           showMarker(JSON.parse(marker.body))
         });
@@ -69,8 +75,8 @@ export default {
         state.stompClient.disconnect();
       }
     }
-    const sendMarker = (position) => {
-      state.stompClient.send(`/app/chat/${state.conferneceNo}`, {}, JSON.stringify({'position': position}));
+    const sendMarker = (lat, lng) => {
+      state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify({'lat': lat, 'lng': lng}));
     }
 
     function showMarker(marker) {
@@ -79,15 +85,17 @@ export default {
 
     const shareMarker = () => {
       for (var i = 0; i < state.markerList.length; i++) {
-        state.marker = new google.maps.Marker({
-          position: state.markerList[i].position,
-          map: map,
-        });
+        if (state.markerList[i].state) {
+          state.marker = new google.maps.Marker({
+            position: state.markerList[i].position,
+            map: map,
+          })
+        }
       }
     }
     onMounted (() => {
-      connect()
       initMap()
+      connect()
     })
 
     onUnmounted (() => {
@@ -96,6 +104,7 @@ export default {
 
     onUpdated (() => {
       showMarker()
+      shareMarker()
     })
 
     return { state, onMounted, map, connect, disconnect, showMarker, sendMarker, shareMarker, onUnmounted, onUpdated }
