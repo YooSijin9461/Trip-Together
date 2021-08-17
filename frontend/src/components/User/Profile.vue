@@ -179,7 +179,7 @@ export default {
       return new Date(date).getHours() + ':' + ('0' + new Date(date).getMinutes()).slice(-2)
     }
     onMounted (() => {
-      state.profilepath = `/var/www/html/upload/${state.userProfileimg}`
+      state.profilepath = `var/www/html/upload/${state.userProfileimg}`
       console.log(state.profilepath)
       store.dispatch('userArticle', state.userId)
         .then(({ data }) => {
