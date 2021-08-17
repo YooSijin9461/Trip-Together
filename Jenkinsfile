@@ -63,10 +63,12 @@ pipeline {
 				-p 80:80 \
 				-p 443:443 \
 				-v /var/lib/docker/volumes:/var/www/html \
+				-v ./backend/src/main/resources/dist/upload:/var/www/html/frontp \
 				--network our-net \
 				frontimg:latest'
 				sh 'docker run -d --name backimg \
 				-p 8443:8443 \
+				-v ./backend/src/main/resources/dist/upload:/var/www/html/backp \
 				--network our-net \
 				backimg:latest'
 
