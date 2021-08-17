@@ -85,7 +85,10 @@ export default {
       state.markerList.push(marker)
       console.log(state.markerList.slice(-1))
       state.marker = new google.maps.Marker({
-        position: state.markerList.slice(-1),
+        position: {
+          lat: parseFloat(state.markerList.slice(-1).lat),
+          lng: parseFloat(state.markerList.slice(-1).lng),
+        },
         map: map,
       })
       console.log(state.marker)
