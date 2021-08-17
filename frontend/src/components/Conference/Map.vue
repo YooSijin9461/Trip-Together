@@ -45,7 +45,6 @@ export default {
           position: latLng,
           map: map,
         })
-        
         sendMarker(state.marker.position)
         state.marker.addListener('dblclick', () => {
           state.marker.setMap(null)
@@ -82,20 +81,23 @@ export default {
 
     function showMarker(marker) {
       state.markerList.push(marker)
-      console.log(state.markerList)
+      state.marker = new google.maps.Marker({
+        position: state.markerList.slice(-1),
+        map: map,
+      })
     }
 
     // const shareMarker = () => {
-    //   for (var i = 0; i < state.markerList.length; i++) {
-    //     if (state.markerList[i]) {
-    //       console.log(state.markerList[i])
-    //       state.marker = new google.maps.Marker({
-    //         position: state.markerList[i],
-    //         map: map,
-    //       })
-    //       state.marker.setMap(map)
-    //     }
-    //   }
+      // for (var i = 0; i < state.markerList.length; i++) {
+      //   if (state.markerList[i]) {
+      //     console.log(state.markerList[i])
+      //     state.marker = new google.maps.Marker({
+      //       position: state.markerList[i],
+      //       map: map,
+      //     })
+      //     state.marker.setMap(map)
+      //   }
+      // }
     // }
     onMounted (() => {
       initMap()
