@@ -15,7 +15,7 @@ export default {
     const store = useStore()
     const state = reactive ({
       stompClient: null,
-      // marker: null,
+      marker: null,
       markerList: [],
       conferneceNo: computed(() => store.getters['getConferenceno']),
       mapPosition: { lat: 37.564214, lng: 127.001699 },
@@ -45,18 +45,6 @@ export default {
         //   map: map,
         // })
         sendMarker(latLng)
-        console.log(state.markerList.slice(-1))
-        console.log(parseFloat(state.markerList.slice(-1).lat()))
-        console.log(parseFloat(state.markerList.slice(-1).lng()))
-        console.log(state.markerList.slice(-1).lat)
-        console.log(state.markerList.slice(-1).lng)
-        new google.maps.Marker({
-          position: {
-            lat: state.markerList.slice(-1).lat,
-            lng: state.markerList.slice(-1).lng,
-          },
-          map: map,
-        })
         // state.marker.addListener('dblclick', () => {
         //   state.marker.setMap(null)
         //   // for (var i = 0; i < state.markerList.length; i++) {
@@ -106,16 +94,46 @@ export default {
     // }
     function showMarker(marker) {
       state.markerList.push(marker)
-      // console.log(state.markerList.slice(-1))
+      console.log(state.markerList.slice(-1))
+      console.log(state.markerList.slice(-1).lat)
+      console.log(state.markerList.slice(-1).lng)
+      console.log(parseFloat(state.markerList.slice(-1).lat))
+      console.log(parseFloat(state.markerList.slice(-1).lng))
 
-      // state.marker = new google.maps.Marker({
-      //   position: {
-      //     lat: parseFloat(state.markerList.slice(-1).lat),
-      //     lng: parseFloat(state.markerList.slice(-1).lng),
-      //   },
-      //   map: map,
-      // })
-      // state.marker.setMap(map)
+      state.marker = new google.maps.Marker({
+        position: state.markerList.slice(-1),
+        map: map,
+      })
+      state.marker.setMap(map)
+
+      state.marker = new google.maps.Marker({
+        position: {
+          lat: state.markerList.slice(-1).lat,
+          lng: state.markerList.slice(-1).lng,
+        },
+        map: map,
+      })
+      state.marker.setMap(map)
+
+      state.marker = new google.maps.Marker({
+        position: {
+          lat: parseFloat(state.markerList.slice(-1).lat),
+          lng: parseFloat(state.markerList.slice(-1).lng),
+        },
+        map: map,
+      })
+      state.marker.setMap(map)
+    }
+
+    for (var i = 0; i < state.markerList.length; i++) {
+      if (state.markerList[i]) {
+        console.log(state.markerList[i])
+        state.marker = new google.maps.Marker({
+          position: state.markerList[i],
+          map: map,
+        })
+        state.marker.setMap(map)
+      }
     }
 
     // const shareMarker = () => {
