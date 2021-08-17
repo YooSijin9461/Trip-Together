@@ -1,5 +1,6 @@
 package com.ssafy.api.controller;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.api.request.BoardModifyPostReq;
 import com.ssafy.api.request.BoardRegisterPostReq;
+import com.ssafy.api.request.UserRegisterPostReq;
 import com.ssafy.api.service.BoardService;
 import com.ssafy.db.entity.Board;
 
@@ -139,5 +142,25 @@ public class BoardController {
 		}
 		else
 			return new ResponseEntity<>("fail", HttpStatus.OK);
+	}
+	
+	@PostMapping("/file")
+	public String uploadFile(@RequestParam("file") MultipartFile file) throws Exception {
+		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
+		
+		// 이미지 저장 경로
+		String basePath = "/bin/main/dist/upload";
+
+		String filePath = basePath + "/" + file.getOriginalFilename();
+
+		File dest = new File(filePath);
+
+		// 파일 업로드
+		file.transferTo(dest);
+		
+		registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
+		registerInfo.setOrgImg(file.getOriginalFilename());
+		
+		return "Uploaded";
 	}
 }

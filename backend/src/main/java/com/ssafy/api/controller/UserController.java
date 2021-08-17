@@ -84,9 +84,7 @@ public class UserController {
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<User> register(
-//			@RequestParam("file") MultipartFile file,
 			@RequestPart(value="file", required = false) MultipartFile file,
-//			@ModelAttribute(value="file") MultipartFile file,
 			@RequestParam(required = true)String userId,
 			@RequestParam(required = true)String password,
 			@RequestParam(required = true)String userName,
@@ -96,9 +94,7 @@ public class UserController {
 			@RequestParam(required = true) String age,
 			@RequestParam(required = false) String mbti,
 			@RequestParam(required = false) String avgScore,
-			@RequestParam(required = false) boolean isGuide
-			/*@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo*/) throws IllegalStateException, IOException, URISyntaxException {
-		//file = registerInfo.getFile();
+			@RequestParam(required = false) boolean isGuide) throws IllegalStateException, IOException, URISyntaxException {
 		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
 		
 		if(file != null && file.getSize() > 0) {
@@ -106,56 +102,14 @@ public class UserController {
 			String basePath = "/var/www/html/upload";
 //			String basePath = "C:/Users/multicampus/Documents/S05P13D201/backend/src/main/resources/dist";
 			
-			String filePath = basePath + "/" + file.getOriginalFilename();
-//			ClassPathResource res = new ClassPathResource(basePath); // /src/main/resources/dist/upload | /bin/main/dist/upload
+			String filePath = basePath + "/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
 			
 			File dest = new File(filePath);
 			
 			// 파일 업로드
 			file.transferTo(dest);
-			
-//			Resource res = resourceLoader.getResource("/dist/upload/");
-//			Resource res = resourceLoader.getResource("classpath:upload/");
-//			File f = res.getFile();
-//			if(!f.exists())
-//				f.mkdirs();
-//			System.out.println(res.getPath());
-			
-//			res.getPath();
-
-			// inputStream, outputStream을 이용하여 basePath경로로 파일 저장하기
-//			System.out.println("inputStream start");
-//			InputStream inputStream = res.getInputStream();
-//			File f = new File(basePath + "/tmp.txt");
-//			System.out.println("outputStream start");
-//			FileOutputStream outSrouce = new FileOutputStream(f);
-//			
-//			byte[] data = new byte[1024];
-//			int length = 0;
-//			
-//			while( (length = inputStream.read(data)) != -1)  {
-//				outSrouce.write(data, 0, length);
-//			}
-//			System.out.println("outSource success");
-//			File f = File.createTempFile("temp", ".jpg");
-//			if(!f.exists())
-//				f.mkdirs();
-//			try {
-//			    FileUtils.copyInputStreamToFile(inputStream, f);
-//			    file.transferTo(f);
-//			} finally {
-//			    IOUtils.closeQuietly(inputStream);
-//			}
-			
-//			f.setWritable(true);
-//			f.setReadable(true);
-			
 			registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
-			registerInfo.setOrgImg(file.getOriginalFilename());
-//			file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
 			
-//			Runtime.getRuntime().exec("chmod -R 777" + file);
-//			file.transferTo(new File(uploadDir + "upload/" + registerInfo.getImg()));
 		}
 		registerInfo.setUserId(userId);
 		registerInfo.setPassword(password);
@@ -177,28 +131,6 @@ public class UserController {
 		return new ResponseEntity<User>(user, responseHeaders, HttpStatus.OK);
 	}
 	
-	@PostMapping("/file")
-	public String uploadFile(@RequestParam("file") MultipartFile file) throws Exception {
-		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
-		
-		// 이미지 저장 경로
-		String basePath = "/bin/main/dist/upload";
-
-		String filePath = basePath + "/" + file.getOriginalFilename();
-
-		File dest = new File(filePath);
-
-		// 파일 업로드
-		file.transferTo(dest);
-		
-		registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
-		registerInfo.setOrgImg(file.getOriginalFilename());
-//		file.transferTo(new File(res.getFile().getCanonicalFile() + "/" + registerInfo.getImg()));
-		
-		//return filePath;
-		return "Uploaded";
-	}
-	
 	@GetMapping()
 	@ApiOperation(value = "사용자 목록", notes = "사용자 목록을 List로 반환")
 	@ApiResponses({
@@ -213,16 +145,6 @@ public class UserController {
 			return new ResponseEntity<>(userRepository.findAll(UserSpec.userIdLike(userId)), HttpStatus.OK);
 		return new ResponseEntity<>(userService.selectUser(), HttpStatus.OK);
 	}
-	
-//	@GetMapping()
-//	@ApiOperation(value = "사용자 목록", notes = "사용자 목록을 List로 반환")
-//	@ApiResponses({
-//		@ApiResponse(code = 200, message = "성공"),
-//		@ApiResponse(code = 500, message = "서버 오류")
-//	})
-//	public ResponseEntity<List<User>> selectUser(){
-//		return new ResponseEntity<>(userService.selectUser(), HttpStatus.OK);
-//	}
 
 	@GetMapping("/me")
 	@ApiOperation(value = "회원 본인 정보 조회", notes = "로그인한 회원 본인의 정보를 응답한다.") 
