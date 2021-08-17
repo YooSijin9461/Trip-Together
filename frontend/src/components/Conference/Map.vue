@@ -113,7 +113,7 @@ export default {
       state.marker.addListener('click', function(e) {
         console.log('마커클릭 =>'+JSON.stringify(e.latLng.toJSON(), null, 2))
         map.setZoom(14);
-        map.setCenter(state.marker.getPosition())
+        map.setCenter(JSON.stringify(e.latLng.toJSON(), null, 2))
       })
     }
 
