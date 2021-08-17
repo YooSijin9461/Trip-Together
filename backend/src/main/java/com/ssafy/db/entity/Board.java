@@ -34,6 +34,7 @@ public class Board {
 	int likeCount;
 	int hateCount;
 	String userImg;
+	String boardImg;
 	
 	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	//@Temporal(TemporalType.TIMESTAMP)

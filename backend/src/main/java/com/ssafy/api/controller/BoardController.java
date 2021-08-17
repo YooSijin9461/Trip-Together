@@ -1,6 +1,8 @@
 package com.ssafy.api.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +22,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -46,14 +51,34 @@ public class BoardController {
 	BoardService boardService;
 	
 	
-	@PostMapping()
+	@PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+	@ResponseBody
 	@ApiOperation(value = "게시글 등록", notes = "게시글을 작성한다.")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "성공"),
 		@ApiResponse(code = 500, message = "서버 오류")
 	})
 	public ResponseEntity<Board> registerBoard(
-			@RequestBody @ApiParam(value="게시글 등록 정보", required = true) BoardRegisterPostReq registerInfo){
+			@RequestPart(value="file", required = false) MultipartFile file,
+			@RequestBody @ApiParam(value="게시글 등록 정보", required = true) BoardRegisterPostReq registerInfo) throws IllegalStateException, IOException{
+		if(file != null && file.getSize() > 0) {
+			// 이미지 저장 경로
+			String basePath = "/var/www/html/boards/upload";
+
+			String filePath = basePath + "/" + file.getOriginalFilename();
+
+			File dest = new File(filePath);
+
+			// 파일 업로드
+			file.transferTo(dest);
+			
+			// 현재 날짜 구하기
+			Calendar cal = Calendar.getInstance();
+			int date = cal.get ( cal.DATE ) ;
+
+			registerInfo.setBoardImg(date + "_" + file.getOriginalFilename());
+			
+		}
 		Board board = boardService.createBoard(registerInfo);
 		return new ResponseEntity<>(board, HttpStatus.OK);
 		
@@ -144,25 +169,4 @@ public class BoardController {
 			return new ResponseEntity<>("fail", HttpStatus.OK);
 	}
 	
-	@PostMapping("/upload")
-	public String uploadFile(@RequestParam("file") MultipartFile file) throws Exception {
-		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
-		
-		// 이미지 저장 경로
-		String basePath = "/var/www/html/board/upload";
-
-		String filePath = basePath + "/" + file.getOriginalFilename();
-
-		File dest = new File(filePath);
-
-		// 파일 업로드
-		file.transferTo(dest);
-		
-		//예시
-		
-//		registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
-//		registerInfo.setOrgImg(file.getOriginalFilename());
-		
-		return "Uploaded";
-	}
 }

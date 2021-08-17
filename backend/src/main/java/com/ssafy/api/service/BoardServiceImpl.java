@@ -39,6 +39,7 @@ public class BoardServiceImpl implements BoardService {
 		board.setHateCount(boardRegisterInfo.getHateCount());
 		board.setUserId(boardRegisterInfo.getUserId());
 		board.setUserImg(user.getImg());
+		board.setBoardImg(boardRegisterInfo.getBoardImg());
 		return boardRepository.save(board);
 	}
 
