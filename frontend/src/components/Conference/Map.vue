@@ -59,17 +59,17 @@ export default {
         //   map.setCenter(state.marker.getPosition())
         // })
       });
-      console.log(parseFloat(state.markerList.slice(-1).lat))
-      console.log(parseFloat(state.markerList.slice(-1).lng))
-
-      new google.maps.Marker({
-        position: {
-          'lat': parseFloat(state.markerList.slice(-1).lat),
-          'lng': parseFloat(state.markerList.slice(-1).lng),
-        },
-        map: map,
-      })
     }
+    console.log(parseFloat(state.markerList.slice(-1).lat))
+    console.log(parseFloat(state.markerList.slice(-1).lng))
+
+    new google.maps.Marker({
+      position: {
+        'lat': parseFloat(state.markerList.slice(-1).lat),
+        'lng': parseFloat(state.markerList.slice(-1).lng),
+      },
+      map: map,
+    })
     const connect = () => {
       const socket = new SockJS('https://i5d201.p.ssafy.io:8443/websocket');
       state.stompClient = Stomp.over(socket);
@@ -85,7 +85,7 @@ export default {
       }
     }
     const sendMarker = (position) => {
-      console.log(position)
+      // console.log(position)
       state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify( position ));
     }
 
