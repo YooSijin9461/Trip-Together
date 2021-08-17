@@ -42,6 +42,7 @@
       <div class="col">
         <div class="d-flex">
           <div class="me-5">
+            {{ state.userProfileimg }}
             <p class="my-3">ID : {{ state.userId }}</p>
             <p class="my-3">이름 : {{ state.userName }}</p>
             <p class="my-3">e-mail : {{ state.userEmail }}</p>
@@ -182,6 +183,7 @@ export default {
       userMBTI: computed(() => store.getters['getProfilembti']),
       userAge: computed(() => store.getters['getProfileage']),
       userGender: computed(() => store.getters['getProfilegender']),
+      userProfileimg: computed(() => store.getters['getProfileimg']),
       userArticle: [],
       userComment: [],
       token: computed(() => store.getters['getToken']),

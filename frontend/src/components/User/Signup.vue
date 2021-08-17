@@ -157,7 +157,7 @@ export default {
       const emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       const ageCheck = /^[0-9]+/g
       if (!idCheck.test(state.form.userId)) {
-        ElMessage.error("ID는 영문자 + 숫자 조합으로 4~12자리로 입력해야 합니다.")
+        ElMessage.error("ID는 영문자 또는 숫자로 4~12자리로 입력해야 합니다.")
       }
       // 영문자 + 숫자 + 특수문자 조합(8~25자리 입력) 정규식
       else if (!passwordCheck.test(state.form.password)) {
@@ -166,14 +166,14 @@ export default {
       else if (state.form.password !== state.form.passwordConfirmation) {
         ElMessage.error("비밀번호가 일치하지 않습니다.")
       }
+      else if (!ageCheck.test(state.form.age)) {
+        ElMessage.error("나이는 숫자만 입력할 수 있습니다.")
+      }
       else if (!phoneCheck.test(state.form.phoneNum)) {
         ElMessage.error("전화번호는 숫자만 입력할 수 있습니다.")
       }
       else if (!emailCheck.test(state.form.email)) {
         ElMessage.error("올바른 e-mail 형식이 아닙니다.")
-      }
-      else if (!ageCheck.test(state.form.age)) {
-        ElMessage.error("나이는 숫자만 입력할 수 있습니다.")
       } else {
         signupForm.value.validate((valid) => {
           if (valid) {
