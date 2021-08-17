@@ -75,7 +75,7 @@ export default {
         state.stompClient.disconnect();
       }
     }
-    const sendMarker = (position, state) => {
+    const sendMarker = (position) => {
       state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify({'lat': position.lat, 'lng': position.lng}));
     }
 
@@ -94,8 +94,8 @@ export default {
       }
     }
     onMounted (() => {
-      connect()
       initMap()
+      connect()
     })
 
     onUnmounted (() => {
