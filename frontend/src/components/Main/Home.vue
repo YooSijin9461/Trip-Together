@@ -283,4 +283,19 @@ th {
 .el-tabs--border-card>.el-tabs__header .el-tabs__item:not(.is-disabled):hover {
   color: green;
 }
+.custom-map-control-button {
+  background-color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  padding: 0 0.5em;
+  font: 400 15px Roboto, Arial, sans-serif;
+  overflow: hidden;
+  height: 30px;
+  cursor: pointer;
+}
+.custom-map-control-button:hover {
+  background: #ebebeb;
+}
 </style>
