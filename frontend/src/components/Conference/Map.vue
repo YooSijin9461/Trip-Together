@@ -42,11 +42,11 @@ export default {
       connect()
       map.addListener('click', function({ latLng }) {
         state.marker = new google.maps.Marker({
-          position: { 'lat': latLng.lat, 'lng': latLng.lng },
+          position: latLng,
           map: map,
         })
         console.log(latLng)
-        sendMarker(latLng.lat, latLng.lng)
+        sendMarker(state.marker.position)
         state.marker.addListener('dblclick', () => {
           state.marker.setMap(null)
           // for (var i = 0; i < state.markerList.length; i++) {
@@ -77,9 +77,9 @@ export default {
         state.stompClient.disconnect();
       }
     }
-    const sendMarker = (lat, lng) => {
-      console.log('lat:'+lat+'lng: '+lng)
-      state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify({'lat': lat, 'lng': lng}));
+    const sendMarker = (position) => {
+      console.log('position:'+position)
+      state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify( 'position' : position));
     }
 
     function showMarker(marker) {
