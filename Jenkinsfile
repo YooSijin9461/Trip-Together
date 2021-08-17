@@ -64,11 +64,13 @@ pipeline {
 				-p 443:443 \
 				-v /var/lib/docker/volumes:/var/www/html \
 				-v /docker/jenkins-data/workspace/TripTogether/backend/src/main/resources/dist/upload:/var/www/html/upload \
+				-v /docker/jenkins-data/workspace/TripTogether/backend/src/main/resources/dist/boards/upload:/var/www/html/boards/upload \
 				--network our-net \
 				frontimg:latest'
 				sh 'docker run -d --name backimg \
 				-p 8443:8443 \
 				-v /docker/jenkins-data/workspace/TripTogether/backend/src/main/resources/dist/upload:/var/www/html/upload \
+				-v /docker/jenkins-data/workspace/TripTogether/backend/src/main/resources/dist/boards/upload:/var/www/html/boards/upload \
 				--network our-net \
 				backimg:latest'
 

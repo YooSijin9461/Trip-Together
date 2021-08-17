@@ -144,12 +144,12 @@ public class BoardController {
 			return new ResponseEntity<>("fail", HttpStatus.OK);
 	}
 	
-	@PostMapping("/file")
+	@PostMapping("/upload")
 	public String uploadFile(@RequestParam("file") MultipartFile file) throws Exception {
 		UserRegisterPostReq registerInfo = new UserRegisterPostReq();
 		
 		// 이미지 저장 경로
-		String basePath = "/bin/main/dist/upload";
+		String basePath = "/var/www/html/board/upload";
 
 		String filePath = basePath + "/" + file.getOriginalFilename();
 
@@ -158,8 +158,10 @@ public class BoardController {
 		// 파일 업로드
 		file.transferTo(dest);
 		
-		registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
-		registerInfo.setOrgImg(file.getOriginalFilename());
+		//예시
+		
+//		registerInfo.setImg(System.currentTimeMillis() + "_" + file.getOriginalFilename());
+//		registerInfo.setOrgImg(file.getOriginalFilename());
 		
 		return "Uploaded";
 	}
