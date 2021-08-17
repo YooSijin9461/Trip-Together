@@ -51,6 +51,8 @@ const getDefaultState = () => {
     boardTitle: null,
     boardContent: null,
     boardCreate: null,
+    like: null,
+    hate: null,
 
     // 댓글
     commentList: [],
@@ -126,6 +128,10 @@ export default createStore({
       state.boardTitle = boardinfo.boardTitle
       state.boardContent = boardinfo.boardContent
       state.boardCreate = boardinfo.boardTime
+    },
+    RECOMMEND (state, check) {
+      state.like = check.likeCheck
+      state.hate = check.hateCheck
     },
 
     // 댓글`
@@ -269,6 +275,13 @@ export default createStore({
     articleHate ({ commit }, { userId, boardNo }) {
       return axios
         .patch(`${BASE_URL}/api/v1/recommend/hate?boardNo=${boardNo}&userId=${userId}`)
+    },
+    recommend ({ commit }, { userId, boardNo }) {
+      return axios
+        .get(`${BASE_URL}/api/v1/recommend/info?boardNo=${boardNo}&userId=${userId}`)
+        .then(({ data }) => {
+          commit('RECOMMEND', data)
+        })
     },
         
     // 댓글
@@ -433,6 +446,12 @@ export default createStore({
     },
     getBoardno (state) {
       return state.boardNo
+    },
+    getLike (state) {
+      return state.like
+    },
+    getHate (state) {
+      return state.hate
     },
 
     // 댓글

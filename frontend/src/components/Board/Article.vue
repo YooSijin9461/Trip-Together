@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import { reactive, computed, onUpdated } from 'vue'
+import { reactive, computed, onUpdated, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
@@ -110,8 +110,8 @@ export default {
       dialogVisible: false,
       comment: '',
       commentList: computed (() => store.getters['getCommentlist']),
-      like: null,
-      hate: null,
+      like: computed (() => store.getters['getLike']),
+      hate: computed (() => store.getters['getHate']),
     })
     const clickToList = () => {
       router.push({ name: 'ArticleList' })
@@ -173,16 +173,19 @@ export default {
     }
     const clickLike = () => {
       store.dispatch('articleLike', { userId: state.userId, boardNo: state.articleNo })
-        .then(({ data }) => {
-          state.like = data.likeCheck
+        .then(() => {
+          store.dispatch('recommend', { userId: state.userId, boardNo: state.articleNo })
         })
     }
     const clickHate = () => {
       store.dispatch('articleHate', { userId: state.userId, boardNo: state.articleNo })
-        .then(({ data }) => {
-          state.hate = data.hateCheck
+        .then(() => {
+          store.dispatch('recommend', { userId: state.userId, boardNo: state.articleNo })
         })
     }
+    onMounted (() => {
+      store.dispatch('recommend', { userId: state.userId, boardNo: state.articleNo })
+    })
     onUpdated (() => {
       store.dispatch('commentList', state.articleNo)
     })
