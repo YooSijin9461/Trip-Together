@@ -100,7 +100,6 @@ export default {
         position: state.markerList.slice(-1)[0],
         map: map,
       })
-      map.panTo(state.markerList.slice(-1)[0])
       // state.marker.setMap(map)
       state.marker.addListener('dblclick', (e) => {
         console.log('마커더블클릭 =>' + JSON.stringify(e.latLng.toJSON(), null, 2))
@@ -111,12 +110,12 @@ export default {
           }
           // state.marker.setMap(null)
       })
-      // state.marker.addListener('click', function({ latLng }) {
-      //   console.log('마커클릭 =>'+JSON.stringify(e.latLng.toJSON(), null, 2))
-      //   map.setZoom(14);
-      //   // map.setCenter(state.marker.getPosition())
-      //   map.setCenter(latLng)
-      // })
+      state.marker.addListener('click', function({ latLng }) {
+        console.log('마커클릭 =>'+JSON.stringify(latLng.toJSON(), null, 2))
+        map.setZoom(14);
+        // map.setCenter(state.marker.getPosition())
+        map.center = JSON.stringify(latLng.toJSON(), null, 2)
+      })
     }
 
     onMounted (() => {
