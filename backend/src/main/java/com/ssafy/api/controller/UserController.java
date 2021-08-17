@@ -1,6 +1,7 @@
 package com.ssafy.api.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -11,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpHeaders;
@@ -101,10 +103,10 @@ public class UserController {
 		
 		if(file != null && file.getSize() > 0) {
 			// 이미지 저장 경로
-			String basePath = "/dist/upload/";
+//			String basePath = "src/main/resources/dist/upload/";
+			String basePath = "C:/SSAFY/work_pjt3/backend/src/main/resources/dist";
 			
 			String filePath = basePath + "/" + file.getOriginalFilename();
-			
 			ClassPathResource res = new ClassPathResource(basePath); // /src/main/resources/dist/upload | /bin/main/dist/upload
 			
 			File dest = new File(filePath);
@@ -117,21 +119,33 @@ public class UserController {
 //			File f = res.getFile();
 //			if(!f.exists())
 //				f.mkdirs();
-//			System.out.println(res.getFile());
+			System.out.println(res.getPath());
 			
 //			res.getPath();
 
-
+			// inputStream, outputStream을 이용하여 basePath경로로 파일 저장하기
+			System.out.println("inputStream start");
 			InputStream inputStream = res.getInputStream();
-			File f = File.createTempFile("temp", ".jpg");
-			if(!f.exists())
-				f.mkdirs();
-			try {
-			    FileUtils.copyInputStreamToFile(inputStream, f);
-			    file.transferTo(f);
-			} finally {
-			    IOUtils.closeQuietly(inputStream);
+			File f = new File(basePath + "/tmp.txt");
+			System.out.println("outputStream start");
+			FileOutputStream outSrouce = new FileOutputStream(f);
+			
+			byte[] data = new byte[1024];
+			int length = 0;
+			
+			while( (length = inputStream.read(data)) != -1)  {
+				outSrouce.write(data, 0, length);
 			}
+			System.out.println("outSource success");
+//			File f = File.createTempFile("temp", ".jpg");
+//			if(!f.exists())
+//				f.mkdirs();
+//			try {
+//			    FileUtils.copyInputStreamToFile(inputStream, f);
+//			    file.transferTo(f);
+//			} finally {
+//			    IOUtils.closeQuietly(inputStream);
+//			}
 			
 //			f.setWritable(true);
 //			f.setReadable(true);
