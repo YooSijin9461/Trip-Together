@@ -81,6 +81,18 @@ export default {
       state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify( position ));
     }
 
+    // function showMarker(marker) {
+    //   state.markerList.push(marker)
+    //   console.log(state.markerList.slice(-1))
+    //   state.marker = new google.maps.Marker({
+    //     position: {
+    //       lat: parseFloat(state.markerList.slice(-1).lat),
+    //       lng: parseFloat(state.markerList.slice(-1).lng),
+    //     },
+    //     map: map,
+    //   })
+    //   console.log(state.marker)
+    // }
     function showMarker(marker) {
       state.markerList.push(marker)
       console.log(state.markerList.slice(-1))
@@ -91,7 +103,7 @@ export default {
         },
         map: map,
       })
-      console.log(state.marker)
+      state.marker.setMap(map)
     }
 
     // const shareMarker = () => {
