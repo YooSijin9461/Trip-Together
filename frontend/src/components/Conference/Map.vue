@@ -42,7 +42,7 @@ export default {
       connect()
       map.addListener('click', function({ latLng }) {
         state.marker = new google.maps.Marker({
-          position: latLng,
+          position: { 'lat': latLng.lat, 'lng': latLng.lng },
           map: map,
         })
         console.log(latLng)
