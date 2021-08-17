@@ -3,7 +3,18 @@
     <div class="row d-flex align-items-center mt-5">
       <!-- 이미지 -->
       <div class="col-3 ms-5">
-        <img class="profilepage-img" :src="'/upload/' + state.userProfileimg"  alt="">
+        <div v-if="state.userProfileimg">
+          <img class="profilepage-img" :src="'/upload/' + state.userProfileimg"  alt="">
+        </div>
+        <div v-else>
+          <div v-if="state.userGender === 'm'">
+            <img class="profilepage-img" :src="state.male" alt="">
+          </div>
+          <!-- <div v-else-if="state.userGender === 'f'"> -->
+          <div v-else>
+            <img class="profilepage-img" :src="state.female" alt="">
+          </div>
+        </div>
       </div>
       <div class="col">
         <div class="d-flex">
