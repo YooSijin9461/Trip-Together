@@ -3,6 +3,7 @@ package com.ssafy.api.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -60,10 +62,15 @@ public class BoardController {
 	})
 	public ResponseEntity<Board> registerBoard(
 			@RequestPart(value="file", required = false) MultipartFile file,
-			@RequestBody @ApiParam(value="게시글 등록 정보", required = true) BoardRegisterPostReq registerInfo) throws IllegalStateException, IOException{
+//			@RequestParam(required = true) String boardTitle,
+//			@RequestParam(required = true) String boardContent
+			@RequestBody
+			@ApiParam(value="게시글 등록 정보", required = true) BoardRegisterPostReq registerInfo) throws IllegalStateException, IOException{
+//		BoardRegisterPostReq registerInfo = new BoardRegisterPostReq();
 		if(file != null && file.getSize() > 0) {
 			// 이미지 저장 경로
-			String basePath = "/var/www/html/boards/upload";
+//			String basePath = "/var/www/html/boards/upload";
+			String basePath = "C:\\ssafy\\pjt3\\backend\\src\\main\\resources\\dist\\boards\\upload"; // 로컬
 
 			String filePath = basePath + "/" + file.getOriginalFilename();
 
@@ -80,7 +87,9 @@ public class BoardController {
 			
 		}
 		Board board = boardService.createBoard(registerInfo);
-		return new ResponseEntity<>(board, HttpStatus.OK);
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.setAccept(Collections.singletonList(MediaType.MULTIPART_FORM_DATA));
+		return new ResponseEntity<>(board, responseHeaders, HttpStatus.OK);
 		
 	}
 	
