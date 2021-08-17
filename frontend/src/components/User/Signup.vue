@@ -151,59 +151,60 @@ export default {
       state.form.profileImg = profileimg.files[0]
     }
     const clickSignup = () => {
-      signupForm.value.validate((valid) => {
-        if (valid) {
-          const idCheck = /^[a-zA-z0-9]{4,12}$/          
-          if (!idCheck.test(state.form.userId)) {
-            ElMessage.error("ID는 영문자 + 숫자 조합으로 4~12자리로 입력해야 합니다.")
-          }
-          // 영문자 + 숫자 + 특수문자 조합(8~25자리 입력) 정규식
-          const passwordCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
-          if (!passwordCheck.test(state.form.password)) {
-            ElMessage.error("비밀번호는 영문자 + 숫자 + 특수문자 조합으로 8~25자리로 입력해야 합니다.")
-          }
-          if (state.form.password !== state.form.passwordConfirmation) {
-            ElMessage.error("비밀번호가 일치하지 않습니다.")
-          }
-          const phoneCheck = /^[0-9]+/g
-          if (!phoneCheck.test(state.form.phoneNum)) {
-            ElMessage.error("전화번호는 숫자만 입력할 수 있습니다.")
-          }
-          const emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          if (!emailCheck.test(state.form.email)) {
-            ElMessage.error("올바른 e-mail 형식이 아닙니다.")
-          }
-          const ageCheck = /^[0-9]+/g
-          if (!ageCheck.test(state.form.age)) {
-            ElMessage.error("나이는 숫자만 입력할 수 있습니다.")
-          }
-          const formData = new FormData()
-          formData.append('userId', state.form.userId)
-          formData.append('userName', state.form.userName)
-          formData.append('password', state.form.password)
-          formData.append('age', state.form.age)
-          formData.append('gender', state.form.gender)
-          formData.append('phoneNum', state.form.phoneNum)
-          formData.append('email', state.form.email)
-          formData.append('mbti', state.form.mbti)
-          formData.append('guide', state.form.guide)
-          formData.append('file', state.form.profileImg)
-                        
-          store.dispatch('profileImg', formData)
-          .then(() => {
-            ElMessage ({
-              message: '회원가입에 성공하였습니다.',
-              type: 'success'
+      const idCheck = /^[a-zA-z0-9]{4,12}$/     
+      const passwordCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
+      const phoneCheck = /^[0-9]+/g
+      const emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      const ageCheck = /^[0-9]+/g
+      if (!idCheck.test(state.form.userId)) {
+        ElMessage.error("ID는 영문자 + 숫자 조합으로 4~12자리로 입력해야 합니다.")
+      }
+      // 영문자 + 숫자 + 특수문자 조합(8~25자리 입력) 정규식
+      else if (!passwordCheck.test(state.form.password)) {
+        ElMessage.error("비밀번호는 영문자 + 숫자 + 특수문자 조합으로 8~25자리로 입력해야 합니다.")
+      } 
+      else if (state.form.password !== state.form.passwordConfirmation) {
+        ElMessage.error("비밀번호가 일치하지 않습니다.")
+      }
+      else if (!phoneCheck.test(state.form.phoneNum)) {
+        ElMessage.error("전화번호는 숫자만 입력할 수 있습니다.")
+      }
+      else if (!emailCheck.test(state.form.email)) {
+        ElMessage.error("올바른 e-mail 형식이 아닙니다.")
+      }
+      else if (!ageCheck.test(state.form.age)) {
+        ElMessage.error("나이는 숫자만 입력할 수 있습니다.")
+      } else {
+        signupForm.value.validate((valid) => {
+          if (valid) {
+            const formData = new FormData()
+            formData.append('userId', state.form.userId)
+            formData.append('userName', state.form.userName)
+            formData.append('password', state.form.password)
+            formData.append('age', state.form.age)
+            formData.append('gender', state.form.gender)
+            formData.append('phoneNum', state.form.phoneNum)
+            formData.append('email', state.form.email)
+            formData.append('mbti', state.form.mbti)
+            formData.append('guide', state.form.guide)
+            formData.append('file', state.form.profileImg)
+                          
+            store.dispatch('profileImg', formData)
+            .then(() => {
+              ElMessage ({
+                message: '회원가입에 성공하였습니다.',
+                type: 'success'
+              })
+              emit('closeSignupDialog')
             })
-            emit('closeSignupDialog')
-          })
-          .catch(function () {
-            ElMessage.error('회원가입에 실패하였습니다.')
-          })
-        } else {
-          ElMessage.error('회원가입에 필요한 정보가 입력되지 않았습니다.')
-        }
-      })
+            .catch(function () {
+              ElMessage.error('회원가입에 실패하였습니다.')
+            })
+          } else {
+            ElMessage.error('회원가입에 필요한 정보가 입력되지 않았습니다.')
+          }
+        })
+      }
     }
 
     const handleClose = () => {
