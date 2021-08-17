@@ -59,10 +59,13 @@ export default {
         //   map.setCenter(state.marker.getPosition())
         // })
       });
+      console.log(parseFloat(state.markerList.slice(-1).lat))
+      console.log(parseFloat(state.markerList.slice(-1).lng))
+
       new google.maps.Marker({
         position: {
-          lat: parseFloat(state.markerList.slice(-1).lat),
-          lng: parseFloat(state.markerList.slice(-1).lng),
+          'lat': parseFloat(state.markerList.slice(-1).lat),
+          'lng': parseFloat(state.markerList.slice(-1).lng),
         },
         map: map,
       })
