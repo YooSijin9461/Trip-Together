@@ -5,7 +5,6 @@ import jwt_decode from 'jwt-decode'
 
 // const BASE_URL = 'i5d201.p.sasfy.io';
 const BASE_URL = process.env.VUE_APP_SERVER_URL;
-console.log(BASE_URL);
 const getDefaultState = () => {
   return {
     // 유저
