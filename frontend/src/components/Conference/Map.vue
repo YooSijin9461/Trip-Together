@@ -104,7 +104,11 @@ export default {
       state.marker.addListener('dblclick', (e) => {
         state.markerList.forEach(function(item, index){
           if (JSON.stringify(e.latLng.toJSON(), null, 2) === item) {
-            state.marker.position = JSON.stringify(e.latLng.toJSON(), null, 2)
+            state.marker = new google.maps.Marker({
+              position: e.latLng,
+              map: map,
+            })
+            state.marker.setmap(null)
             state.marker.setmap(null)
             state.markerList.slice(index, 1)
           }
