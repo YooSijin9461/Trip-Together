@@ -14,7 +14,7 @@ import com.ssafy.db.entity.QRecommend;
 import com.ssafy.db.entity.Recommend;
 
 /**
- * ConferenceRoom 모델 관련 디비 쿼리 생성을 위한 구현 정의.
+ * Recommend 모델 관련 디비 쿼리 생성을 위한 구현 정의.
  */
 @Repository
 public class RecommendRepositorySupport {
