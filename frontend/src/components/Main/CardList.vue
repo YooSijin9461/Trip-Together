@@ -1,5 +1,5 @@
 <template>
-  <el-carousel :interval="4000" type="card" height="400px">
+  <el-carousel :interval="4000" type="card" height="450px">
     <el-carousel-item v-for="card in state.cardList" :key="card">
       <div class="card">
         <img class="card-img" :src="card.img" alt="">
@@ -10,7 +10,7 @@
             <p class="card-guide-text my-0">여행 가이드</p>
           </a>
         </div>
-        <p class="ms-2 my-0">{{ card.description }}</p>
+        <p class="mx-2 my-0">{{ card.description }}</p>
       </div>
     </el-carousel-item>
   </el-carousel>
@@ -67,7 +67,7 @@ export default {
 <style>
 .card {
   display: block;
-  height: 400px;
+  height: 450px;
   border: 1px solid lightgreen;
   /* border: none; */
   border-radius: 15px;
@@ -109,5 +109,9 @@ export default {
   background-color: #d3dce6;
   border-radius: 15px;
   border: none;
+}
+.el-carousel__indicators--outside {
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 </style>

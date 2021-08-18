@@ -288,10 +288,11 @@ th {
   height: 85%;
 }
 .home-box {
-  height: 55% !important;
+  height: 50% !important;
 }
 .home-board {
   height: 100%;
+  width: 100%;
 }
 .home-board-line {
   color: green;
