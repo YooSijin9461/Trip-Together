@@ -181,7 +181,7 @@ export default {
       else if (state.duplication === '') {
         ElMessage.error("ID 중복체크는 필수입니다.")
       }
-      else if (state.duplication === 'true') {
+      else if (state.duplication === true) {
         ElMessage.error('중복된 ID가 존재합니다.')
       }
       // 영문자 + 숫자 + 특수문자 조합(8~25자리 입력) 정규식
