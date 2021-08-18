@@ -10,9 +10,15 @@ import org.springframework.stereotype.Service;
 import com.ssafy.api.request.BoardModifyPostReq;
 import com.ssafy.api.request.BoardRegisterPostReq;
 import com.ssafy.db.entity.Board;
+import com.ssafy.db.entity.Comments;
+import com.ssafy.db.entity.Recommend;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.repository.BoardRepository;
 import com.ssafy.db.repository.BoardRepositorySupport;
+import com.ssafy.db.repository.CommentRepository;
+import com.ssafy.db.repository.CommentRepositorySupport;
+import com.ssafy.db.repository.RecommendRepository;
+import com.ssafy.db.repository.RecommendRepositorySupport;
 import com.ssafy.db.repository.UserRepository;
 
 /**
@@ -27,7 +33,19 @@ public class BoardServiceImpl implements BoardService {
 	UserRepository userRepository;
 	
 	@Autowired
+	CommentRepository commentRepository;
+	
+	@Autowired
+	RecommendRepository recommendRepository;
+	
+	@Autowired
 	BoardRepositorySupport boardRepositorySupport;
+	
+	@Autowired
+	CommentRepositorySupport commentRepositorySupport;
+	
+	@Autowired
+	RecommendRepositorySupport recommendRepositorySupport;
 	
 	@Override
 	public Board createBoard(BoardRegisterPostReq boardRegisterInfo) {
@@ -73,6 +91,7 @@ public class BoardServiceImpl implements BoardService {
 		Board board = boardRepositorySupport.findByBoardNo(boardNo).get();
 		board.setBoardTitle(boardModifyInfo.getBoardTitle());
 		board.setBoardContent(boardModifyInfo.getBoardContent());
+		board.setBoardImg(boardModifyInfo.getImg());
 		//board.setBoardRate(boardModifyInfo.getBoardRate());
 		return boardRepository.save(board);
 	}
@@ -80,6 +99,14 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void deleteBoard(int boardNo) {
 		Board board = boardRepositorySupport.findByBoardNo(boardNo).get();
+		List<Comments> comments = commentRepositorySupport.findByBoardNo(boardNo).get();
+		List<Recommend> recommends = recommendRepositorySupport.findAllByBoardNo(boardNo).get();
+		
+		for(Comments cm : comments)
+			commentRepository.delete(cm);
+		for(Recommend rm : recommends)
+			recommendRepository.delete(rm);
+		
 		boardRepository.delete(board);
 	}
 

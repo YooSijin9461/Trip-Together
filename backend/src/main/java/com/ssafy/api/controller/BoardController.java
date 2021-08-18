@@ -84,7 +84,6 @@ public class BoardController {
 			int date = cal.get ( cal.DATE ) ;
 
 			registerInfo.setBoardImg(date + "_" + file.getOriginalFilename());
-			
 		}
 		registerInfo.setBoardTitle(boardTitle);
 		registerInfo.setBoardContent(boardContent);
@@ -158,11 +157,38 @@ public class BoardController {
 	        @ApiResponse(code = 404, message = "게시글 없음"),
 	        @ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity<Board> modifyBoard(@PathVariable int boardNo, @RequestBody BoardModifyPostReq update){
+	public ResponseEntity<Board> modifyBoard(
+			@PathVariable int boardNo, 
+			@RequestPart(value="file", required = false) MultipartFile file,
+			@RequestParam(required=false) String boardTitle,
+			@RequestParam(required=false) String boardContent) throws IllegalStateException, IOException{
 		Board board = boardService.getInfoByBoardNo(boardNo);
-		board = boardService.modifyBoard(update, boardNo);
+		BoardModifyPostReq modifyInfo = new BoardModifyPostReq();
 		
-		return new ResponseEntity<>(board, HttpStatus.OK);
+		if(file != null && file.getSize() > 0) {
+			// 이미지 저장 경로
+			String basePath = "/var/www/html/boards/upload";
+//			String basePath = "C:\\Users\\multicampus\\Documents\\S05P13D201\\backend\\src\\main\\resources\\dist\\boards\\upload"; // 로컬
+
+			String filePath = basePath + "/" + file.getOriginalFilename();
+
+			File dest = new File(filePath);
+
+			// 파일 업로드
+			file.transferTo(dest);
+			
+			// 현재 날짜 구하기
+			Calendar cal = Calendar.getInstance();
+			int date = cal.get ( cal.DATE ) ;
+
+			modifyInfo.setImg(date + "_" + file.getOriginalFilename());
+		}
+		modifyInfo.setBoardContent(boardContent);
+		modifyInfo.setBoardTitle(boardTitle);
+		board = boardService.modifyBoard(modifyInfo, boardNo);
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.setAccept(Collections.singletonList(MediaType.MULTIPART_FORM_DATA));
+		return new ResponseEntity<>(board, responseHeaders, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{boardNo}")

@@ -1,5 +1,7 @@
 package com.ssafy.api.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,11 +9,15 @@ import com.ssafy.api.request.RecommendRegisterPostReq;
 import com.ssafy.db.entity.Recommend;
 import com.ssafy.db.repository.BoardRepository;
 import com.ssafy.db.repository.RecommendRepository;
+import com.ssafy.db.repository.RecommendRepositorySupport;
 
 @Service("recommendService")
 public class RecommendServiceImpl implements RecommendService {
 	@Autowired
 	RecommendRepository recommendRepository;
+	
+	@Autowired
+	RecommendRepositorySupport recommendRepositorySupport;
 	
 	@Autowired
 	BoardRepository boardRepository;
@@ -71,6 +77,12 @@ public class RecommendServiceImpl implements RecommendService {
 		recommend = recommendRepository.findByUserIdAndBoardNo(userId, boardNo).get();
 		recommend.setHateCheck(!recommend.isHateCheck());
 		return recommendRepository.save(recommend);
+	}
+
+	@Override
+	public List<Recommend> selectRecommendByBoardNo(int boardNo) {
+		List<Recommend> recommends = recommendRepositorySupport.findAllByBoardNo(boardNo).get();
+		return recommends;
 	}
 
 }
