@@ -161,7 +161,13 @@ export default {
               ElMessage.error('중복된 ID가 존재합니다.')
               state.duplication = true
               break;
-            }
+            } 
+          }
+          if (state.duplication === false) {
+            ElMessage ({
+                message: '사용가능한 ID 입니다.',
+                type: 'success'
+              })
           }
         })
     }
