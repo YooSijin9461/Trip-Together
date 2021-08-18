@@ -115,11 +115,12 @@ export default {
       boardwriterId: computed (() => store.getters['getBoarduserid']),
       title: computed (() => store.getters['getBoardtitle']),
       content: computed (() => store.getters['getBoardcontent']),
-      boardImg: store.getters['getBoardimg'],
+      boardImg: computed (() => store.getters['getBoardimg']),
       boardwriterImg: computed (() => store.getters['getBoarduserimg']),
       boardwriterGender: computed (() => store.getters['getBoardusergender']),
       updateTitle: store.getters['getBoardtitle'],
       updateContent: store.getters['getBoardcontent'],
+      updateImg: store.getters['getBoardimg'],
       articleNo: computed (() => store.getters['getBoardno']),
       loginId: computed (() => store.getters['getUserid']),
       dialogVisible: false,
@@ -135,7 +136,7 @@ export default {
 
     const fileSelect = () => {
       const boardimg = document.getElementById("boardimg")
-      state.boardImg = boardimg.files[0]
+      state.updateImg = boardimg.files[0]
     }
     const clickToList = () => {
       router.push({ name: 'ArticleList' })
@@ -148,7 +149,7 @@ export default {
         formData.append('boardNo', articleNo)
         formData.append('boardTitle', state.updateTitle)
         formData.append('boardContent', state.updateContent)
-        formData.append('file', state.boardImg)
+        formData.append('file', state.updateImg)
         
         const params = new URLSearchParams();
         params.append('boardTitle', state.updateTitle)
