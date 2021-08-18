@@ -2,7 +2,10 @@
 <el-dialog custom-class="Signup" title="회원가입" v-model="state.dialogVisible" @close="handleClose">
   <el-form :model="state.form" :rules="state.rules" ref="signupForm" :label-position="state.form.align">
     <el-form-item prop="userId" label="아이디" :label-width="state.formLabelWidth" >
-      <el-input v-model="state.form.userId" autocomplete="off"></el-input>
+      <div class="d-flex">
+        <el-input v-model="state.form.userId" autocomplete="off"></el-input>
+        <el-button class="ms-2" @click="duplicationCheck(state.form.userId)">중복확인</el-button>
+      </div>
     </el-form-item>
     <el-form-item prop="userName" label="이름" :label-width="state.formLabelWidth" >
       <el-input v-model="state.form.userName" autocomplete="off"></el-input>
@@ -142,9 +145,26 @@ export default {
         ],
       },
       dialogVisible: computed(() => props.open),
-      formLabelWidth: '120px'
+      formLabelWidth: '120px',
+      duplication: '',
     })
 
+    const duplicationCheck = (userId) => {
+      state.duplication = false
+      const params = new URLSearchParams();
+      params.append('userId', userId)
+
+      store.dispatch('userList', params)
+        .then(({ data }) => {
+          for (var i = 0; i < data.length; i++) {
+            if (userId === data[i].userId) {
+              ElMessage.error('중복된 ID가 존재합니다.')
+              state.duplication = true
+              break;
+            }
+          }
+        })
+    }
     const fileSelect = () => {
       const profileimg = document.getElementById("profileimg")
       state.form.profileImg = profileimg.files[0]
@@ -157,6 +177,12 @@ export default {
       const ageCheck = /^[0-9]+/g
       if (!idCheck.test(state.form.userId)) {
         ElMessage.error("ID는 영문자 또는 숫자로 4~12자리로 입력해야 합니다.")
+      }
+      else if (state.duplication === '') {
+        ElMessage.error("ID 중복체크는 필수입니다.")
+      }
+      else if (state.duplication === 'true') {
+        ElMessage.error('중복된 ID가 존재합니다.')
       }
       // 영문자 + 숫자 + 특수문자 조합(8~25자리 입력) 정규식
       else if (!passwordCheck.test(state.form.password)) {
@@ -221,7 +247,7 @@ export default {
       emit('closeSignupDialog')
     }
 
-    return { signupForm, state, clickSignup, handleClose, fileSelect }
+    return { signupForm, state, clickSignup, handleClose, duplicationCheck, fileSelect }
   },
 }
 </script>

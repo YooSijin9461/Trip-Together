@@ -175,6 +175,10 @@ export default createStore({
     logout ({ commit }) {
       commit("CLEAR_STATE")
     },
+    userList ({ commit }, params) {
+      return axios
+        .get(`${BASE_URL}/api/v1/users`, { params })
+    },
     profile ({ commit }, userId) {
       return axios
         .post(`${BASE_URL}/api/v1/users/${userId}`)
