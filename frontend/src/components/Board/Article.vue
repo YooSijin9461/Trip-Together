@@ -122,7 +122,7 @@ export default {
       boardwriterGender: computed (() => store.getters['getBoardusergender']),
       updateTitle: store.getters['getBoardtitle'],
       updateContent: store.getters['getBoardcontent'],
-      updateImg: store.getters['getBoardimg'],
+      updateImg: '',
       articleNo: computed (() => store.getters['getBoardno']),
       loginId: computed (() => store.getters['getUserid']),
       dialogVisible: false,
