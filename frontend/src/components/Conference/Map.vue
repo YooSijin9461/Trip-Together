@@ -40,25 +40,12 @@ export default {
       })
 
       map.addListener('click', function({ latLng }) {
-        // state.marker = new google.maps.Marker({
-        //   position: latLng,
-        //   map: map,
-        // })
         sendMarker(latLng)
-        // state.marker.addListener('dblclick', () => {
-        //   state.marker.setMap(null)
-          // for (var i = 0; i < state.markerList.length; i++) {
-          //   if (state.markerList[i].position === state.marker.position) {
-          //     state.markerList[i].state = 0
-          //     sendMarker(state.marker.position, 0)
-          //   }
-          // }
         })
-        // state.marker.addListener('click', function() {
-        //   map.setZoom(14);
-        //   map.setCenter(state.marker.getPosition())
-        // })
-      // });
+        map.addListener('dblclick', function({latLng}) {
+          map.setZoom(14);
+          map.setCenter(latLng)
+        })
     }
     
     const connect = () => {
@@ -76,46 +63,16 @@ export default {
       }
     }
     const sendMarker = (position) => {
-      // console.log(position)
       state.stompClient.send(`/app/marker/${state.conferneceNo}`, {}, JSON.stringify(position.toJSON(), null, 2));
-      // console.log('json 확인 =>' + JSON.stringify(position.toJSON(), null, 2))
     }
 
-    // function showMarker(marker) {
-    //   state.markerList.push(marker)
-    //   console.log(state.markerList.slice(-1))
-    //   state.marker = new google.maps.Marker({
-    //     position: {
-    //       lat: parseFloat(state.markerList.slice(-1).lat),
-    //       lng: parseFloat(state.markerList.slice(-1).lng),
-    //     },
-    //     map: map,
-    //   })
-    //   console.log(state.marker)
-    // }
-    function showMarker(position) {
-      // state.markerList.push(marker)
 
-      // state.marker = new google.maps.Marker({
-      //   position: state.markerList.slice(-1)[0],
-      //   map: map,
-      // })
+    function showMarker(marker) {
+      state.markerList.push(marker)
+
       state.marker = new google.maps.Marker({
-        position: position,
+        position: state.markerList.slice(-1)[0],
         map: map,
-      })
-      state.markerList.push(state.marker)
-
-      state.markerList.addListener('dblclick', (marker) => {
-        // console.log('마커더블클릭 =>' + JSON.stringify(e.latLng.toJSON(), null, 2))
-        // console.log(e)
-        marker.setMap(null)
-      })
-      state.markerList.addListener('click', function(marker) {
-        // console.log('마커클릭 =>'+JSON.stringify(e.latLng.toJSON(), null, 2))
-        // console.log(e)
-        map.setZoom(14);
-        map.setCenter(marker.getPosition())
       })
     }
 
