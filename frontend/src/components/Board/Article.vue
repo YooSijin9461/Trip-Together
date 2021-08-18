@@ -122,7 +122,7 @@ export default {
       boardwriterGender: computed (() => store.getters['getBoardusergender']),
       updateTitle: store.getters['getBoardtitle'],
       updateContent: store.getters['getBoardcontent'],
-      updateImg: '',
+      updateImg: null,
       articleNo: computed (() => store.getters['getBoardno']),
       loginId: computed (() => store.getters['getUserid']),
       dialogVisible: false,
@@ -148,18 +148,18 @@ export default {
       // state.content = state.updateContent
 
       const formData = new FormData()
-        formData.append('boardNo', articleNo)
-        formData.append('boardTitle', state.updateTitle)
-        formData.append('boardContent', state.updateContent)
-        if (state.updateImg) {
-          formData.append('file', state.updateImg)
-        } else {
-          formData.append('file', state.boardImg)
-        }
-        
-        const params = new URLSearchParams();
-        params.append('boardTitle', state.updateTitle)
-        params.append('boardContent', state.updateContent)
+      formData.append('boardNo', articleNo)
+      formData.append('boardTitle', state.updateTitle)
+      formData.append('boardContent', state.updateContent)
+      if (state.updateImg === null) {
+        formData.append('file', state.boardImg)
+      } else {
+        formData.append('file', state.updateImg)
+      }
+      
+      const params = new URLSearchParams();
+      params.append('boardTitle', state.updateTitle)
+      params.append('boardContent', state.updateContent)
 
       store.dispatch('articleUpdate', { boardNo: articleNo, formData: formData, params: params })
         .then(() => {
@@ -314,7 +314,7 @@ export default {
   font-weight: bold;
 }
 .upload-img {
-  height: 100%;
+  height: 50%;
   width: 100%;
 }
 input[type=file]::file-selector-button {
