@@ -100,29 +100,16 @@ export default {
         position: state.markerList.slice(-1)[0],
         map: map,
       })
-      // state.marker.setMap(map)
       state.marker.addListener('dblclick', (e) => {
-        state.markerList.forEach(function(item, index){
-          if (JSON.stringify(e.latLng.toJSON(), null, 2) === item) {
-            state.marker = new google.maps.Marker({
-              position: e.latLng,
-              map: map,
-            })
-            state.marker.setMap(null)
-            state.marker.setMap(null)
-            state.markerList.slice(index, 1)
-          }
-        })
         console.log('마커더블클릭 =>' + JSON.stringify(e.latLng.toJSON(), null, 2))
         console.log(e)
+        state.marker.setMap(null)
       })
       state.marker.addListener('click', function(e) {
         console.log('마커클릭 =>'+JSON.stringify(e.latLng.toJSON(), null, 2))
         console.log(e)
         map.setZoom(14);
-        // map.setCenter(state.marker.getPosition())
-        // map.setCenter(latLng())
-        state.mapPosition = JSON.stringify(e.latLng.toJSON(), null, 2)
+        map.setCenter(state.marker.getPosition())
       })
     }
 
