@@ -151,7 +151,11 @@ export default {
         formData.append('boardNo', articleNo)
         formData.append('boardTitle', state.updateTitle)
         formData.append('boardContent', state.updateContent)
-        formData.append('file', state.updateImg)
+        if (state.updateImg) {
+          formData.append('file', state.updateImg)
+        } else {
+          formData.append('file', state.boardImg)
+        }
         
         const params = new URLSearchParams();
         params.append('boardTitle', state.updateTitle)
