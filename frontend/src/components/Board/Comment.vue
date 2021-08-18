@@ -2,14 +2,14 @@
   <div class="comment-container">
     <div class="d-flex align-items-center justify-content-between">
       <div v-if="comment.userImg">
-        <img :src="'/upload/' + comment.userImg" alt="">{{ comment.userId }}
+        <img class="comment-profile" :src="'/upload/' + comment.userImg" alt="">{{ comment.userId }}
       </div>
       <div v-else>
         <div v-if="comment.userGender === 'm'">
-          <img :src="state.male" alt="">{{ comment.userId }}
+          <img class="comment-profile" :src="state.male" alt="">{{ comment.userId }}
         </div>
         <div v-else>
-          <img :src="state.female" alt="">{{ comment.userId }}
+          <img class="comment-profile" :src="state.female" alt="">{{ comment.userId }}
         </div>
       </div>
       <div v-if="comment.userId===state.loginId">
@@ -115,5 +115,10 @@ export default {
 }
 .comment-update {
   min-width: 400px;
+}
+.comment-profile {
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
 }
 </style>

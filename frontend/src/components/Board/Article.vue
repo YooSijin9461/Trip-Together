@@ -9,10 +9,10 @@
         </div>
         <div v-else>
           <div v-if="state.boardwriterGender === 'm'">
-            <img :src="state.male" alt="">
+            <img class="article-profile" :src="state.male" alt="">
           </div>
           <div v-else>
-            <img :src="state.female" alt="">
+            <img class="article-profile" :src="state.female" alt="">
           </div>
         </div>
         <span class="article-userid" @click="clickProfile(state.boardwriterId)">{{ state.boardwriterId }}</span>
