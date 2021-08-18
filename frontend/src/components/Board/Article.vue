@@ -20,6 +20,7 @@
       <hr class="article-line mt-3 mb-4">
       <div class="article-content">
         <span>{{ state.content }}</span>
+        <img :src="'/boards/upload/' + state.boardImg" alt="">
       </div>
       <hr>
       <div class="d-flex mb-2">
@@ -113,6 +114,7 @@ export default {
       boardwriterId: computed (() => store.getters['getBoarduserid']),
       title: computed (() => store.getters['getBoardtitle']),
       content: computed (() => store.getters['getBoardcontent']),
+      boardImg: computed (() => store.getters['getBoardimg']),
       boardwriterImg: computed (() => store.getters['getBoarduserimg']),
       boardwriterGender: computed (() => store.getters['getBoardusergender']),
       updateTitle: store.getters['getBoardtitle'],

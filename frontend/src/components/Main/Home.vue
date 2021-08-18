@@ -314,11 +314,11 @@ th {
   border: 1px solid lightgreen;
 }
 .custom-map-control-button {
-  background-color: #e4ffe4;
+  background-color: #fff;
   border: 1px solid lightgreen;
   border-radius: 5px;
   box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
-  margin: 10px;
+  margin-top: 20px;
   padding: 0 0.5em;
   font: 400 15px Roboto, Arial, sans-serif;
   overflow: hidden;
@@ -326,6 +326,6 @@ th {
   cursor: pointer;
 }
 .custom-map-control-button:hover {
-  background: #ebebeb;
+  background: #e4ffe4;
 }
 </style>
