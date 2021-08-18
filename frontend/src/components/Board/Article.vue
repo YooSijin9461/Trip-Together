@@ -20,7 +20,7 @@
       <hr class="article-line mt-3 mb-4">
       <div class="article-content">
         <span>{{ state.content }}</span>
-        <img :src="'/boards/upload/' + state.boardImg" alt="">
+        <img class="upload-img" :src="'/boards/upload/' + state.boardImg" alt="">
       </div>
       <hr>
       <div class="d-flex mb-2">
@@ -293,5 +293,9 @@ export default {
 .hate-count {
   color: #f56c6c;
   font-weight: bold;
+}
+.upload-img {
+  height: 100%;
+  width: 100%;
 }
 </style>
