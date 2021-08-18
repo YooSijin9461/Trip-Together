@@ -56,6 +56,9 @@ const getDefaultState = () => {
     hate: null,
     likeCount: null,
     hateCount: null,
+    boardUserImg: null,
+    boardUserGender: null,
+    boardImg: null,
 
     // 댓글
     commentList: [],
@@ -134,6 +137,9 @@ export default createStore({
       state.boardCreate = boardinfo.boardTime
       state.likeCount = boardinfo.likeCount
       state.hateCount = boardinfo.hateCount
+      state.boardUserImg = boardinfo.userImg
+      state.boardUserGender = boardinfo.userGender
+      state.boardImg = boardinfo.boardImg
     },
     RECOMMEND (state, check) {
       state.like = check.likeCheck
@@ -184,7 +190,7 @@ export default createStore({
           commit("USERCONFERENCE", data)
         })
     },
-    singup ({ commit }, payload) {
+    signup ({ commit }, payload) {
       return axios
         .post(`${BASE_URL}/api/v1/users`, payload,
           { 
@@ -259,9 +265,14 @@ export default createStore({
           commit("BOARDINFO", data)
         })
     },
-    articleCreate ({ commit }, payload) {
+    articleCreate ({ commit }, formData) {
       return axios
-        .post(`${BASE_URL}/api/v1/boards`, payload)
+        .post(`${BASE_URL}/api/v1/boards`, formData, { 
+          headers: {
+            "Accept": "*/*", 
+            "Content-Type": "multipart/form-data"
+          }
+        })
     },
     articleSearch ({ commit }, { searchKey, searchValue }) {
       const params = new URLSearchParams([[searchKey, searchValue]])
@@ -473,6 +484,15 @@ export default createStore({
     },
     getHatecount (state) {
       return state.hateCount
+    },
+    getBoarduserimg (state) {
+      return state.boardUserImg
+    },
+    getBoardusergender (state) {
+      return state.boardUserGender
+    },
+    getBoardimg (state) {
+      return state.boardImg
     },
 
     // 댓글

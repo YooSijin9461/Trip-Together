@@ -4,12 +4,23 @@
       <h1 class="mb-4">{{ state.title }}</h1>
       <hr class="article-line mb-3">
       <div class="d-flex align-items-center">
-        <img class="article-profile me-2" src="../../assets/selfie1.jpg">
-        <span class="article-userid" @click="clickProfile(state.userId)">{{ state.userId }}</span>
+        <div v-if="state.boardwriterImg">
+          <img class="article-profile me-2" :src="'/upload/' + state.boardwriterImg">
+        </div>
+        <div v-else>
+          <div v-if="state.boardwriterGender === 'm'">
+            <img class="article-profile" :src="state.male" alt="">
+          </div>
+          <div v-else>
+            <img class="article-profile" :src="state.female" alt="">
+          </div>
+        </div>
+        <span class="article-userid" @click="clickProfile(state.boardwriterId)">{{ state.boardwriterId }}</span>
       </div>
       <hr class="article-line mt-3 mb-4">
       <div class="article-content">
         <span>{{ state.content }}</span>
+        <img :src="'/boards/upload/' + state.boardImg" alt="">
       </div>
       <hr>
       <div class="d-flex mb-2">
@@ -36,7 +47,7 @@
       </div>
       <div class="article-buttons">
         <el-button type="success" @click="clickToList">목록</el-button>
-        <div v-if="state.userId === state.loginId" class="article-button">
+        <div v-if="state.boardwriterId === state.loginId" class="article-button">
           <el-button type="primary" @click="state.dialogVisible = true">수정</el-button>
           <el-button type="danger" @click="clickDelete(state.articleNo)">삭제</el-button>
         </div>
@@ -100,9 +111,12 @@ export default {
     const router = useRouter()
 
     const state = reactive ({
-      userId: computed (() => store.getters['getBoarduserid']),
+      boardwriterId: computed (() => store.getters['getBoarduserid']),
       title: computed (() => store.getters['getBoardtitle']),
       content: computed (() => store.getters['getBoardcontent']),
+      boardImg: computed (() => store.getters['getBoardimg']),
+      boardwriterImg: computed (() => store.getters['getBoarduserimg']),
+      boardwriterGender: computed (() => store.getters['getBoardusergender']),
       updateTitle: store.getters['getBoardtitle'],
       updateContent: store.getters['getBoardcontent'],
       articleNo: computed (() => store.getters['getBoardno']),
@@ -114,6 +128,8 @@ export default {
       hate: computed (() => store.getters['getHate']),
       likeCount: computed (() => store.getters['getLikecount']),
       hateCount: computed (() => store.getters['getHatecount']),
+      male: require('@/assets/male.png'),
+      female: require('@/assets/female.png'),
     })
     const clickToList = () => {
       router.push({ name: 'ArticleList' })

@@ -137,8 +137,8 @@ public class Board {
 		return userGender;
 	}
 
-	public void setUserGender(char gender) {
-		this.userGender = gender;
+	public void setUserGender(char userGender) {
+		this.userGender = userGender;
 	}
 	
 	
