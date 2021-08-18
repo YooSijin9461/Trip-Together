@@ -2,12 +2,7 @@
 <div class="home">
   <div class="home-main">
     <div class="container">
-      <el-carousel :interval="4000" type="card" height="400px">
-        <el-carousel-item v-for="item in 6" :key="item">
-          <!-- <h3 class="medium text-center">{{ item }}</h3> -->
-          <img class="w-100" src="../../assets/room1.jpg" alt="">
-        </el-carousel-item>
-      </el-carousel>
+      <CardList/>
     </div>
     <div class="container mt-5 home-box">
       <div class="row home-board">
@@ -90,9 +85,13 @@ import { reactive, onMounted, computed, onUpdated } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { ElMessage } from 'element-plus'
+import CardList from '@/components/Main/CardList.vue'
 
 export default {
   name: 'Home',
+  components: {
+    CardList
+  },
   setup(props, { emit }) {
     const router = useRouter()
     const store = useStore()
@@ -239,19 +238,6 @@ export default {
 </script>
 
 <style>
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 200px;
-  margin: 0;
-}
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-}
-.el-carousel__item:nth-child(2n+1) {
-  background-color: #d3dce6;
-}
 .more {
   text-align: end;
 }

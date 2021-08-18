@@ -39,12 +39,13 @@ const getDefaultState = () => {
     conferencePassword: null,
     conferenceOwner: null,
     conferenceOwnerId: null,
+    conferenceOwnerImg: null,
+    conferenceOwnerGender: null,
     conferenceTitle: null,
     conferenceDescription: null,
     conferenceLimit: null,
     conferenceActive: false,
     conferenceThumbnail: null,
-    conferenceOwnerimg: null,
 
     // 게시글
     boardNo: null,
@@ -121,6 +122,8 @@ export default createStore({
       state.conferencePassword = conferenceinfo.conferencePassword
       state.conferenceOwner = conferenceinfo.owner
       state.conferenceOwnerId = conferenceinfo.ownerId
+      state.conferenceOwnerImg = conferenceinfo.ownerImg
+      state.conferenceOwnerGender = conferenceinfo.ownerGender
       state.conferenceTitle = conferenceinfo.title
       state.conferenceDescription = conferenceinfo.description
       state.conferenceLimit = conferenceinfo.limitUsersNum
@@ -445,6 +448,12 @@ export default createStore({
     },
     getConferenceownerid (state) {
       return state.conferenceOwnerId
+    },
+    getConferenceownerimg (state) {
+      return state.conferenceOwnerImg
+    },
+    getConferenceownergender (state) {
+      return state.conferenceOwnerGender
     },
     getConferenceno (state) {
       return state.conferenceNo

@@ -42,7 +42,7 @@ export default {
       map.addListener('click', function({ latLng }) {
         sendMarker(latLng)
         })
-        map.addListener('dblclick', function({latLng}) {
+        map.addListener('rightclick', function({latLng}) {
           map.setZoom(14);
           map.setCenter(latLng)
         })

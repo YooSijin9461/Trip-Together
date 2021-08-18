@@ -7,7 +7,17 @@
     </div>
     <hr class="article-line mb-3">
     <div class="d-flex align-items-center">
-      <img class="dialog-profile me-2" src="../../assets/user.png">
+      <div v-if="state.ownerImg">
+        <img class="dialog-profile me-2" :src="'/upload/' + state.ownerImg">
+      </div>
+      <div v-else>
+        <div v-if="state.ownerGender === 'm'">
+          <img :src="state.male" alt="">
+        </div>
+        <div v-else>
+          <img :src="state.female" alt="">
+        </div>
+      </div>
       <div v-if="state.userConference.length">
         <span>{{ state.ownerId }} 외 
           <span class="conference-participant">
@@ -73,6 +83,10 @@ export default {
       userId: computed(() => store.getters['getUserid']),
       owner: computed(() => store.getters['getConferenceowner']),
       ownerId: computed(() => store.getters['getConferenceownerid']),
+      ownerImg: computed(() => store.getters['getConferenceownerimg']),
+      ownerGender: computed(() => store.getters['getConferenceownergender']),
+      male: require('@/assets/male.png'),
+      female: require('@/assets/female.png'),
       title: computed(() => store.getters['getConferencetitle']),
       description: computed(() => store.getters['getConferencedescription']),
       category: computed(() => store.getters['getConferencecategory']),

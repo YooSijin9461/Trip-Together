@@ -52,7 +52,6 @@ export default ({
     const router = useRouter()
     const store = useStore()
     const state = reactive ({
-      circleUrl: require("@/assets/selfie.jpg"),
       token: computed(() => store.getters['getToken']),
       category: '',
       conferenceList: [],
