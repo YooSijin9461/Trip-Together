@@ -10,22 +10,23 @@
       </el-carousel>
     </div>
     <div class="container mt-5 home-box">
-      <div class="row">
+      <div class="row home-board">
         <div class="col-6">
           <el-tabs type="border-card">
             <el-tab-pane label="공지사항">
               <div class="container mt-3">
-                <span v-for="(notice, index) in state.noticeList" :key="notice">
-                  <span v-if="index">
-                    <hr class="my-0">
-                  </span>
+                <span v-for="(notice, index) in state.noticeList" :key="index">
+                  <hr class="my-0 home-board-line">
                   <div class="home-board-box d-flex" @click="clickNotice(notice.noticeNo)">
                     <div class="ms-3">
                       <p class="mb-0 title">{{ notice.noticeTitle }}</p>
                     </div>
                   </div>
                 </span>
-                <div class="more mt-3" @click="clickMoreNotice">
+                <div v-if="state.noticeList.length">
+                  <hr class="my-0 home-board-line">
+                </div>
+                <div v-if="state.noticeList.length === 6" class="more mt-3" @click="clickMoreNotice">
                   <p>더 보기...</p>
                 </div>
               </div>
@@ -33,12 +34,10 @@
             
             <el-tab-pane class="w-100 h-100" label="방 목록">
               <div class="container mt-3">
-                <span v-for="(conference, index) in state.conferenceList" :key="conference">
-                  <span v-if="index">
-                    <hr class="my-0">
-                  </span>
+                <span v-for="(conference, index) in state.conferenceList" :key="index">
+                  <hr class="my-0 home-board-line">
                   <div class="home-board-box d-flex" @click="clickConference(conference.conferenceNo)">
-                    <div class="col-9 ms-3">
+                    <div class="col-8 ms-3">
                       <p class="mb-0 title">{{ conference.title }}</p>
                     </div>
                     <div class="col d-flex">
@@ -46,7 +45,10 @@
                     </div>
                   </div>
                 </span>
-                <div class="more mt-3" @click="clickMoreConference">
+                <div v-if="state.conferenceList.length">
+                  <hr class="my-0 home-board-line">
+                </div>
+                <div v-if="state.noticeList.length === 6" class="more mt-3" @click="clickMoreConference">
                   <p>더 보기...</p>
                 </div>
               </div>
@@ -54,12 +56,10 @@
 
             <el-tab-pane class="w-100 h-100" label="게시글">
               <div class="container mt-3">
-                <span v-for="(article, index) in state.articleList" :key="article">
-                  <span v-if="index">
-                    <hr class="my-0">
-                  </span>
+                <span v-for="(article, index) in state.articleList" :key="index">
+                  <hr class="my-0 home-board-line">
                   <div class="home-board-box d-flex" @click="clickArticle(article.boardNo)">
-                    <div class="col-9 ms-3">
+                    <div class="col-8 ms-3">
                       <p class="mb-0 title">{{ article.boardTitle }}</p>
                     </div>
                     <div class="col d-flex">
@@ -67,14 +67,17 @@
                     </div>
                   </div>
                 </span>
-                <div class="more mt-3" @click="clickMoreArticle">
+                <div v-if="state.articleList.length">
+                  <hr class="my-0 home-board-line">
+                </div>
+                <div v-if="state.noticeList.length === 6" class="more mt-3" @click="clickMoreArticle">
                   <p>더 보기...</p>
                 </div>
               </div>
             </el-tab-pane>
           </el-tabs>
         </div>
-        <div id="map" class="col-6">
+        <div id="home-map" class="col-6">
         </div>
       </div>
     </div>
@@ -143,10 +146,11 @@ export default {
         ElMessage.error('로그인이 필요합니다.')
       }
     }
+
     const google = window.google
-    var map
+    var map, infoWindow
     function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
+      map = new google.maps.Map(document.getElementById('home-map'), {
         center: { lat: 37.564214, lng: 127.001699 },
         zoom: 10,
         styles: [{
@@ -160,6 +164,43 @@ export default {
         disableDoubleClickZoom: true,
         streetViewControl: true,
       });
+      infoWindow = new google.maps.InfoWindow();
+      const locationButton = document.createElement("button");
+      locationButton.textContent = "현재 위치 찾기";
+      locationButton.classList.add("custom-map-control-button");
+      map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+      locationButton.addEventListener("click", () => {
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+              infoWindow.setPosition(pos);
+              infoWindow.setContent("현재 위치입니다.");
+              infoWindow.open(map);
+              map.setCenter(pos);
+            },
+            () => {
+              handleLocationError(true, infoWindow, map.getCenter());
+            }
+          );
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      });
+    }
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+      infoWindow.setPosition(pos);
+      infoWindow.setContent(
+        browserHasGeolocation
+          ? "Error: The Geolocation service failed."
+          : "Error: Your browser doesn't support geolocation."
+      );
+      infoWindow.open(map);
     }
 
     onMounted (() => {
@@ -237,6 +278,7 @@ th {
 }
 .el-tabs--border-card {
   border: 1px solid lightgreen;
+  height: 100%;
 }
 .el-tabs--border-card>.el-tabs__header {
   border-bottom: 1px solid lightgreen;
@@ -260,6 +302,30 @@ th {
   height: 85%;
 }
 .home-box {
-  height: 50% !important;
+  height: 55% !important;
+}
+.home-board {
+  height: 100%;
+}
+.home-board-line {
+  color: green;
+}
+#home-map {
+  border: 1px solid lightgreen;
+}
+.custom-map-control-button {
+  background-color: #e4ffe4;
+  border: 1px solid lightgreen;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  padding: 0 0.5em;
+  font: 400 15px Roboto, Arial, sans-serif;
+  overflow: hidden;
+  height: 30px;
+  cursor: pointer;
+}
+.custom-map-control-button:hover {
+  background: #ebebeb;
 }
 </style>
