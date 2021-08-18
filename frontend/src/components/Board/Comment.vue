@@ -1,8 +1,16 @@
 <template>
   <div class="comment-container">
     <div class="d-flex align-items-center justify-content-between">
-      <div>
-        <i class="fas fa-user userId me-2"></i>{{ comment.userId }}
+      <div v-if="comment.userImg">
+        <img :src="'/upload/' + comment.userImg" alt="">{{ comment.userId }}
+      </div>
+      <div v-else>
+        <div v-if="comment.userGender === 'm'">
+          <img :src="state.male" alt="">{{ comment.userId }}
+        </div>
+        <div v-else>
+          <img :src="state.female" alt="">{{ comment.userId }}
+        </div>
       </div>
       <div v-if="comment.userId===state.loginId">
         <i class="el-icon-edit update-icon mx-1" @click="[commentDetail(comment.commentNo), state.dialogVisible=true]"></i>
@@ -47,6 +55,8 @@ export default {
       loginId: computed (() => store.getters['getUserid']),
       dialogVisible: false,
       comment: '',
+      male: require('@/assets/male.png'),
+      female: require('@/assets/female.png'),
     })
 
     const deleteComment = (commentNo) => {

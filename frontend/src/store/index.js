@@ -56,6 +56,8 @@ const getDefaultState = () => {
     hate: null,
     likeCount: null,
     hateCount: null,
+    boardUserImg: null,
+    boardUserGender: null,
 
     // 댓글
     commentList: [],
@@ -134,6 +136,8 @@ export default createStore({
       state.boardCreate = boardinfo.boardTime
       state.likeCount = boardinfo.likeCount
       state.hateCount = boardinfo.hateCount
+      state.boardUserImg = boardinfo.userImg
+      state.boardUserGender = boardinfo.userGender
     },
     RECOMMEND (state, check) {
       state.like = check.likeCheck
@@ -473,6 +477,12 @@ export default createStore({
     },
     getHatecount (state) {
       return state.hateCount
+    },
+    getBoarduserimg (state) {
+      return state.boardUserImg
+    },
+    getBoardusergender (state) {
+      return state.boardUserGender
     },
 
     // 댓글
