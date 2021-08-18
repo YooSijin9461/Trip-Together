@@ -1,15 +1,18 @@
 <template>
   <div class="comment-container">
     <div class="d-flex align-items-center justify-content-between">
-      <div v-if="comment.userImg">
-        <img class="comment-profile" :src="'/upload/' + comment.userImg" alt="">{{ comment.userId }}
+      <div v-if="comment.userImg" class="d-flex align-items-center">
+        <img class="comment-profile" :src="'/upload/' + comment.userImg" alt="">
+        <span class="comment-id" @click="clickId(comment.userId)">{{ comment.userId }}</span>
       </div>
       <div v-else>
-        <div v-if="comment.userGender === 'm'">
-          <img class="comment-profile" :src="state.male" alt="">{{ comment.userId }}
+        <div v-if="comment.userGender === 'm'" class="d-flex align-items-center">
+          <img class="comment-profile" :src="state.male" alt="">
+          <span class="comment-id" @click="clickId(comment.userId)">{{ comment.userId }}</span>
         </div>
-        <div v-else>
-          <img class="comment-profile" :src="state.female" alt="">{{ comment.userId }}
+        <div v-else class="d-flex align-items-center">
+          <img class="comment-profile" :src="state.female" alt="">
+          <span class="comment-id" @click="clickId(comment.userId)">{{ comment.userId }}</span>
         </div>
       </div>
       <div v-if="comment.userId===state.loginId">
@@ -40,6 +43,7 @@
 <script>
 import { reactive, computed } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 
 export default {
@@ -51,6 +55,7 @@ export default {
   },
   setup() {
     const store = useStore()
+    const router = useRouter()
     const state = reactive({
       loginId: computed (() => store.getters['getUserid']),
       dialogVisible: false,
@@ -87,7 +92,13 @@ export default {
           state.dialogVisible = false
         })
     }
-    return { state, deleteComment, commentDetail, updateComment }
+    const clickId = (userId) => {
+      store.dispatch('profile', userId)
+        .then(() => {
+          router.push({ name: 'Profile', params: { userId: userId }})  
+        })
+    }
+    return { state, deleteComment, commentDetail, updateComment, clickId }
   },
 }
 </script>
@@ -120,5 +131,14 @@ export default {
   width: 15px;
   height: 15px;
   border-radius: 100%;
+  margin-right: 5px;
+}
+.comment-id {
+  font-size: 13px;
+}
+.comment-id:hover {
+  color: green;
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>
