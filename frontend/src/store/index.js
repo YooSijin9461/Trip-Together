@@ -279,9 +279,19 @@ export default createStore({
       return axios
       .get(`${BASE_URL}/api/v1/boards/search`, { params })
     },
-    articleUpdate ({ commit }, payload) {
+    articleUpdate ({ commit }, { boardNo, formData, params }) {
       return axios
-        .patch(`${BASE_URL}/api/v1/boards/${payload.boardNo}`, payload.data)
+        .patch(`${BASE_URL}/api/v1/boards/${boardNo}`, formData, 
+          { 
+            headers: {
+              "Accept": "*/*", 
+              "Content-Type": "multipart/form-data"
+            },
+            params: {
+              params
+            }
+          }
+        )
     },
     articleDelete ({ commit }, boardNo) {
       return axios

@@ -83,7 +83,7 @@
             </el-input>
           </div>
           <hr class="article-line my-0 mb-4">
-          <input class="ms-4" @change="fileSelect()" id="profileimg" type="file" accept="image/*" />
+          <input class="ms-4" @change="fileSelect()" id="boardimg" type="file" accept="image/*" />
         <template #footer>
           <span class="dialog-footer">
             <el-button type="primary" @click="clickUpdate(state.articleNo)">수정</el-button>
@@ -115,7 +115,7 @@ export default {
       boardwriterId: computed (() => store.getters['getBoarduserid']),
       title: computed (() => store.getters['getBoardtitle']),
       content: computed (() => store.getters['getBoardcontent']),
-      boardImg: computed (() => store.getters['getBoardimg']),
+      boardImg: store.getters['getBoardimg'],
       boardwriterImg: computed (() => store.getters['getBoarduserimg']),
       boardwriterGender: computed (() => store.getters['getBoardusergender']),
       updateTitle: store.getters['getBoardtitle'],
@@ -134,21 +134,27 @@ export default {
     })
 
     const fileSelect = () => {
-      const profileimg = document.getElementById("profileimg")
-      state.form.profileImg = profileimg.files[0]
+      const boardimg = document.getElementById("boardimg")
+      state.form.boardImg = boardimg.files[0]
     }
     const clickToList = () => {
       router.push({ name: 'ArticleList' })
     }
     const clickUpdate = (articleNo) => {
-      state.title = state.updateTitle
-      state.content = state.updateContent
+      // state.title = state.updateTitle
+      // state.content = state.updateContent
 
-      const updateData = {
-        boardTitle: state.updateTitle,
-        boardContent: state.updateContent
-      }
-      store.dispatch('articleUpdate', { boardNo: articleNo, data:updateData })
+      const formData = new FormData()
+        formData.append('boardNo', articleNo)
+        formData.append('boardTitle', state.updateTitle)
+        formData.append('boardContent', state.updateContent)
+        formData.append('file', state.boardImg)
+        
+        const params = new URLSearchParams();
+        params.append('boardTitle', state.updateTitle)
+        params.append('boardContent', state.updateContent)
+        
+      store.dispatch('articleUpdate', { boardNo: articleNo, formData: formData, params: params })
         .then(() => {
           state.dialogVisible = false
           ElMessage ({
