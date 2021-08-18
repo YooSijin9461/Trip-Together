@@ -135,7 +135,7 @@ export default {
 
     const fileSelect = () => {
       const boardimg = document.getElementById("boardimg")
-      state.form.boardImg = boardimg.files[0]
+      state.boardImg = boardimg.files[0]
     }
     const clickToList = () => {
       router.push({ name: 'ArticleList' })
@@ -153,7 +153,7 @@ export default {
         const params = new URLSearchParams();
         params.append('boardTitle', state.updateTitle)
         params.append('boardContent', state.updateContent)
-        
+
       store.dispatch('articleUpdate', { boardNo: articleNo, formData: formData, params: params })
         .then(() => {
           state.dialogVisible = false
