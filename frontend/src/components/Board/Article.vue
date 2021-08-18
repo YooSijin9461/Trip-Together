@@ -20,7 +20,9 @@
       <hr class="article-line mt-3 mb-4">
       <div class="article-content">
         <span>{{ state.content }}</span>
-        <img class="upload-img" :src="'/boards/upload/' + state.boardImg" alt="">
+        <div v-if="state.boardImg">
+          <img class="upload-img" :src="'/boards/upload/' + state.boardImg" alt="">
+        </div>
       </div>
       <hr>
       <div class="d-flex mb-2">
