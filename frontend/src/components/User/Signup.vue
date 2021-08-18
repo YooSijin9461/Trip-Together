@@ -34,10 +34,8 @@
     <el-form-item prop="email" label="e-mail" :label-width="state.formLabelWidth" >
       <el-input v-model="state.form.email" autocomplete="off"></el-input>
     </el-form-item>
-    <el-form-item prop="profileImg" label="프로필 사진" :label-width="state.formLabelWidth" >
-      <input @change="fileSelect()" id="profileimg" type="file" accept="image/*" hidden/>
-      <label class="profileimg" for="profileimg">파일 선택</label>
-      <span id="file-chosen"></span><i v-if="state.form.profileImg" class="delete fas fa-times ms-2" @click="deletefile"></i>
+    <el-form-item prop="profileimg" label="프로필 사진" :label-width="state.formLabelWidth" >
+      <input @change="fileSelect()" id="profileimg" type="file" accept="image/*" />
     </el-form-item>
 
     <div class="row">
@@ -149,14 +147,7 @@ export default {
 
     const fileSelect = () => {
       const profileimg = document.getElementById("profileimg")
-      const selectedimg = document.getElementById("file-chosen")
       state.form.profileImg = profileimg.files[0]
-      selectedimg.textContent = profileimg.files[0].name
-    }
-    const deletefile = () => {
-      const selectedimg = document.getElementById("file-chosen")
-      state.form.profileImg = ''
-      selectedimg.textContent = ''
     }
     const clickSignup = () => {
       const idCheck = /^[a-zA-z0-9]{4,12}$/     
@@ -226,10 +217,11 @@ export default {
       state.form.email = ''
       state.form.mbti = ''
       state.form.guide = false
+      state.form.profileImg = ''
       emit('closeSignupDialog')
     }
 
-    return { signupForm, state, clickSignup, handleClose, fileSelect, deletefile }
+    return { signupForm, state, clickSignup, handleClose, fileSelect }
   },
 }
 </script>
@@ -238,21 +230,17 @@ export default {
 .Signup {
   width: 400px !important;
 }
-.profileimg {
-  height: 40px !important;
+input[type=file]::file-selector-button {
+  height: 40px;
   border: 1px solid #dcdfe6;
-  padding: 0 5px;
-  border-radius: 5px;
-  margin-right: 5px;
+  padding: 0 .4em;
+  border-radius: .2em;
+  background-color: #fff;
 }
-.profileimg:hover {
-  border: 1px solid lightgreen;
+input[type=file]::file-selector-button:hover {
+  cursor: pointer;
   background-color: #e4ffe4;
-  color: green;
-  cursor: pointer;
-}
-.delete:hover {
-  cursor: pointer;
-  color: #f56c6c;
+  border: 2px solid lightgreen;
+  font-weight: bold;
 }
 </style>

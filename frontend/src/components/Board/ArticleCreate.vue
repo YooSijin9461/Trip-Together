@@ -22,9 +22,7 @@
     </div>
     <hr class="article-line mt-0 mb-3">
     <div class="ms-2 mb-3">
-      <input @change="fileSelect()" id="upload" type="file" accept="image/*" hidden/>
-      <label class="upload" for="upload">사진 업로드</label>
-      <span id="file-chosen"></span><i v-if="state.uploadimg" class="delete fas fa-times ms-2" @click="deletefile"></i>
+      <input @change="fileSelect()" id="upload" type="file" accept="image/*" />
     </div>
     <hr class="article-line mt-0 mb-4">
     <div class="d-flex justify-content-end">
@@ -54,14 +52,7 @@ export default {
 
     const fileSelect = () => {
       const uploadimg = document.getElementById("upload")
-      const selectedimg = document.getElementById("file-chosen")
       state.uploadimg = uploadimg.files[0]
-      selectedimg.textContent = uploadimg.files[0].name
-    }
-    const deletefile = () => {
-      const selectedimg = document.getElementById("file-chosen")
-      state.uploadimg = ''
-      selectedimg.textContent = ''
     }
     const clickCancle = () => {
       router.go(-1)
@@ -72,7 +63,7 @@ export default {
         formData.append('boardTitle', state.input)
         formData.append('boardContent', state.textarea)
         formData.append('file', state.uploadimg)
-        
+
       store.dispatch('articleCreate', formData)
         .then(({ data }) => {
           ElMessage ({
@@ -85,28 +76,22 @@ export default {
             })
         })
     }
-    return { state, fileSelect, deletefile, clickCancle, clickOK }
+    return { state, fileSelect, clickCancle, clickOK }
   },
 }
 </script>
 
 <style>
-.upload {
-  text-align: center;
-  height: 40px !important;
-  border: 1px solid #dcdfe6;
-  padding: 6px;
-  border-radius: 5px;
-  margin-right: 5px;
-}
-.upload:hover {
+input[type=file]::file-selector-button {
   border: 1px solid lightgreen;
-  background-color: #e4ffe4;
-  color: green;
-  cursor: pointer;
+  padding: .2em .4em;
+  border-radius: .2em;
+  background-color: #fff;
 }
-.delete:hover {
+input[type=file]::file-selector-button:hover {
   cursor: pointer;
-  color: #f56c6c;
+  background-color: #e4ffe4;
+  border: 2px solid lightgreen;
+  font-weight: bold;
 }
 </style>
