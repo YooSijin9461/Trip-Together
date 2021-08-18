@@ -72,11 +72,8 @@ export default {
         formData.append('boardTitle', state.input)
         formData.append('boardContent', state.textarea)
         formData.append('file', state.uploadimg)
-      store.dispatch('articleCreate', {
-        userId: state.userid,
-        boardTitle: state.input,
-        boardContent: state.textarea,
-      })
+        
+      store.dispatch('articleCreate', formData)
         .then(({ data }) => {
           ElMessage ({
             message: 'Article Create Success !',
