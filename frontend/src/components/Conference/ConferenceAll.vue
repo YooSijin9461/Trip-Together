@@ -9,6 +9,14 @@
               <div v-if="conference.ownerImg">
                 <img class="profile" :src="'/upload/' + conference.ownerImg">
               </div>
+              <div v-else>
+                <div v-if="conference.ownerGender==='m'">
+                  <img :src="state.male" alt="">
+                </div>
+                <div v-else>
+                  <img :src="state.female" alt="">
+                </div>
+              </div>
               <div>
                 <span class="mt-2 mx-2">{{ conference.title }}</span><br>
                 <span class="owner mx-2" @click="clickProfile(conference.ownerId)">{{ conference.ownerId }}</span>
@@ -50,6 +58,8 @@ export default ({
       conferenceList: [],
       conferencePageList: [],
       conferenceCount: 0,
+      male: require('@/assets/male.png'),
+      female: require('@/assets/female.png'),
     })
 
     const clickProfile = (userId) => {
