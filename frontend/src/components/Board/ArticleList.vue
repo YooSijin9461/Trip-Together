@@ -34,7 +34,7 @@
     </div>
     <div class="article-pagination">
       <el-pagination
-        :page-size="15"
+        :page-size="10"
         layout="prev, pager, next"
         :total="state.articleCount"
         @current-change="pageChange">
