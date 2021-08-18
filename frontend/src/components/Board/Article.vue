@@ -82,7 +82,8 @@
               v-model="state.updateContent">
             </el-input>
           </div>
-          <hr class="article-line my-0">
+          <hr class="article-line my-0 mb-4">
+          <input class="ms-4" @change="fileSelect()" id="profileimg" type="file" accept="image/*" />
         <template #footer>
           <span class="dialog-footer">
             <el-button type="primary" @click="clickUpdate(state.articleNo)">수정</el-button>
@@ -131,6 +132,11 @@ export default {
       male: require('@/assets/male.png'),
       female: require('@/assets/female.png'),
     })
+
+    const fileSelect = () => {
+      const profileimg = document.getElementById("profileimg")
+      state.form.profileImg = profileimg.files[0]
+    }
     const clickToList = () => {
       router.push({ name: 'ArticleList' })
     }
@@ -208,7 +214,7 @@ export default {
       store.dispatch('commentList', state.articleNo)
       store.dispatch('articleDetail', state.articleNo)
     })
-    return { state, clickToList, clickDelete, clickUpdate, clickProfile, createComment, clickLike, clickHate }
+    return { state, fileSelect, clickToList, clickDelete, clickUpdate, clickProfile, createComment, clickLike, clickHate }
   },
 }
 </script>
@@ -297,5 +303,18 @@ export default {
 .upload-img {
   height: 100%;
   width: 100%;
+}
+input[type=file]::file-selector-button {
+  height: 40px;
+  border: 1px solid #dcdfe6;
+  padding: 0 .4em;
+  border-radius: .2em;
+  background-color: #fff;
+}
+input[type=file]::file-selector-button:hover {
+  cursor: pointer;
+  background-color: #e4ffe4;
+  border: 2px solid lightgreen;
+  font-weight: bold;
 }
 </style>
