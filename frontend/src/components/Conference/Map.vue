@@ -108,8 +108,8 @@ export default {
               position: e.latLng,
               map: map,
             })
-            state.marker.setmap(null)
-            state.marker.setmap(null)
+            state.marker.setMap(null)
+            state.marker.setMap(null)
             state.markerList.slice(index, 1)
           }
         })
