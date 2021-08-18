@@ -71,18 +71,15 @@ public class BoardController {
 			// 이미지 저장 경로
 			String basePath = "/var/www/html/boards/upload";
 //			String basePath = "C:\\Users\\multicampus\\Documents\\S05P13D201\\backend\\src\\main\\resources\\dist\\boards\\upload"; // 로컬
-
-			String filePath = basePath + "/" + file.getOriginalFilename();
-
-			File dest = new File(filePath);
-
-			// 파일 업로드
-			file.transferTo(dest);
-			
 			// 현재 날짜 구하기
 			Calendar cal = Calendar.getInstance();
 			int date = cal.get ( cal.DATE ) ;
+			String filePath = basePath + "/" + date + "_" + file.getOriginalFilename();
 
+			File dest = new File(filePath);
+			// 파일 업로드
+			file.transferTo(dest);
+			
 			registerInfo.setBoardImg(date + "_" + file.getOriginalFilename());
 		}
 		registerInfo.setBoardTitle(boardTitle);
@@ -169,17 +166,13 @@ public class BoardController {
 			// 이미지 저장 경로
 			String basePath = "/var/www/html/boards/upload";
 //			String basePath = "C:\\Users\\multicampus\\Documents\\S05P13D201\\backend\\src\\main\\resources\\dist\\boards\\upload"; // 로컬
-
-			String filePath = basePath + "/" + file.getOriginalFilename();
-
-			File dest = new File(filePath);
-
-			// 파일 업로드
-			file.transferTo(dest);
-			
-			// 현재 날짜 구하기
 			Calendar cal = Calendar.getInstance();
 			int date = cal.get ( cal.DATE ) ;
+			String filePath = basePath + "/" + date + "_" + file.getOriginalFilename();
+
+			File dest = new File(filePath);
+			// 파일 업로드
+			file.transferTo(dest);
 
 			modifyInfo.setImg(date + "_" + file.getOriginalFilename());
 		}
