@@ -102,14 +102,15 @@ export default {
       })
       // state.marker.setMap(map)
       state.marker.addListener('dblclick', (e) => {
+        state.markerList.forEach(function(item, index){
+          if (JSON.stringify(e.latLng.toJSON(), null, 2) === item) {
+            state.marker.position = JSON.stringify(e.latLng.toJSON(), null, 2)
+            state.marker.setmap(null)
+            state.markerList.slice(index, 1)
+          }
+        })
         console.log('마커더블클릭 =>' + JSON.stringify(e.latLng.toJSON(), null, 2))
         console.log(e)
-        for (var i = 0; i < state.markerList.length; i++) {
-            if (state.markerList[i].position === state.marker.position) {
-              state.markerList[i] = null
-            }
-          }
-          // state.marker.setMap(null)
       })
       state.marker.addListener('click', function(e) {
         console.log('마커클릭 =>'+JSON.stringify(e.latLng.toJSON(), null, 2))
