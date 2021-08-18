@@ -184,7 +184,7 @@ export default createStore({
           commit("USERCONFERENCE", data)
         })
     },
-    singup ({ commit }, payload) {
+    signup ({ commit }, payload) {
       return axios
         .post(`${BASE_URL}/api/v1/users`, payload,
           { 
